@@ -40,13 +40,14 @@ declare namespace API {
     href?: string;
     avatar?: string;
     name?: string;
-    owner?: string;
     desc?: string;
-    callNo?: number;
-    status?: number;
-    updatedAt?: string;
-    createdAt?: string;
-    progress?: number;
+    address?: string;
+    startDate?: string;
+    startTime?: string;
+    needPersonNum?: number;
+    applyPersonNum?: number;
+    passPersonNum?: number;
+
   };
 
   type RuleList = {

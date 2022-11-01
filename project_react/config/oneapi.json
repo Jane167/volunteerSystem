@@ -436,25 +436,23 @@
           "desc": {
             "type": "string"
           },
-          "callNo": {
-            "type": "integer",
-            "format": "int32"
+          "address": {
+            "type": "string"
           },
-          "status": {
-            "type": "integer",
-            "format": "int32"
+          "startDate": {
+            "type": "string"
           },
-          "updatedAt": {
-            "type": "string",
-            "format": "datetime"
+          "startTime": {
+            "type": "string"
           },
-          "createdAt": {
-            "type": "string",
-            "format": "datetime"
+          "needPersonNum": {
+            "type": "integer"
           },
-          "progress": {
-            "type": "integer",
-            "format": "int32"
+          "applyPersonNum": {
+            "type": "integer"
+          },
+          "passPersonNum": {
+            "type": "integer"
           }
         }
       },

@@ -273,8 +273,8 @@ const ActivityTableList: React.FC = () => {
                   id="pages.searchTable.totalServiceCalls"
                   defaultMessage="Total number of service calls"
                 />{' '}
-                {selectedRowsState.reduce((pre, item) => pre + item.callNo!, 0)}{' '}
-                <FormattedMessage id="pages.searchTable.tenThousand" defaultMessage="万" />
+                {/* {selectedRowsState.reduce((pre, item) => pre + item.callNo!, 0)}{' '} */}
+                {/* <FormattedMessage id="pages.searchTable.tenThousand" defaultMessage="万" /> */}
               </span>
             </div>
           }

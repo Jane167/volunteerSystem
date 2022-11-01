@@ -23,9 +23,7 @@ const genList = (current: number, pageSize: number) => {
       startTime: moment().format('HH:MM:SS'),
       needPersonNum: Math.floor(Math.random() * 10),
       applyPersonNum: Math.floor(Math.random() * 10),
-      passPersonNum: Math.floor(Math.random() * 10),
-
-      progress: Math.ceil(Math.random() * 100),
+      passPersonNum: Math.floor(Math.random() * 10)
     });
   }
   tableListDataSource.reverse();
@@ -130,13 +128,13 @@ function postRule(req: Request, res: Response, u: string, b: Request) {
             'https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png',
           ][i % 2],
           name,
-          owner: '曲丽丽',
           desc,
-          callNo: Math.floor(Math.random() * 1000),
-          status: Math.floor(Math.random() * 10) % 2,
-          updatedAt: moment().format('YYYY-MM-DD'),
-          createdAt: moment().format('YYYY-MM-DD'),
-          progress: Math.ceil(Math.random() * 100),
+          address: '陕西',
+          startDate: moment().format('YYYY-MM-DD'),
+          startTime: moment().format('HH:MM:SS'),
+          needPersonNum: Math.floor(Math.random() * 10),
+          applyPersonNum: Math.floor(Math.random() * 10),
+          passPersonNum: Math.floor(Math.random() * 10),
         };
         tableListDataSource.unshift(newRule);
         return res.json(newRule);
