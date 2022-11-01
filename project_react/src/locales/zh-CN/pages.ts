@@ -80,6 +80,9 @@ export default {
   'pages.searchActivityTable.updateForm.schedulingPeriod.timeRules': '请选择开始时间！',
   'pages.searchActivityTable.titleDesc': '活动描述',
   'pages.searchActivityTable.address': '活动地点',
+  'pages.searchActivityTable.needPersonNum': '需要人数',
+  'pages.searchActivityTable.applyPersonNum': '已报名人数',
+  'pages.searchActivityTable.passPersonNum': '审核通过人数',
   'pages.searchActivityTable.ruleName': '规则名称为必填项',
   'pages.searchActivityTable.titleStatus': '状态',
   'pages.searchActivityTable.nameStatus.default': '关闭',
@@ -91,6 +94,12 @@ export default {
   'pages.searchActivityTable.titleOption': '操作',
   'pages.searchActivityTable.apply': '点击报名',
   'pages.searchActivityTable.details': '查看详情',
+  'pages.searchActivityTable.edit': '编辑活动',
+  'pages.searchActivityTable.delete': '删除活动',
+  'pages.searchActivityTable.startDate': '开始日期',
+  'pages.searchActivityTable.startTime': '开始时间',
+
+
   'pages.searchActivityTable.title': '查询表格',
   'pages.searchActivityTable.new': '新建',
   'pages.searchActivityTable.chosen': '已选择',

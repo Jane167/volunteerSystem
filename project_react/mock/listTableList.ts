@@ -16,13 +16,15 @@ const genList = (current: number, pageSize: number) => {
         'https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png',
         'https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png',
       ][i % 2],
-      name: `TradeCode ${index}`,
-      owner: '曲丽丽',
+      name: `志愿活动 ${index+1}`,
       desc: '这是一段描述',
-      callNo: Math.floor(Math.random() * 1000),
-      status: Math.floor(Math.random() * 10) % 4,
-      updatedAt: moment().format('YYYY-MM-DD'),
-      createdAt: moment().format('YYYY-MM-DD'),
+      address: '陕西',
+      startDate: moment().format('YYYY-MM-DD'),
+      startTime: moment().format('HH:MM:SS'),
+      needPersonNum: Math.floor(Math.random() * 10),
+      applyPersonNum: Math.floor(Math.random() * 10),
+      passPersonNum: Math.floor(Math.random() * 10),
+
       progress: Math.ceil(Math.random() * 100),
     });
   }

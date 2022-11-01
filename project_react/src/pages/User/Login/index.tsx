@@ -14,6 +14,7 @@ import {
   ProFormCaptcha,
   ProFormCheckbox,
   ProFormText,
+  ProFormRadio
 } from '@ant-design/pro-components';
 import { FormattedMessage, history, SelectLang, useIntl, useModel } from '@umijs/max';
 import { Alert, message, Tabs } from 'antd';
@@ -184,6 +185,23 @@ const Login: React.FC = () => {
                         defaultMessage="请输入密码！"
                       />
                     ),
+                  },
+                ]}
+              />
+              <ProFormRadio.Group
+                name="userType"
+                options={[
+                  {
+                    label: '普通用户',
+                    value: 'a',
+                  },
+                  {
+                    label: '公益企业',
+                    value: 'b',
+                  },
+                  {
+                    label: '管理员',
+                    value: 'c',
                   },
                 ]}
               />

@@ -142,16 +142,56 @@ const ActivityTableList: React.FC = () => {
           defaultMessage="活动地点"
         />
       ),
-      dataIndex: 'callNo',
+      dataIndex: 'address',
+      // sorter: true,
+      hideInForm: true,
+    },
+    {
+      title: (
+        <FormattedMessage
+          id="pages.searchActivityTable.startDate"
+          defaultMessage="开始日期"
+        />
+      ),
+      dataIndex: 'startDate',
       sorter: true,
       hideInForm: true,
-      renderText: (val: string) =>
-        `${val}${intl.formatMessage({
-          id: 'pages.searchTable.tenThousand',
-          defaultMessage: ' 万 ',
-        })}`,
     },
-    
+    {
+      title: (
+        <FormattedMessage
+          id="pages.searchActivityTable.startTime"
+          defaultMessage="开始时间"
+        />
+      ),
+      dataIndex: 'startTime',
+      sorter: true,
+      hideInForm: true,
+    },
+    {
+      title: (
+        <FormattedMessage
+          id="pages.searchActivityTable.needPersonNum"
+          defaultMessage='需要人数' />
+      ),
+      dataIndex: 'needPersonNum'
+    },
+    {
+      title: (
+        <FormattedMessage
+          id="pages.searchActivityTable.applyPersonNum"
+          defaultMessage='已报名人数' />
+      ),
+      dataIndex: 'applyPersonNum'
+    },
+    {
+      title: (
+        <FormattedMessage 
+          id="pages.searchActivityTable.passPersonNum"
+          defaultMessage='审核通过人数' />
+      ),
+      dataIndex: 'passPersonNum'
+    },
     {
       title: <FormattedMessage id="pages.searchActivityTable.titleOption" defaultMessage="Operating" />,
       dataIndex: 'option',
@@ -166,12 +206,25 @@ const ActivityTableList: React.FC = () => {
         >
           <FormattedMessage id="pages.searchActivityTable.apply" defaultMessage="点击报名" />
         </a>,
-        <a key="details" href="https://procomponents.ant.design/">
+        <a key="details" onClick={() => {
+          setCurrentRow(record);
+          setShowDetail(true);
+        }}>
           <FormattedMessage
             id="pages.searchActivityTable.details"
             defaultMessage="查看详情"
           />
         </a>,
+        <a key="edit">
+          <FormattedMessage
+            id="pages.searchActivityTable.edit"
+            defaultMessage='编辑活动' />
+        </a>,
+        <a>
+          <FormattedMessage
+            id="pages.searchActivityTable.delete"
+            defaultMessage='删除活动' />
+        </a>
       ],
     },
   ];
