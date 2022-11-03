@@ -29,6 +29,7 @@ class UserSignupAPIView(CreateAPIView):
 
 
 class UserSigninAPIView(GenericAPIView):
+    # permission_classes = [isAdminUser]
     authentication_classes = ()
     permission_classes = ()
     serializer_class = UserSigninSerializer

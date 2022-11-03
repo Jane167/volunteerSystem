@@ -71,6 +71,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'utils.LoggingMiddleware.LoggingMiddleware'
 ]
 
 ROOT_URLCONF = 'project_drf.urls'
@@ -146,3 +147,36 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# logs
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        }
+    },
+    'loggers': {
+        # log打印sql
+        # 'django.db.backends': {
+        #     'handlers': ['write'],
+        #     'level': 'DEBUG',
+        # },
+        '': {
+            'handlers': ['write'],
+            'level': 'INFO',
+        }
+    },
+    'handlers': {
+        'write': {
+            'filename': 'logs/debug.log',
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            # 日志文件大小：5M
+            'maxBytes': 5 * 1024 * 1024,
+            'encoding': "utf-8"
+        }
+    }
+}
