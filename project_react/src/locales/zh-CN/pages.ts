@@ -65,13 +65,33 @@ export default {
 
   'pages.searchActivityTable.createForm.newActivity': '新建活动',
   'pages.searchActivityTable.updateForm.ruleConfig': '规则配置',
-  'pages.searchActivityTable.updateForm.basicInfo': '基本信息',
+ 
+  'pages.searchActivityTable.updateForm.first.title': '基本信息',
+  'pages.serachActivityTable.updateForm.second.title': '时间信息',
+  'pages.searchActivityTable.updateForm.third.title': '需求信息',
+
+
   'pages.searchActivityTable.updateForm.ruleName.nameLabel': '活动名称',
   'pages.searchActivityTable.updateForm.ruleName.nameRules': '请输入活动名称！',
   'pages.searchActivityTable.updateForm.ruleDesc.descLabel': '活动描述',
   'pages.searchActivityTable.updateForm.ruleDesc.descPlaceholder': '请输入至少五个字符',
   'pages.searchActivityTable.updateForm.ruleDesc.descRules': '请输入至少五个字符的活动描述！',
-  'pages.searchActivityTable.updateForm.ruleProps.title': '配置规则属性',
+  'pages.searchActivityTable.updateForm.ruleAddress.addressLabel': '活动地点',
+  'pages.searchActivityTable.updateForm.ruleAddress.addressRule': '请输入活动地点！',
+  'pages.searchActivityTable.updateForm.ruleStartDate.startDateLabel': '开始日期',
+  'pages.searchActivityTable.updateForm.ruleStartDate.startDateRules': '请选择开始日期！',
+  'pages.searchActivityTable.updateForm.ruleStartTime.startTimeLabel': '开始时间',
+  'pages.searchActivityTable.updateForm.ruleStartTime.startTimeRules': '请选择开始时间',
+  'pages.searchActivityTable.updateForm.ruleRequirements.requirementsLabel': '志愿者素养要求',
+  'pages.searchActivityTable.updateForm.ruleRequirements.requirementRules': '请输入志愿者素养要求',
+  'pages.searchActivityTable.updateForm.ruleNeedPersonNum.needPersonNumLabel': '需要人数',
+  'pages.serachActivityTable.updateForm.ruleNeedPersonNum.needPersonNumRules': '请输入需要人数!',
+
+
+
+  
+
+
   'pages.searchActivityTable.updateForm.object': '监控对象',
   'pages.searchActivityTable.updateForm.ruleProps.templateLabel': '规则模板',
   'pages.searchActivityTable.updateForm.ruleProps.typeLabel': '规则类型',

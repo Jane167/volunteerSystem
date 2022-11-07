@@ -1,10 +1,10 @@
 import {
-  ProFormDateTimePicker,
-  ProFormRadio,
-  ProFormSelect,
+  ProFormDatePicker,
+  ProFormDigit,
   ProFormText,
   ProFormTextArea,
   StepsForm,
+  ProFormTimePicker,
 } from '@ant-design/pro-components';
 import { FormattedMessage, useIntl } from '@umijs/max';
 import { Modal } from 'antd';
@@ -60,7 +60,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           desc: props.values.desc,
         }}
         title={intl.formatMessage({
-          id: 'pages.searchActivityTable.updateForm.basicInfo',
+          id: 'pages.searchActivityTable.first.title',
           defaultMessage: '基本信息',
         })}
       >
@@ -107,6 +107,26 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
             },
           ]}
         />
+        <ProFormText 
+          name="address"
+          label = {intl.formatMessage({
+            id: 'pages.searchActivityTable.updateForm.ruleAddress.addressLabel',
+            defaultMessage: '活动地点',
+          })}
+          width="md"
+          rules={[
+            {
+              required: true,
+              message: (
+                <FormattedMessage
+                  id='pages.searchActicityTable.updateForm.ruleAddress.addressRules'
+                  defaultMessage='请输入活动地点！'
+                />
+              )
+            }
+          ]}
+          />
+        
       </StepsForm.StepForm>
       <StepsForm.StepForm
         initialValues={{
@@ -114,49 +134,46 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           template: '0',
         }}
         title={intl.formatMessage({
-          id: 'pages.searchTable.updateForm.ruleProps.title',
-          defaultMessage: '配置规则属性',
+          id: 'pages.searchTable.updateForm.second.title',
+          defaultMessage: '时间信息',
         })}
       >
-        <ProFormSelect
-          name="target"
-          width="md"
+        <ProFormDatePicker 
+          name="startDate"
+          width='md'
           label={intl.formatMessage({
-            id: 'pages.searchTable.updateForm.object',
-            defaultMessage: '监控对象',
-          })}
-          valueEnum={{
-            0: '表一',
-            1: '表二',
-          }}
-        />
-        <ProFormSelect
-          name="template"
-          width="md"
-          label={intl.formatMessage({
-            id: 'pages.searchTable.updateForm.ruleProps.templateLabel',
-            defaultMessage: '规则模板',
-          })}
-          valueEnum={{
-            0: '规则模板一',
-            1: '规则模板二',
-          }}
-        />
-        <ProFormRadio.Group
-          name="type"
-          label={intl.formatMessage({
-            id: 'pages.searchTable.updateForm.ruleProps.typeLabel',
-            defaultMessage: '规则类型',
-          })}
-          options={[
+            id: 'page.searchTable.updateForm.ruleStartDate.startDateLabel',
+            defaultMessage: '开始日期',
+          })}  
+          rules={[
             {
-              value: '0',
-              label: '强',
-            },
+              required: true,
+              message: (
+                <FormattedMessage 
+                  id='pages.searchActivityTable.updateForm.ruleStartDate.startDateRules'
+                  defaultMessage='开始时间不能小于现在！'
+                />
+              )
+            }
+          ]}
+        /> 
+        <ProFormTimePicker
+          name='startTime'
+          width='md'
+          label={intl.formatMessage({
+            id: 'pages.searchTable.updateForm.ruleStartTime.startTimeLabel',
+            defaultMessage: '开始时间',
+          })}
+          rules={[
             {
-              value: '1',
-              label: '弱',
-            },
+              required: true,
+              message: (
+                <FormattedMessage 
+                  id='pages.searchActivityTable.updateForm.ruleStartTime.startTimeRules'
+                  defaultMessage='开始日期不能小于现在！'
+                />
+              )
+            }
           ]}
         />
       </StepsForm.StepForm>
@@ -166,41 +183,48 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           frequency: 'month',
         }}
         title={intl.formatMessage({
-          id: 'pages.searchTable.updateForm.schedulingPeriod.title',
-          defaultMessage: '设定调度周期',
+          id: 'pages.searchTable.updateForm.third.title',
+          defaultMessage: '需求信息',
         })}
       >
-        <ProFormDateTimePicker
-          name="time"
-          width="md"
+        <ProFormTextArea
+          name='requirements'
+          width='md'
           label={intl.formatMessage({
-            id: 'pages.searchTable.updateForm.schedulingPeriod.timeLabel',
-            defaultMessage: '开始时间',
+            id: 'pages.searchActivity.updateForm.ruleRequirements.requirementsLabel',
+            defaultMessage: '活动要求'
           })}
           rules={[
             {
               required: true,
               message: (
                 <FormattedMessage
-                  id="pages.searchTable.updateForm.schedulingPeriod.timeRules"
-                  defaultMessage="请选择开始时间！"
+                  id='pages.searchActivityTable.updateForm.ruleRequirements.requirementsLabel'
+                  defaultMessage='请输入活动要求！'
                 />
-              ),
-            },
+              )
+            }
           ]}
         />
-        <ProFormSelect
-          name="frequency"
-          label={intl.formatMessage({
-            id: 'pages.searchTable.updateForm.object',
-            defaultMessage: '监控对象',
-          })}
-          width="md"
-          valueEnum={{
-            month: '月',
-            week: '周',
-          }}
-        />
+        <ProFormDigit 
+           name="needPersonNum"
+           width="md"
+           label={intl.formatMessage({
+            id: 'pages.searchActivity.updateForm.ruleNeedPersonNum.needPersonNumLabel',
+            defaultMessage: '需要人数'
+           })}
+           rules={[
+            {
+              required: true,
+              message: (
+                <FormattedMessage
+                  id='pages.searchActivityTable.updateForm.ruleNeedPersonNum.needPersonNumRules'
+                  defaultMessage='请输入该活动需要人数！'
+                />
+              )
+            }
+           ]}
+           min={1} max={9999} />
       </StepsForm.StepForm>
     </StepsForm>
   );

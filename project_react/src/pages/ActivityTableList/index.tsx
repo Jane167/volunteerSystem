@@ -215,7 +215,10 @@ const ActivityTableList: React.FC = () => {
             defaultMessage="查看详情"
           />
         </a>,
-        <a key="edit">
+        <a key="edit" onClick={() =>{
+          handleUpdateModalVisible(true);
+          setCurrentRow(record);
+        }}>
           <FormattedMessage
             id="pages.searchActivityTable.edit"
             defaultMessage='编辑活动' />
