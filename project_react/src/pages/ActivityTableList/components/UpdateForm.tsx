@@ -58,6 +58,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
         initialValues={{
           name: props.values.name,
           desc: props.values.desc,
+          address: props.values.address,
         }}
         title={intl.formatMessage({
           id: 'pages.searchActivityTable.first.title',
@@ -130,8 +131,8 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
       </StepsForm.StepForm>
       <StepsForm.StepForm
         initialValues={{
-          target: '0',
-          template: '0',
+          startDate: props.values.startDate,
+          startTime: props.values.startTime,
         }}
         title={intl.formatMessage({
           id: 'pages.searchTable.updateForm.second.title',
@@ -179,8 +180,8 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
       </StepsForm.StepForm>
       <StepsForm.StepForm
         initialValues={{
-          type: '1',
-          frequency: 'month',
+          requirements: props.values.requirements,
+          needPersonNum: props.values.needPersonNum,
         }}
         title={intl.formatMessage({
           id: 'pages.searchTable.updateForm.third.title',

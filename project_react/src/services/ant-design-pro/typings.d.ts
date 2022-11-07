@@ -44,6 +44,7 @@ declare namespace API {
     address?: string;
     startDate?: string;
     startTime?: string;
+    requirements?: string,
     needPersonNum?: number;
     applyPersonNum?: number;
     passPersonNum?: number;

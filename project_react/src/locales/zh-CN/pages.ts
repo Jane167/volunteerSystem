@@ -65,7 +65,6 @@ export default {
 
   'pages.searchActivityTable.createForm.newActivity': '新建活动',
   'pages.searchActivityTable.updateForm.ruleConfig': '规则配置',
- 
   'pages.searchActivityTable.updateForm.first.title': '基本信息',
   'pages.serachActivityTable.updateForm.second.title': '时间信息',
   'pages.searchActivityTable.updateForm.third.title': '需求信息',
@@ -88,10 +87,6 @@ export default {
   'pages.serachActivityTable.updateForm.ruleNeedPersonNum.needPersonNumRules': '请输入需要人数!',
 
 
-
-  
-
-
   'pages.searchActivityTable.updateForm.object': '监控对象',
   'pages.searchActivityTable.updateForm.ruleProps.templateLabel': '规则模板',
   'pages.searchActivityTable.updateForm.ruleProps.typeLabel': '规则类型',
@@ -100,6 +95,7 @@ export default {
   'pages.searchActivityTable.updateForm.schedulingPeriod.timeRules': '请选择开始时间！',
   'pages.searchActivityTable.titleDesc': '活动描述',
   'pages.searchActivityTable.address': '活动地点',
+  'pages.searchActivityTable.requirements': '志愿者素养要求',
   'pages.searchActivityTable.needPersonNum': '需要人数',
   'pages.searchActivityTable.applyPersonNum': '已报名人数',
   'pages.searchActivityTable.passPersonNum': '审核通过人数',

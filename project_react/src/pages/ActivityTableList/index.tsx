@@ -47,7 +47,12 @@ const handleUpdate = async (fields: FormValueType) => {
     await updateRule({
       name: fields.name,
       desc: fields.desc,
-      key: fields.key,
+      address: fields.address,
+      startDate: fields.startDate,
+      startTime: fields.startTime,
+      requirements: fields.requirements,
+      needPersonNum: fields.needPersonNum,
+      // key: fields.key,
     });
     hide();
 
@@ -94,6 +99,7 @@ const ActivityTableList: React.FC = () => {
    * @zh-CN 分布更新窗口的弹窗
    * */
   const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
+  const [applyModalVisible, handleApplyModalVisible] = useState<boolean>(false);
 
   const [showDetail, setShowDetail] = useState<boolean>(false);
 
@@ -171,6 +177,16 @@ const ActivityTableList: React.FC = () => {
     {
       title: (
         <FormattedMessage
+          id='pages.searchActivityTable.requirements'
+          defaultMessage='志愿者素养要求'
+        />
+      ),
+      dataIndex: 'requirements',
+      hideInForm: true,
+    },
+    {
+      title: (
+        <FormattedMessage
           id="pages.searchActivityTable.needPersonNum"
           defaultMessage='需要人数' />
       ),
@@ -195,12 +211,13 @@ const ActivityTableList: React.FC = () => {
     {
       title: <FormattedMessage id="pages.searchActivityTable.titleOption" defaultMessage="Operating" />,
       dataIndex: 'option',
+      width: 290,
       valueType: 'option',
       render: (_, record) => [
         <a
           key="apply"
           onClick={() => {
-            handleUpdateModalVisible(true);
+            handleApplyModalVisible(true);
             setCurrentRow(record);
           }}
         >
