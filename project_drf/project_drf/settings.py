@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',    # drf
-    'activity',    #activity
+    'rest_framework',               # drf
+    'rest_framework_swagger',       # swagger 接口文档
+    'activity',                     # activity 自定义应用
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+SWAGGER_SETTINGS = {
+    # 这里可以用获取到的token来登录
+    'SECURITY_DEFINITIONS': {
+        'api_key': {
+            'type': 'apiKey',
+            'in': 'query',          # token位置在url中
+            'name': 'token'         # 验权的字段
+        }
+    },
+    'USE_SESSION_AUTH':  False,
+    'JSON_EDITOR': False,           # False, 用户可以自己编辑格式，不用按照serializers中的数据添加。True，会有多个输入框， 输入serilizers对应的字段的值
+}

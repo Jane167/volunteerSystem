@@ -16,7 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from rest_framework.schemas import get_schema_view
+from rest_framework_swagger.renderers import SwaggerUIRenderer, OpenAPICodec
+
+schema_view = get_schema_view(title='API', renderer_classes=[OpenAPICodec, SwaggerUIRenderer])
+
 urlpatterns = [
+    path('docs/', schema_view, name='swagger'),         # 配置接口文档的url
     path('admin/', admin.site.urls),
     path('activity/', include('activity.urls')),        # 将activity子应用中的路由文件加载到总路由文件
 ]
