@@ -24,5 +24,6 @@ schema_view = get_schema_view(title='Volunteer Management System API', renderer_
 urlpatterns = [
     path('docs/', schema_view, name='swagger'),         # 配置接口文档的url
     path('admin/', admin.site.urls),
-    path('activity/', include('activity.urls')),        # 将activity子应用中的路由文件加载到总路由文件
+    path('', include('activity.urls')),        # 将activity子应用中的路由文件加载到总路由文件
+    path('', include('apply.urls')),              # 将apply子应用的路由文件加载到总路由文件
 ]
