@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',               # drf
     'rest_framework_swagger',       # swagger 接口文档
     'activity',                     # activity 自定义应用
+    'apply',                        # apply 自定义应用
 ]
 
 MIDDLEWARE = [
