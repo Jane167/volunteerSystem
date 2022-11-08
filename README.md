@@ -2,11 +2,11 @@
 
 ## PROJECT_DRF
 
-```python
+```python shell
 # install requirements
 pip install -r requirements.txt
 
-# 数据库迁移
+# database migrations
 python manage.py makemigrations
 python manage.py migrate
 

@@ -19,7 +19,7 @@ from django.urls import path, include
 from rest_framework.schemas import get_schema_view
 from rest_framework_swagger.renderers import SwaggerUIRenderer, OpenAPICodec
 
-schema_view = get_schema_view(title='API', renderer_classes=[OpenAPICodec, SwaggerUIRenderer])
+schema_view = get_schema_view(title='Volunteer Management System API', renderer_classes=[OpenAPICodec, SwaggerUIRenderer])
 
 urlpatterns = [
     path('docs/', schema_view, name='swagger'),         # 配置接口文档的url
