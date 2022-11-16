@@ -1,4 +1,5 @@
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 from activity.models import Activity
 
 # Create your models here.
@@ -27,7 +28,7 @@ class Apply(models.Model):
     age = models.IntegerField(verbose_name='年龄')
     sex = models.IntegerField(verbose_name='性别', choices=SEX, default=0)
     address = models.CharField(verbose_name='家庭住址', max_length=50)
-    tel = models.IntegerField(verbose_name='联系方式')
+    tel = models.CharField(verbose_name='联系方式', max_length=255)
     apply_status = models.IntegerField(verbose_name='报名状态', choices=STATUS, default=ApplyStatus.WAIT)
     apply_time = models.DateTimeField(verbose_name='报名时间', auto_now_add=True)
 

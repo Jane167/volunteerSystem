@@ -6,4 +6,9 @@ class ApplyModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Apply
         fields = '__all__'
-        depth = 1
+        depth = 2
+        read_only_fields = ['id']
+
+    def validate_tel(self, value):
+        if(value.length != 11):
+            raise serializer.ValidationError('电话号码长度不对！')
