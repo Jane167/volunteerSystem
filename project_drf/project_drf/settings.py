@@ -43,6 +43,12 @@ INSTALLED_APPS = [
     'activity',                     # activity 自定义应用
     'apply',                        # apply 自定义应用
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.permissions.IsAdminUser',
+    ],
+    'PAGE_SIZE': 10
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
