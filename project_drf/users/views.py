@@ -13,7 +13,8 @@ class UserViewSet(viewsets.ModelViewSet):
 	"""
 	queryset = User.objects.all().order_by('-date_joined')
 	serializer_class = UserSerializer
-	
+
+
 class GroupViewSet(viewsets.ModelViewSet):
 	"""
 	允许组查看或编辑的API路径
