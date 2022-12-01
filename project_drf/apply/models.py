@@ -17,6 +17,7 @@ class Apply(models.Model):
       (2, '女')
     ]
 
+
     STATUS = [
       (ApplyStatus.WAIT, '待审核'),
       (ApplyStatus.PASS, '已审核'),
