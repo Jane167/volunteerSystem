@@ -4,14 +4,14 @@
 import React from 'react';
 import { ConfigProvider } from 'antd';
 
-import moment from 'D:/Users/Desktop/MyCode/volunteerManagementSys/project_react/node_modules/moment';
-import 'D:/Users/Desktop/MyCode/volunteerManagementSys/project_react/node_modules/moment/locale/bn-bd';
-import 'D:/Users/Desktop/MyCode/volunteerManagementSys/project_react/node_modules/moment/locale/fa';
-import 'D:/Users/Desktop/MyCode/volunteerManagementSys/project_react/node_modules/moment/locale/id';
-import 'D:/Users/Desktop/MyCode/volunteerManagementSys/project_react/node_modules/moment/locale/ja';
-import 'D:/Users/Desktop/MyCode/volunteerManagementSys/project_react/node_modules/moment/locale/pt-br';
-import 'D:/Users/Desktop/MyCode/volunteerManagementSys/project_react/node_modules/moment/locale/zh-cn';
-import 'D:/Users/Desktop/MyCode/volunteerManagementSys/project_react/node_modules/moment/locale/zh-tw';
+import moment from 'D:/Users/Desktop/MyCode/bs_volunteerManagementSys/project_react/node_modules/moment';
+import 'D:/Users/Desktop/MyCode/bs_volunteerManagementSys/project_react/node_modules/moment/locale/bn-bd';
+import 'D:/Users/Desktop/MyCode/bs_volunteerManagementSys/project_react/node_modules/moment/locale/fa';
+import 'D:/Users/Desktop/MyCode/bs_volunteerManagementSys/project_react/node_modules/moment/locale/id';
+import 'D:/Users/Desktop/MyCode/bs_volunteerManagementSys/project_react/node_modules/moment/locale/ja';
+import 'D:/Users/Desktop/MyCode/bs_volunteerManagementSys/project_react/node_modules/moment/locale/pt-br';
+import 'D:/Users/Desktop/MyCode/bs_volunteerManagementSys/project_react/node_modules/moment/locale/zh-cn';
+import 'D:/Users/Desktop/MyCode/bs_volunteerManagementSys/project_react/node_modules/moment/locale/zh-tw';
 import { RawIntlProvider, getLocale, getDirection , setIntl, getIntl, localeInfo, event, LANG_CHANGE_EVENT } from './localeExports';
 
 

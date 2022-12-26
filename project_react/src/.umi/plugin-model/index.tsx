@@ -3,7 +3,7 @@
 // DO NOT CHANGE IT MANUALLY!
 // @ts-ignore
 import type { models as rawModels } from '@@/plugin-model/model';
-import isEqual from 'D:/Users/Desktop/MyCode/volunteerManagementSys/project_react/node_modules/fast-deep-equal/index.js';
+import isEqual from 'D:/Users/Desktop/MyCode/bs_volunteerManagementSys/project_react/node_modules/fast-deep-equal/index.js';
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 
 type Models = typeof rawModels;

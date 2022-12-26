@@ -11,10 +11,11 @@ import {
   ProTable,
 } from '@ant-design/pro-components';
 import { FormattedMessage, useIntl } from '@umijs/max';
-import { Button, Drawer, Input, message } from 'antd';
+import { Button, Drawer, message } from 'antd';
 import React, { useRef, useState } from 'react';
 import type { FormValueType } from './components/UpdateForm';
 import UpdateForm from './components/UpdateForm';
+import ApplyForm from './components/ApplyForm';
 
 /**
  * @en-US Add node
@@ -64,7 +65,35 @@ const handleUpdate = async (fields: FormValueType) => {
     return false;
   }
 };
+/**
+ * @en-US Apply node
+ * @zh-CN 报名节点
+ *
+ * @param fields
+ */
+const handleApply = async (fields: FormValueType) => {
+  const hide = message.loading('Configuring');
+  try {
+    await updateRule({
+      name: fields.name,
+      desc: fields.desc,
+      address: fields.address,
+      startDate: fields.startDate,
+      startTime: fields.startTime,
+      requirements: fields.requirements,
+      needPersonNum: fields.needPersonNum,
+      // key: fields.key,
+    });
+    hide();
 
+    message.success('Configuration is successful');
+    return true;
+  } catch (error) {
+    hide();
+    message.error('Configuration failed, please try again!');
+    return false;
+  }
+};
 /**
  *  Delete node
  * @zh-CN 删除节点
@@ -137,27 +166,21 @@ const ActivityTableList: React.FC = () => {
       },
     },
     {
-      title: <FormattedMessage id="pages.searchActivityTable.titleDesc" defaultMessage="活动描述" />,
+      title: (
+        <FormattedMessage id="pages.searchActivityTable.titleDesc" defaultMessage="活动描述" />
+      ),
       dataIndex: 'desc',
       valueType: 'textarea',
     },
     {
-      title: (
-        <FormattedMessage
-          id="pages.searchActivityTable.address"
-          defaultMessage="活动地点"
-        />
-      ),
+      title: <FormattedMessage id="pages.searchActivityTable.address" defaultMessage="活动地点" />,
       dataIndex: 'address',
       // sorter: true,
       hideInForm: true,
     },
     {
       title: (
-        <FormattedMessage
-          id="pages.searchActivityTable.startDate"
-          defaultMessage="开始日期"
-        />
+        <FormattedMessage id="pages.searchActivityTable.startDate" defaultMessage="开始日期" />
       ),
       dataIndex: 'startDate',
       sorter: true,
@@ -165,10 +188,7 @@ const ActivityTableList: React.FC = () => {
     },
     {
       title: (
-        <FormattedMessage
-          id="pages.searchActivityTable.startTime"
-          defaultMessage="开始时间"
-        />
+        <FormattedMessage id="pages.searchActivityTable.startTime" defaultMessage="开始时间" />
       ),
       dataIndex: 'startTime',
       sorter: true,
@@ -177,8 +197,8 @@ const ActivityTableList: React.FC = () => {
     {
       title: (
         <FormattedMessage
-          id='pages.searchActivityTable.requirements'
-          defaultMessage='志愿者素养要求'
+          id="pages.searchActivityTable.requirements"
+          defaultMessage="志愿者素养要求"
         />
       ),
       dataIndex: 'requirements',
@@ -186,30 +206,32 @@ const ActivityTableList: React.FC = () => {
     },
     {
       title: (
-        <FormattedMessage
-          id="pages.searchActivityTable.needPersonNum"
-          defaultMessage='需要人数' />
+        <FormattedMessage id="pages.searchActivityTable.needPersonNum" defaultMessage="需要人数" />
       ),
-      dataIndex: 'needPersonNum'
+      dataIndex: 'needPersonNum',
     },
     {
       title: (
         <FormattedMessage
           id="pages.searchActivityTable.applyPersonNum"
-          defaultMessage='已报名人数' />
+          defaultMessage="已报名人数"
+        />
       ),
-      dataIndex: 'applyPersonNum'
+      dataIndex: 'applyPersonNum',
     },
     {
       title: (
-        <FormattedMessage 
+        <FormattedMessage
           id="pages.searchActivityTable.passPersonNum"
-          defaultMessage='审核通过人数' />
+          defaultMessage="审核通过人数"
+        />
       ),
-      dataIndex: 'passPersonNum'
+      dataIndex: 'passPersonNum',
     },
     {
-      title: <FormattedMessage id="pages.searchActivityTable.titleOption" defaultMessage="Operating" />,
+      title: (
+        <FormattedMessage id="pages.searchActivityTable.titleOption" defaultMessage="Operating" />
+      ),
       dataIndex: 'option',
       width: 290,
       valueType: 'option',
@@ -223,28 +245,27 @@ const ActivityTableList: React.FC = () => {
         >
           <FormattedMessage id="pages.searchActivityTable.apply" defaultMessage="点击报名" />
         </a>,
-        <a key="details" onClick={() => {
-          setCurrentRow(record);
-          setShowDetail(true);
-        }}>
-          <FormattedMessage
-            id="pages.searchActivityTable.details"
-            defaultMessage="查看详情"
-          />
+        <a
+          key="details"
+          onClick={() => {
+            setCurrentRow(record);
+            setShowDetail(true);
+          }}
+        >
+          <FormattedMessage id="pages.searchActivityTable.details" defaultMessage="查看详情" />
         </a>,
-        <a key="edit" onClick={() =>{
-          handleUpdateModalVisible(true);
-          setCurrentRow(record);
-        }}>
-          <FormattedMessage
-            id="pages.searchActivityTable.edit"
-            defaultMessage='编辑活动' />
+        <a
+          key="edit"
+          onClick={() => {
+            handleUpdateModalVisible(true);
+            setCurrentRow(record);
+          }}
+        >
+          <FormattedMessage id="pages.searchActivityTable.edit" defaultMessage="编辑活动" />
         </a>,
         <a>
-          <FormattedMessage
-            id="pages.searchActivityTable.delete"
-            defaultMessage='删除活动' />
-        </a>
+          <FormattedMessage id="pages.searchActivityTable.delete" defaultMessage="删除活动" />
+        </a>,
       ],
     },
   ];
@@ -372,6 +393,27 @@ const ActivityTableList: React.FC = () => {
           }
         }}
         updateModalVisible={updateModalVisible}
+        values={currentRow || {}}
+      />
+
+      <ApplyForm
+        onSubmit={async (value) => {
+          const success = await handleApply(value);
+          if (success) {
+            handleApplyModalVisible(false);
+            setCurrentRow(undefined);
+            if (actionRef.current) {
+              actionRef.current.reload();
+            }
+          }
+        }}
+        onCancel={() => {
+          handleApplyModalVisible(false);
+          if (!showDetail) {
+            setCurrentRow(undefined);
+          }
+        }}
+        applyModalVisible={applyModalVisible}
         values={currentRow || {}}
       />
 

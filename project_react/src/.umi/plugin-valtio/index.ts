@@ -8,4 +8,4 @@ export {
   proxyWithDevtools,
   proxyMap,
   proxySet,
-} from 'D:/Users/Desktop/MyCode/volunteerManagementSys/project_react/node_modules/@umijs/valtio';
+} from 'D:/Users/Desktop/MyCode/bs_volunteerManagementSys/project_react/node_modules/@umijs/valtio';

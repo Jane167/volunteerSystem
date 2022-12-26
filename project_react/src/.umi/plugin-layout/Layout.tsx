@@ -6,7 +6,7 @@ import type { IRoute } from 'umi';
 import React, { useMemo } from 'react';
 import {
   ProLayout,
-} from "D:/Users/Desktop/MyCode/volunteerManagementSys/project_react/node_modules/@ant-design/pro-components";
+} from "D:/Users/Desktop/MyCode/bs_volunteerManagementSys/project_react/node_modules/@ant-design/pro-components";
 import './Layout.less';
 import Logo from './Logo';
 import Exception from './Exception';
