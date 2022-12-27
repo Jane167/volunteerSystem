@@ -41,6 +41,11 @@ export default [
         name: 'sub-page',
         component: './Admin',
       },
+      {
+        path: '/admin/userManagement',
+        name: 'user-management',
+        component: './UserManagement',
+      },
     ],
   },
   {

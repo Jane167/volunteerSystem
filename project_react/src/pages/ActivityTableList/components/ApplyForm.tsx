@@ -4,7 +4,7 @@ import {
   EnvironmentOutlined,
   PhoneOutlined,
 } from '@ant-design/icons';
-import { ProForm, ProFormRadio, ProFormSelect, ProFormText } from '@ant-design/pro-components';
+import { ProForm, ProFormDigit, ProFormRadio, ProFormSelect, ProFormText } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import React, { useState } from 'react';
 import { Modal } from 'antd';
@@ -97,7 +97,7 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
               },
             ]}
           />
-          <ProFormText
+          <ProFormDigit
             label="年龄"
             name="age"
             fieldProps={{
