@@ -1,4 +1,9 @@
-import { UserOutlined, ManOutlined, StarOutlined, EnvironmentOutlined, PhoneOutlined } from '@ant-design/icons';
+import {
+  UserOutlined,
+  StarOutlined,
+  EnvironmentOutlined,
+  PhoneOutlined,
+} from '@ant-design/icons';
 import { ProForm, ProFormRadio, ProFormSelect, ProFormText } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import React, { useState } from 'react';
@@ -23,7 +28,7 @@ export type ApplyFormProps = {
 };
 
 const ApplyForm: React.FC<ApplyFormProps> = (props) => {
-  const [formLayoutType, setFormLayoutType] = useState<LayoutType>(LAYOUT_TYPE_HORIZONTAL)
+  const [formLayoutType, setFormLayoutType] = useState<LayoutType>(LAYOUT_TYPE_HORIZONTAL);
   const intl = useIntl();
   return (
     <>
@@ -40,7 +45,7 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
           props.onCancel();
         }}
       >
-        <ProForm  layout={formLayoutType}>
+        <ProForm layout={formLayoutType}>
           <ProFormText
             label="姓名"
             name="name"
