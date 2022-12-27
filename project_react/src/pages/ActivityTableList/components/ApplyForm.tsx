@@ -1,8 +1,11 @@
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { ProForm, ProFormText } from '@ant-design/pro-components';
+import { UserOutlined, ManOutlined, StarOutlined, EnvironmentOutlined, PhoneOutlined } from '@ant-design/icons';
+import { ProForm, ProFormRadio, ProFormSelect, ProFormText } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal } from 'antd';
+
+type LayoutType = Parameters<typeof ProForm>[0]['layout'];
+const LAYOUT_TYPE_HORIZONTAL = 'horizontal';
 
 export type FormValueType = {
   target?: string;
@@ -20,6 +23,7 @@ export type ApplyFormProps = {
 };
 
 const ApplyForm: React.FC<ApplyFormProps> = (props) => {
+  const [formLayoutType, setFormLayoutType] = useState<LayoutType>(LAYOUT_TYPE_HORIZONTAL)
   const intl = useIntl();
   return (
     <>
@@ -36,14 +40,15 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
           props.onCancel();
         }}
       >
-        <ProForm>
+        <ProForm  layout={formLayoutType}>
           <ProFormText
+            label="姓名"
             name="name"
             fieldProps={{
               size: 'large',
               prefix: <UserOutlined className={'prefixIcon'} />,
             }}
-            placeholder={'姓名: admin or user'}
+            placeholder={'请输入真实姓名：'}
             rules={[
               {
                 required: true,
@@ -51,31 +56,84 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
               },
             ]}
           />
-          <ProFormText
-            name="sex"
-            fieldProps={{
-              size: 'large',
-              prefix: <LockOutlined className={'prefixIcon'} />,
-            }}
-            placeholder={'性别: ant.design'}
+          <ProFormRadio.Group
+            label="性别"
+            name="invoiceType"
+            initialValue="性别"
+            options={['男', '女']}
+            placeholder={'请选择性别：'}
             rules={[
               {
                 required: true,
-                message: '请输入密码！',
+                message: '请选择性别！',
+              },
+            ]}
+          />
+          <ProFormSelect
+            label="年级"
+            name="grade"
+            fieldProps={{
+              size: 'large',
+            }}
+            valueEnum={{
+              1: '大一',
+              2: '大二',
+              3: '大三',
+              4: '大四',
+              5: '研一',
+              6: '研二',
+              7: '研三',
+            }}
+            placeholder={'请选择年级：'}
+            rules={[
+              {
+                required: true,
+                message: '请输入年级！',
               },
             ]}
           />
           <ProFormText
+            label="年龄"
             name="age"
             fieldProps={{
               size: 'large',
-              prefix: <LockOutlined className={'prefixIcon'} />,
+              prefix: <StarOutlined className={'prefixIcon'} />,
             }}
-            placeholder={'年龄: ant.design'}
+            placeholder={'请输入年龄：'}
             rules={[
               {
                 required: true,
                 message: '请输入年龄！',
+              },
+            ]}
+          />
+          <ProFormText
+            label="地址"
+            name="address"
+            fieldProps={{
+              size: 'large',
+              prefix: <EnvironmentOutlined className={'prefixIcon'} />,
+            }}
+            placeholder={'请输入地址：'}
+            rules={[
+              {
+                required: true,
+                message: '请输入地址！',
+              },
+            ]}
+          />
+          <ProFormText
+            label="电话"
+            name="tel"
+            fieldProps={{
+              size: 'large',
+              prefix: <PhoneOutlined className={'prefixIcon'} />,
+            }}
+            placeholder={'请输入电话：'}
+            rules={[
+              {
+                required: true,
+                message: '请输入电话！',
               },
             ]}
           />
