@@ -1,21 +1,22 @@
 import { PageContainer } from '@ant-design/pro-components';
 import { Card, Row, Col, Carousel, Image, Tabs } from 'antd';
 import { Column } from '@ant-design/plots';
-import img1 from "../assests/img/carousel1.jpg";
-import img2 from "../assests/img/carousel2.jpg";
-import img3 from "../assests/img/carousel3.jpg";
-import img4 from "../assests/img/carousel4.jpg";
-import img5 from "../assests/img/carousel5.jpg";
-import cnmap1 from "../assests/img/cnmap1.png";
-import cnmap2 from "../assests/img/cnmap2.png";
-import cnmap3 from "../assests/img/cnmap3.png";
-import cnmap4 from "../assests/img/cnmap4.png";
+import img1 from '../assests/img/carousel1.jpg';
+import img2 from '../assests/img/carousel2.jpg';
+import img3 from '../assests/img/carousel3.jpg';
+import img4 from '../assests/img/carousel4.jpg';
+import img5 from '../assests/img/carousel5.jpg';
+import cnmap1 from '../assests/img/cnmap1.png';
+import cnmap2 from '../assests/img/cnmap2.png';
+import cnmap3 from '../assests/img/cnmap3.png';
+import cnmap4 from '../assests/img/cnmap4.png';
 
 import React from 'react';
+import { GithubOutlined } from '@ant-design/icons';
 
 const rowStyle: React.CSSProperties = {
   marginTop: '10px',
-}
+};
 
 /**
  * 每个单独的卡片，为了复用样式抽成了组件
@@ -23,7 +24,6 @@ const rowStyle: React.CSSProperties = {
  * @returns
  */
 const InfoCard: React.FC<{
-
   title: string;
   index: number;
   desc: string;
@@ -171,8 +171,6 @@ const Welcome: React.FC = () => {
       activeName: '活动5',
       count: 4,
     },
-
-
   ];
   const config = {
     data,
@@ -181,30 +179,6 @@ const Welcome: React.FC = () => {
     xField: 'activeName',
     yField: 'count',
     seriesField: 'countSeries',
-
-    /** 设置颜色 */
-    //color: ['#1ca9e6', '#f88c24'],
-
-    /** 设置间距 */
-    // marginRatio: 0.1,
-    // label: {
-    //   // 可手动配置 label 数据标签位置
-    //   position: 'middle',
-    //   // 'top', 'middle', 'bottom'
-    //   // 可配置附加的布局方法
-    //   layout: [
-    //     // 柱形图数据标签位置自动调整
-    //     {
-    //       type: 'interval-adjust-position',
-    //     }, // 数据标签防遮挡
-    //     {
-    //       type: 'interval-hide-overlap',
-    //     }, // 数据标签文颜色自动调整
-    //     {
-    //       type: 'adjust-color',
-    //     },
-    //   ],
-    // },
   };
   return (
     <PageContainer>
@@ -244,7 +218,8 @@ const Welcome: React.FC = () => {
               width: '65%',
             }}
           >
-            志愿吧平台是一款基于 DRF + React 下的疫情防控社区志愿者管理系统，自2019年以来，新冠疫情形式严峻，各省市各级工作人员全民参与防疫抗疫工作，
+            志愿吧平台是一款基于 DRF + React
+            下的疫情防控社区志愿者管理系统，自2019年以来，新冠疫情形式严峻，各省市各级工作人员全民参与防疫抗疫工作，
             根据疫情防控工作需要，为进一步组织和引导全省市在校大学生和社区志愿者，搭建该志愿者管理系统，致力于科学有序助力社区疫情防控工作，携手共筑疫情防线，巩固疫情防控成果。
           </p>
           <div
@@ -293,7 +268,9 @@ const Welcome: React.FC = () => {
         </Col>
         <Col span={10}>
           <Row>
-            <Col span={24}><Column {...config} /></Col>
+            <Col span={24}>
+              <Column {...config} />
+            </Col>
           </Row>
           <Row style={rowStyle}>
             <Col span={24}>
@@ -316,6 +293,21 @@ const Welcome: React.FC = () => {
               </Carousel>
             </Col>
           </Row>
+        </Col>
+      </Row>
+      <Row gutter={16} style={rowStyle}>
+        <Col span={24}>
+          <Card
+            style={{
+              borderRadius: 8,
+            }}
+            title="技术栈"
+            extra={<a href="#"><GithubOutlined />源码地址</a>}
+          >
+            <p>Card content</p>
+            <p>Card content</p>
+            <p>Card content</p>
+          </Card>
         </Col>
       </Row>
     </PageContainer>
