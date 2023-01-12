@@ -23,14 +23,14 @@ export default [
   {
     path: '/welcome',
     name: 'welcome',
-    icon: 'smile',
+    icon: 'icon-zhuye1-copy',
     component: './Welcome',
   },
   {
     path: '/admin',
     name: 'admin',
     icon: 'crown',
-    access: 'canAdmin',
+    // access: 'canAdmin',
     routes: [
       {
         path: '/admin',
@@ -40,12 +40,7 @@ export default [
         path: '/admin/sub-page',
         name: 'sub-page',
         component: './Admin',
-      },
-      {
-        path: '/admin/userManagement',
-        name: 'user-management',
-        component: './UserManagement',
-      },
+      }
     ],
   },
   {
@@ -56,9 +51,21 @@ export default [
   },
   {
     name: 'list.activity-table-list',
-    icon: 'table',
+    icon: 'icon-icon_yingyongguanli',
     path: '/activity-list',
     component: './ActivityTableList',
+  },
+  {
+    name: 'list.apply-table-list',
+    icon: 'icon-shenhexiangmu',
+    path: '/apply-list',
+    component: './ApplyTableList',
+  },
+  {
+    name: 'user-management',
+    icon: 'icon-guanliyuan_jiaoseguanli',
+    path: '/userManagement',
+    component: './UserManagement',
   },
   {
     path: '/',

@@ -55,6 +55,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       content: initialState?.currentUser?.name,
     },
     footerRender: () => <Footer />,
+    iconfontUrl: '//at.alicdn.com/t/c/font_2969264_573nnc26n5m.js',
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
@@ -127,3 +128,4 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
 export const request = {
   ...errorConfig,
 };
+
