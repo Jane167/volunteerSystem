@@ -3,10 +3,9 @@ import {
   PlusOutlined,
   SearchOutlined,
   SettingOutlined,
-  UploadOutlined,
 } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
-import { Card, Table, Tag, Space, Button, Upload, Popconfirm, Tooltip } from 'antd';
+import { Card, Table, Tag, Space, Button, Tooltip } from 'antd';
 const { Column } = Table;
 
 import React from 'react';
