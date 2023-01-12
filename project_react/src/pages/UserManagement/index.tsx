@@ -1,11 +1,6 @@
 import {
-  CheckCircleOutlined,
-  CloseCircleOutlined,
-  InfoCircleOutlined,
-  ManOutlined,
-  PlusOutlined,
-  QuestionCircleOutlined,
-  WomanOutlined,
+  UserAddOutlined,
+  VerticalAlignBottomOutlined,
 } from '@ant-design/icons';
 import {
   PageContainer,
@@ -92,10 +87,9 @@ const ApplyTableList: React.FC = () => {
           text = '普通用户';
         }
         return <Tag color={color}>{text}</Tag>;
-
       },
     },
-  
+
     {
       title: '注册时间',
       dataIndex: 'create_time',
@@ -116,7 +110,7 @@ const ApplyTableList: React.FC = () => {
           查看详情
         </a>,
         <a key="link">重置密码</a>,
-        <a key="link">注销用户</a>
+        <a key="link">注销用户</a>,
       ],
     },
   ];
@@ -132,10 +126,11 @@ const ApplyTableList: React.FC = () => {
         dateFormatter="string"
         headerTitle="用户列表"
         toolBarRender={() => [
-        <Button key="out">导出数据</Button>,
-        <Button key="out" icon={<PlusOutlined />}>新建用户</Button>,
-
-      ]}
+          <Button key="out" type="primary" icon={<UserAddOutlined />}>
+            新建用户
+          </Button>,
+          <Button key="out" icon={<VerticalAlignBottomOutlined />}>导出数据</Button>
+        ]}
       />
       <Drawer
         width={500}

@@ -4,6 +4,7 @@ import {
   InfoCircleOutlined,
   ManOutlined,
   QuestionCircleOutlined,
+  VerticalAlignBottomOutlined,
   WomanOutlined,
 } from '@ant-design/icons';
 import {
@@ -207,7 +208,7 @@ const ApplyTableList: React.FC = () => {
         columns={columns}
         dateFormatter="string"
         headerTitle="报名列表"
-        toolBarRender={() => [<Button key="out">导出数据</Button>]}
+        toolBarRender={() => [<Button key="out" icon={<VerticalAlignBottomOutlined />}>导出数据</Button>]}
       />
       <Drawer
         width={500}

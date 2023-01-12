@@ -428,7 +428,7 @@ const ActivityTableList: React.FC = () => {
       >
         {currentRow?.name && (
           <ProDescriptions<API.RuleListItem>
-            column={2}
+            column={1}
             title={currentRow?.name}
             request={async () => ({
               data: currentRow || {},
