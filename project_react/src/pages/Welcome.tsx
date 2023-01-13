@@ -1,6 +1,9 @@
 import { PageContainer } from '@ant-design/pro-components';
 import { Card, Row, Col, Carousel, Image, Tabs } from 'antd';
-import { Column } from '@ant-design/plots';
+import { Column, WordCloud } from '@ant-design/plots';
+import React, { useEffect, useState } from 'react';
+import { GithubOutlined } from '@ant-design/icons';
+
 import img1 from '../assests/img/carousel1.jpg';
 import img2 from '../assests/img/carousel2.jpg';
 import img3 from '../assests/img/carousel3.jpg';
@@ -10,10 +13,6 @@ import cnmap1 from '../assests/img/cnmap1.png';
 import cnmap2 from '../assests/img/cnmap2.png';
 import cnmap3 from '../assests/img/cnmap3.png';
 import cnmap4 from '../assests/img/cnmap4.png';
-
-import React from 'react';
-import { GithubOutlined } from '@ant-design/icons';
-
 const rowStyle: React.CSSProperties = {
   marginTop: '10px',
 };
@@ -92,6 +91,125 @@ const InfoCard: React.FC<{
       </a>
     </div>
   );
+};
+/**
+ *
+ * @returns 词云图
+ */
+const DemoWordCloud = () => {
+  const data = [
+    {
+      "value": 9,
+      "name": "AntV"
+    },
+    {
+      "value": 8,
+      "name": "G2Plot"
+    },
+    {
+      "value": 9,
+      "name": "Ant Design Charts"
+    },
+    {
+      "value": 12,
+      "name": "React"
+    },
+    {
+      "value": 10,
+      "name": "Ant Design"
+    },
+    {
+      "value": 11,
+      "name": "Ant Design Pro"
+    },
+    {
+      "value": 16,
+      "name": "DRF"
+    },
+    {
+      "value": 12,
+      "name": "Django"
+    },
+    {
+      "value": 10,
+      "name": "MySQL"
+    },
+    {
+      "value": 13,
+      "name": "umi"
+    },
+    {
+      "value": 10,
+      "name": "TypeScript"
+    },
+    {
+      "value": 15,
+      "name": "TypeScriptXML"
+    },
+    {
+      "value": 14,
+      "name": "React DOM"
+    },
+    {
+      "value": 10,
+      "name": "EsLint"
+    },
+    {
+      "value": 10,
+      "name": "Github"
+    },
+    {
+      "value": 10,
+      "name": "Gitee"
+    },
+    {
+      "value": 10,
+      "name": "less"
+    },
+    {
+      "value": 10,
+      "name": "css"
+    },
+    {
+      "value": 11,
+      "name": "Swagger"
+    },
+    {
+      "value": 11,
+      "name": "ProComponents"
+    },
+    {
+      "value": 7,
+      "name": "yarn"
+    },
+    {
+      "value": 7,
+      "name": "npm"
+    },
+    {
+      "value": 9,
+      "name": "python"
+    }
+  ];
+  const config = {
+    data,
+    wordField: 'name',
+    weightField: 'value',
+    colorField: 'name',
+    wordStyle: {
+      fontFamily: 'Verdana',
+      fontSize: [20, 32],
+      rotation: 0,
+    },
+    height: 250,
+    spiral: 'rectangular',
+    // autoFit: true,
+    // 返回值设置成一个 [0, 1) 区间内的值，
+    // 可以让每次渲染的位置相同（前提是每次的宽高一致）。
+    random: () => 0.5,
+  };
+
+  return <WordCloud {...config} />;
 };
 
 const Welcome: React.FC = () => {
@@ -296,17 +414,20 @@ const Welcome: React.FC = () => {
         </Col>
       </Row>
       <Row gutter={16} style={rowStyle}>
-        <Col span={24}>
+        <Col span={12}>
           <Card
             style={{
               borderRadius: 8,
             }}
             title="技术栈"
-            extra={<a href="#"><GithubOutlined />源码地址</a>}
+            extra={
+              <a href="https://github.com/jiayin-wait/volunteerSystem.git">
+                <GithubOutlined />
+                源码地址
+              </a>
+            }
           >
-            <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p>
+            <DemoWordCloud />
           </Card>
         </Col>
       </Row>
