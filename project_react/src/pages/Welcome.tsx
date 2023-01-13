@@ -1,8 +1,8 @@
 import { PageContainer } from '@ant-design/pro-components';
 import { Card, Row, Col, Carousel, Image, Tabs } from 'antd';
-import { Column, WordCloud } from '@ant-design/plots';
-import React, { useEffect, useState } from 'react';
-import { GithubOutlined } from '@ant-design/icons';
+import { Column, WordCloud, Pie, measureTextWidth } from '@ant-design/plots';
+import React from 'react';
+import { GithubOutlined, TeamOutlined } from '@ant-design/icons';
 
 import img1 from '../assests/img/carousel1.jpg';
 import img2 from '../assests/img/carousel2.jpg';
@@ -99,97 +99,97 @@ const InfoCard: React.FC<{
 const DemoWordCloud = () => {
   const data = [
     {
-      "value": 9,
-      "name": "AntV"
+      value: 9,
+      name: 'AntV',
     },
     {
-      "value": 8,
-      "name": "G2Plot"
+      value: 8,
+      name: 'G2Plot',
     },
     {
-      "value": 9,
-      "name": "Ant Design Charts"
+      value: 9,
+      name: 'Ant Design Charts',
     },
     {
-      "value": 12,
-      "name": "React"
+      value: 12,
+      name: 'React',
     },
     {
-      "value": 10,
-      "name": "Ant Design"
+      value: 10,
+      name: 'Ant Design',
     },
     {
-      "value": 11,
-      "name": "Ant Design Pro"
+      value: 11,
+      name: 'Ant Design Pro',
     },
     {
-      "value": 16,
-      "name": "DRF"
+      value: 16,
+      name: 'DRF',
     },
     {
-      "value": 12,
-      "name": "Django"
+      value: 12,
+      name: 'Django',
     },
     {
-      "value": 10,
-      "name": "MySQL"
+      value: 10,
+      name: 'MySQL',
     },
     {
-      "value": 13,
-      "name": "umi"
+      value: 13,
+      name: 'umi',
     },
     {
-      "value": 10,
-      "name": "TypeScript"
+      value: 10,
+      name: 'TypeScript',
     },
     {
-      "value": 15,
-      "name": "TypeScriptXML"
+      value: 15,
+      name: 'TypeScriptXML',
     },
     {
-      "value": 14,
-      "name": "React DOM"
+      value: 14,
+      name: 'React DOM',
     },
     {
-      "value": 10,
-      "name": "EsLint"
+      value: 10,
+      name: 'EsLint',
     },
     {
-      "value": 10,
-      "name": "Github"
+      value: 10,
+      name: 'Github',
     },
     {
-      "value": 10,
-      "name": "Gitee"
+      value: 10,
+      name: 'Gitee',
     },
     {
-      "value": 10,
-      "name": "less"
+      value: 10,
+      name: 'less',
     },
     {
-      "value": 10,
-      "name": "css"
+      value: 10,
+      name: 'css',
     },
     {
-      "value": 11,
-      "name": "Swagger"
+      value: 11,
+      name: 'Swagger',
     },
     {
-      "value": 11,
-      "name": "ProComponents"
+      value: 11,
+      name: 'ProComponents',
     },
     {
-      "value": 7,
-      "name": "yarn"
+      value: 7,
+      name: 'yarn',
     },
     {
-      "value": 7,
-      "name": "npm"
+      value: 7,
+      name: 'npm',
     },
     {
-      "value": 9,
-      "name": "python"
-    }
+      value: 9,
+      name: 'python',
+    },
   ];
   const config = {
     data,
@@ -210,6 +210,103 @@ const DemoWordCloud = () => {
   };
 
   return <WordCloud {...config} />;
+};
+/**
+ *
+ * @returns 环图
+ */
+const DemoPie = () => {
+  function renderStatistic(containerWidth, text, style) {
+    const { width: textWidth, height: textHeight } = measureTextWidth(text, style);
+    const R = containerWidth / 2; // r^2 = (w / 2)^2 + (h - offsetY)^2
+
+    let scale = 1;
+
+    if (containerWidth < textWidth) {
+      scale = Math.min(
+        Math.sqrt(
+          Math.abs(Math.pow(R, 2) / (Math.pow(textWidth / 2, 2) + Math.pow(textHeight, 2))),
+        ),
+        1,
+      );
+    }
+
+    const textStyleStr = `width:${containerWidth}px;`;
+    return `<div style="${textStyleStr};font-size:${scale}em;line-height:${
+      scale < 1 ? 1 : 'inherit'
+    };">${text}</div>`;
+  }
+  const data = [
+    {
+      type: '管理员',
+      value: 27,
+    },
+    {
+      type: '公益企业',
+      value: 25,
+    },
+    {
+      type: '普通用户',
+      value: 18,
+    },
+  ];
+  const config = {
+    appendPadding: 10,
+    data,
+    angleField: 'value',
+    colorField: 'type',
+    radius: 1,
+    innerRadius: 0.6,
+    height: 250,
+    label: {
+      type: 'inner',
+      offset: '-50%',
+      content: '{value}',
+      style: {
+        textAlign: 'center',
+        fontSize: 14,
+      },
+    },
+    interactions: [
+      // 添加 中心统计文本 交互
+      {
+        type: 'element-selected',
+      },
+      {
+        type: 'element-active',
+      },
+      {
+        type: 'pie-statistic-active',
+      },
+    ],
+    statistic: {
+      title: {
+        offsetY: -4,
+        customHtml: (container, view, datum) => {
+          const { width, height } = container.getBoundingClientRect();
+          const d = Math.sqrt(Math.pow(width / 2, 2) + Math.pow(height / 2, 2));
+          const text = datum ? datum.type : '总计';
+          return renderStatistic(d, text, {
+            fontSize: 28,
+          });
+        },
+      },
+      content: {
+        offsetY: 4,
+        style: {
+          fontSize: '32px',
+        },
+        customHtml: (container, view, datum, data) => {
+          const { width } = container.getBoundingClientRect();
+          const text = datum ? `¥ ${datum.value}` : `¥ ${data.reduce((r, d) => r + d.value, 0)}`;
+          return renderStatistic(width, text, {
+            fontSize: 32,
+          });
+        },
+      },
+    },
+  };
+  return <Pie {...config} />;
 };
 
 const Welcome: React.FC = () => {
@@ -428,6 +525,22 @@ const Welcome: React.FC = () => {
             }
           >
             <DemoWordCloud />
+          </Card>
+        </Col>
+        <Col span={12}>
+          <Card
+            style={{
+              borderRadius: 8,
+            }}
+            title="系统用户数量"
+            extra={
+              <a href="#">
+                <TeamOutlined />
+                用户管理
+              </a>
+            }
+          >
+            <DemoPie />
           </Card>
         </Col>
       </Row>
