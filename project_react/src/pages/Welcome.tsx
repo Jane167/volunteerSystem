@@ -2,7 +2,7 @@ import { PageContainer } from '@ant-design/pro-components';
 import { Card, Row, Col, Carousel, Image, Tabs } from 'antd';
 import { Column, WordCloud, Pie, measureTextWidth } from '@ant-design/plots';
 import React from 'react';
-import { GithubOutlined, TeamOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, GithubOutlined, TeamOutlined } from '@ant-design/icons';
 
 import img1 from '../assests/img/carousel1.jpg';
 import img2 from '../assests/img/carousel2.jpg';
@@ -398,8 +398,10 @@ const Welcome: React.FC = () => {
   return (
     <PageContainer>
       <Card
+        title="系统介绍"
         style={{
           borderRadius: 8,
+          backgroundColor: '#f0f4ff',
         }}
         bodyStyle={{
           backgroundImage:
@@ -466,28 +468,30 @@ const Welcome: React.FC = () => {
       </Card>
       <Row gutter={16} style={rowStyle}>
         <Col span={14}>
-          <Tabs defaultActiveKey="1">
-            <Tabs.TabPane tab="实名注册志愿者人数分布图" key="1">
-              <Image src={cnmap1} />
-            </Tabs.TabPane>
-            <Tabs.TabPane tab="志愿者团体数量分布图" key="2">
-              <Image src={cnmap2} />
-            </Tabs.TabPane>
-            <Tabs.TabPane tab="志愿项目数量分布图" key="3">
-              <Image src={cnmap3} />
-            </Tabs.TabPane>
-            <Tabs.TabPane tab="累计志愿服务时间分布图" key="4">
-              <Image src={cnmap4} />
-            </Tabs.TabPane>
-          </Tabs>
+          <Card
+            title="志愿者相关信息统计"
+            bodyStyle={{
+              paddingBottom: '70px'
+            }}
+          >
+            <Tabs defaultActiveKey="1">
+              <Tabs.TabPane tab="实名注册志愿者人数分布图" key="1">
+                <Image src={cnmap1} />
+              </Tabs.TabPane>
+              <Tabs.TabPane tab="志愿者团体数量分布图" key="2">
+                <Image src={cnmap2} />
+              </Tabs.TabPane>
+              <Tabs.TabPane tab="志愿项目数量分布图" key="3">
+                <Image src={cnmap3} />
+              </Tabs.TabPane>
+              <Tabs.TabPane tab="累计志愿服务时间分布图" key="4">
+                <Image src={cnmap4} />
+              </Tabs.TabPane>
+            </Tabs>
+          </Card>
         </Col>
         <Col span={10}>
           <Row>
-            <Col span={24}>
-              <Column {...config} />
-            </Col>
-          </Row>
-          <Row style={rowStyle}>
             <Col span={24}>
               <Carousel autoplay>
                 <div>
@@ -506,6 +510,21 @@ const Welcome: React.FC = () => {
                   <Image src={img5} />
                 </div>
               </Carousel>
+            </Col>
+          </Row>
+          <Row style={rowStyle}>
+            <Col span={24}>
+              <Card
+                title="活动统计"
+                extra={
+                  <a href="#">
+                    <AppstoreOutlined />
+                    活动管理
+                  </a>
+                }
+              >
+                <Column {...config} />
+              </Card>
             </Col>
           </Row>
         </Col>

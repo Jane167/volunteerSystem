@@ -157,11 +157,11 @@ const ActivityTableList: React.FC = () => {
       title: '活动描述',
       dataIndex: 'desc',
       valueType: 'textarea',
+      search: false
     },
     {
       title: '活动地点',
       dataIndex: 'address',
-      // sorter: true,
       hideInForm: true,
     },
     {
@@ -169,17 +169,20 @@ const ActivityTableList: React.FC = () => {
       dataIndex: 'startDate',
       sorter: true,
       hideInForm: true,
+      search: false
     },
     {
       title: '开始时间',
       dataIndex: 'startTime',
       sorter: true,
       hideInForm: true,
+      search: false
     },
     {
       title: '志愿者素养要求',
       dataIndex: 'requirements',
       hideInForm: true,
+      search: false
     },
     {
       title: '需要人数',
