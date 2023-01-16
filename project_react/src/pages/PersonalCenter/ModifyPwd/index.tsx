@@ -1,26 +1,31 @@
-
-import { PageContainer } from '@ant-design/pro-components';
+import { Form, Input } from 'antd';
 import React from 'react';
 
-const rowStyle: React.CSSProperties = {
-  marginTop: '10px',
-};
-
-const userInfo = {
-  username: '李佳音',
-  first_name: '李',
-  last_name: '佳音',
-  email: '123456@qq.com',
-  role: 1,
-  create_time: '2023-1-14 18:00:00',
-  last_login: '2023-1-14 18:00:00',
+const pwdInfo = {
+  old: '',
+  new: '',
+  repeat: '',
 };
 
 const BasicInfo: React.FC = () => {
   return (
-    <div>
-      修改密码
-    </div>
+    <>
+      <Form name="basic" labelCol={{ span: 4 }} wrapperCol={{ span: 18 }} autoComplete="off">
+        <Form.Item label="旧密码" name="old" rules={[{ required: true, message: '请输入旧密码' }]}>
+          <Input.Password defaultValue={pwdInfo.old} />
+        </Form.Item>
+        <Form.Item label="新密码" name="new" rules={[{ required: true, message: '请输入新密码' }]}>
+          <Input.Password defaultValue={pwdInfo.new} />
+        </Form.Item>
+        <Form.Item
+          label="重复密码"
+          name="repeat"
+          rules={[{ required: true, message: '请重复新密码' }]}
+        >
+          <Input.Password defaultValue={pwdInfo.repeat} />
+        </Form.Item>
+      </Form>
+    </>
   );
 };
 

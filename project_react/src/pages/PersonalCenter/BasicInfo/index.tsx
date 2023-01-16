@@ -1,11 +1,5 @@
-import { MailOutlined, UserOutlined } from '@ant-design/icons';
-import { PageContainer } from '@ant-design/pro-components';
-import { Col, Form, Input, Row } from 'antd';
+import { Form, Input } from 'antd';
 import React from 'react';
-
-const rowStyle: React.CSSProperties = {
-  marginTop: '10px',
-};
 
 const userInfo = {
   username: '李佳音',
