@@ -68,6 +68,12 @@ export default [
     component: './UserManagement',
   },
   {
+    name: 'personal-center',
+    icon: 'icon-wode-wode',
+    path: '/uCenter',
+    component: './PersonalCenter',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },

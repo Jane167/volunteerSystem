@@ -176,7 +176,7 @@ const DemoWordCloud = () => {
     },
     {
       value: 11,
-      name: 'ProComponents',
+      name: 'Pro Components',
     },
     {
       value: 7,
@@ -188,7 +188,7 @@ const DemoWordCloud = () => {
     },
     {
       value: 9,
-      name: 'python',
+      name: 'Python',
     },
   ];
   const config = {
@@ -198,7 +198,7 @@ const DemoWordCloud = () => {
     colorField: 'name',
     wordStyle: {
       fontFamily: 'Verdana',
-      fontSize: [20, 32],
+      fontSize: [16, 32],
       rotation: 0,
     },
     height: 250,
@@ -298,7 +298,7 @@ const DemoPie = () => {
         },
         customHtml: (container, view, datum, data) => {
           const { width } = container.getBoundingClientRect();
-          const text = datum ? `¥ ${datum.value}` : `¥ ${data.reduce((r, d) => r + d.value, 0)}`;
+          const text = datum ? `${datum.value}` : `${data.reduce((r, d) => r + d.value, 0)}`;
           return renderStatistic(width, text, {
             fontSize: 32,
           });

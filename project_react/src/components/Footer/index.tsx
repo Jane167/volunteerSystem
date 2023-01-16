@@ -19,9 +19,9 @@ const Footer: React.FC = () => {
       copyright={`${currentYear} ${defaultMessage}`}
       links={[
         {
-          key: 'Ant Design Pro',
-          title: 'Ant Design Pro',
-          href: 'https://pro.ant.design',
+          key: '志愿吧',
+          title: '志愿吧',
+          href: '#',
           blankTarget: true,
         },
         {
@@ -31,9 +31,9 @@ const Footer: React.FC = () => {
           blankTarget: true,
         },
         {
-          key: 'Ant Design',
-          title: 'Ant Design',
-          href: 'https://ant.design',
+          key: '基于 DRF+React 的疫情防控社区志愿者管理系统',
+          title: '基于 DRF+React 的疫情防控社区志愿者管理系统',
+          href: '#',
           blankTarget: true,
         },
       ]}

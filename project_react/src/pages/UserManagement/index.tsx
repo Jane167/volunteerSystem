@@ -18,6 +18,8 @@ export type UserTableListItem = {
   username: string;
   password: string;
   role: number;
+  email: string,
+  last_login: string,
   create_time: string;
 };
 
@@ -28,6 +30,8 @@ const userTableListDataSource: UserTableListItem[] = [
     username: '李佳音',
     password: '123',
     role: 1,
+    email: '2380343521@qq.com',
+    last_login: '2022-1-12 18:00:00',
     create_time: '2023-1-12 16:00:00',
   },
   {
@@ -36,6 +40,8 @@ const userTableListDataSource: UserTableListItem[] = [
     username: '李佳音',
     password: '123',
     role: 2,
+    email: '2380343521@qq.com',
+    last_login: '2022-1-12 18:00:00',
     create_time: '2023-1-12 16:00:00',
   },
   {
@@ -44,10 +50,12 @@ const userTableListDataSource: UserTableListItem[] = [
     username: '李佳音',
     password: '123',
     role: 3,
+    email: '2380343521@qq.com',
+    last_login: '2022-1-12 18:00:00',
     create_time: '2023-1-12 16:00:00',
   },
 ];
-const ApplyTableList: React.FC = () => {
+const UserList: React.FC = () => {
   const [showDetail, setShowDetail] = useState<boolean>(false);
   const [currentRow, setCurrentRow] = useState<UserTableListItem>();
   const columns: ProColumns<UserTableListItem>[] = [
@@ -88,6 +96,16 @@ const ApplyTableList: React.FC = () => {
         }
         return <Tag color={color}>{text}</Tag>;
       },
+    },
+    {
+      title: "电子邮箱",
+      dataIndex: 'email',
+      search: false
+    },
+    {
+      title: "上次登录时间",
+      dataIndex: 'last_login',
+      search: false
     },
 
     {
@@ -159,4 +177,4 @@ const ApplyTableList: React.FC = () => {
   );
 };
 
-export default ApplyTableList;
+export default UserList;

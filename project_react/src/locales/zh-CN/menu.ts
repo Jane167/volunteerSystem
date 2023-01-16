@@ -5,6 +5,7 @@ export default {
   'menu.admin.user-management': '用户管理',
   'menu.login': '登录',
   'menu.user-management': '用户管理',
+  'menu.personal-center': '个人中心',
   'menu.register': '注册',
   'menu.register-result': '注册结果',
   'menu.dashboard': 'Dashboard',
