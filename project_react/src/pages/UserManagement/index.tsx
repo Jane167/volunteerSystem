@@ -10,6 +10,7 @@ import {
 } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Button, Drawer, Tag } from 'antd';
+import axios from 'axios';
 import React, { useState } from 'react';
 
 export type UserTableListItem = {
@@ -55,6 +56,13 @@ const userTableListDataSource: UserTableListItem[] = [
     create_time: '2023-1-12 16:00:00',
   },
 ];
+
+const changeOri = () => {
+  axios.get('/api/activity/').then(
+    response => {console.log(response)},
+    error => {console.log(error)}
+  )
+}
 const UserList: React.FC = () => {
   const [showDetail, setShowDetail] = useState<boolean>(false);
   const [currentRow, setCurrentRow] = useState<UserTableListItem>();
@@ -144,7 +152,7 @@ const UserList: React.FC = () => {
         dateFormatter="string"
         headerTitle="用户列表"
         toolBarRender={() => [
-          <Button key="out" type="primary" icon={<UserAddOutlined />}>
+          <Button key="out" onClick={changeOri} type="primary" icon={<UserAddOutlined />}>
             新建用户
           </Button>,
           <Button key="out" icon={<VerticalAlignBottomOutlined />}>导出数据</Button>

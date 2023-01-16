@@ -18,7 +18,7 @@ class StandarPageNumberPagination(PageNumberPagination):
 class ActivityViewSet(ModelViewSet):
     queryset = Activity.objects.all()  # queryset 指明该视图集在查询数据时使用的查询集
     serializer_class = ActivityModelSerializer  # serializer_class 执行该视图在进行序列化或者反序列化时使用的序列化器
-    pagination_class = StandarPageNumberPagination
-    filter_backends = (OrderingFilter, DjangoFilterBackend)
-    filter_fields = ['name', 'address']
-    ordering_fields = ('create_time')
+    # pagination_class = StandarPageNumberPagination
+    # filter_backends = (OrderingFilter, DjangoFilterBackend)
+    # filter_fields = ['name', 'address']
+    # ordering_fields = ('create_time')

@@ -6,7 +6,7 @@ import axios, {
   type AxiosRequestConfig,
   type AxiosResponse,
   type AxiosError,
-} from 'D:/Users/Desktop/myCode/bs_volunteerManagementSys/project_react/node_modules/axios';
+} from 'D:/Users/Desktop/myCode/bs_volunteerManagementSys/project_react/node_modules/@umijs/plugins/node_modules/axios';
 import useUmiRequest, { UseRequestProvider } from 'D:/Users/Desktop/myCode/bs_volunteerManagementSys/project_react/node_modules/@ahooksjs/use-request';
 import { ApplyPluginsType } from 'umi';
 import { getPluginManager } from '../core/plugin';
