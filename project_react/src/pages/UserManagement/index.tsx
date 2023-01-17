@@ -5,7 +5,6 @@ import {
 import {
   ActionType,
   PageContainer,
-  ParamsType,
   ProColumns,
   ProDescriptions,
   ProDescriptionsItemProps,
