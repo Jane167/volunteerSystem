@@ -3,74 +3,34 @@ import {
   VerticalAlignBottomOutlined,
 } from '@ant-design/icons';
 import {
+  ActionType,
   PageContainer,
   ProColumns,
   ProDescriptions,
   ProDescriptionsItemProps,
 } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, Drawer, Tag } from 'antd';
+import { Button, Drawer } from 'antd';
+import React, { useRef, useState } from 'react';
+import { getUserList } from '@/services/user'
+
 // import axios from 'axios';
-import React, { useState } from 'react';
 
-import { getActivityList } from '@/api/activity';
-export type UserTableListItem = {
-  key: number;
-  id: number;
-  username: string;
-  password: string;
-  role: number;
-  email: string,
-  last_login: string,
-  create_time: string;
-};
 
-function getActivityData(){
-  getActivityList()
-}
-const userTableListDataSource: UserTableListItem[] = [
-  {
-    key: 1,
-    id: 1,
-    username: '李佳音',
-    password: '123',
-    role: 1,
-    email: '2380343521@qq.com',
-    last_login: '2022-1-12 18:00:00',
-    create_time: '2023-1-12 16:00:00',
-  },
-  {
-    key: 1,
-    id: 1,
-    username: '李佳音',
-    password: '123',
-    role: 2,
-    email: '2380343521@qq.com',
-    last_login: '2022-1-12 18:00:00',
-    create_time: '2023-1-12 16:00:00',
-  },
-  {
-    key: 1,
-    id: 1,
-    username: '李佳音',
-    password: '123',
-    role: 3,
-    email: '2380343521@qq.com',
-    last_login: '2022-1-12 18:00:00',
-    create_time: '2023-1-12 16:00:00',
-  },
-];
 
 const UserList: React.FC = () => {
   const [showDetail, setShowDetail] = useState<boolean>(false);
-  const [currentRow, setCurrentRow] = useState<UserTableListItem>();
-  const columns: ProColumns<UserTableListItem>[] = [
+  const [currentRow, setCurrentRow] = useState<API.UsersListItem>();
+  const actionRef = useRef<ActionType>();
+
+  const columns: ProColumns<API.UsersListItem>[] = [
     {
-      title: 'Id',
+      title: '用户Id',
       width: 80,
       dataIndex: 'id',
       search: false,
-      sorter: (a, b) => a.id - b.id,
+      align:  'center',
+      sorter: (a: API.UsersListItem, b:API.UsersListItem) => {return a.id - b.id},
     },
     {
       title: '用户名',
@@ -79,50 +39,47 @@ const UserList: React.FC = () => {
       search: false,
     },
     {
-      title: '密码',
-      dataIndex: 'password',
-      search: false,
-    },
-    {
-      title: '角色',
-      dataIndex: 'role',
-      render: (role) => {
-        console.log(role, 'rocord');
-        let color;
-        let text = '';
-        if (role === 1) {
-          color = 'warning';
-          text = '管理员';
-        } else if (role === 2) {
-          color = 'processing';
-          text = '公益企业';
-        } else if (role === 3) {
-          color = 'success';
-          text = '普通用户';
-        }
-        return <Tag color={color}>{text}</Tag>;
-      },
-    },
-    {
       title: "电子邮箱",
       dataIndex: 'email',
+      align:  'center',
+      search: false
+    },
+    {
+      title: "分组",
+      dataIndex: 'groups',
+      align:  'center',
+      search: false
+    },
+    {
+      title: "姓",
+      dataIndex: 'first_name',
+      align:  'center',
+      search: false
+    },
+    {
+      title: "名",
+      dataIndex: 'last_name',
+      align:  'center',
       search: false
     },
     {
       title: "上次登录时间",
       dataIndex: 'last_login',
+      align:  'center',
+      search: false
+    },
+    {
+      title: "注册时间",
+      dataIndex: 'date_joined',
+      align:  'center',
       search: false
     },
 
     {
-      title: '注册时间',
-      dataIndex: 'create_time',
-      search: false,
-    },
-    {
       title: '操作',
       width: 300,
       key: 'option',
+      align:  'center',
       valueType: 'option',
       render: (dom, entity) => [
         <a
@@ -138,19 +95,34 @@ const UserList: React.FC = () => {
       ],
     },
   ];
+  getUserList().then((res: any) => {
+    console.log(res)
+  })
   return (
     <PageContainer>
-      <ProTable<UserTableListItem>
-        dataSource={userTableListDataSource}
-        rowKey="key"
-        pagination={{
-          showQuickJumper: true,
-        }}
+      <ProTable<API.UsersListItem>
+        // dataSource={userTableListDataSource}
+        rowKey="id"
         columns={columns}
+        actionRef={actionRef}
+        // request={getUserList}
+
+        request={async ( ) => {
+            const response = await getUserList().then(res =>{
+            const result = {
+                  data:res,
+                  total:res.length,
+                  success: true
+                }
+            return result;
+            }).catch((err: any) => console.log(err));
+          return Promise.resolve(response);
+        }}
+
         dateFormatter="string"
         headerTitle="用户列表"
         toolBarRender={() => [
-          <Button key="out" type="primary" onClick={getActivityData} icon={<UserAddOutlined />}>
+          <Button key="out" type="primary" icon={<UserAddOutlined />}>
             新建用户
           </Button>,
           <Button key="out" icon={<VerticalAlignBottomOutlined />}>导出数据</Button>
@@ -158,7 +130,7 @@ const UserList: React.FC = () => {
       />
       <Drawer
         width={500}
-        visible={showDetail}
+        open={showDetail}
         onClose={() => {
           setCurrentRow(undefined);
           setShowDetail(false);
@@ -166,7 +138,7 @@ const UserList: React.FC = () => {
         closable={true}
       >
         {currentRow?.username && (
-          <ProDescriptions<UserTableListItem>
+          <ProDescriptions<API.UsersListItem>
             column={1}
             title={currentRow?.username + '的个人信息'}
             request={async () => ({
@@ -175,7 +147,7 @@ const UserList: React.FC = () => {
             params={{
               id: currentRow?.id,
             }}
-            columns={columns as ProDescriptionsItemProps<UserTableListItem>[]}
+            columns={columns as ProDescriptionsItemProps<API.UsersListItem>[]}
           />
         )}
       </Drawer>

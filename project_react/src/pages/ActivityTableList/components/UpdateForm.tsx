@@ -11,18 +11,22 @@ import { Modal } from 'antd';
 import React from 'react';
 
 export type FormValueType = {
-  target?: string;
-  template?: string;
-  type?: string;
-  time?: string;
-  frequency?: string;
-} & Partial<API.RuleListItem>;
+  id?: number;
+  name?: string;
+  desc?: string;
+  publish_company_name?: string;
+  address?: string;
+  start_date: string,
+  start_time: string,
+  demand: string,
+  need_person_num: number
+} & Partial<API.ActivityListItem>;
 
 export type UpdateFormProps = {
   onCancel: (flag?: boolean, formVals?: FormValueType) => void;
   onSubmit: (values: FormValueType) => Promise<void>;
   updateModalVisible: boolean;
-  values: Partial<API.RuleListItem>;
+  values: Partial<API.ActivityListItem>;
 };
 
 const UpdateForm: React.FC<UpdateFormProps> = (props) => {
@@ -42,7 +46,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
               id: 'pages.searchTable.updateForm.ruleConfig',
               defaultMessage: '规则配置',
             })}
-            visible={props.updateModalVisible}
+            open={props.updateModalVisible}
             footer={submitter}
             onCancel={() => {
               props.onCancel();
@@ -131,8 +135,8 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
       </StepsForm.StepForm>
       <StepsForm.StepForm
         initialValues={{
-          startDate: props.values.startDate,
-          startTime: props.values.startTime,
+          start_date: props.values.start_date,
+          start_time: props.values.start_time,
         }}
         title={intl.formatMessage({
           id: 'pages.searchTable.updateForm.second.title',
@@ -140,7 +144,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
         })}
       >
         <ProFormDatePicker 
-          name="startDate"
+          name="start_date"
           width='md'
           label={intl.formatMessage({
             id: 'page.searchTable.updateForm.ruleStartDate.startDateLabel',
@@ -159,7 +163,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           ]}
         /> 
         <ProFormTimePicker
-          name='startTime'
+          name='start_time'
           width='md'
           label={intl.formatMessage({
             id: 'pages.searchTable.updateForm.ruleStartTime.startTimeLabel',
@@ -180,8 +184,8 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
       </StepsForm.StepForm>
       <StepsForm.StepForm
         initialValues={{
-          requirements: props.values.requirements,
-          needPersonNum: props.values.needPersonNum,
+          demand: props.values.demand,
+          need_person_num: props.values.need_person_num,
         }}
         title={intl.formatMessage({
           id: 'pages.searchTable.updateForm.third.title',
@@ -189,7 +193,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
         })}
       >
         <ProFormTextArea
-          name='requirements'
+          name='demand'
           width='md'
           label={intl.formatMessage({
             id: 'pages.searchActivity.updateForm.ruleRequirements.requirementsLabel',

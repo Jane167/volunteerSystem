@@ -1,6 +1,8 @@
 // @ts-ignore
 /* eslint-disable */
 
+// import ActivityTableList from "@/pages/ActivityTableList";
+
 declare namespace API {
   type CurrentUser = {
     name?: string;
@@ -100,4 +102,41 @@ declare namespace API {
     description?: string;
     type?: NoticeIconItemType;
   };
+
+  type ActivityListItem = {
+    key?: number;
+    id?: number;
+    name?: string;
+    desc?: string;
+    publish_company_name?: string;
+    address?: string;
+    start_date?: string;
+    start_time?: string;
+    demand?: string;
+    need_person_num?: number;
+    apply_person_num?: number;
+    pass_person_num?: number;
+    create_time?: string,
+
+  };
+  type ActivityList = ActivityListItem[];
+
+  type UsersListItem = {
+    id?: number;
+    username?: string;
+    email?: string,
+    groups?: Array<string>,
+    first_name?: string,
+    last_name?: string,
+    last_login?: string,
+    date_joined?: string
+  }
+  type UsersList = {
+    data?: UsersListItem[];
+    /** 列表的内容总数 */
+    total?: number;
+    success?: boolean;
+  };;
+
+
 }

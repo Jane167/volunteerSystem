@@ -35,7 +35,7 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
         bodyStyle={{ padding: '32px 40px 48px' }}
         destroyOnClose
         title='填写报名信息'
-        visible={props.applyModalVisible}
+        open={props.applyModalVisible}
         onCancel={() => {
           props.onCancel();
         }}

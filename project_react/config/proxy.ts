@@ -26,17 +26,17 @@ export default {
    * @doc https://github.com/chimurai/http-proxy-middleware
    */
   test: {
-    '/api/': {
-      target: 'https://proapi.azurewebsites.net',
+    '/api': {
+      target: 'http://localhost:8088/',
       changeOrigin: true,
-      pathRewrite: { '^': '' },
+      pathRewrite: { '^/api': '' },
     },
   },
   pre: {
-    '/api/': {
-      target: 'your pre url',
+    '/api': {
+      target: 'http://localhost:8088/',
       changeOrigin: true,
-      pathRewrite: { '^': '' },
+      pathRewrite: { '^/api': '' },
     },
   },
 };

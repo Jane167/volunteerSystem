@@ -12,7 +12,7 @@ class Activity(models.Model):
 		start_time = models.TimeField(verbose_name='开始时间', auto_now_add=True)
 		demand = models.CharField(verbose_name='活动要求', max_length=255)
 		need_person_num = models.IntegerField(verbose_name='需要人数', default=0)
-		apple_person_num = models.IntegerField(verbose_name='已报名人数', default=0)
+		apply_person_num = models.IntegerField(verbose_name='已报名人数', default=0)
 		pass_person_num = models.IntegerField(verbose_name='已通过人数', default=0)
 		create_time = models.DateTimeField(verbose_name = '创建时间', auto_now_add=True)
 

@@ -9,5 +9,3 @@ Django==2.2.6
 djangorestframework==3.8.2
 django-rest-swagger==2.2.0
 babel==2.11.0
-django-phonenumbers-field==2.0.1
-phonenumbers==8.13.0

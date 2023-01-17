@@ -3,11 +3,8 @@ import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns, ProDescriptionsItemProps } from '@ant-design/pro-components';
 import {
   FooterToolbar,
-  ModalForm,
   PageContainer,
   ProDescriptions,
-  ProFormText,
-  ProFormTextArea,
   ProTable,
 } from '@ant-design/pro-components';
 import { Button, Drawer, message } from 'antd';
@@ -16,12 +13,13 @@ import type { FormValueType } from './components/UpdateForm';
 import UpdateForm from './components/UpdateForm';
 import ApplyForm from './components/ApplyForm';
 
+import { getActivityList } from '@/services/activity';
 /**
  * @en-US Add node
  * @zh-CN 添加节点
  * @param fields
  */
-const handleAdd = async (fields: API.RuleListItem) => {
+const handleAdd = async (fields: API.ActivityListItem) => {
   const hide = message.loading('正在添加');
   try {
     await addRule({ ...fields });
@@ -45,14 +43,15 @@ const handleUpdate = async (fields: FormValueType) => {
   const hide = message.loading('Configuring');
   try {
     await updateRule({
+      id: fields.id,
       name: fields.name,
       desc: fields.desc,
+      publish_company_name: fields.publish_company_name,
       address: fields.address,
-      startDate: fields.startDate,
-      startTime: fields.startTime,
-      requirements: fields.requirements,
-      needPersonNum: fields.needPersonNum,
-      // key: fields.key,
+      start_date: fields.start_date,
+      start_time: fields.start_time,
+      demand: fields.demand,
+      need_person_num: fields.need_person_num,
     });
     hide();
 
@@ -74,14 +73,15 @@ const handleApply = async (fields: FormValueType) => {
   const hide = message.loading('Configuring');
   try {
     await updateRule({
+      id: fields.id,
       name: fields.name,
       desc: fields.desc,
+      publish_company_name: fields.publish_company_name,
       address: fields.address,
-      startDate: fields.startDate,
-      startTime: fields.startTime,
-      requirements: fields.requirements,
-      needPersonNum: fields.needPersonNum,
-      // key: fields.key,
+      start_date: fields.start_date,
+      start_time: fields.start_time,
+      demand: fields.demand,
+      need_person_num: fields.need_person_num,
     });
     hide();
 
@@ -99,7 +99,7 @@ const handleApply = async (fields: FormValueType) => {
  *
  * @param selectedRows
  */
-const handleRemove = async (selectedRows: API.RuleListItem[]) => {
+const handleRemove = async (selectedRows: API.ActivityListItem[]) => {
   const hide = message.loading('正在删除');
   if (!selectedRows) return true;
   try {
@@ -135,11 +135,14 @@ const ActivityTableList: React.FC = () => {
    * @zh-CN 国际化配置
    * */
 
-  const columns: ProColumns<API.RuleListItem>[] = [
+  const columns: ProColumns<API.ActivityListItem>[] = [
+    {
+      title: 'Id',
+      dataIndex: 'id',
+    },
     {
       title: '活动名称',
       dataIndex: 'name',
-      tip: 'The rule name is the unique key',
       render: (dom, entity) => {
         return (
           <a
@@ -160,41 +163,44 @@ const ActivityTableList: React.FC = () => {
       search: false
     },
     {
+      title: '发布企业名称',
+      dataIndex: 'publish_company_name',
+    },
+    {
       title: '活动地点',
-      dataIndex: 'address',
-      hideInForm: true,
+      dataIndex: 'address'
     },
     {
       title: '开始日期',
-      dataIndex: 'startDate',
+      dataIndex: 'start_date',
       sorter: true,
       hideInForm: true,
       search: false
     },
     {
       title: '开始时间',
-      dataIndex: 'startTime',
+      dataIndex: 'start_time',
       sorter: true,
       hideInForm: true,
       search: false
     },
     {
       title: '志愿者素养要求',
-      dataIndex: 'requirements',
+      dataIndex: 'demand',
       hideInForm: true,
       search: false
     },
     {
       title: '需要人数',
-      dataIndex: 'needPersonNum',
+      dataIndex: 'need_person_num',
     },
     {
       title: '已报名人数',
-      dataIndex: 'applyPersonNum',
+      dataIndex: 'apply_person_num',
     },
     {
       title: '审核通过人数',
-      dataIndex: 'passPersonNum',
+      dataIndex: 'pass_person_num',
     },
     {
       title: '操作',
@@ -234,12 +240,16 @@ const ActivityTableList: React.FC = () => {
     },
   ];
 
+  getActivityList().then((res: any) => {
+    console.log(res, '==============res===================')
+  })
+
   return (
     <PageContainer>
-      <ProTable<API.RuleListItem, API.PageParams>
+      <ProTable<API.ActivityListItem, API.PageParams>
         headerTitle="活动列表"
         actionRef={actionRef}
-        rowKey="key"
+        rowKey="id"
         search={{
           labelWidth: 120,
         }}
@@ -255,7 +265,7 @@ const ActivityTableList: React.FC = () => {
             新建活动
           </Button>,
         ]}
-        request={rule}
+        request={getActivityList}
         columns={columns}
         rowSelection={{
           onChange: (_, selectedRows) => {
@@ -304,7 +314,7 @@ const ActivityTableList: React.FC = () => {
         values={currentRow || {}}
       />
 
-      <ApplyForm
+      {/* <ApplyForm
         onSubmit={async (value) => {
           const success = await handleApply(value);
           if (success) {
@@ -323,11 +333,11 @@ const ActivityTableList: React.FC = () => {
         }}
         applyModalVisible={applyModalVisible}
         values={currentRow || {}}
-      />
+      /> */}
 
       <Drawer
         width={600}
-        visible={showDetail}
+        open={showDetail}
         onClose={() => {
           setCurrentRow(undefined);
           setShowDetail(false);
