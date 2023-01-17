@@ -1,6 +1,6 @@
 # 基于 DRF + React的疫情防控社区志愿者管理系统
 
-## PROJECT_DRF
+## 后端project_drf
 
 ```python shell
 # install requirements
@@ -12,5 +12,14 @@ python manage.py migrate
 
 # runserver at 127.0.0.1:80
 python manage.py runserver 80
+```
+
+## 前端project_react
+
+```
+# 安装依赖
+
+# 启动服务
+yarn start
 ```
 
