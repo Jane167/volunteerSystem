@@ -5,6 +5,7 @@ import {
 import {
   ActionType,
   PageContainer,
+  ParamsType,
   ProColumns,
   ProDescriptions,
   ProDescriptionsItemProps,
@@ -29,8 +30,7 @@ const UserList: React.FC = () => {
       width: 80,
       dataIndex: 'id',
       search: false,
-      align:  'center',
-      sorter: (a: API.UsersListItem, b:API.UsersListItem) => {return a.id - b.id},
+      align:  'center'
     },
     {
       title: '用户名',
@@ -107,7 +107,7 @@ const UserList: React.FC = () => {
         actionRef={actionRef}
         // request={getUserList}
 
-        request={async ( ) => {
+        request={async () => {
             const response = await getUserList().then(res =>{
             const result = {
                   data:res,
