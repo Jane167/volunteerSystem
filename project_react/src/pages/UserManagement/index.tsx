@@ -14,9 +14,6 @@ import { Button, Drawer } from 'antd';
 import React, { useRef, useState } from 'react';
 import { getUserList } from '@/services/user'
 
-// import axios from 'axios';
-
-
 
 const UserList: React.FC = () => {
   const [showDetail, setShowDetail] = useState<boolean>(false);
@@ -94,30 +91,13 @@ const UserList: React.FC = () => {
       ],
     },
   ];
-  getUserList().then((res: any) => {
-    console.log(res)
-  })
   return (
     <PageContainer>
       <ProTable<API.UsersListItem>
-        // dataSource={userTableListDataSource}
         rowKey="id"
         columns={columns}
         actionRef={actionRef}
-        // request={getUserList}
-
-        request={async () => {
-            const response = await getUserList().then(res =>{
-            const result = {
-                  data:res,
-                  total:res.length,
-                  success: true
-                }
-            return result;
-            }).catch((err: any) => console.log(err));
-          return Promise.resolve(response);
-        }}
-
+        request={getUserList}
         dateFormatter="string"
         headerTitle="用户列表"
         toolBarRender={() => [
