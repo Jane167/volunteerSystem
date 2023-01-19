@@ -7,14 +7,6 @@ from rest_framework.views import APIView
 
 from users.serializers import UserSerializer, GroupSerializer
 
-
-# class UserViewSet(viewsets.ModelViewSet):
-# 	"""
-# 	允许用户查看或编辑的API路径
-# 	"""
-# 	queryset = User.objects.all().order_by('-date_joined')
-# 	serializer_class = UserSerializer
-
 class UserViewSet(APIView):
 	# 	"""
 	# 	允许用户查看或编辑的API路径
@@ -26,7 +18,6 @@ class UserViewSet(APIView):
 		response = {'success': True}
 		user_list = User.objects.all()
 		total = User.objects.all().count()
-		print(user_list)
 		user_serializers = UserSerializer(user_list, many=True, context={'request': request})
 		response['data'] = user_serializers.data
 		response['total'] = total
