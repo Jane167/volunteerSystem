@@ -1,2 +1,8 @@
-/project_react/node_modules
-/project_drf/.idea
+/project-react/node_modules
+/project-drf/.idea
+*/.idea
+*/node_modules
+.git
+*/venv/
+*/venv
+*/__pycache__

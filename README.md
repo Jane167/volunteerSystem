@@ -16,9 +16,9 @@ python manage.py runserver 80
 
 ## 前端project_react
 
-```
+```shell
 # 安装依赖
-
+yarn
 # 启动服务
 yarn start
 ```
