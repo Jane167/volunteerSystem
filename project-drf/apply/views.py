@@ -41,6 +41,7 @@ class ApplyListAPIView(APIView):
             'success': True,
             'data': {
                 'message': 'success！'
+                
             }
         }
         return Response(response)

@@ -5,7 +5,7 @@ from rest_framework.routers import DefaultRouter
 
 # 路由列表
 urlpatterns = [
-	url(r'^user/', views.UserListAPIView.as_view()),
+	url(r'^user/$', views.UserListAPIView.as_view()),
 	url(r'^user/(?P<pk>\d+)/$', views.UserDetailAPIView.as_view())
 
 ]

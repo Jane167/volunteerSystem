@@ -1,11 +1,10 @@
-from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from rest_framework.response import Response
 # Create your views here.
 from rest_framework import viewsets
 from rest_framework.views import APIView
-
 from users.serializers import UserSerializer, GroupSerializer
+from utils.param import DocParam
 
 class UserListAPIView(APIView):
 	queryset = User.objects.all().order_by('-date_joined')
@@ -48,10 +47,17 @@ class UserListAPIView(APIView):
 
 class UserDetailAPIView(APIView):
 	
+	
 	def get(self, request, pk):
 		"""
 		根据id查询单个用户信息
 		"""
+		# coreapi_fields = (
+		# 	DocParam(name="id", location='query', description='测试接口'),
+		# 	# DocParam(name="AUTHORIZATION", location='header', description='token'),
+		# 	DocParam(name="AUTHORIZATION", location='query', description='token'),
+		# )
+		
 		# 查询pk指定的模型对象
 		try:
 			user = User.objects.get(id=pk)
