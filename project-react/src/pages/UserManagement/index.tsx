@@ -42,11 +42,9 @@ const UserList: React.FC = () => {
       align: 'center',
       search: false,
       render: (groups) => {
-        console.log(groups, 'groups');
         let color;
         let text = '';
         for (let i of groups) {
-          console.log(i, 'i===');
           if (i === 'manager') {
             color = 'cyan';
             text = '管理员';

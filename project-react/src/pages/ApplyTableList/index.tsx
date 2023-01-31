@@ -37,15 +37,12 @@ const ApplyTableList: React.FC = () => {
     {
       title: '年龄',
       dataIndex: 'age',
-      sorter: (a, b) => a.age - b.age,
       search: false,
     },
     {
       title: '性别',
       dataIndex: 'sex',
-      sorter: (a, b) => a.sex - b.sex,
       render: (sex) => {
-        console.log(sex, 'rocord');
         let color;
         let text = '';
         if (sex === 0) {
@@ -88,7 +85,6 @@ const ApplyTableList: React.FC = () => {
       title: '报名状态',
       dataIndex: 'apply_status',
       render: (apply_status) => {
-        console.log(apply_status, 'rocord');
         let color;
         let text = '';
         if (apply_status === 0) {
@@ -149,7 +145,7 @@ const ApplyTableList: React.FC = () => {
   return (
     <PageContainer>
       <ProTable<API.ApplyListItem>
-        rowKey="key"
+        rowKey="id"
         pagination={{
           showQuickJumper: true,
         }}
@@ -161,7 +157,7 @@ const ApplyTableList: React.FC = () => {
       />
       <Drawer
         width={500}
-        visible={showDetail}
+        open={showDetail}
         onClose={() => {
           setCurrentRow(undefined);
           setShowDetail(false);
@@ -169,7 +165,7 @@ const ApplyTableList: React.FC = () => {
         closable={true}
       >
         {currentRow?.name && (
-          <ProDescriptions<ApplyTableListItem>
+          <ProDescriptions<API.ApplyListItem>
             column={1}
             title={currentRow?.name + '的报名信息'}
             request={async () => ({
@@ -178,7 +174,7 @@ const ApplyTableList: React.FC = () => {
             params={{
               id: currentRow?.id,
             }}
-            columns={columns as ProDescriptionsItemProps<ApplyTableListItem>[]}
+            columns={columns as ProDescriptionsItemProps<API.ApplyListItem>[]}
           />
         )}
       </Drawer>
