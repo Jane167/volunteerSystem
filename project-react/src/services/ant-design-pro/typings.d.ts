@@ -151,7 +151,7 @@ declare namespace API {
     tel?: string;
     apply_status?: number;
     apply_time?: string;
-    belonging_activity?: string;
+    belonging_activity_name?: string;
   }
 
   type ApplyList = {

@@ -30,7 +30,7 @@ class ApplyModelSerializer(serializers.Serializer):
     # belonging_activity_name = ActivityModelSerializer()
     
     # 自定义额外字段
-    belong_activity_name = serializers.CharField(source='belonging_activity.name', read_only=True)
+    belonging_activity_name = serializers.CharField(source='belonging_activity.name', read_only=True)
     
     # 局部全局钩子同Serializer类, 自定义校验手机号码方法
     def validate_tel(self, value):

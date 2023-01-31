@@ -18,45 +18,6 @@ import { Button, Drawer, Tag } from 'antd';
 import React, { useState } from 'react';
 import { getApplyList } from '@/services/apply';
 
-
-const applyTableListDataSource: API.ApplyListItem[] = [
-  {
-    key: 1,
-    id: 1,
-    name: '李佳音',
-    age: 18,
-    sex: 1,
-    address: '陕西省',
-    tel: '17612937572',
-    apply_status: 1,
-    apply_time: '2023-1-12 16:00:00',
-    belonging_activity: '活动1',
-  },
-  {
-    key: 2,
-    id: 2,
-    name: '李佳音',
-    age: 18,
-    sex: 0,
-    address: '陕西省',
-    tel: '17612937572',
-    apply_status: 2,
-    apply_time: '2023-1-12 16:00:00',
-    belonging_activity: '活动1',
-  },
-  {
-    key: 3,
-    id: 3,
-    name: '李佳音',
-    age: 18,
-    sex: 2,
-    address: '陕西省',
-    tel: '17612937572',
-    apply_status: 0,
-    apply_time: '2023-1-12 16:00:00',
-    belonging_activity: '活动1',
-  },
-];
 const ApplyTableList: React.FC = () => {
   const [showDetail, setShowDetail] = useState<boolean>(false);
   const [currentRow, setCurrentRow] = useState<API.ApplyListItem>();
@@ -66,7 +27,6 @@ const ApplyTableList: React.FC = () => {
       width: 80,
       dataIndex: 'id',
       search: false,
-      sorter: (a, b) => a.id - b.id,
     },
     {
       title: '姓名',
@@ -165,7 +125,7 @@ const ApplyTableList: React.FC = () => {
     },
     {
       title: '报名活动',
-      dataIndex: 'belonging_activity',
+      dataIndex: 'belonging_activity_name',
       render: (_) => <a>{_}</a>,
     },
     {
