@@ -1,7 +1,4 @@
-import {
-  UserAddOutlined,
-  VerticalAlignBottomOutlined,
-} from '@ant-design/icons';
+import { UserAddOutlined, VerticalAlignBottomOutlined } from '@ant-design/icons';
 import {
   ActionType,
   PageContainer,
@@ -10,10 +7,9 @@ import {
   ProDescriptionsItemProps,
 } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, Drawer } from 'antd';
+import { Button, Drawer, Tag } from 'antd';
 import React, { useRef, useState } from 'react';
-import { getUserList } from '@/services/user'
-
+import { getUserList } from '@/services/user';
 
 const UserList: React.FC = () => {
   const [showDetail, setShowDetail] = useState<boolean>(false);
@@ -26,7 +22,7 @@ const UserList: React.FC = () => {
       width: 80,
       dataIndex: 'id',
       search: false,
-      align:  'center'
+      align: 'center',
     },
     {
       title: '用户名',
@@ -35,48 +31,67 @@ const UserList: React.FC = () => {
       search: false,
     },
     {
-      title: "电子邮箱",
+      title: '电子邮箱',
       dataIndex: 'email',
-      align:  'center',
-      search: false
+      align: 'center',
+      search: false,
     },
     {
-      title: "角色",
+      title: '角色',
       dataIndex: 'groups',
-      valueType: 'groups',
-      align:  'center',
-      search: false
+      align: 'center',
+      search: false,
+      render: (groups) => {
+        console.log(groups, 'groups');
+        let color;
+        let text = '';
+        for (let i of groups) {
+          console.log(i, 'i===');
+          if (i === 'manager') {
+            color = 'cyan';
+            text = '管理员';
+          } else if (i === 'company') {
+            color = 'volcano';
+            text = '公益企业';
+          } else if (i === 'common') {
+            color = 'magenta';
+            text = '普通用户';
+          }
+          return <Tag color={color}>{text}</Tag>;
+
+        }
+      },
     },
     {
-      title: "姓",
+      title: '姓',
       dataIndex: 'first_name',
-      align:  'center',
-      search: false
+      align: 'center',
+      search: false,
     },
     {
-      title: "名",
+      title: '名',
       dataIndex: 'last_name',
-      align:  'center',
-      search: false
+      align: 'center',
+      search: false,
     },
     {
-      title: "上次登录时间",
+      title: '上次登录时间',
       dataIndex: 'last_login',
-      align:  'center',
-      search: false
+      align: 'center',
+      search: false,
     },
     {
-      title: "注册时间",
+      title: '注册时间',
       dataIndex: 'date_joined',
-      align:  'center',
-      search: false
+      align: 'center',
+      search: false,
     },
 
     {
       title: '操作',
       width: 300,
       key: 'option',
-      align:  'center',
+      align: 'center',
       valueType: 'option',
       render: (dom, entity) => [
         <a
@@ -105,7 +120,9 @@ const UserList: React.FC = () => {
           <Button key="out" type="primary" icon={<UserAddOutlined />}>
             新建用户
           </Button>,
-          <Button key="out" icon={<VerticalAlignBottomOutlined />}>导出数据</Button>
+          <Button key="out" icon={<VerticalAlignBottomOutlined />}>
+            导出数据
+          </Button>,
         ]}
       />
       <Drawer

@@ -84,11 +84,11 @@ const ApplyTableList: React.FC = () => {
       title: '性别',
       dataIndex: 'sex',
       sorter: (a, b) => a.sex - b.sex,
-      render: (apply_status) => {
-        console.log(apply_status, 'rocord');
+      render: (sex) => {
+        console.log(sex, 'rocord');
         let color;
         let text = '';
-        if (apply_status === 0) {
+        if (sex === 0) {
           color = 'default';
           text = '未知';
           return (
@@ -96,7 +96,7 @@ const ApplyTableList: React.FC = () => {
               {text}
             </Tag>
           );
-        } else if (apply_status === 1) {
+        } else if (sex === 1) {
           color = 'processing';
           text = '男';
           return (
@@ -104,7 +104,7 @@ const ApplyTableList: React.FC = () => {
               {text}
             </Tag>
           );
-        } else if (apply_status === 2) {
+        } else if (sex === 2) {
           color = 'error';
           text = '女';
           return (
@@ -188,7 +188,7 @@ const ApplyTableList: React.FC = () => {
   ];
   return (
     <PageContainer>
-      <ProTable<ApplyTableListItem>
+      <ProTable<API.ApplyListItem>
         rowKey="key"
         pagination={{
           showQuickJumper: true,
