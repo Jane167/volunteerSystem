@@ -90,7 +90,7 @@ class ActivityDetailAPIView(APIView):
     
         # 校验
         serializer.is_valid(raise_exception=True)
-        serializer.update()
+        serializer.save()
         # 响应
         response = {
             'success': True,
