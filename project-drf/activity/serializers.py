@@ -4,8 +4,8 @@ from .models import Activity
 # 创建序列化器，在view中会被调用
 class ActivityModelSerializer(serializers.ModelSerializer):
 
-    create_time = serializers.DateTimeField(label='报名时间', required=False, format='%Y-%d-%m %H:%M:%S')
-    start_date = serializers.DateField(label='开始日期', required=True, format='%Y-%d-%m')
+    create_time = serializers.DateTimeField(label='报名时间', required=False, format='%Y-%m-%d %H:%M:%S')
+    start_date = serializers.DateField(label='开始日期', required=True, format='%Y-%m-%d')
     start_time = serializers.TimeField(label='开始时间', required=True, format='%H:%M:%S')
 
     class Meta:

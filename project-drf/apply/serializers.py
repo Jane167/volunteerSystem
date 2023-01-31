@@ -24,7 +24,7 @@ class ApplyModelSerializer(serializers.Serializer):
     address = serializers.CharField(label='家庭住址', required=True)
     tel = serializers.CharField(label='联系方式', required=True)
     apply_status = serializers.ChoiceField(label='报名状态', choices=STATUS_CHOICE, required=True)
-    apply_time = serializers.DateTimeField(label='报名时间', read_only=True, required=False, format='%Y-%d-%m %H:%M:%S')
+    apply_time = serializers.DateTimeField(label='报名时间', read_only=True, required=False, format='%Y-%m-%d %H:%M:%S')
     belonging_activity = serializers.PrimaryKeyRelatedField(queryset=Activity.objects.all())
     # belonging_activity_name = serializers.StringRelatedField(label='报名活动')
     # belonging_activity_name = ActivityModelSerializer()
