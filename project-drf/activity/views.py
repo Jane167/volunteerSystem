@@ -122,3 +122,4 @@ class ActivityDetailAPIView(APIView):
             },
         }
         return Response(response)
+    
