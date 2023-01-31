@@ -19,15 +19,18 @@ class ApplyModelSerializer(serializers.Serializer):
     ]
     id = serializers.IntegerField(label='Id', read_only=True)
     name = serializers.CharField(label='姓名', max_length=50, required=True)
-    age = serializers.IntegerField(label='年龄', required=False)
-    sex = serializers.ChoiceField(choices=SEX_CHOICE, required=False)
-    address = serializers.CharField(label='家庭住址', required=False)
+    age = serializers.IntegerField(label='年龄', required=True)
+    sex = serializers.ChoiceField(choices=SEX_CHOICE, required=True)
+    address = serializers.CharField(label='家庭住址', required=True)
     tel = serializers.CharField(label='联系方式', required=True)
     apply_status = serializers.ChoiceField(label='报名状态', choices=STATUS_CHOICE, required=True)
-    apply_time = serializers.DateTimeField(label='报名时间', required=False, format='%Y-%d-%m %H:%M:%S')
-    # belonging_activity = serializers.PrimaryKeyRelatedField(label="报名活动", required=True,
-    #                                                         queryset=Activity.objects.all())
-    belonging_activity = serializers.StringRelatedField(label='报名活动')
+    apply_time = serializers.DateTimeField(label='报名时间', read_only=True, required=False, format='%Y-%d-%m %H:%M:%S')
+    belonging_activity = serializers.PrimaryKeyRelatedField(queryset=Activity.objects.all())
+    # belonging_activity_name = serializers.StringRelatedField(label='报名活动')
+    # belonging_activity_name = ActivityModelSerializer()
+    
+    # 自定义额外字段
+    belong_activity_name = serializers.CharField(source='belonging_activity.name', read_only=True)
     
     # 局部全局钩子同Serializer类, 自定义校验手机号码方法
     def validate_tel(self, value):

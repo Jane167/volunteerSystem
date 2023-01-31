@@ -22,7 +22,7 @@ class ApplyListAPIView(APIView):
         response['data'] = apply_serializers.data
         response['total'] = total
         return Response(response)
-    
+
     def post(self, request):
         """
         新增一条报名信息
@@ -31,16 +31,22 @@ class ApplyListAPIView(APIView):
         # 获取前端传入请求体数据
         data = request.data
         # 创建序列化器进行反序列化操作
-        serializer = ApplyModelSerializer(data = data)
+        serializer = ApplyModelSerializer(data=data)
         # 调用序列化器的is_valid方法进行校验
         serializer.is_valid(raise_exception=True)
         # 调用序列化器的save方法进行执行create方法
         serializer.save()
         # 响应
-        return Response({'success': True, data: {'message': 'success！'}})
+        response = {
+            'success': True,
+            'data': {
+                'message': 'success！'
+            }
+        }
+        return Response(response)
 
 class ApplyDetailAPIView(APIView):
-    
+
     def get(self, request, pk):
         """
         根据id查询指定报名信息
@@ -59,8 +65,8 @@ class ApplyDetailAPIView(APIView):
             'data': serializer.data,
         }
         return Response(response)
-    
-    
+
+
     def put(self, request, pk):
         """
         根据id修改指定报名信息
@@ -73,10 +79,10 @@ class ApplyDetailAPIView(APIView):
         # 获取前端传入的请求体数据
         # 创建序列化器进行反序列化操作
         serializer = ApplyModelSerializer(instance=apply, data=request.data)
-        
+
         # 校验
         serializer.is_valid(raise_exception=True)
-        serializer.update()
+        serializer.save()
         # 响应
         response = {
             'success': True,
@@ -85,7 +91,7 @@ class ApplyDetailAPIView(APIView):
             },
         }
         return Response(response)
-    
+
     def delete(self, request, pk):
         """
         根据id删除指定报名信息
