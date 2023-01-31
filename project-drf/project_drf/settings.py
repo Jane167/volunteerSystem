@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',               # drf
     'rest_framework_swagger',       # swagger 接口文档
-    'phonenumber_field',            # 电话号码数据类型
     'activity',                     # activity 自定义应用
     'apply',                        # apply 自定义应用
 ]
