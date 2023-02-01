@@ -21,6 +21,42 @@ import { getApplyList } from '@/services/apply';
 const ApplyTableList: React.FC = () => {
   const [showDetail, setShowDetail] = useState<boolean>(false);
   const [currentRow, setCurrentRow] = useState<API.ApplyListItem>();
+  const statusValueEnum = {
+    0: {
+      color: 'default',
+      text: '待审核',
+      icon: <InfoCircleOutlined />,
+    },
+    1: {
+      color: 'success',
+      text: '已通过',
+      icon: <CheckCircleOutlined />,
+    },
+    2: {
+      color: 'error',
+      text: '未通过',
+      icon: <CloseCircleOutlined />,
+    },
+  };
+
+  const sexValueEnum = {
+    0: {
+      color: 'default',
+      text: '未知',
+      icon: <QuestionCircleOutlined />,
+    },
+    1: {
+      color: 'processing',
+      text: '男',
+      icon: <ManOutlined />,
+    },
+
+    2: {
+      color: 'error',
+      text: '女',
+      icon: <WomanOutlined />,
+    },
+  };
   const columns: ProColumns<API.ApplyListItem>[] = [
     {
       title: 'Id',
@@ -43,33 +79,12 @@ const ApplyTableList: React.FC = () => {
       title: '性别',
       dataIndex: 'sex',
       render: (sex) => {
-        let color;
-        let text = '';
-        if (sex === 0) {
-          color = 'default';
-          text = '未知';
-          return (
-            <Tag icon={<QuestionCircleOutlined />} color={color}>
-              {text}
-            </Tag>
-          );
-        } else if (sex === 1) {
-          color = 'processing';
-          text = '男';
-          return (
-            <Tag icon={<ManOutlined />} color={color}>
-              {text}
-            </Tag>
-          );
-        } else if (sex === 2) {
-          color = 'error';
-          text = '女';
-          return (
-            <Tag icon={<WomanOutlined />} color={color}>
-              {text}
-            </Tag>
-          );
-        }
+        const element = sexValueEnum[Number(sex)];
+        return (
+          <Tag color={element.color} icon={element.icon}>
+            {element.text}
+          </Tag>
+        );
       },
     },
     {
@@ -85,33 +100,13 @@ const ApplyTableList: React.FC = () => {
       title: '报名状态',
       dataIndex: 'apply_status',
       render: (apply_status) => {
-        let color;
-        let text = '';
-        if (apply_status === 0) {
-          color = 'default';
-          text = '待审核';
-          return (
-            <Tag icon={<InfoCircleOutlined />} color={color}>
-              {text}
-            </Tag>
-          );
-        } else if (apply_status === 1) {
-          color = 'success';
-          text = '已审核';
-          return (
-            <Tag icon={<CheckCircleOutlined />} color={color}>
-              {text}
-            </Tag>
-          );
-        } else if (apply_status === 2) {
-          color = 'error';
-          text = '未通过';
-          return (
-            <Tag icon={<CloseCircleOutlined />} color={color}>
-              {text}
-            </Tag>
-          );
-        }
+        console.log(apply_status);
+        const element = statusValueEnum[Number(apply_status)];
+        return (
+          <Tag color={element.color} icon={element.icon}>
+            {element.text}
+          </Tag>
+        );
       },
     },
     {

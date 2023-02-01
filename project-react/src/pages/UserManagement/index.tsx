@@ -16,6 +16,21 @@ const UserList: React.FC = () => {
   const [currentRow, setCurrentRow] = useState<API.UsersListItem>();
   const actionRef = useRef<ActionType>();
 
+  const roleValueEnum = {
+    manager: {
+      color: 'cyan',
+      text: '管理员',
+    },
+    company: {
+      color: 'volcano',
+      text: '公益企业',
+    },
+    common: {
+      color: 'magenta',
+      text: '普通用户',
+    },
+  };
+
   const columns: ProColumns<API.UsersListItem>[] = [
     {
       title: '用户Id',
@@ -42,21 +57,10 @@ const UserList: React.FC = () => {
       align: 'center',
       search: false,
       render: (groups) => {
-        let color;
-        let text = '';
-        for (let i of groups) {
-          if (i === 'manager') {
-            color = 'cyan';
-            text = '管理员';
-          } else if (i === 'company') {
-            color = 'volcano';
-            text = '公益企业';
-          } else if (i === 'common') {
-            color = 'magenta';
-            text = '普通用户';
-          }
-          return <Tag color={color}>{text}</Tag>;
+        for (let i of Array(groups)) {
+          const element = roleValueEnum[String(i)];
 
+          return <Tag color={element.color}>{element.text}</Tag>;
         }
       },
     },

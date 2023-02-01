@@ -139,6 +139,7 @@ const ActivityTableList: React.FC = () => {
     {
       title: 'Id',
       dataIndex: 'id',
+      search: false
     },
     {
       title: '活动名称',
