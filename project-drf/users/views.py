@@ -4,7 +4,7 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 from users.serializers import UserSerializer, GroupSerializer
 from django.contrib.auth.hashers import make_password
-from utils.pagination import MyPageNumberPagination
+from utils.pagination import StandardPageNumberPagination
 
 class UserListAPIView(APIView):
 	queryset = User.objects.all().order_by('-date_joined')
@@ -18,8 +18,8 @@ class UserListAPIView(APIView):
 		user_list = User.objects.all()
 		total = User.objects.all().count()
 		user_serializers = UserSerializer(user_list, many=True, context={'request': request})
-		pg = MyPageNumberPagination()
-		pg_data = pg.paginate_queryset(queryset=user_serializers.data, request=request, view=self)
+		pagination = StandardPageNumberPagination()
+		pg_data = pagination.paginate_queryset(queryset=user_serializers.data, request=request, view=self)
 		response['data'] = pg_data
 		response['total'] = total
 		return Response(response)

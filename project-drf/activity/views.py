@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from .models import Activity
 from .serializers import ActivityModelSerializer
-from utils.pagination import MyPageNumberPagination
+from utils.pagination import StandardPageNumberPagination
 
 
 class ActivityListAPIView(APIView):
@@ -19,8 +19,8 @@ class ActivityListAPIView(APIView):
         activity_list = Activity.objects.all()
         total = activity_list.count()
         activity_serializers = ActivityModelSerializer(activity_list, many=True, context={'request': request})
-        pg = MyPageNumberPagination()
-        pg_data = pg.paginate_queryset(queryset=activity_serializers.data, request=request, view=self)
+        pagination = StandardPageNumberPagination()
+        pg_data = pagination.paginate_queryset(queryset=activity_serializers.data, request=request, view=self)
         response['data'] = pg_data
         response['total'] = total
         return Response(response)
@@ -39,8 +39,9 @@ class ActivityListAPIView(APIView):
                 'message': '创建成功！'
             }
         })
-    
+
 class ActivityDetailAPIView(APIView):
+    
     def get(self, request, pk):
         """
         根据id查询单个活动信息
@@ -109,3 +110,4 @@ class ActivityDetailAPIView(APIView):
             },
         }
         return Response(response)
+    

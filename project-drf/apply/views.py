@@ -4,7 +4,7 @@ from rest_framework.viewsets import ModelViewSet
 from .models import Apply  # 导入对应的模型类
 from rest_framework.response import Response
 from .serializers import ApplyModelSerializer  # 导入对应的序列化器
-from utils.pagination import MyPageNumberPagination
+from utils.pagination import StandardPageNumberPagination
 
 # Create your views here.
 class ApplyListAPIView(APIView):
@@ -19,8 +19,8 @@ class ApplyListAPIView(APIView):
         apply_list = Apply.objects.all()
         total = apply_list.count()
         apply_serializers = ApplyModelSerializer(apply_list, many=True, context={'request': request})
-        pg = MyPageNumberPagination()
-        pg_data = pg.paginate_queryset(queryset=apply_serializers.data, request=request, view=self)
+        pagination = StandardPageNumberPagination()
+        pg_data = pagination.paginate_queryset(queryset=apply_serializers.data, request=request, view=self)
         response['data'] = pg_data
         response['total'] = total
         return Response(response)
