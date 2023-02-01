@@ -1,10 +1,8 @@
 from django.contrib.auth.models import User, Group
 from rest_framework.response import Response
-# Create your views here.
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from users.serializers import UserSerializer, GroupSerializer
-from utils.param import DocParam
 from django.contrib.auth.hashers import make_password
 from .pagination import MyPageNumberPagination
 
