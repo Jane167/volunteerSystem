@@ -35,6 +35,10 @@ declare namespace API {
     current?: number;
     pageSize?: number;
   };
+  type PagnationParams = {
+    page?: number;
+    size?: number;
+  };
 
   type RuleListItem = {
     key?: number;

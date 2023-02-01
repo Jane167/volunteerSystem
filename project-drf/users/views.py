@@ -6,6 +6,7 @@ from users.serializers import UserSerializer, GroupSerializer
 from django.contrib.auth.hashers import make_password
 from utils.pagination import StandardPageNumberPagination
 
+
 class UserListAPIView(APIView):
 	queryset = User.objects.all().order_by('-date_joined')
 	serializer_class = UserSerializer
@@ -28,7 +29,7 @@ class UserListAPIView(APIView):
 		"""
 		新增一条用户信息
 		"""
-
+		
 		# 获取前端传入请求体数据
 		data = request.data.copy()
 		password_ = data["password"]
@@ -51,16 +52,11 @@ class UserListAPIView(APIView):
 
 class UserDetailAPIView(APIView):
 	
-	
 	def get(self, request, pk):
 		"""
 		根据id查询单个用户信息
 		"""
-		# coreapi_fields = (
-		# 	DocParam(name="id", location='query', description='测试接口'),
-		# 	# DocParam(name="AUTHORIZATION", location='header', description='token'),
-		# 	DocParam(name="AUTHORIZATION", location='query', description='token'),
-		# )
+		
 		
 		# 查询pk指定的模型对象
 		try:

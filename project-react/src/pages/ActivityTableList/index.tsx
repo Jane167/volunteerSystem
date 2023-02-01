@@ -262,6 +262,11 @@ const ActivityTableList: React.FC = () => {
           </Button>,
         ]}
         request={getActivityList}
+        pagination={{
+          pageSize: 10,
+          showSizeChanger: true,
+          onChange: (page) => console.log(page),
+        }}
         columns={columns}
         rowSelection={{
           onChange: (_, selectedRows) => {

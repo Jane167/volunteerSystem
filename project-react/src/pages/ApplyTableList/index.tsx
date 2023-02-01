@@ -144,16 +144,21 @@ const ApplyTableList: React.FC = () => {
   ];
   return (
     <PageContainer>
-      <ProTable<API.ApplyListItem>
+      <ProTable<API.ApplyListItem, API.PageParams>
         rowKey="id"
         pagination={{
-          showQuickJumper: true,
+          pageSize: 10,
+          showSizeChanger: true,
         }}
         columns={columns}
         request={getApplyList}
         dateFormatter="string"
         headerTitle="报名列表"
-        toolBarRender={() => [<Button key="out" icon={<VerticalAlignBottomOutlined />}>导出数据</Button>]}
+        toolBarRender={() => [
+          <Button key="out" icon={<VerticalAlignBottomOutlined />}>
+            导出数据
+          </Button>,
+        ]}
       />
       <Drawer
         width={500}

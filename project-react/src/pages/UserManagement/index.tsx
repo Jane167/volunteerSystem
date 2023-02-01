@@ -107,8 +107,12 @@ const UserList: React.FC = () => {
   ];
   return (
     <PageContainer>
-      <ProTable<API.UsersListItem>
+      <ProTable<API.UsersListItem, API.PageParams>
         rowKey="id"
+        pagination={{
+          pageSize: 10,
+          showSizeChanger: true,
+        }}
         columns={columns}
         actionRef={actionRef}
         request={getUserList}
