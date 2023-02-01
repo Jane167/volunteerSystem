@@ -4,7 +4,7 @@ from rest_framework.viewsets import ModelViewSet
 from .models import Apply  # 导入对应的模型类
 from rest_framework.response import Response
 from .serializers import ApplyModelSerializer  # 导入对应的序列化器
-from .pagination import MyPageNumberPagination
+from utils.pagination import MyPageNumberPagination
 
 # Create your views here.
 class ApplyListAPIView(APIView):

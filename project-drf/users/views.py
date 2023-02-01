@@ -4,7 +4,7 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 from users.serializers import UserSerializer, GroupSerializer
 from django.contrib.auth.hashers import make_password
-from .pagination import MyPageNumberPagination
+from utils.pagination import MyPageNumberPagination
 
 class UserListAPIView(APIView):
 	queryset = User.objects.all().order_by('-date_joined')
