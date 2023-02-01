@@ -5,6 +5,8 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 from users.serializers import UserSerializer, GroupSerializer
 from utils.param import DocParam
+from django.contrib.auth.hashers import make_password
+from .pagination import MyPageNumberPagination
 
 class UserListAPIView(APIView):
 	queryset = User.objects.all().order_by('-date_joined')
@@ -18,7 +20,9 @@ class UserListAPIView(APIView):
 		user_list = User.objects.all()
 		total = User.objects.all().count()
 		user_serializers = UserSerializer(user_list, many=True, context={'request': request})
-		response['data'] = user_serializers.data
+		pg = MyPageNumberPagination()
+		pg_data = pg.paginate_queryset(queryset=user_serializers.data, request=request, view=self)
+		response['data'] = pg_data
 		response['total'] = total
 		return Response(response)
 	
@@ -26,9 +30,11 @@ class UserListAPIView(APIView):
 		"""
 		新增一条用户信息
 		"""
-		
+
 		# 获取前端传入请求体数据
-		data = request.data
+		data = request.data.copy()
+		password_ = data["password"]
+		data["password"] = make_password(password_)
 		# 创建序列化器进行反序列化操作
 		serializer = UserSerializer(data=data)
 		# 调用序列化器的is_valid方法进行校验
