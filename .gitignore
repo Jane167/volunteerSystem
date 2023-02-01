@@ -4,5 +4,5 @@
 */node_modules
 .git
 */venv/
-*/venv
-*/__pycache__
+/venv
+/__pycache__
