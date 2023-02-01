@@ -1,7 +1,7 @@
+
 from rest_framework import serializers
 from .models import Apply
 from activity.models import Activity
-from activity.serializers import ActivityModelSerializer
 
 
 class ApplyModelSerializer(serializers.Serializer):

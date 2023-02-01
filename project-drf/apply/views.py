@@ -1,12 +1,11 @@
-from django.shortcuts import render
+
 from rest_framework.views import APIView
-from rest_framework.viewsets import ModelViewSet
 from .models import Apply  # 导入对应的模型类
 from rest_framework.response import Response
 from .serializers import ApplyModelSerializer  # 导入对应的序列化器
 from utils.pagination import StandardPageNumberPagination
 
-# Create your views here.
+
 class ApplyListAPIView(APIView):
     queryset = Apply.objects.all()  # 指明查询集
     serializer_class = ApplyModelSerializer  # 指明所使用的序列化器

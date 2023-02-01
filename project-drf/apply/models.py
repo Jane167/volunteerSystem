@@ -1,8 +1,7 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 from activity.models import Activity
 
-# Create your models here.
+
 class ApplyStatus(models.Model):
     WAIT = 0    # 待审核
     PASS = 1    # 已审核
