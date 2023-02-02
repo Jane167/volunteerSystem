@@ -137,11 +137,6 @@ const ActivityTableList: React.FC = () => {
   const [currentRow, setCurrentRow] = useState<API.ActivityListItem>();
   const [selectedRowsState, setSelectedRows] = useState<API.ActivityListItem[]>([]);
 
-  /**
-   * @en-US International configuration
-   * @zh-CN 国际化配置
-   * */
-
   const columns: ProColumns<API.ActivityListItem>[] = [
     {
       title: 'Id',
