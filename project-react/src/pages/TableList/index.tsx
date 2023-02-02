@@ -11,7 +11,7 @@ import {
   ProTable,
 } from '@ant-design/pro-components';
 import { FormattedMessage, useIntl } from '@umijs/max';
-import { Button, Drawer, Input, message } from 'antd';
+import { Button, Drawer, Input, message, Modal, Tag } from 'antd';
 import React, { useRef, useState } from 'react';
 import type { FormValueType } from './components/UpdateForm';
 import UpdateForm from './components/UpdateForm';
@@ -317,7 +317,7 @@ const TableList: React.FC = () => {
           defaultMessage: 'New rule',
         })}
         width="400px"
-        visible={createModalVisible}
+        open={createModalVisible}
         onVisibleChange={handleModalVisible}
         onFinish={async (value) => {
           const success = await handleAdd(value as API.RuleListItem);
@@ -390,6 +390,7 @@ const TableList: React.FC = () => {
           />
         )}
       </Drawer>
+      
     </PageContainer>
   );
 };

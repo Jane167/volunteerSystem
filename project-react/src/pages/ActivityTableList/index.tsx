@@ -6,7 +6,7 @@ import {
   ProDescriptions,
   ProTable,
 } from '@ant-design/pro-components';
-import { Button, Drawer, message } from 'antd';
+import { Button, Drawer, message, Modal, Tag } from 'antd';
 import React, { useRef, useState } from 'react';
 import type { UpdateFormValueType } from './components/UpdateForm';
 import type { ApplyFormValueType } from './components/ApplyForm';
@@ -20,7 +20,7 @@ import { addApply } from '@/services/apply';
  * @zh-CN 添加节点
  * @param fields
  */
-const handleActivity = async (fields: API.ActivityListItem) => {
+const handleAdd = async (fields: API.ActivityListItem) => {
   const hide = message.loading('正在添加');
   try {
     await addActivity({ ...fields });
@@ -43,17 +43,20 @@ const handleActivity = async (fields: API.ActivityListItem) => {
 const handleUpdate = async (fields: UpdateFormValueType) => {
   const hide = message.loading('更新中...');
   try {
-    await updateActivity({
-      id: fields.id,
-      name: fields.name,
-      desc: fields.desc,
-      publish_company_name: fields.publish_company_name,
-      address: fields.address,
-      start_date: fields.start_date,
-      start_time: fields.start_time,
-      demand: fields.demand,
-      need_person_num: fields.need_person_num,
-    }, fields.id); 
+    await updateActivity(
+      {
+        id: fields.id,
+        name: fields.name,
+        desc: fields.desc,
+        publish_company_name: fields.publish_company_name,
+        address: fields.address,
+        start_date: fields.start_date,
+        start_time: fields.start_time,
+        demand: fields.demand,
+        need_person_num: fields.need_person_num,
+      },
+      fields.id,
+    );
     hide();
 
     message.success('更新成功！');
@@ -80,7 +83,7 @@ const handleApply = async (fields: ApplyFormValueType) => {
       address: fields.address,
       tel: fields.tel,
       belonging_activity: fields.belonging_activity,
-      apply_status: 0
+      apply_status: 0,
     });
     hide();
     message.success('Configuration is successful');
@@ -97,19 +100,17 @@ const handleApply = async (fields: ApplyFormValueType) => {
  *
  * @param selectedRows
  */
-const handleRemove = async (selectedRows: API.ActivityListItem[]) => {
+const handleRemove = async (id: number) => {
   const hide = message.loading('正在删除');
-  if (!selectedRows) return true;
+  if (!id) return true;
   try {
-    await removeActivity({
-      key: selectedRows.map((row) => row.id),
-    });
+    await removeActivity(id);
     hide();
-    message.success('Deleted successfully and will refresh soon');
+    message.success('删除成功！');
     return true;
   } catch (error) {
     hide();
-    message.error('Delete failed, please try again');
+    message.error('删除失败，请重试！');
     return false;
   }
 };
@@ -121,6 +122,7 @@ const ActivityTableList: React.FC = () => {
    * */
   const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
   const [applyModalVisible, handleApplyModalVisible] = useState<boolean>(false);
+  const [removeModalVisible, handleRemoveModalVisible] = useState<boolean>(false);
 
   const [showDetail, setShowDetail] = useState<boolean>(false);
 
@@ -234,7 +236,15 @@ const ActivityTableList: React.FC = () => {
         >
           编辑
         </a>,
-        <a>删除</a>,
+        <a
+          key="details"
+          onClick={() => {
+            handleRemoveModalVisible(true);
+            setCurrentRow(record);
+          }}
+        >
+          删除
+        </a>,
       ],
     },
   ];
@@ -282,11 +292,11 @@ const ActivityTableList: React.FC = () => {
           }
         >
           <Button
-            onClick={async () => {
-              await handleRemove(selectedRowsState);
-              setSelectedRows([]);
-              actionRef.current?.reloadAndRest?.();
-            }}
+          // onClick={async () => {
+          //   await handleRemove(selectedRowsState);
+          //   setSelectedRows([]);
+          //   actionRef.current?.reloadAndRest?.();
+          // }}
           >
             批量删除
           </Button>
@@ -358,6 +368,28 @@ const ActivityTableList: React.FC = () => {
           />
         )}
       </Drawer>
+      <Modal
+        title="Basic Modal"
+        open={removeModalVisible}
+        onOk={async () => {
+          const success = await handleRemove(Number(currentRow?.id));
+          if (success) {
+            handleRemoveModalVisible(false);
+            setCurrentRow(undefined);
+            if (actionRef.current) {
+              actionRef.current.reload();
+            }
+          }
+        }}
+        onCancel={() => {
+          handleRemoveModalVisible(false);
+          if (!showDetail) {
+            setCurrentRow(undefined);
+          }
+        }}
+      >
+        您是否确定要删除 <Tag color='volcano'>{currentRow?.name}</Tag> 活动？
+      </Modal>
     </PageContainer>
   );
 };

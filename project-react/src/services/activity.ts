@@ -33,14 +33,13 @@ export async function updateActivity(options?: { [key: string]: any }, id?: numb
   return request<API.Response>('/api/activity/' + id + '/', {
     method: 'PUT',
     // ...(options || {}),
-    data: options
+    data: options,
   });
 }
 
 /** 删除活动 DELETE /api/activity/ */
-export async function removeActivity(options?: { [key: string]: any }) {
-  return request<Record<string, any>>('/api/activity', {
+export async function removeActivity(id?: number) {
+  return request<API.Response>('/api/activity/' + id + '/', {
     method: 'DELETE',
-    ...(options || {}),
   });
 }
