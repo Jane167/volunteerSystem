@@ -1,30 +1,47 @@
+import { UserOutlined, StarOutlined, EnvironmentOutlined, PhoneOutlined } from '@ant-design/icons';
 import {
-  UserOutlined,
-  StarOutlined,
-  EnvironmentOutlined,
-  PhoneOutlined,
-} from '@ant-design/icons';
-import { ProForm, ProFormDigit, ProFormRadio, ProFormSelect, ProFormText } from '@ant-design/pro-components';
+  ProForm,
+  ProFormDigit,
+  ProFormRadio,
+  ProFormSelect,
+  ProFormText,
+} from '@ant-design/pro-components';
 import React, { useState } from 'react';
 import { Modal } from 'antd';
+import { getActivityList } from '@/services/activity';
 
 type LayoutType = Parameters<typeof ProForm>[0]['layout'];
 const LAYOUT_TYPE_HORIZONTAL = 'horizontal';
 
-export type FormValueType = {
-  target?: string;
-  template?: string;
-  type?: string;
-  time?: string;
-  frequency?: string;
-} & Partial<API.RuleListItem>;
+export type ApplyFormValueType = {
+  name?: string;
+  age?: number;
+  sex?: number;
+  address?: string;
+  tel?: string;
+  belonging_activity?: number;
+} & Partial<API.ApplyListItem>;
 
 export type ApplyFormProps = {
-  onCancel: (flag?: boolean, formVals?: FormValueType) => void;
-  onSubmit: (values: FormValueType) => Promise<void>;
+  onCancel: (flag?: boolean, formVals?: ApplyFormValueType) => void;
+  onSubmit: (values: ApplyFormValueType) => Promise<void>;
   applyModalVisible: boolean;
-  values: Partial<API.RuleListItem>;
+  values: Partial<API.ApplyListItem>;
 };
+
+const getActivityOptions = async () => {
+  const res = (await getActivityList()).data;
+  let arr: { label: any; value: any }[] = [];
+  res.forEach((element) => {
+    arr.push({
+      label: element.name,
+      value: element.id,
+    });
+  });
+  return arr;
+};
+
+const activityOptions = await getActivityOptions()
 
 const ApplyForm: React.FC<ApplyFormProps> = (props) => {
   const [formLayoutType] = useState<LayoutType>(LAYOUT_TYPE_HORIZONTAL);
@@ -34,13 +51,31 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
         width={640}
         bodyStyle={{ padding: '32px 40px 48px' }}
         destroyOnClose
-        title='填写报名信息'
+        title="填写报名信息"
         open={props.applyModalVisible}
         onCancel={() => {
+          console.log(props.values, 'props===');
           props.onCancel();
         }}
       >
         <ProForm layout={formLayoutType}>
+          <ProFormSelect
+            label="报名活动"
+            name="belonging_activity"
+            fieldProps={{
+              size: 'large',
+            }}
+            initialValue={props.values.id}
+            options={activityOptions}
+            disabled
+            placeholder={'请选择报名活动：'}
+            rules={[
+              {
+                required: true,
+                message: '请选择报名活动！',
+              },
+            ]}
+          />
           <ProFormText
             label="姓名"
             name="name"
@@ -56,6 +91,7 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
               },
             ]}
           />
+
           <ProFormRadio.Group
             label="性别"
             name="invoiceType"
@@ -69,29 +105,7 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
               },
             ]}
           />
-          <ProFormSelect
-            label="年级"
-            name="grade"
-            fieldProps={{
-              size: 'large',
-            }}
-            valueEnum={{
-              1: '大一',
-              2: '大二',
-              3: '大三',
-              4: '大四',
-              5: '研一',
-              6: '研二',
-              7: '研三',
-            }}
-            placeholder={'请选择年级：'}
-            rules={[
-              {
-                required: true,
-                message: '请输入年级！',
-              },
-            ]}
-          />
+
           <ProFormDigit
             label="年龄"
             name="age"

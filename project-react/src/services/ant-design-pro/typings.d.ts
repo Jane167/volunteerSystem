@@ -156,6 +156,7 @@ declare namespace API {
     apply_status?: number;
     apply_time?: string;
     belonging_activity_name?: string;
+    belonging_actiivty?: number;
   }
 
   type ApplyList = {
@@ -164,5 +165,4 @@ declare namespace API {
     total?: number;
     success?: boolean;
   };
-
 }

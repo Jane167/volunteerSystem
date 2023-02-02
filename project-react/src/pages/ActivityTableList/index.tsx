@@ -1,4 +1,3 @@
-import { addRule, removeRule, rule, updateRule } from '@/services/ant-design-pro/api';
 import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns, ProDescriptionsItemProps } from '@ant-design/pro-components';
 import {
@@ -9,20 +8,22 @@ import {
 } from '@ant-design/pro-components';
 import { Button, Drawer, message } from 'antd';
 import React, { useRef, useState } from 'react';
-import type { FormValueType } from './components/UpdateForm';
+import type { UpdateFormValueType } from './components/UpdateForm';
+import type { ApplyFormValueType } from './components/ApplyForm';
 import UpdateForm from './components/UpdateForm';
 import ApplyForm from './components/ApplyForm';
 
-import { getActivityList } from '@/services/activity';
+import { getActivityList, addActivity, updateActivity, removeActivity } from '@/services/activity';
+import { addApply } from '@/services/apply';
 /**
  * @en-US Add node
  * @zh-CN 添加节点
  * @param fields
  */
-const handleAdd = async (fields: API.ActivityListItem) => {
+const handleActivity = async (fields: API.ActivityListItem) => {
   const hide = message.loading('正在添加');
   try {
-    await addRule({ ...fields });
+    await addActivity({ ...fields });
     hide();
     message.success('Added successfully');
     return true;
@@ -39,10 +40,10 @@ const handleAdd = async (fields: API.ActivityListItem) => {
  *
  * @param fields
  */
-const handleUpdate = async (fields: FormValueType) => {
+const handleUpdate = async (fields: UpdateFormValueType) => {
   const hide = message.loading('Configuring');
   try {
-    await updateRule({
+    await updateActivity({
       id: fields.id,
       name: fields.name,
       desc: fields.desc,
@@ -69,22 +70,18 @@ const handleUpdate = async (fields: FormValueType) => {
  *
  * @param fields
  */
-const handleApply = async (fields: FormValueType) => {
+const handleApply = async (fields: ApplyFormValueType) => {
   const hide = message.loading('Configuring');
   try {
-    await updateRule({
-      id: fields.id,
+    await addApply({
       name: fields.name,
-      desc: fields.desc,
-      publish_company_name: fields.publish_company_name,
+      age: fields.age,
+      sex: fields.sex,
       address: fields.address,
-      start_date: fields.start_date,
-      start_time: fields.start_time,
-      demand: fields.demand,
-      need_person_num: fields.need_person_num,
+      tel: fields.tel,
+      belong_activity: fields.belonging_actiivty,
     });
     hide();
-
     message.success('Configuration is successful');
     return true;
   } catch (error) {
@@ -103,7 +100,7 @@ const handleRemove = async (selectedRows: API.ActivityListItem[]) => {
   const hide = message.loading('正在删除');
   if (!selectedRows) return true;
   try {
-    await removeRule({
+    await removeActivity({
       key: selectedRows.map((row) => row.id),
     });
     hide();
@@ -139,7 +136,7 @@ const ActivityTableList: React.FC = () => {
     {
       title: 'Id',
       dataIndex: 'id',
-      search: false
+      search: false,
     },
     {
       title: '活动名称',
@@ -161,7 +158,7 @@ const ActivityTableList: React.FC = () => {
       title: '活动描述',
       dataIndex: 'desc',
       valueType: 'textarea',
-      search: false
+      search: false,
     },
     {
       title: '发布企业',
@@ -169,27 +166,27 @@ const ActivityTableList: React.FC = () => {
     },
     {
       title: '活动地点',
-      dataIndex: 'address'
+      dataIndex: 'address',
     },
     {
       title: '开始日期',
       dataIndex: 'start_date',
       sorter: true,
       hideInForm: true,
-      search: false
+      search: false,
     },
     {
       title: '开始时间',
       dataIndex: 'start_time',
       sorter: true,
       hideInForm: true,
-      search: false
+      search: false,
     },
     {
       title: '志愿者素养要求',
       dataIndex: 'demand',
       hideInForm: true,
-      search: false
+      search: false,
     },
     {
       title: '需要人数',

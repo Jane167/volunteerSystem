@@ -10,7 +10,7 @@ import { FormattedMessage, useIntl } from '@umijs/max';
 import { Modal } from 'antd';
 import React from 'react';
 
-export type FormValueType = {
+export type UpdateFormValueType = {
   id?: number;
   name?: string;
   desc?: string;
@@ -23,8 +23,8 @@ export type FormValueType = {
 } & Partial<API.ActivityListItem>;
 
 export type UpdateFormProps = {
-  onCancel: (flag?: boolean, formVals?: FormValueType) => void;
-  onSubmit: (values: FormValueType) => Promise<void>;
+  onCancel: (flag?: boolean, formVals?: UpdateFormValueType) => void;
+  onSubmit: (values: UpdateFormValueType) => Promise<void>;
   updateModalVisible: boolean;
   values: Partial<API.ActivityListItem>;
 };
