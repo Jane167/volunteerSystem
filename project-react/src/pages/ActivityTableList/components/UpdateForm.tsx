@@ -16,10 +16,10 @@ export type UpdateFormValueType = {
   desc?: string;
   publish_company_name?: string;
   address?: string;
-  start_date: string,
-  start_time: string,
-  demand: string,
-  need_person_num: number
+  start_date: string;
+  start_time: string;
+  demand: string;
+  need_person_num: number;
 } & Partial<API.ActivityListItem>;
 
 export type UpdateFormProps = {
@@ -60,15 +60,33 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
     >
       <StepsForm.StepForm
         initialValues={{
+          id: props.values.id,
           name: props.values.name,
           desc: props.values.desc,
-          address: props.values.address,
+          publish_company_name: props.values.publish_company_name,
         }}
         title={intl.formatMessage({
           id: 'pages.searchActivityTable.first.title',
           defaultMessage: '基本信息',
         })}
       >
+        <ProFormText
+          name="id"
+          label="Id"
+          width="md"
+          disabled
+          rules={[
+            {
+              required: true,
+              message: (
+                <FormattedMessage
+                  id="pages.searchActivityTable.updateForm.ruleName.nameRules"
+                  defaultMessage="请输入活动Id！"
+                />
+              ),
+            },
+          ]}
+        />
         <ProFormText
           name="name"
           label={intl.formatMessage({
@@ -112,9 +130,37 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
             },
           ]}
         />
-        <ProFormText 
+        <ProFormText
+          name="publish_company_name"
+          label="发布企业"
+          width="md"
+          rules={[
+            {
+              required: true,
+              message: (
+                <FormattedMessage
+                  id="pages.searchActivityTable.updateForm.ruleName.nameRules"
+                  defaultMessage="请输入发布企业名称！"
+                />
+              ),
+            },
+          ]}
+        />
+      </StepsForm.StepForm>
+      <StepsForm.StepForm
+        initialValues={{
+          address: props.values.address,
+          start_date: props.values.start_date,
+          start_time: props.values.start_time,
+        }}
+        title={intl.formatMessage({
+          id: 'pages.searchTable.updateForm.second.title',
+          defaultMessage: '时间地点信息',
+        })}
+      >
+        <ProFormText
           name="address"
-          label = {intl.formatMessage({
+          label={intl.formatMessage({
             id: 'pages.searchActivityTable.updateForm.ruleAddress.addressLabel',
             defaultMessage: '活动地点',
           })}
@@ -124,47 +170,35 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
               required: true,
               message: (
                 <FormattedMessage
-                  id='pages.searchActicityTable.updateForm.ruleAddress.addressRules'
-                  defaultMessage='请输入活动地点！'
+                  id="pages.searchActicityTable.updateForm.ruleAddress.addressRules"
+                  defaultMessage="请输入活动地点！"
                 />
-              )
-            }
+              ),
+            },
           ]}
-          />
-        
-      </StepsForm.StepForm>
-      <StepsForm.StepForm
-        initialValues={{
-          start_date: props.values.start_date,
-          start_time: props.values.start_time,
-        }}
-        title={intl.formatMessage({
-          id: 'pages.searchTable.updateForm.second.title',
-          defaultMessage: '时间信息',
-        })}
-      >
-        <ProFormDatePicker 
+        />
+        <ProFormDatePicker
           name="start_date"
-          width='md'
+          width="md"
           label={intl.formatMessage({
             id: 'page.searchTable.updateForm.ruleStartDate.startDateLabel',
             defaultMessage: '开始日期',
-          })}  
+          })}
           rules={[
             {
               required: true,
               message: (
-                <FormattedMessage 
-                  id='pages.searchActivityTable.updateForm.ruleStartDate.startDateRules'
-                  defaultMessage='开始时间不能小于现在！'
+                <FormattedMessage
+                  id="pages.searchActivityTable.updateForm.ruleStartDate.startDateRules"
+                  defaultMessage="开始时间不能小于现在！"
                 />
-              )
-            }
+              ),
+            },
           ]}
-        /> 
+        />
         <ProFormTimePicker
-          name='start_time'
-          width='md'
+          name="start_time"
+          width="md"
           label={intl.formatMessage({
             id: 'pages.searchTable.updateForm.ruleStartTime.startTimeLabel',
             defaultMessage: '开始时间',
@@ -173,12 +207,12 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
             {
               required: true,
               message: (
-                <FormattedMessage 
-                  id='pages.searchActivityTable.updateForm.ruleStartTime.startTimeRules'
-                  defaultMessage='开始日期不能小于现在！'
+                <FormattedMessage
+                  id="pages.searchActivityTable.updateForm.ruleStartTime.startTimeRules"
+                  defaultMessage="开始日期不能小于现在！"
                 />
-              )
-            }
+              ),
+            },
           ]}
         />
       </StepsForm.StepForm>
@@ -193,43 +227,45 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
         })}
       >
         <ProFormTextArea
-          name='demand'
-          width='md'
+          name="demand"
+          width="md"
           label={intl.formatMessage({
             id: 'pages.searchActivity.updateForm.ruleRequirements.requirementsLabel',
-            defaultMessage: '活动要求'
+            defaultMessage: '活动要求',
           })}
           rules={[
             {
               required: true,
               message: (
                 <FormattedMessage
-                  id='pages.searchActivityTable.updateForm.ruleRequirements.requirementsLabel'
-                  defaultMessage='请输入活动要求！'
+                  id="pages.searchActivityTable.updateForm.ruleRequirements.requirementsLabel"
+                  defaultMessage="请输入活动要求！"
                 />
-              )
-            }
+              ),
+            },
           ]}
         />
-        <ProFormDigit 
-           name="needPersonNum"
-           width="md"
-           label={intl.formatMessage({
+        <ProFormDigit
+          name="need_person_num"
+          width="md"
+          label={intl.formatMessage({
             id: 'pages.searchActivity.updateForm.ruleNeedPersonNum.needPersonNumLabel',
-            defaultMessage: '需要人数'
-           })}
-           rules={[
+            defaultMessage: '需要人数',
+          })}
+          rules={[
             {
               required: true,
               message: (
                 <FormattedMessage
-                  id='pages.searchActivityTable.updateForm.ruleNeedPersonNum.needPersonNumRules'
-                  defaultMessage='请输入该活动需要人数！'
+                  id="pages.searchActivityTable.updateForm.ruleNeedPersonNum.needPersonNumRules"
+                  defaultMessage="请输入该活动需要人数！"
                 />
-              )
-            }
-           ]}
-           min={1} max={9999} />
+              ),
+            },
+          ]}
+          min={1}
+          max={9999}
+        />
       </StepsForm.StepForm>
     </StepsForm>
   );

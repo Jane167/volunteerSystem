@@ -18,6 +18,7 @@ export async function getApplyList(params: {
 export async function addApply(options?: { [key: string]: any }) {
   return request<API.ApplyListItem>('/api/apply/', {
     method: 'POST',
-    ...(options || {}),
+    // ...(options || {}),
+    data: options
   });
 }

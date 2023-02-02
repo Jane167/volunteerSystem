@@ -41,7 +41,7 @@ const getActivityOptions = async () => {
   return arr;
 };
 
-const activityOptions = await getActivityOptions()
+const activityOptions = await getActivityOptions();
 
 const ApplyForm: React.FC<ApplyFormProps> = (props) => {
   const [formLayoutType] = useState<LayoutType>(LAYOUT_TYPE_HORIZONTAL);
@@ -54,11 +54,10 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
         title="填写报名信息"
         open={props.applyModalVisible}
         onCancel={() => {
-          console.log(props.values, 'props===');
           props.onCancel();
         }}
       >
-        <ProForm layout={formLayoutType}>
+        <ProForm layout={formLayoutType} onFinish={props.onSubmit}>
           <ProFormSelect
             label="报名活动"
             name="belonging_activity"
@@ -94,15 +93,11 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
 
           <ProFormRadio.Group
             label="性别"
-            name="invoiceType"
+            name="sex"
             initialValue="性别"
-            options={['男', '女']}
-            placeholder={'请选择性别：'}
-            rules={[
-              {
-                required: true,
-                message: '请选择性别！',
-              },
+            options={[
+              { value: 1, label: '男' },
+              { value: 2, label: '女' },
             ]}
           />
 

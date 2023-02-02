@@ -41,7 +41,7 @@ const handleActivity = async (fields: API.ActivityListItem) => {
  * @param fields
  */
 const handleUpdate = async (fields: UpdateFormValueType) => {
-  const hide = message.loading('Configuring');
+  const hide = message.loading('更新中...');
   try {
     await updateActivity({
       id: fields.id,
@@ -53,14 +53,14 @@ const handleUpdate = async (fields: UpdateFormValueType) => {
       start_time: fields.start_time,
       demand: fields.demand,
       need_person_num: fields.need_person_num,
-    });
+    }, fields.id); 
     hide();
 
-    message.success('Configuration is successful');
+    message.success('更新成功！');
     return true;
   } catch (error) {
     hide();
-    message.error('Configuration failed, please try again!');
+    message.error('更新失败，请重试!');
     return false;
   }
 };
@@ -79,7 +79,8 @@ const handleApply = async (fields: ApplyFormValueType) => {
       sex: fields.sex,
       address: fields.address,
       tel: fields.tel,
-      belong_activity: fields.belonging_actiivty,
+      belonging_activity: fields.belonging_activity,
+      apply_status: 0
     });
     hide();
     message.success('Configuration is successful');

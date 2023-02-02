@@ -35,9 +35,9 @@ declare namespace API {
     current?: number;
     pageSize?: number;
   };
-  type PagnationParams = {
-    page?: number;
-    size?: number;
+  type Response = {
+    data?: {};
+    success?: boolean;
   };
 
   type RuleListItem = {
