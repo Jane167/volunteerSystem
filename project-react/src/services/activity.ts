@@ -24,7 +24,8 @@ export async function getActivityList(
 export async function addActivity(options?: { [key: string]: any }) {
   return request<API.ActivityListItem>('/api/activity/', {
     method: 'POST',
-    ...(options || {}),
+    // ...(options || {}),
+    data: options
   });
 }
 

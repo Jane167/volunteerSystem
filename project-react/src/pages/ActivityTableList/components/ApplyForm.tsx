@@ -32,12 +32,15 @@ export type ApplyFormProps = {
 const getActivityOptions = async () => {
   const res = (await getActivityList()).data;
   let arr: { label: any; value: any }[] = [];
-  res.forEach((element) => {
-    arr.push({
-      label: element.name,
-      value: element.id,
+  if (res) {
+    res.forEach((element) => {
+      arr.push({
+        label: element.name,
+        value: element.id,
+      });
     });
-  });
+  }
+
   return arr;
 };
 
@@ -94,7 +97,7 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
           <ProFormRadio.Group
             label="性别"
             name="sex"
-            initialValue="性别"
+            initialValue={0}
             options={[
               { value: 1, label: '男' },
               { value: 2, label: '女' },

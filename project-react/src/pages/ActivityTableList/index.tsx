@@ -21,15 +21,15 @@ import { addApply } from '@/services/apply';
  * @param fields
  */
 const handleAdd = async (fields: API.ActivityListItem) => {
-  const hide = message.loading('正在添加');
+  const hide = message.loading('正在添加...');
   try {
     await addActivity({ ...fields });
     hide();
-    message.success('Added successfully');
+    message.success('添加成功！');
     return true;
   } catch (error) {
     hide();
-    message.error('Adding failed, please try again!');
+    message.error('添加失败，请重试!');
     return false;
   }
 };
@@ -74,7 +74,8 @@ const handleUpdate = async (fields: UpdateFormValueType) => {
  * @param fields
  */
 const handleApply = async (fields: ApplyFormValueType) => {
-  const hide = message.loading('Configuring');
+  const hide = message.loading('报名中...');
+
   try {
     await addApply({
       name: fields.name,
@@ -84,16 +85,22 @@ const handleApply = async (fields: ApplyFormValueType) => {
       tel: fields.tel,
       belonging_activity: fields.belonging_activity,
       apply_status: 0,
-    });
-    hide();
-    message.success('Configuration is successful');
+    })
+      .then((res) => {
+        hide();
+        message.success(res.data?.message);
+        return true;
+      })
+      .catch((error) => {
+        message.error(error);
+        return false;
+      });
     return true;
   } catch (error) {
-    hide();
-    message.error('Configuration failed, please try again!');
     return false;
   }
 };
+
 /**
  *  Delete node
  * @zh-CN 删除节点
@@ -305,12 +312,25 @@ const ActivityTableList: React.FC = () => {
       )}
       <UpdateForm
         onSubmit={async (value) => {
-          const success = await handleUpdate(value);
-          if (success) {
-            handleUpdateModalVisible(false);
-            setCurrentRow(undefined);
-            if (actionRef.current) {
-              actionRef.current.reload();
+          console.log(currentRow, 'currentRow===>');
+          console.log(currentRow === undefined, 'currentRowUndefine===>');
+          if (currentRow === undefined) {
+            const success = await handleAdd(value);
+            if (success) {
+              handleUpdateModalVisible(false);
+              setCurrentRow(undefined);
+              if (actionRef.current) {
+                actionRef.current.reload();
+              }
+            }
+          } else {
+            const success = await handleUpdate(value);
+            if (success) {
+              handleUpdateModalVisible(false);
+              setCurrentRow(undefined);
+              if (actionRef.current) {
+                actionRef.current.reload();
+              }
             }
           }
         }}
@@ -388,7 +408,7 @@ const ActivityTableList: React.FC = () => {
           }
         }}
       >
-        您是否确定要删除 <Tag color='volcano'>{currentRow?.name}</Tag> 活动？
+        您是否确定要删除 <Tag color="volcano">{currentRow?.name}</Tag> 活动？
       </Modal>
     </PageContainer>
   );

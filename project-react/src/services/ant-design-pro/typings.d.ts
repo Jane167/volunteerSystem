@@ -36,7 +36,9 @@ declare namespace API {
     pageSize?: number;
   };
   type Response = {
-    data?: {};
+    data?: {
+      message?: string;
+    };
     success?: boolean;
   };
 
@@ -50,11 +52,10 @@ declare namespace API {
     address?: string;
     startDate?: string;
     startTime?: string;
-    requirements?: string,
+    requirements?: string;
     needPersonNum?: number;
     applyPersonNum?: number;
     passPersonNum?: number;
-
   };
 
   type RuleList = {
@@ -120,7 +121,6 @@ declare namespace API {
     apply_person_num?: number;
     pass_person_num?: number;
     create_time?: string;
-
   };
   type ActivityList = {
     data?: ActivityListItem[];
@@ -138,7 +138,7 @@ declare namespace API {
     last_name?: string;
     last_login?: string;
     date_joined?: string;
-  }
+  };
   type UsersList = {
     data?: UsersListItem[];
     /** 列表的内容总数 */
@@ -157,7 +157,7 @@ declare namespace API {
     apply_time?: string;
     belonging_activity_name?: string;
     belonging_actiivty?: number;
-  }
+  };
 
   type ApplyList = {
     data?: ApplyListItem[];

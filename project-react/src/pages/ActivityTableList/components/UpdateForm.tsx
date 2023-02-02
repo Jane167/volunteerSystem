@@ -70,23 +70,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           defaultMessage: '基本信息',
         })}
       >
-        <ProFormText
-          name="id"
-          label="Id"
-          width="md"
-          disabled
-          rules={[
-            {
-              required: true,
-              message: (
-                <FormattedMessage
-                  id="pages.searchActivityTable.updateForm.ruleName.nameRules"
-                  defaultMessage="请输入活动Id！"
-                />
-              ),
-            },
-          ]}
-        />
+        <ProFormText name="id" label="Id" width="md" disabled />
         <ProFormText
           name="name"
           label={intl.formatMessage({

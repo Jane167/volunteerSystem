@@ -16,7 +16,7 @@ export async function getApplyList(params: {
 
 /** 新建报名 POST /api/apply/ */
 export async function addApply(options?: { [key: string]: any }) {
-  return request<API.ApplyListItem>('/api/apply/', {
+  return request<API.Response>('/api/apply/', {
     method: 'POST',
     // ...(options || {}),
     data: options
