@@ -14,9 +14,63 @@ import {
   ProDescriptionsItemProps,
 } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, Drawer, Tag } from 'antd';
+import { Button, Drawer, message, Tag } from 'antd';
 import React, { useState } from 'react';
-import { getApplyList } from '@/services/apply';
+import { getApplyList, addApply, updateApply, removeApply } from '@/services/apply';
+import type { ApplyFormValueType } from '@/pages/ActivityTableList/components/ApplyForm'
+
+
+/**
+ * @en-US Update node
+ * @zh-CN 更新节点
+ *
+ * @param fields
+ */
+const handleUpdate = async (fields: ApplyFormValueType) => {
+  const hide = message.loading('更新中...');
+  try {
+    await updateApply(
+      {
+        name: fields.name,
+        age: fields.age,
+        sex: fields.sex,
+        address: fields.address,
+        tel: fields.tel,
+        belonging_activity: fields.belonging_activity,
+        apply_status: 0,
+      },
+      fields.id,
+    );
+    hide();
+
+    message.success('更新成功！');
+    return true;
+  } catch (error) {
+    hide();
+    message.error('更新失败，请重试!');
+    return false;
+  }
+};
+/**
+ *  Delete node
+ * @zh-CN 删除节点
+ *
+ * @param selectedRows
+ */
+const handleRemove = async (id: number) => {
+  const hide = message.loading('正在删除');
+  if (!id) return true;
+  try {
+    await removeApply(id);
+    hide();
+    message.success('删除成功！');
+    return true;
+  } catch (error) {
+    hide();
+    message.error('删除失败，请重试！');
+    return false;
+  }
+};
 
 const ApplyTableList: React.FC = () => {
   const [showDetail, setShowDetail] = useState<boolean>(false);
