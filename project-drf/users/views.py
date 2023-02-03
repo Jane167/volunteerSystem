@@ -84,7 +84,7 @@ class UserDetailAPIView(APIView):
 			return Response({'message': '数据不存在！'})
 		# 获取前端传入的请求体数据
 		# 创建序列化器进行反序列化操作
-		serializer = UserSerializer(instance=user, data=request.data)
+		serializer = UserSerializer(instance=user, data=request.data, partial=True)
 		
 		# 校验
 		serializer.is_valid(raise_exception=True)

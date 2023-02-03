@@ -186,6 +186,11 @@ const ApplyTableList: React.FC = () => {
       search: false,
     },
     {
+      title: '报名活动',
+      dataIndex: 'belonging_activity_name',
+      render: (_) => <a>{_}</a>,
+    },
+    {
       title: '报名状态',
       dataIndex: 'apply_status',
       render: (apply_status) => {
@@ -202,11 +207,7 @@ const ApplyTableList: React.FC = () => {
       dataIndex: 'apply_time',
       search: false,
     },
-    {
-      title: '报名活动',
-      dataIndex: 'belonging_activity_name',
-      render: (_) => <a>{_}</a>,
-    },
+
     {
       title: '操作',
       width: 180,
