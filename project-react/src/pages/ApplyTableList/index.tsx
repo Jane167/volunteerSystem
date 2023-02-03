@@ -22,6 +22,7 @@ import type { ApplyFormValueType } from '@/pages/ApplyTableList/components/Updat
 import type { CheckApplyValueType } from '@/pages/ApplyTableList/components/CheckApply';
 
 import UpdateForm from '@/pages/ApplyTableList/components/UpdateForm';
+import CheckApply from '@/pages/ApplyTableList/components/CheckApply';
 
 /**
  * @en-US Update node
@@ -59,22 +60,22 @@ const handleUpdate = async (fields: ApplyFormValueType) => {
  *
  * @param fields
  */
-const handleCheck = async (fields: ApplyFormValueType) => {
+const handleCheck = async (fields: CheckApplyValueType) => {
   const hide = message.loading('更新中...');
   try {
     await updateApply(
       {
-        apply_status: fields.apply_status
+        apply_status: fields.apply_status,
       },
       fields.id,
     );
     hide();
 
-    message.success('更新成功！');
+    message.success('审核成功！');
     return true;
   } catch (error) {
     hide();
-    message.error('更新失败，请重试!');
+    message.error('审核失败，请重试!');
     return false;
   }
 };
@@ -103,6 +104,7 @@ const ApplyTableList: React.FC = () => {
   const [showDetail, setShowDetail] = useState<boolean>(false);
   const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
   const [removeModalVisible, handleRemoveModalVisible] = useState<boolean>(false);
+  const [checkModalVisible, handleCheckModalVisible] = useState<boolean>(false);
 
   const [currentRow, setCurrentRow] = useState<API.ApplyListItem>();
 
@@ -222,13 +224,21 @@ const ApplyTableList: React.FC = () => {
         <a
           key="update"
           onClick={() => {
-            handleUpdateModalVisible(true);
             setCurrentRow(record);
+            handleUpdateModalVisible(true);
           }}
         >
           编辑
         </a>,
-        <a key="link">审核</a>,
+        <a
+          key="check"
+          onClick={() => {
+            setCurrentRow(record);
+            handleCheckModalVisible(true);
+          }}
+        >
+          审核
+        </a>,
         <a
           key="delete"
           onClick={() => {
@@ -302,6 +312,26 @@ const ApplyTableList: React.FC = () => {
         updateModalVisible={updateModalVisible}
         values={currentRow || {}}
       />
+      <CheckApply
+        onSubmit={async (value) => {
+          const success = await handleCheck(value);
+          if (success) {
+            handleCheckModalVisible(false);
+            setCurrentRow(undefined);
+            if (actionRef.current) {
+              actionRef.current.reload();
+            }
+          }
+        }}
+        onCancel={() => {
+          handleCheckModalVisible(false);
+          if (!showDetail) {
+            setCurrentRow(undefined);
+          }
+        }}
+        checkModalVisible={checkModalVisible}
+        values={currentRow || {}}
+      />
       <Modal
         title="删除报名信息"
         open={removeModalVisible}
@@ -322,8 +352,8 @@ const ApplyTableList: React.FC = () => {
           }
         }}
       >
-        您是否确定要删除用户 <Tag color="volcano">{currentRow?.name}</Tag> 申请 
-        &nbsp;<Tag color="success">{currentRow?.belonging_activity_name}</Tag> 活动的报名信息吗？
+        您是否确定要删除用户 <Tag color="volcano">{currentRow?.name}</Tag> 申请 &nbsp;
+        <Tag color="success">{currentRow?.belonging_activity_name}</Tag> 活动的报名信息吗？
       </Modal>
     </PageContainer>
   );
