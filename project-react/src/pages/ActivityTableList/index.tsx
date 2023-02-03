@@ -276,7 +276,7 @@ const ActivityTableList: React.FC = () => {
         pagination={{
           pageSize: 10,
           showSizeChanger: true,
-          onChange: (page) => console.log(page),
+          // onChange: (page) => console.log(page),
         }}
         columns={columns}
         rowSelection={{
@@ -307,8 +307,6 @@ const ActivityTableList: React.FC = () => {
       )}
       <UpdateForm
         onSubmit={async (value) => {
-          console.log(currentRow, 'currentRow===>');
-          console.log(currentRow === undefined, 'currentRowUndefine===>');
           if (currentRow === undefined) {
             const success = await handleAdd(value);
             if (success) {
@@ -384,7 +382,7 @@ const ActivityTableList: React.FC = () => {
         )}
       </Drawer>
       <Modal
-        title="Basic Modal"
+        title="删除活动"
         open={removeModalVisible}
         onOk={async () => {
           const success = await handleRemove(Number(currentRow?.id));

@@ -8,17 +8,20 @@ import {
   WomanOutlined,
 } from '@ant-design/icons';
 import {
+  ActionType,
   PageContainer,
   ProColumns,
   ProDescriptions,
   ProDescriptionsItemProps,
 } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, Drawer, message, Tag } from 'antd';
-import React, { useState } from 'react';
-import { getApplyList, addApply, updateApply, removeApply } from '@/services/apply';
-import type { ApplyFormValueType } from '@/pages/ActivityTableList/components/ApplyForm'
+import { Button, Drawer, message, Modal, Tag } from 'antd';
+import React, { useRef, useState } from 'react';
+import { getApplyList, updateApply, removeApply } from '@/services/apply';
+import type { ApplyFormValueType } from '@/pages/ApplyTableList/components/UpdateForm';
+import type { CheckApplyValueType } from '@/pages/ApplyTableList/components/CheckApply';
 
+import UpdateForm from '@/pages/ApplyTableList/components/UpdateForm';
 
 /**
  * @en-US Update node
@@ -37,7 +40,31 @@ const handleUpdate = async (fields: ApplyFormValueType) => {
         address: fields.address,
         tel: fields.tel,
         belonging_activity: fields.belonging_activity,
-        apply_status: 0,
+      },
+      fields.id,
+    );
+    hide();
+
+    message.success('更新成功！');
+    return true;
+  } catch (error) {
+    hide();
+    message.error('更新失败，请重试!');
+    return false;
+  }
+};
+/**
+ * @en-US Update node
+ * @zh-CN 审核更新节点
+ *
+ * @param fields
+ */
+const handleCheck = async (fields: ApplyFormValueType) => {
+  const hide = message.loading('更新中...');
+  try {
+    await updateApply(
+      {
+        apply_status: fields.apply_status
       },
       fields.id,
     );
@@ -74,7 +101,13 @@ const handleRemove = async (id: number) => {
 
 const ApplyTableList: React.FC = () => {
   const [showDetail, setShowDetail] = useState<boolean>(false);
+  const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
+  const [removeModalVisible, handleRemoveModalVisible] = useState<boolean>(false);
+
   const [currentRow, setCurrentRow] = useState<API.ApplyListItem>();
+
+  const actionRef = useRef<ActionType>();
+
   const statusValueEnum = {
     0: {
       color: 'default',
@@ -154,7 +187,6 @@ const ApplyTableList: React.FC = () => {
       title: '报名状态',
       dataIndex: 'apply_status',
       render: (apply_status) => {
-        console.log(apply_status);
         const element = statusValueEnum[Number(apply_status)];
         return (
           <Tag color={element.color} icon={element.icon}>
@@ -178,16 +210,34 @@ const ApplyTableList: React.FC = () => {
       width: 180,
       key: 'option',
       valueType: 'option',
-      render: (dom, entity) => [
+      render: (_, record) => [
         <a
           onClick={() => {
-            setCurrentRow(entity);
+            setCurrentRow(record);
             setShowDetail(true);
           }}
         >
-          查看详情
+          详情
+        </a>,
+        <a
+          key="update"
+          onClick={() => {
+            handleUpdateModalVisible(true);
+            setCurrentRow(record);
+          }}
+        >
+          编辑
         </a>,
         <a key="link">审核</a>,
+        <a
+          key="delete"
+          onClick={() => {
+            handleRemoveModalVisible(true);
+            setCurrentRow(record);
+          }}
+        >
+          删除
+        </a>,
       ],
     },
   ];
@@ -232,6 +282,49 @@ const ApplyTableList: React.FC = () => {
           />
         )}
       </Drawer>
+      <UpdateForm
+        onSubmit={async (value) => {
+          const success = await handleUpdate(value);
+          if (success) {
+            handleUpdateModalVisible(false);
+            setCurrentRow(undefined);
+            if (actionRef.current) {
+              actionRef.current.reload();
+            }
+          }
+        }}
+        onCancel={() => {
+          handleUpdateModalVisible(false);
+          if (!showDetail) {
+            setCurrentRow(undefined);
+          }
+        }}
+        updateModalVisible={updateModalVisible}
+        values={currentRow || {}}
+      />
+      <Modal
+        title="删除报名信息"
+        open={removeModalVisible}
+        onOk={async () => {
+          const success = await handleRemove(Number(currentRow?.id));
+          if (success) {
+            handleRemoveModalVisible(false);
+            setCurrentRow(undefined);
+            if (actionRef.current) {
+              actionRef.current.reload();
+            }
+          }
+        }}
+        onCancel={() => {
+          handleRemoveModalVisible(false);
+          if (!showDetail) {
+            setCurrentRow(undefined);
+          }
+        }}
+      >
+        您是否确定要删除用户 <Tag color="volcano">{currentRow?.name}</Tag> 申请 
+        &nbsp;<Tag color="success">{currentRow?.belonging_activity_name}</Tag> 活动的报名信息吗？
+      </Modal>
     </PageContainer>
   );
 };

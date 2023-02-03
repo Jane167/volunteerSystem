@@ -14,6 +14,7 @@ type LayoutType = Parameters<typeof ProForm>[0]['layout'];
 const LAYOUT_TYPE_HORIZONTAL = 'horizontal';
 
 export type ApplyFormValueType = {
+  id?: number;
   name?: string;
   age?: number;
   sex?: number;
@@ -25,7 +26,7 @@ export type ApplyFormValueType = {
 export type ApplyFormProps = {
   onCancel: (flag?: boolean, formVals?: ApplyFormValueType) => void;
   onSubmit: (values: ApplyFormValueType) => Promise<void>;
-  applyModalVisible: boolean;
+  updateModalVisible: boolean;
   values: Partial<API.ApplyListItem>;
 };
 
@@ -46,7 +47,7 @@ const getActivityOptions = async () => {
 
 const activityOptions = await getActivityOptions();
 
-const ApplyForm: React.FC<ApplyFormProps> = (props) => {
+const UpdateForm: React.FC<ApplyFormProps> = (props) => {
   const [formLayoutType] = useState<LayoutType>(LAYOUT_TYPE_HORIZONTAL);
   return (
     <>
@@ -55,22 +56,36 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
         bodyStyle={{ padding: '32px 40px 48px' }}
         destroyOnClose
         title="填写报名信息"
-        open={props.applyModalVisible}
-        footer={null}
+        open={props.updateModalVisible}
         onCancel={() => {
           props.onCancel();
         }}
+        footer={null}
       >
         <ProForm layout={formLayoutType} onFinish={props.onSubmit}>
+          <ProFormText
+            label="Id"
+            name="id"
+            initialValue={props.values.id}
+            fieldProps={{
+              size: 'large',
+            }}
+            rules={[
+              {
+                required: true,
+                message: '请输入Id！',
+              },
+            ]}
+            disabled
+          />
           <ProFormSelect
             label="报名活动"
             name="belonging_activity"
             fieldProps={{
               size: 'large',
             }}
-            initialValue={props.values.id}
+            initialValue={props.values.belonging_activity}
             options={activityOptions}
-            disabled
             placeholder={'请选择报名活动：'}
             rules={[
               {
@@ -82,6 +97,7 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
           <ProFormText
             label="姓名"
             name="name"
+            initialValue={props.values.name}
             fieldProps={{
               size: 'large',
               prefix: <UserOutlined className={'prefixIcon'} />,
@@ -98,7 +114,7 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
           <ProFormRadio.Group
             label="性别"
             name="sex"
-            initialValue={0}
+            initialValue={props.values.sex}
             options={[
               { value: 1, label: '男' },
               { value: 2, label: '女' },
@@ -108,6 +124,7 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
           <ProFormDigit
             label="年龄"
             name="age"
+            initialValue={props.values.age}
             fieldProps={{
               size: 'large',
               prefix: <StarOutlined className={'prefixIcon'} />,
@@ -123,6 +140,7 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
           <ProFormText
             label="地址"
             name="address"
+            initialValue={props.values.address}
             fieldProps={{
               size: 'large',
               prefix: <EnvironmentOutlined className={'prefixIcon'} />,
@@ -138,6 +156,7 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
           <ProFormText
             label="电话"
             name="tel"
+            initialValue={props.values.tel}
             fieldProps={{
               size: 'large',
               prefix: <PhoneOutlined className={'prefixIcon'} />,
@@ -156,4 +175,4 @@ const ApplyForm: React.FC<ApplyFormProps> = (props) => {
   );
 };
 
-export default ApplyForm;
+export default UpdateForm;

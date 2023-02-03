@@ -156,7 +156,7 @@ declare namespace API {
     apply_status?: number;
     apply_time?: string;
     belonging_activity_name?: string;
-    belonging_actiivty?: number;
+    belonging_activity?: number;
   };
 
   type ApplyList = {
