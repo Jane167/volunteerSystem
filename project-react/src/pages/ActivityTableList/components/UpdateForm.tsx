@@ -45,6 +45,8 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
             footer={submitter}
             onCancel={() => {
               props.onCancel();
+              console.log(props.values, '=======>');
+              console.log(new Date(String(props.values.start_time)))
             }}
           >
             {dom}
@@ -103,7 +105,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
         initialValues={{
           address: props.values.address,
           start_date: props.values.start_date,
-          start_time: props.values.start_time,
+          start_time: new Date(String(props.values.start_time)).getTime(),
         }}
         title={'时间地点信息'}
       >
@@ -125,7 +127,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           rules={[
             {
               required: true,
-              message: '开始时间不能小于现在！',
+              message: '开始日期不能小于现在！',
             },
           ]}
         />
@@ -136,7 +138,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           rules={[
             {
               required: true,
-              message: '开始日期不能小于现在！',
+              message: '开始时间不能小于现在！',
             },
           ]}
         />

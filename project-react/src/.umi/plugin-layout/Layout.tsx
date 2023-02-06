@@ -80,8 +80,7 @@ export default (props: any) => {
   "colorWeak": false,
   "title": "志愿吧",
   "pwa": false,
-  "logo": "/logo.svg",
-  "iconfontUrl": "../public/logo.svg"
+  "logo": "/logo.svg"
 };
 const { formatMessage } = useIntl();
   const runtimeConfig = pluginManager.applyPlugins({

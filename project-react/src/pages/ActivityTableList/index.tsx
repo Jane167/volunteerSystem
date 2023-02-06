@@ -272,6 +272,7 @@ const ActivityTableList: React.FC = () => {
             新建活动
           </Button>,
         ]}
+        cardBordered
         request={getActivityList}
         pagination={{
           pageSize: 10,

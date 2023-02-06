@@ -261,6 +261,8 @@ const ApplyTableList: React.FC = () => {
           pageSize: 10,
           showSizeChanger: true,
         }}
+        cardBordered
+        actionRef={actionRef}
         columns={columns}
         request={getApplyList}
         dateFormatter="string"

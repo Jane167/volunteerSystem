@@ -7,13 +7,56 @@ import {
   ProDescriptionsItemProps,
 } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, Drawer, Tag } from 'antd';
+import { Button, Drawer, message, Tag } from 'antd';
 import React, { useRef, useState } from 'react';
-import { getUserList } from '@/services/user';
+import { getUserList, addUser, removeUser } from '@/services/user';
+import AddUser from './components/AddUser';
+
+/**
+ * @en-US Add node
+ * @zh-CN 添加节点
+ * @param fields
+ */
+const handleAdd = async (fields: API.UsersListItem) => {
+  const hide = message.loading('正在添加...');
+  try {
+    await addUser({ ...fields });
+    hide();
+    message.success('添加成功！');
+    return true;
+  } catch (error) {
+    hide();
+    message.error('添加失败，请重试!');
+    return false;
+  }
+};
+
+/**
+ *  Delete node
+ * @zh-CN 删除节点
+ *
+ * @param selectedRows
+ */
+const handleRemove = async (id: number) => {
+  const hide = message.loading('正在删除');
+  if (!id) return true;
+  try {
+    await removeUser(id);
+    hide();
+    message.success('删除成功！');
+    return true;
+  } catch (error) {
+    hide();
+    message.error('删除失败，请重试！');
+    return false;
+  }
+};
 
 const UserList: React.FC = () => {
   const [showDetail, setShowDetail] = useState<boolean>(false);
   const [currentRow, setCurrentRow] = useState<API.UsersListItem>();
+  const [addUserModalVisible, handleAddUserkModalVisible] = useState<boolean>(false);
+
   const actionRef = useRef<ActionType>();
 
   const roleValueEnum = {
@@ -97,7 +140,7 @@ const UserList: React.FC = () => {
       valueType: 'option',
       render: (_, record) => [
         <a
-          key='detail'
+          key="detail"
           onClick={() => {
             setCurrentRow(record);
             setShowDetail(true);
@@ -105,8 +148,8 @@ const UserList: React.FC = () => {
         >
           查看详情
         </a>,
-        <a key='resetPwdd'>重置密码</a>,
-        <a key='deleteUser'>注销用户</a>,
+        <a key="resetPwdd">重置密码</a>,
+        <a key="deleteUser">注销用户</a>,
       ],
     },
   ];
@@ -120,11 +163,17 @@ const UserList: React.FC = () => {
         }}
         columns={columns}
         actionRef={actionRef}
+        cardBordered
         request={getUserList}
         dateFormatter="string"
         headerTitle="用户列表"
         toolBarRender={() => [
-          <Button key="out" type="primary" icon={<UserAddOutlined />}>
+          <Button
+            key="out"
+            type="primary"
+            icon={<UserAddOutlined />}
+            onClick={() => handleAddUserkModalVisible(true)}
+          >
             新建用户
           </Button>,
           <Button key="out" icon={<VerticalAlignBottomOutlined />}>
@@ -155,6 +204,26 @@ const UserList: React.FC = () => {
           />
         )}
       </Drawer>
+      <AddUser
+        onSubmit={async (value) => {
+          const success = await handleAdd(value);
+          if (success) {
+            handleAddUserkModalVisible(false);
+            setCurrentRow(undefined);
+            if (actionRef.current) {
+              actionRef.current.reload();
+            }
+          }
+        }}
+        onCancel={() => {
+          handleAddUserkModalVisible(false);
+          if (!showDetail) {
+            setCurrentRow(undefined);
+          }
+        }}
+        addUserModalVisible={addUserModalVisible}
+        values={currentRow || {}}
+      ></AddUser>
     </PageContainer>
   );
 };
