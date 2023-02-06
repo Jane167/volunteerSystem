@@ -215,6 +215,7 @@ const ApplyTableList: React.FC = () => {
       valueType: 'option',
       render: (_, record) => [
         <a
+          key='detail'
           onClick={() => {
             setCurrentRow(record);
             setShowDetail(true);
@@ -223,7 +224,7 @@ const ApplyTableList: React.FC = () => {
           详情
         </a>,
         <a
-          key="update"
+          key='edit'
           onClick={() => {
             setCurrentRow(record);
             handleUpdateModalVisible(true);
@@ -232,7 +233,7 @@ const ApplyTableList: React.FC = () => {
           编辑
         </a>,
         <a
-          key="check"
+          key='check'
           onClick={() => {
             setCurrentRow(record);
             handleCheckModalVisible(true);
@@ -241,7 +242,7 @@ const ApplyTableList: React.FC = () => {
           审核
         </a>,
         <a
-          key="delete"
+          key='delete'
           onClick={() => {
             handleRemoveModalVisible(true);
             setCurrentRow(record);

@@ -239,7 +239,7 @@ const ActivityTableList: React.FC = () => {
           编辑
         </a>,
         <a
-          key="details"
+          key="delete"
           onClick={() => {
             handleRemoveModalVisible(true);
             setCurrentRow(record);
@@ -276,7 +276,6 @@ const ActivityTableList: React.FC = () => {
         pagination={{
           pageSize: 10,
           showSizeChanger: true,
-          // onChange: (page) => console.log(page),
         }}
         columns={columns}
         rowSelection={{

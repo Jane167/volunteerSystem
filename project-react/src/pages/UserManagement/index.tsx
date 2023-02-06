@@ -95,17 +95,18 @@ const UserList: React.FC = () => {
       key: 'option',
       align: 'center',
       valueType: 'option',
-      render: (dom, entity) => [
+      render: (_, record) => [
         <a
+          key='detail'
           onClick={() => {
-            setCurrentRow(entity);
+            setCurrentRow(record);
             setShowDetail(true);
           }}
         >
           查看详情
         </a>,
-        <a key="link">重置密码</a>,
-        <a key="link">注销用户</a>,
+        <a key='resetPwdd'>重置密码</a>,
+        <a key='deleteUser'>注销用户</a>,
       ],
     },
   ];

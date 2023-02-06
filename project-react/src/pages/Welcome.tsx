@@ -3,7 +3,7 @@ import { Card, Row, Col, Carousel, Image, Tabs } from 'antd';
 import { Column, WordCloud, Pie, measureTextWidth } from '@ant-design/plots';
 import React from 'react';
 import { AppstoreOutlined, GithubOutlined, TeamOutlined } from '@ant-design/icons';
-
+import type { TabsProps } from 'antd';
 import img1 from '../assests/img/carousel1.jpg';
 import img2 from '../assests/img/carousel2.jpg';
 import img3 from '../assests/img/carousel3.jpg';
@@ -202,7 +202,7 @@ const DemoWordCloud = () => {
       rotation: 0,
     },
     height: 250,
-    spiral: 'rectangular',
+    // spiral: 'rectangular',
     // autoFit: true,
     // 返回值设置成一个 [0, 1) 区间内的值，
     // 可以让每次渲染的位置相同（前提是每次的宽高一致）。
@@ -216,7 +216,7 @@ const DemoWordCloud = () => {
  * @returns 环图
  */
 const DemoPie = () => {
-  function renderStatistic(containerWidth, text, style) {
+  function renderStatistic(containerWidth: number, text: string, style: { fontSize: number }) {
     const { width: textWidth, height: textHeight } = measureTextWidth(text, style);
     const R = containerWidth / 2; // r^2 = (w / 2)^2 + (h - offsetY)^2
 
@@ -282,7 +282,11 @@ const DemoPie = () => {
     statistic: {
       title: {
         offsetY: -4,
-        customHtml: (container, view, datum) => {
+        customHtml: (
+          container: { getBoundingClientRect: () => { width: any; height: any } },
+          view: any,
+          datum: { type: any },
+        ) => {
           const { width, height } = container.getBoundingClientRect();
           const d = Math.sqrt(Math.pow(width / 2, 2) + Math.pow(height / 2, 2));
           const text = datum ? datum.type : '总计';
@@ -296,7 +300,12 @@ const DemoPie = () => {
         style: {
           fontSize: '32px',
         },
-        customHtml: (container, view, datum, data) => {
+        customHtml: (
+          container: { getBoundingClientRect: () => { width: any } },
+          view: any,
+          datum: { value: any },
+          data: any[],
+        ) => {
           const { width } = container.getBoundingClientRect();
           const text = datum ? `${datum.value}` : `${data.reduce((r, d) => r + d.value, 0)}`;
           return renderStatistic(width, text, {
@@ -395,6 +404,28 @@ const Welcome: React.FC = () => {
     yField: 'count',
     seriesField: 'countSeries',
   };
+  const tabItems: TabsProps['items'] = [
+    {
+      key: '1',
+      label: `实名注册志愿者人数分布图`,
+      children: <Image src={cnmap1} />,
+    },
+    {
+      key: '2',
+      label: `志愿者团体数量分布图`,
+      children: <Image src={cnmap2} />,
+    },
+    {
+      key: '3',
+      label: `志愿项目数量分布图`,
+      children: <Image src={cnmap3} />,
+    },
+    {
+      key: '4',
+      label: `累计志愿服务时间分布图`,
+      children: <Image src={cnmap4} />,
+    },
+  ];
   return (
     <PageContainer>
       <Card
@@ -471,23 +502,10 @@ const Welcome: React.FC = () => {
           <Card
             title="志愿者相关信息统计"
             bodyStyle={{
-              paddingBottom: '70px'
+              paddingBottom: '70px',
             }}
           >
-            <Tabs defaultActiveKey="1">
-              <Tabs.TabPane tab="实名注册志愿者人数分布图" key="1">
-                <Image src={cnmap1} />
-              </Tabs.TabPane>
-              <Tabs.TabPane tab="志愿者团体数量分布图" key="2">
-                <Image src={cnmap2} />
-              </Tabs.TabPane>
-              <Tabs.TabPane tab="志愿项目数量分布图" key="3">
-                <Image src={cnmap3} />
-              </Tabs.TabPane>
-              <Tabs.TabPane tab="累计志愿服务时间分布图" key="4">
-                <Image src={cnmap4} />
-              </Tabs.TabPane>
-            </Tabs>
+            <Tabs defaultActiveKey="1" items={tabItems} />;
           </Card>
         </Col>
         <Col span={10}>

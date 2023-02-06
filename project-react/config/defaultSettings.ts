@@ -20,7 +20,7 @@ const Settings: LayoutSettings & {
   pwa: false,
   // logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
   logo: '/logo.svg',
-  iconfontUrl: '../public/logo.svg',
+  // iconfontUrl: '/logo.svg',
 };
 
 export default Settings;

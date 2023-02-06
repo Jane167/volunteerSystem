@@ -31,7 +31,7 @@ const CheckApply: React.FC<CheckApplyFormProps> = (props) => {
           props.onCancel();
           console.log(props, 'checkprops');
         }}
-        // footer={null}
+        footer={null}
       >
         <ProForm layout={formLayoutType} onFinish={props.onSubmit}>
           <ProFormText
