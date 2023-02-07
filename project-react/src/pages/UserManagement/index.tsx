@@ -7,7 +7,7 @@ import {
   ProDescriptionsItemProps,
 } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, Drawer, message, Tag } from 'antd';
+import { Button, Drawer, message, Modal, Tag } from 'antd';
 import React, { useRef, useState } from 'react';
 import { getUserList, addUser, removeUser } from '@/services/user';
 import AddUser from './components/AddUser';
@@ -55,6 +55,7 @@ const handleRemove = async (id: number) => {
 const UserList: React.FC = () => {
   const [showDetail, setShowDetail] = useState<boolean>(false);
   const [currentRow, setCurrentRow] = useState<API.UsersListItem>();
+  const [removeModalVisible, handleRemoveModalVisible] = useState<boolean>(false);
   const [addUserModalVisible, handleAddUserkModalVisible] = useState<boolean>(false);
 
   const actionRef = useRef<ActionType>();
@@ -149,7 +150,15 @@ const UserList: React.FC = () => {
           查看详情
         </a>,
         <a key="resetPwdd">重置密码</a>,
-        <a key="deleteUser">注销用户</a>,
+        <a
+          key="deleteUser"
+          onClick={() => {
+            handleRemoveModalVisible(true);
+            setCurrentRow(record);
+          }}
+        >
+          注销用户
+        </a>,
       ],
     },
   ];
@@ -224,6 +233,28 @@ const UserList: React.FC = () => {
         addUserModalVisible={addUserModalVisible}
         values={currentRow || {}}
       ></AddUser>
+      <Modal
+        title="注销用户信息"
+        open={removeModalVisible}
+        onOk={async () => {
+          const success = await handleRemove(Number(currentRow?.id));
+          if (success) {
+            handleRemoveModalVisible(false);
+            setCurrentRow(undefined);
+            if (actionRef.current) {
+              actionRef.current.reload();
+            }
+          }
+        }}
+        onCancel={() => {
+          handleRemoveModalVisible(false);
+          if (!showDetail) {
+            setCurrentRow(undefined);
+          }
+        }}
+      >
+        您是否确定要注销用户 <Tag color="volcano">{currentRow?.username}</Tag> &nbsp;的信息吗？
+      </Modal>
     </PageContainer>
   );
 };
