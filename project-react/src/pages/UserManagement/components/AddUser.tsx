@@ -8,7 +8,7 @@ const LAYOUT_TYPE_HORIZONTAL = 'horizontal';
 export type UserValueType = {
   username?: string;
   password?: string;
-  groups?: string;
+  groups?: string[];
   first_name?: string;
   last_name?: string;
 } & Partial<API.UsersListItem>;
@@ -55,7 +55,7 @@ const AddUser: React.FC<CheckApplyFormProps> = (props) => {
               },
             ]}
           />
-          <ProFormText
+          <ProFormText.Password
             label="密码"
             name="password"
             fieldProps={{
@@ -92,6 +92,9 @@ const AddUser: React.FC<CheckApplyFormProps> = (props) => {
           <ProFormSelect
             label="角色"
             name="groups"
+            fieldProps={{
+              mode: 'multiple',
+            }}
             options={roleValueEnum}
             rules={[
               {
