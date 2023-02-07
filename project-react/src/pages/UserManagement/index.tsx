@@ -9,7 +9,7 @@ import {
 import { ProTable } from '@ant-design/pro-components';
 import { Button, Drawer, message, Modal, Tag } from 'antd';
 import React, { useRef, useState } from 'react';
-import { getUserList, addUser, removeUser } from '@/services/user';
+import { getUserList, addUser, removeUser, updateUser } from '@/services/user';
 import AddUser from './components/AddUser';
 
 /**
@@ -52,10 +52,38 @@ const handleRemove = async (id: number) => {
   }
 };
 
+/**
+ * @en-US Reset Password node
+ * @zh-CN 审核更新节点
+ *
+ * @param fields
+ */
+const handleResetPwd = async (id: number) => {
+  const hide = message.loading('更新中...');
+  try {
+    await updateUser(
+      {
+        password: '123456',
+      },
+      id,
+    );
+    hide();
+
+    message.success('重置成功！');
+    return true;
+  } catch (error) {
+    hide();
+    message.error('重置失败，请重试!');
+    return false;
+  }
+};
+
 const UserList: React.FC = () => {
   const [showDetail, setShowDetail] = useState<boolean>(false);
   const [currentRow, setCurrentRow] = useState<API.UsersListItem>();
   const [removeModalVisible, handleRemoveModalVisible] = useState<boolean>(false);
+  const [resetPwdModalVisible, handleResetPwdModalVisible] = useState<boolean>(false);
+
   const [addUserModalVisible, handleAddUserkModalVisible] = useState<boolean>(false);
 
   const actionRef = useRef<ActionType>();
@@ -135,7 +163,7 @@ const UserList: React.FC = () => {
 
     {
       title: '操作',
-      width: 300,
+      width: 250,
       key: 'option',
       align: 'center',
       valueType: 'option',
@@ -149,7 +177,15 @@ const UserList: React.FC = () => {
         >
           查看详情
         </a>,
-        <a key="resetPwdd">重置密码</a>,
+        <a
+          key="resetPwd"
+          onClick={() => {
+            handleResetPwdModalVisible(true);
+            setCurrentRow(record);
+          }}
+        >
+          重置密码
+        </a>,
         <a
           key="deleteUser"
           onClick={() => {
@@ -254,6 +290,28 @@ const UserList: React.FC = () => {
         }}
       >
         您是否确定要注销用户 <Tag color="volcano">{currentRow?.username}</Tag> &nbsp;的信息吗？
+      </Modal>
+      <Modal
+        title="重置用户密码"
+        open={resetPwdModalVisible}
+        onOk={async () => {
+          const success = await handleResetPwd(Number(currentRow?.id));
+          if (success) {
+            handleResetPwdModalVisible(false);
+            setCurrentRow(undefined);
+            if (actionRef.current) {
+              actionRef.current.reload();
+            }
+          }
+        }}
+        onCancel={() => {
+          handleResetPwdModalVisible(false);
+          if (!showDetail) {
+            setCurrentRow(undefined);
+          }
+        }}
+      >
+        您是否确定要重置用户 <Tag color="volcano">{currentRow?.username}</Tag> &nbsp;的密码吗？
       </Modal>
     </PageContainer>
   );

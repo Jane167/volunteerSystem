@@ -83,8 +83,11 @@ class UserDetailAPIView(APIView):
 		except User.DoesNotExist:
 			return Response({'message': '数据不存在！'})
 		# 获取前端传入的请求体数据
+		data = request.data.copy()
+		password_ = data['password']
+		data['password'] = make_password(password_)
 		# 创建序列化器进行反序列化操作
-		serializer = UserSerializer(instance=user, data=request.data, partial=True)
+		serializer = UserSerializer(instance=user, data=data, partial=True)
 		
 		# 校验
 		serializer.is_valid(raise_exception=True)
