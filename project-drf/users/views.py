@@ -17,10 +17,15 @@ class UserListAPIView(APIView):
 		"""
 		response = {'success': True}
 		user_list = User.objects.all()
+		paging_status = request.GET.get('pagingStatus')
 		total = User.objects.all().count()
 		user_serializers = UserSerializer(user_list, many=True, context={'request': request})
 		pagination = StandardPageNumberPagination()
 		pg_data = pagination.paginate_queryset(queryset=user_serializers.data, request=request, view=self)
+		if (paging_status == 'false'):
+			response['data'] = user_serializers.data
+		else:
+			response['data'] = pg_data
 		response['data'] = pg_data
 		response['total'] = total
 		return Response(response)
