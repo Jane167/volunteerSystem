@@ -12,10 +12,18 @@ class ActivityListAPIView(APIView):
     
     def get(self, request, *args, **kwargs):
         """
-        询所有活动信息
+        查询所有活动信息
         """
         response = {'success': True}
         activity_list = Activity.objects.all()
+        
+        for activity_item in activity_list:
+            apply_activity = Activity.objects.get(id=activity_item.id)
+            apply_person_num = apply_activity.apply_set.all().count()
+            pass_person_num = apply_activity.apply_set.filter(apply_status=1).count()
+            Activity.objects.filter(id=activity_item.id).update(
+                apply_person_num=apply_person_num, pass_person_num=pass_person_num)
+           
         total = activity_list.count()
         activity_serializers = ActivityModelSerializer(activity_list, many=True, context={'request': request})
         pagination = StandardPageNumberPagination()
@@ -38,7 +46,8 @@ class ActivityListAPIView(APIView):
                 'message': '创建成功！'
             }
         })
-
+    
+    
 class ActivityDetailAPIView(APIView):
     
     def get(self, request, pk):
@@ -48,6 +57,10 @@ class ActivityDetailAPIView(APIView):
         # 查询pk指定的模型对象
         try:
             activity = Activity.objects.get(id=pk)
+            apply_person_num = activity.apply_set.all().count()
+            pass_person_num = activity.apply_set.filter(apply_status=1).count()
+            Activity.objects.filter(id=activity.id).update(apply_person_num=apply_person_num, pass_person_num=pass_person_num)
+            
         except Activity.DoesNotExist:
             return Response({'success': True, 'data': {'message': '数据不存在！'}})
         # 创建序列化器进行序列化
@@ -109,4 +122,3 @@ class ActivityDetailAPIView(APIView):
             },
         }
         return Response(response)
-    
