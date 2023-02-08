@@ -85,10 +85,15 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     ],
     links: isDev
       ? [
-          <Link key="openapi" to="/umi/plugin/openapi" target="_blank">
+          // /umi/plugin/openapi
+          // <Link key="openapi" to="http://127.0.0.1:8088/docs/" target="_blank">
+          //   <LinkOutlined />
+          //   <span>OpenAPI 文档</span>
+          // </Link>,
+          <a key="openapi" href="http://127.0.0.1:8088/docs/" target="_blank">
             <LinkOutlined />
             <span>OpenAPI 文档</span>
-          </Link>,
+          </a>,
         ]
       : [],
     menuHeaderRender: undefined,
@@ -128,4 +133,3 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
 export const request = {
   ...errorConfig,
 };
-
