@@ -30,7 +30,12 @@ export type ApplyFormProps = {
 };
 
 const getActivityOptions = async () => {
-  const res = (await getActivityList()).data;
+  const params = {
+    current: 1,
+    pageSize: 10,
+    pagingStatus: false,
+  };
+  const res = (await getActivityList(params)).data;
   let arr: { label: any; value: any }[] = [];
   if (res) {
     res.forEach((element) => {

@@ -16,7 +16,8 @@ class ActivityListAPIView(APIView):
         """
         response = {'success': True}
         activity_list = Activity.objects.all()
-        
+        pagingStatus = request.GET.get("pagingStatus")
+        print(pagingStatus, '====>pagingStatus')
         for activity_item in activity_list:
             apply_activity = Activity.objects.get(id=activity_item.id)
             apply_person_num = apply_activity.apply_set.all().count()
@@ -28,7 +29,10 @@ class ActivityListAPIView(APIView):
         activity_serializers = ActivityModelSerializer(activity_list, many=True, context={'request': request})
         pagination = StandardPageNumberPagination()
         pg_data = pagination.paginate_queryset(queryset=activity_serializers.data, request=request, view=self)
-        response['data'] = pg_data
+        if(pagingStatus == 'false'):
+            response['data'] = activity_serializers.data
+        else:
+            response['data'] = pg_data
         response['total'] = total
         return Response(response)
     

@@ -8,6 +8,8 @@ export async function getActivityList(
     current?: number;
     /** 页面的容量 */
     pageSize?: number;
+    /** 是否开启分页状态 */
+    // pagingStatus?: boolean;
   },
   options?: { [key: string]: any },
 ) {
@@ -16,7 +18,8 @@ export async function getActivityList(
     params: {
       ...params,
     },
-    ...(options || {}),
+    data: options,
+    // ...(options || {}),
   });
 }
 

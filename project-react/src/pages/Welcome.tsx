@@ -4,6 +4,9 @@ import { Column, WordCloud, Pie, measureTextWidth } from '@ant-design/plots';
 import React from 'react';
 import { AppstoreOutlined, GithubOutlined, TeamOutlined } from '@ant-design/icons';
 import type { TabsProps } from 'antd';
+import { history } from '@umijs/max';
+import { getActivityList } from '@/services/activity';
+
 import img1 from '../assests/img/carousel1.jpg';
 import img2 from '../assests/img/carousel2.jpg';
 import img3 from '../assests/img/carousel3.jpg';
@@ -317,90 +320,46 @@ const DemoPie = () => {
   };
   return <Pie {...config} />;
 };
-
+const activityList = async () => {
+  const params = {
+    pageSize: 5,
+    current: 1,
+    pagingStatus: false
+  };
+  const res = (await getActivityList(params))?.data;
+  let arr: { activityName: string | undefined; countSeries: string; count: number | undefined }[] =
+    [];
+  res?.forEach((e) => {
+    arr.push(
+      ...[
+        {
+          activityName: e.name,
+          countSeries: '需要人数',
+          count: e.need_person_num,
+        },
+        {
+          activityName: e.name,
+          countSeries: '报名人数',
+          count: e.apply_person_num,
+        },
+        {
+          activityName: e.name,
+          countSeries: '通过人数',
+          count: e.pass_person_num,
+        },
+      ],
+    );
+  });
+  // console.log(arr, 'res==');
+  return arr;
+};
+const data = await activityList();
 const Welcome: React.FC = () => {
-  const data = [
-    {
-      countSeries: '需要人数',
-      activeName: '活动1',
-      count: 20,
-    },
-    {
-      countSeries: '需要人数',
-      activeName: '活动2',
-      count: 50,
-    },
-    {
-      countSeries: '需要人数',
-      activeName: '活动3',
-      count: 10,
-    },
-    {
-      countSeries: '需要人数',
-      activeName: '活动4',
-      count: 40,
-    },
-    {
-      countSeries: '需要人数',
-      activeName: '活动5',
-      count: 15,
-    },
-    {
-      countSeries: '已报名人数',
-      activeName: '活动1',
-      count: 10,
-    },
-    {
-      countSeries: '已报名人数',
-      activeName: '活动2',
-      count: 9,
-    },
-    {
-      countSeries: '已报名人数',
-      activeName: '活动3',
-      count: 8,
-    },
-    {
-      countSeries: '已报名人数',
-      activeName: '活动4',
-      count: 8,
-    },
-    {
-      countSeries: '已报名人数',
-      activeName: '活动5',
-      count: 6,
-    },
-    {
-      countSeries: '审核通过人数',
-      activeName: '活动1',
-      count: 2,
-    },
-    {
-      countSeries: '审核通过人数',
-      activeName: '活动2',
-      count: 5,
-    },
-    {
-      countSeries: '审核通过人数',
-      activeName: '活动3',
-      count: 6,
-    },
-    {
-      countSeries: '审核通过人数',
-      activeName: '活动4',
-      count: 7,
-    },
-    {
-      countSeries: '审核通过人数',
-      activeName: '活动5',
-      count: 4,
-    },
-  ];
   const config = {
     data,
     height: 300,
     isGroup: true,
-    xField: 'activeName',
+    xField: 'activityName',
     yField: 'count',
     seriesField: 'countSeries',
   };
@@ -429,6 +388,10 @@ const Welcome: React.FC = () => {
   return (
     <PageContainer>
       <Card
+        onClick={() => {
+          activityList();
+          console.log(data, 'data===');
+        }}
         title="系统介绍"
         style={{
           borderRadius: 8,
@@ -535,7 +498,12 @@ const Welcome: React.FC = () => {
               <Card
                 title="活动统计"
                 extra={
-                  <a href="#">
+                  <a
+                    href="#"
+                    onClick={() => {
+                      history.push('/activity-list');
+                    }}
+                  >
                     <AppstoreOutlined />
                     活动管理
                   </a>
@@ -571,7 +539,12 @@ const Welcome: React.FC = () => {
             }}
             title="系统用户数量"
             extra={
-              <a href="#">
+              <a
+                href="#"
+                onClick={() => {
+                  history.push('/userManagement');
+                }}
+              >
                 <TeamOutlined />
                 用户管理
               </a>
