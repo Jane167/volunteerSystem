@@ -22,7 +22,7 @@ class UserListAPIView(APIView):
 		user_serializers = UserSerializer(user_list, many=True, context={'request': request})
 		pagination = StandardPageNumberPagination()
 		pg_data = pagination.paginate_queryset(queryset=user_serializers.data, request=request, view=self)
-		if (paging_status == 'false'):
+		if paging_status == 'false':
 			response['data'] = user_serializers.data
 		else:
 			response['data'] = pg_data
@@ -61,7 +61,6 @@ class UserDetailAPIView(APIView):
 		"""
 		根据id查询单个用户信息
 		"""
-		
 		
 		# 查询pk指定的模型对象
 		try:

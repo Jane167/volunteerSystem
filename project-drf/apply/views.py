@@ -46,7 +46,8 @@ class ApplyListAPIView(APIView):
             }
         }
         return Response(response)
-
+    
+    
 class ApplyDetailAPIView(APIView):
 
     def get(self, request, pk):
@@ -67,7 +68,6 @@ class ApplyDetailAPIView(APIView):
             'data': serializer.data,
         }
         return Response(response)
-
 
     def put(self, request, pk):
         """

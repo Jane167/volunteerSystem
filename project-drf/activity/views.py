@@ -23,13 +23,11 @@ class ActivityListAPIView(APIView):
             pass_person_num = apply_activity.apply_set.filter(apply_status=1).count()
             Activity.objects.filter(id=activity_item.id).update(
                 apply_person_num=apply_person_num, pass_person_num=pass_person_num)
-           
-           
         total = activity_list.count()
         activity_serializers = ActivityModelSerializer(activity_list, many=True, context={'request': request})
         pagination = StandardPageNumberPagination()
         pg_data = pagination.paginate_queryset(queryset=activity_serializers.data, request=request, view=self)
-        if(paging_status == 'false'):
+        if paging_status == 'false':
             response['data'] = activity_serializers.data
         else:
             response['data'] = pg_data
@@ -75,8 +73,6 @@ class ActivityDetailAPIView(APIView):
             'data': serializer.data,
         }
         return Response(response)
-
-
     
     def put(self, request, pk):
         """
@@ -104,7 +100,6 @@ class ActivityDetailAPIView(APIView):
         }
         return Response(response)
 
-    
     def delete(self, request, pk):
         """
         根据id删除指定活动信息
