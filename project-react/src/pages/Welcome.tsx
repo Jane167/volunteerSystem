@@ -16,6 +16,7 @@ import cnmap1 from '../assests/img/cnmap1.png';
 import cnmap2 from '../assests/img/cnmap2.png';
 import cnmap3 from '../assests/img/cnmap3.png';
 import cnmap4 from '../assests/img/cnmap4.png';
+import Item from 'antd/es/list/Item';
 const rowStyle: React.CSSProperties = {
   marginTop: '10px',
 };
@@ -260,7 +261,7 @@ const DemoPie = () => {
     colorField: 'type',
     radius: 1,
     innerRadius: 0.6,
-    height: 250,
+    height: 300,
     label: {
       type: 'inner',
       offset: '-50%',
@@ -324,7 +325,7 @@ const activityList = async () => {
   const params = {
     pageSize: 5,
     current: 1,
-    pagingStatus: false
+    pagingStatus: false,
   };
   const res = (await getActivityList(params))?.data;
   let arr: { activityName: string | undefined; countSeries: string; count: number | undefined }[] =
@@ -350,13 +351,28 @@ const activityList = async () => {
       ],
     );
   });
-  // console.log(arr, 'res==');
-  return arr;
+  let obj = {
+    result: res?.slice(0, 3),
+    chartData: arr,
+  };
+  return obj;
 };
-const data = await activityList();
+const chartData = (await activityList()).chartData;
+const activityData = (await activityList()).result;
+
+const listItem = activityData?.map((item) => {
+  return (
+    <InfoCard
+      index={Number(item.id)}
+      href="/activity-list"
+      title={String(item.name)}
+      desc={String(item.desc)}
+    />
+  );
+});
 const Welcome: React.FC = () => {
   const config = {
-    data,
+    data: chartData,
     height: 300,
     isGroup: true,
     xField: 'activityName',
@@ -389,8 +405,7 @@ const Welcome: React.FC = () => {
     <PageContainer>
       <Card
         onClick={() => {
-          activityList();
-          console.log(data, 'data===');
+          console.log(chartData, '---');
         }}
         title="系统介绍"
         style={{
@@ -439,24 +454,7 @@ const Welcome: React.FC = () => {
               gap: 16,
             }}
           >
-            <InfoCard
-              index={1}
-              href="https://umijs.org/docs/introduce/introduce"
-              title="志愿活动1"
-              desc="众志成城战疫情，志愿服务在行动！"
-            />
-            <InfoCard
-              index={2}
-              title="志愿活动2"
-              href="https://ant.design"
-              desc="志愿服务暖人心，齐心协力战疫情！"
-            />
-            <InfoCard
-              index={3}
-              title="志愿活动3"
-              href="https://procomponents.ant.design"
-              desc="抗击疫情，志愿同行。"
-            />
+            {listItem}
           </div>
         </div>
       </Card>
@@ -496,43 +494,43 @@ const Welcome: React.FC = () => {
           <Row style={rowStyle}>
             <Col span={24}>
               <Card
-                title="活动统计"
+                style={{
+                  borderRadius: 8,
+                }}
+                title="技术栈"
                 extra={
-                  <a
-                    href="#"
-                    onClick={() => {
-                      history.push('/activity-list');
-                    }}
-                  >
-                    <AppstoreOutlined />
-                    活动管理
+                  <a href="https://github.com/jiayin-wait/volunteerSystem.git">
+                    <GithubOutlined />
+                    源码地址
                   </a>
                 }
               >
-                <Column {...config} />
+                <DemoWordCloud />
               </Card>
             </Col>
           </Row>
         </Col>
       </Row>
       <Row gutter={16} style={rowStyle}>
-        <Col span={12}>
+        <Col span={14}>
           <Card
-            style={{
-              borderRadius: 8,
-            }}
-            title="技术栈"
+            title="活动统计"
             extra={
-              <a href="https://github.com/jiayin-wait/volunteerSystem.git">
-                <GithubOutlined />
-                源码地址
+              <a
+                href="#"
+                onClick={() => {
+                  history.push('/activity-list');
+                }}
+              >
+                <AppstoreOutlined />
+                活动管理
               </a>
             }
           >
-            <DemoWordCloud />
+            <Column {...config} />
           </Card>
         </Col>
-        <Col span={12}>
+        <Col span={10}>
           <Card
             style={{
               borderRadius: 8,
