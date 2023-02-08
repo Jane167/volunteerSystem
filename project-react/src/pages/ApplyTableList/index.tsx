@@ -9,6 +9,7 @@ import {
 } from '@ant-design/icons';
 import {
   ActionType,
+  FooterToolbar,
   PageContainer,
   ProColumns,
   ProDescriptions,
@@ -107,6 +108,7 @@ const ApplyTableList: React.FC = () => {
   const [checkModalVisible, handleCheckModalVisible] = useState<boolean>(false);
 
   const [currentRow, setCurrentRow] = useState<API.ApplyListItem>();
+  const [selectedRowsState, setSelectedRows] = useState<API.ApplyListItem[]>([]);
 
   const actionRef = useRef<ActionType>();
 
@@ -215,7 +217,7 @@ const ApplyTableList: React.FC = () => {
       valueType: 'option',
       render: (_, record) => [
         <a
-          key='detail'
+          key="detail"
           onClick={() => {
             setCurrentRow(record);
             setShowDetail(true);
@@ -224,7 +226,7 @@ const ApplyTableList: React.FC = () => {
           详情
         </a>,
         <a
-          key='edit'
+          key="edit"
           onClick={() => {
             setCurrentRow(record);
             handleUpdateModalVisible(true);
@@ -233,7 +235,7 @@ const ApplyTableList: React.FC = () => {
           编辑
         </a>,
         <a
-          key='check'
+          key="check"
           onClick={() => {
             setCurrentRow(record);
             handleCheckModalVisible(true);
@@ -242,7 +244,7 @@ const ApplyTableList: React.FC = () => {
           审核
         </a>,
         <a
-          key='delete'
+          key="delete"
           onClick={() => {
             handleRemoveModalVisible(true);
             setCurrentRow(record);
@@ -272,7 +274,32 @@ const ApplyTableList: React.FC = () => {
             导出数据
           </Button>,
         ]}
+        rowSelection={{
+          onChange: (_, selectedRows) => {
+            setSelectedRows(selectedRows);
+          },
+        }}
       />
+      {selectedRowsState?.length > 0 && (
+        <FooterToolbar
+          extra={
+            <div>
+              已选择 <a style={{ fontWeight: 600 }}>{selectedRowsState.length}</a> 项 &nbsp;&nbsp;
+            </div>
+          }
+        >
+          <Button
+          // onClick={async () => {
+          //   await handleRemove(selectedRowsState);
+          //   setSelectedRows([]);
+          //   actionRef.current?.reloadAndRest?.();
+          // }}
+          >
+            批量删除
+          </Button>
+          <Button type="primary">批量导出</Button>
+        </FooterToolbar>
+      )}
       <Drawer
         width={500}
         open={showDetail}

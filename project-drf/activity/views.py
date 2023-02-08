@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from rest_framework import status
+from rest_framework.generics import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Activity
@@ -49,9 +51,25 @@ class ActivityListAPIView(APIView):
             }
         })
     
+    def delete(self, request, *args, **kwargs):
+        """
+        批量删除
+        """
+        delete_id = request.query_params.get('deleteId', None)
+        if not delete_id:
+            return Response({'message': '数据不存在！'})
+        for i in delete_id.split(','):
+            get_object_or_404(Activity, pk=int(i)).delete()
+        response = {
+            'success': True,
+            'data': {
+                'message': '删除成功！'
+            },
+        }
+        return Response(response)
+    
     
 class ActivityDetailAPIView(APIView):
-    
     def get(self, request, pk):
         """
         根据id查询单个活动信息

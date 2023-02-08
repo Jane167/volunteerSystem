@@ -1,6 +1,7 @@
 import { UserAddOutlined, VerticalAlignBottomOutlined } from '@ant-design/icons';
 import {
   ActionType,
+  FooterToolbar,
   PageContainer,
   ProColumns,
   ProDescriptions,
@@ -85,6 +86,7 @@ const UserList: React.FC = () => {
   const [resetPwdModalVisible, handleResetPwdModalVisible] = useState<boolean>(false);
 
   const [addUserModalVisible, handleAddUserkModalVisible] = useState<boolean>(false);
+  const [selectedRowsState, setSelectedRows] = useState<API.UsersListItem[]>([]);
 
   const actionRef = useRef<ActionType>();
 
@@ -225,7 +227,32 @@ const UserList: React.FC = () => {
             导出数据
           </Button>,
         ]}
+        rowSelection={{
+          onChange: (_, selectedRows) => {
+            setSelectedRows(selectedRows);
+          },
+        }}
       />
+      {selectedRowsState?.length > 0 && (
+        <FooterToolbar
+          extra={
+            <div>
+              已选择 <a style={{ fontWeight: 600 }}>{selectedRowsState.length}</a> 项 &nbsp;&nbsp;
+            </div>
+          }
+        >
+          <Button
+          // onClick={async () => {
+          //   await handleRemove(selectedRowsState);
+          //   setSelectedRows([]);
+          //   actionRef.current?.reloadAndRest?.();
+          // }}
+          >
+            批量删除
+          </Button>
+          <Button type="primary">批量导出</Button>
+        </FooterToolbar>
+      )}
       <Drawer
         width={500}
         open={showDetail}

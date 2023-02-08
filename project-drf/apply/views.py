@@ -1,4 +1,4 @@
-
+from rest_framework.generics import get_object_or_404
 from rest_framework.views import APIView
 from .models import Apply  # 导入对应的模型类
 from rest_framework.response import Response
@@ -44,6 +44,23 @@ class ApplyListAPIView(APIView):
                 'message': 'success！'
                 
             }
+        }
+        return Response(response)
+    
+    def delete(self, request, *args, **kwargs):
+        """
+        批量删除
+        """
+        delete_id = request.query_params.get('deleteId', None)
+        if not delete_id:
+            return Response({'message': '数据不存在！'})
+        for i in delete_id.split(','):
+            get_object_or_404(Apply, pk=int(i)).delete()
+        response = {
+            'success': True,
+            'data': {
+                'message': '删除成功！'
+            },
         }
         return Response(response)
     
