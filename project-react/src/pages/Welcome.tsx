@@ -6,6 +6,7 @@ import { AppstoreOutlined, GithubOutlined, TeamOutlined } from '@ant-design/icon
 import type { TabsProps } from 'antd';
 import { history } from '@umijs/max';
 import { getActivityList } from '@/services/activity';
+import { getUserList } from '@/services/user';
 
 import img1 from '../assests/img/carousel1.jpg';
 import img2 from '../assests/img/carousel2.jpg';
@@ -213,6 +214,47 @@ const DemoWordCloud = () => {
 };
 /**
  *
+ * @returns 用户列表
+ */
+const userList = async () => {
+  const params = {
+    pageSize: 5,
+    current: 1,
+    pagingStatus: false,
+  };
+  const res = (await getUserList(params))?.data;
+
+  let managerCount = 0;
+  let companyCount = 0;
+  let commonCount = 0;
+
+  res?.forEach((item) => {
+    const groups = item.groups;
+    for (let i of Array(groups)) {
+      // console.log(i, 'i===')
+      if (String(i) === 'manager') {
+        managerCount += 1;
+      } else if (String(i) === 'company') {
+        companyCount += 1;
+      } else if (String(i) === 'common') {
+        commonCount += 1;
+      }
+    }
+  });
+
+  let arr = [
+    { type: '管理员', value: managerCount },
+    { type: '公益企业', value: companyCount },
+    { type: '普通用户', value: commonCount },
+  ];
+
+  return arr;
+};
+
+const userData = await userList();
+
+/**
+ *
  * @returns 环图
  */
 const DemoPie = () => {
@@ -236,20 +278,7 @@ const DemoPie = () => {
       scale < 1 ? 1 : 'inherit'
     };">${text}</div>`;
   }
-  const data = [
-    {
-      type: '管理员',
-      value: 27,
-    },
-    {
-      type: '公益企业',
-      value: 25,
-    },
-    {
-      type: '普通用户',
-      value: 18,
-    },
-  ];
+  const data = userData;
   const config = {
     appendPadding: 10,
     data,
@@ -317,6 +346,11 @@ const DemoPie = () => {
   };
   return <Pie {...config} />;
 };
+
+/**
+ *
+ * @returns 活动列表
+ */
 const activityList = async () => {
   const params = {
     pageSize: 5,
@@ -366,6 +400,7 @@ const listItem = activityData?.map((item) => {
     />
   );
 });
+
 const Welcome: React.FC = () => {
   const config = {
     data: chartData,
@@ -400,9 +435,6 @@ const Welcome: React.FC = () => {
   return (
     <PageContainer>
       <Card
-        onClick={() => {
-          console.log(chartData, '---');
-        }}
         title="系统介绍"
         style={{
           borderRadius: 8,
