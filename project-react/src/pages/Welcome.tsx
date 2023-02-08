@@ -16,7 +16,7 @@ import cnmap1 from '../assests/img/cnmap1.png';
 import cnmap2 from '../assests/img/cnmap2.png';
 import cnmap3 from '../assests/img/cnmap3.png';
 import cnmap4 from '../assests/img/cnmap4.png';
-import Item from 'antd/es/list/Item';
+
 const rowStyle: React.CSSProperties = {
   marginTop: '10px',
 };
@@ -196,20 +196,16 @@ const DemoWordCloud = () => {
     },
   ];
   const config = {
-    data,
+    data: data,
     wordField: 'name',
     weightField: 'value',
     colorField: 'name',
     wordStyle: {
       fontFamily: 'Verdana',
-      fontSize: [16, 32],
-      rotation: 0,
+      // fontSize: [16, 32]
+      // rotation: 0,
     },
-    height: 250,
-    // spiral: 'rectangular',
-    // autoFit: true,
-    // 返回值设置成一个 [0, 1) 区间内的值，
-    // 可以让每次渲染的位置相同（前提是每次的宽高一致）。
+    height: 300,
     random: () => 0.5,
   };
 
@@ -512,24 +508,6 @@ const Welcome: React.FC = () => {
         </Col>
       </Row>
       <Row gutter={16} style={rowStyle}>
-        <Col span={14}>
-          <Card
-            title="活动统计"
-            extra={
-              <a
-                href="#"
-                onClick={() => {
-                  history.push('/activity-list');
-                }}
-              >
-                <AppstoreOutlined />
-                活动管理
-              </a>
-            }
-          >
-            <Column {...config} />
-          </Card>
-        </Col>
         <Col span={10}>
           <Card
             style={{
@@ -549,6 +527,24 @@ const Welcome: React.FC = () => {
             }
           >
             <DemoPie />
+          </Card>
+        </Col>
+        <Col span={14}>
+          <Card
+            title="活动统计"
+            extra={
+              <a
+                href="#"
+                onClick={() => {
+                  history.push('/activity-list');
+                }}
+              >
+                <AppstoreOutlined />
+                活动管理
+              </a>
+            }
+          >
+            <Column {...config} />
           </Card>
         </Col>
       </Row>
