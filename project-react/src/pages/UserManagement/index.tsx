@@ -10,7 +10,7 @@ import {
 import { ProTable } from '@ant-design/pro-components';
 import { Button, Drawer, message, Modal, Tag } from 'antd';
 import React, { useRef, useState } from 'react';
-import { getUserList, addUser, removeUser, updateUser } from '@/services/user';
+import { getUserList, addUser, removeUser, updateUser, batchRemoveUser } from '@/services/user';
 import AddUser from './components/AddUser';
 
 /**
@@ -75,6 +75,26 @@ const handleResetPwd = async (id: number) => {
   } catch (error) {
     hide();
     message.error('重置失败，请重试!');
+    return false;
+  }
+};
+
+/**
+ * Batch delete node
+ * @zh-CN 批量删除节点
+ * @returns
+ */
+const handleBatchDelete = async (deleteId: number[]) => {
+  const hide = message.loading('正在删除');
+  if (!deleteId) return true;
+  try {
+    await batchRemoveUser(deleteId);
+    hide();
+    message.success('删除成功！');
+    return true;
+  } catch (error) {
+    hide();
+    message.error('删除失败，请重试！');
     return false;
   }
 };
@@ -242,11 +262,17 @@ const UserList: React.FC = () => {
           }
         >
           <Button
-          // onClick={async () => {
-          //   await handleRemove(selectedRowsState);
-          //   setSelectedRows([]);
-          //   actionRef.current?.reloadAndRest?.();
-          // }}
+            onClick={async () => {
+              console.log(selectedRowsState, 'selectedRowState');
+              let deleteId: number[] = [];
+              selectedRowsState.forEach((item) => {
+                deleteId.push(Number(item.id));
+              });
+              console.log(deleteId, 'deleteId');
+              await handleBatchDelete(deleteId);
+              setSelectedRows([]);
+              actionRef.current?.reloadAndRest?.();
+            }}
           >
             批量删除
           </Button>

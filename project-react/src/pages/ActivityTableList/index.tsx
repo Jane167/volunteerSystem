@@ -1,4 +1,4 @@
-import { PlusOutlined } from '@ant-design/icons';
+import { DeleteFilled, PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns, ProDescriptionsItemProps } from '@ant-design/pro-components';
 import {
   FooterToolbar,
@@ -13,7 +13,13 @@ import type { ApplyFormValueType } from './components/ApplyForm';
 import UpdateForm from './components/UpdateForm';
 import ApplyForm from './components/ApplyForm';
 
-import { getActivityList, addActivity, updateActivity, removeActivity } from '@/services/activity';
+import {
+  getActivityList,
+  addActivity,
+  updateActivity,
+  removeActivity,
+  batchRemoveActivity,
+} from '@/services/activity';
 import { addApply } from '@/services/apply';
 /**
  * @en-US Add node
@@ -112,6 +118,26 @@ const handleRemove = async (id: number) => {
   if (!id) return true;
   try {
     await removeActivity(id);
+    hide();
+    message.success('删除成功！');
+    return true;
+  } catch (error) {
+    hide();
+    message.error('删除失败，请重试！');
+    return false;
+  }
+};
+
+/**
+ * Batch delete node
+ * @zh-CN 批量删除节点
+ * @returns
+ */
+const handleBatchDelete = async (deleteId: number[]) => {
+  const hide = message.loading('正在删除');
+  if (!deleteId) return true;
+  try {
+    await batchRemoveActivity(deleteId);
     hide();
     message.success('删除成功！');
     return true;
@@ -294,11 +320,17 @@ const ActivityTableList: React.FC = () => {
           }
         >
           <Button
-          // onClick={async () => {
-          //   await handleRemove(selectedRowsState);
-          //   setSelectedRows([]);
-          //   actionRef.current?.reloadAndRest?.();
-          // }}
+            onClick={async () => {
+              console.log(selectedRowsState, 'selectedRowState');
+              let deleteId: (number)[] = [];
+              selectedRowsState.forEach((item) => {
+                deleteId.push(Number(item.id));
+              });
+              console.log(deleteId, 'deleteId')
+              await handleBatchDelete(deleteId);
+              setSelectedRows([]);
+              actionRef.current?.reloadAndRest?.();
+            }}
           >
             批量删除
           </Button>

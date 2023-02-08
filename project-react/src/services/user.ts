@@ -37,3 +37,10 @@ export async function removeUser(id?: number) {
     method: 'DELETE',
   });
 }
+
+/** 批量删除用户信息 DELETE /api/user/ */
+export async function batchRemoveUser(deleteId?: number[]) {
+  return request<API.Response>('/api/user/?deleteId=' + deleteId, {
+    method: 'DELETE',
+  });
+}

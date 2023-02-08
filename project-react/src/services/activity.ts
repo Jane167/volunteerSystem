@@ -47,3 +47,11 @@ export async function removeActivity(id?: number) {
     method: 'DELETE',
   });
 }
+
+
+/** 批量删除活动 DELETE /api/activity/ */
+export async function batchRemoveActivity(deleteId?: number[]) {
+  return request<API.Response>('/api/activity/?deleteId=' + deleteId, {
+    method: 'DELETE',
+  });
+}

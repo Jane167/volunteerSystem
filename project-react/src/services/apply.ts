@@ -36,3 +36,10 @@ export async function removeApply(id?: number) {
     method: 'DELETE',
   });
 }
+
+/** 批量删除报名信息 DELETE /api/apply/ */
+export async function batchRemoveApply(deleteId?: number[]) {
+  return request<API.Response>('/api/apply/?deleteId=' + deleteId, {
+    method: 'DELETE',
+  });
+}
