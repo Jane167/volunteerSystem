@@ -45,6 +45,12 @@ export default [
     component: './UserManagement',
   },
   {
+    name: 'permission-management',
+    icon: 'icon-quanxianguanli1',
+    path: '/permissionManagement',
+    component: './PermissionManagement',
+  },
+  {
     name: 'personal-center',
     icon: 'icon-wode-wode',
     path: '/uCenter',

@@ -56,7 +56,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       content: '志愿吧'
     },
     footerRender: () => <Footer />,
-    iconfontUrl: '//at.alicdn.com/t/c/font_2969264_573nnc26n5m.js',
+    iconfontUrl: '//at.alicdn.com/t/c/font_2969264_cxu8jb7gejr.js',
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
