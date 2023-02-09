@@ -1,3 +1,4 @@
+import InitialState from '@/.umi/plugin-initialState/@@initialState';
 import {
   FieldTimeOutlined,
   HistoryOutlined,
@@ -11,18 +12,10 @@ import React from 'react';
 import BasicInfo from './BasicInfo';
 import ModifyPwd from './ModifyPwd';
 
+const userInfo = JSON.parse(String(sessionStorage.getItem('currentUser')));
+
 const rowStyle: React.CSSProperties = {
   marginTop: '10px',
-};
-
-const userInfo = {
-  username: '李佳音',
-  first_name: '李',
-  last_name: '佳音',
-  email: '123456@qq.com',
-  role: 1,
-  create_time: '2023-1-14 18:00:00',
-  last_login: '2023-1-14 18:00:00',
 };
 
 const items: TabsProps['items'] = [
@@ -43,7 +36,8 @@ const PersonalCenter: React.FC = () => {
     <PageContainer>
       <Row gutter={15}>
         <Col span={11}>
-          <Card title="个人信息">
+          <Card
+            title="个人信息">
             <Row style={rowStyle}>
               <Col span={1}>
                 <UserOutlined />
@@ -104,7 +98,7 @@ const PersonalCenter: React.FC = () => {
               <Col span={5}>
                 <span>创建时间：</span>
               </Col>
-              <Col span={18}>{userInfo.create_time}</Col>
+              <Col span={18}>{userInfo.date_joined}</Col>
             </Row>
             <Row style={rowStyle}>
               <Col span={1}>
@@ -121,8 +115,10 @@ const PersonalCenter: React.FC = () => {
           <Card
             title="基本资料"
             actions={[
-              <Button type='primary'>保存</Button>,
-              <Button type='primary' danger>关闭</Button>
+              <Button type="primary">保存</Button>,
+              <Button type="primary" danger>
+                关闭
+              </Button>,
             ]}
           >
             <Tabs defaultActiveKey="1" items={items} />

@@ -55,6 +55,7 @@ const Login: React.FC = () => {
           currentUser: userInfo?.data,
         }));
       });
+      sessionStorage.setItem('currentUser', JSON.stringify(userInfo?.data))
     }
     console.log(userInfo)
   };
