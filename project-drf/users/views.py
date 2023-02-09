@@ -125,6 +125,40 @@ class UserDetailAPIView(APIView):
 		}
 		return Response(response)
 	
+	def patch(self, request, pk):
+		"""
+		根据id修改用户密码
+		"""
+		
+		# 根据pk所指定的模型对象
+		try:
+			user = User.objects.get(id=pk)
+		except User.DoesNotExist:
+			return Response({'message': '数据不存在！'})
+		# 获取前端传入的请求体数据
+		data = request.data.copy()
+		
+		new_password = data['new_password']
+		old_password = data['old_password']
+		
+		if check_password(old_password, user.password):
+			new_data = {'password':  make_password(new_password)}
+			# 创建序列化器进行反序列化操作
+			serializer = UserSerializer(instance=user, data=new_data, partial=True)
+		else:
+			return Response({'message': '旧密码输入错误！'})
+		# 校验
+		serializer.is_valid(raise_exception=True)
+		serializer.save()
+		# 响应
+		response = {
+			'success': True,
+			'data': {
+				'message': '更新成功'
+			},
+		}
+		return Response(response)
+	
 	def delete(self, request, pk):
 		"""
 		根据id删除指定用户信息
