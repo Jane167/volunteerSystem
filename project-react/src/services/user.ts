@@ -31,6 +31,14 @@ export async function updateUser(options?: { [key: string]: any }, id?: number) 
   });
 }
 
+/** 获取单个用户信息 GET /api/user/ */
+export async function getUser(id?: number) {
+  return request<API.Response>('/api/user/' + id + '/', {
+    method: 'GET',
+    // data: options,
+  });
+}
+
 /** 删除用户信息 DELETE /api/user/ */
 export async function removeUser(id?: number) {
   return request<API.Response>('/api/user/' + id + '/', {

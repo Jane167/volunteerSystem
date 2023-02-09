@@ -9,6 +9,7 @@ import React, { useCallback } from 'react';
 import { flushSync } from 'react-dom';
 import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
+import avatar from '@/assests/img/avatar.jpg';
 
 export type GlobalHeaderRightProps = {
   menu?: boolean;
@@ -68,8 +69,8 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
   }
 
   const { currentUser } = initialState;
-
-  if (!currentUser || !currentUser.name) {
+  // || !currentUser.name
+  if (!currentUser) {
     return loading;
   }
 
@@ -105,8 +106,8 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
   return (
     <HeaderDropdown overlay={menuHeaderDropdown}>
       <span className={`${styles.action} ${styles.account}`}>
-        <Avatar size="small" className={styles.avatar} src={currentUser.avatar} alt="avatar" />
-        <span className={`${styles.name} anticon`}>{currentUser.name}</span>
+        <Avatar size="small" className={styles.avatar} src={avatar} alt="avatar" />
+        <span className={`${styles.name} anticon`}>{currentUser?.first_name}{currentUser?.last_name}</span>
       </span>
     </HeaderDropdown>
   );

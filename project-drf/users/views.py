@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from users.serializers import UserSerializer, GroupSerializer
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
 from utils.pagination import StandardPageNumberPagination
 
 
@@ -71,6 +71,8 @@ class UserListAPIView(APIView):
 			},
 		}
 		return Response(response)
+
+
 class UserDetailAPIView(APIView):
 	
 	def get(self, request, pk):
@@ -150,3 +152,20 @@ class GroupViewSet(viewsets.ModelViewSet):
 	"""
 	queryset = Group.objects.all()
 	serializer_class = GroupSerializer
+
+
+class LoginView(APIView):
+	
+	def post(self, request):
+		"""
+		登录接口
+		"""
+		
+		username = request.data['username']
+		password = request.data['password']
+		print(password, username)
+		user = User.objects.filter(username=username).first()
+		if user and check_password(password, user.password):
+			return Response({'status': 'ok', 'currentAuthority': username, 'user_id': user.id, 'type': 'account'})
+		else:
+			return Response({'status': 'failed', 'code': 400})

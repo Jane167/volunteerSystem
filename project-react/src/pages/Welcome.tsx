@@ -8,15 +8,15 @@ import { history } from '@umijs/max';
 import { getActivityList } from '@/services/activity';
 import { getUserList } from '@/services/user';
 
-import img1 from '../assests/img/carousel1.jpg';
-import img2 from '../assests/img/carousel2.jpg';
-import img3 from '../assests/img/carousel3.jpg';
-import img4 from '../assests/img/carousel4.jpg';
-import img5 from '../assests/img/carousel5.jpg';
-import cnmap1 from '../assests/img/cnmap1.png';
-import cnmap2 from '../assests/img/cnmap2.png';
-import cnmap3 from '../assests/img/cnmap3.png';
-import cnmap4 from '../assests/img/cnmap4.png';
+import img1 from '@/assests/img/carousel1.jpg';
+import img2 from '@/assests/img/carousel2.jpg';
+import img3 from '@/assests/img/carousel3.jpg';
+import img4 from '@/assests/img/carousel4.jpg';
+import img5 from '@/assests/img/carousel5.jpg';
+import cnmap1 from '@/assests/img/cnmap1.png';
+import cnmap2 from '@/assests/img/cnmap2.png';
+import cnmap3 from '@/assests/img/cnmap3.png';
+import cnmap4 from '@/assests/img/cnmap4.png';
 
 const rowStyle: React.CSSProperties = {
   marginTop: '10px',
