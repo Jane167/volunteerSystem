@@ -1,6 +1,6 @@
 import { updateUser } from '@/services/user';
 import { ProForm, ProFormText } from '@ant-design/pro-components';
-import { Button, Form, Input, message } from 'antd';
+import { message } from 'antd';
 import React, { useState } from 'react';
 type LayoutType = Parameters<typeof ProForm>[0]['layout'];
 const LAYOUT_TYPE_HORIZONTAL = 'horizontal';

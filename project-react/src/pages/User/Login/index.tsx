@@ -41,7 +41,7 @@ const LoginMessage: React.FC<{
 const Login: React.FC = () => {
   const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
   const [type, setType] = useState<string>('account');
-  const { initialState, setInitialState } = useModel('@@initialState');
+  const { setInitialState } = useModel('@@initialState');
 
   const intl = useIntl();
 
@@ -56,6 +56,7 @@ const Login: React.FC = () => {
         }));
       });
       sessionStorage.setItem('currentUser', JSON.stringify(userInfo?.data))
+      sessionStorage.setItem('user_id', String(id))
     }
     console.log(userInfo)
   };

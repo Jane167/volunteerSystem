@@ -1,4 +1,3 @@
-import InitialState from '@/.umi/plugin-initialState/@@initialState';
 import {
   FieldTimeOutlined,
   HistoryOutlined,
@@ -7,7 +6,7 @@ import {
   UserSwitchOutlined,
 } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
-import { Button, Card, Col, Row, Tabs, TabsProps, Tag } from 'antd';
+import { Card, Col, Row, Tabs, TabsProps, Tag } from 'antd';
 import React from 'react';
 import BasicInfo from './BasicInfo';
 import ModifyPwd from './ModifyPwd';
@@ -112,15 +111,7 @@ const PersonalCenter: React.FC = () => {
           </Card>
         </Col>
         <Col span={13}>
-          <Card
-            title="基本资料"
-            // actions={[
-            //   <Button type="primary">保存</Button>,
-            //   <Button type="primary" danger>
-            //     关闭
-            //   </Button>,
-            // ]}
-          >
+          <Card title="基本资料">
             <Tabs defaultActiveKey="1" items={items} />
           </Card>
         </Col>

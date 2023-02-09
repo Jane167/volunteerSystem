@@ -68,7 +68,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
     return loading;
   }
 
-  const { currentUser } = initialState;
+  const currentUser = JSON.parse(String(sessionStorage.getItem('currentUser')))
   if (!currentUser) {
     return loading;
   }
