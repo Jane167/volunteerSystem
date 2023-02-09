@@ -114,12 +114,12 @@ const PersonalCenter: React.FC = () => {
         <Col span={13}>
           <Card
             title="基本资料"
-            actions={[
-              <Button type="primary">保存</Button>,
-              <Button type="primary" danger>
-                关闭
-              </Button>,
-            ]}
+            // actions={[
+            //   <Button type="primary">保存</Button>,
+            //   <Button type="primary" danger>
+            //     关闭
+            //   </Button>,
+            // ]}
           >
             <Tabs defaultActiveKey="1" items={items} />
           </Card>
