@@ -74,7 +74,7 @@ const Login: React.FC = () => {
         // history.push('/welcome')
         await fetchUserInfo(msg.user_id);
         const urlParams = new URL(window.location.href).searchParams;
-        history.push(urlParams.get('redirect') || '/');
+        history.push(urlParams.get('redirect') || '/welcome');
         return;
       }
       console.log(msg);
