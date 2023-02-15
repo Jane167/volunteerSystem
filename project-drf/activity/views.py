@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from rest_framework.views import APIView
@@ -35,7 +36,10 @@ class ActivityListAPIView(APIView):
             response['data'] = pg_data
         response['total'] = total
         return Response(response)
-    
+
+    @swagger_auto_schema(
+        operation_summary="创建活动", request_body=ActivityModelSerializer
+    )
     def post(self, request):
         """
         新增一条活动信息
