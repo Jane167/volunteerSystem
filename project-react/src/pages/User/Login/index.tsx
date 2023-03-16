@@ -63,6 +63,8 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (values: API.LoginParams) => {
     try {
+
+      sessionStorage.setItem('userType', String(values.type))
       // 登录
       const msg = await login({ ...values, type });
       if (msg.status === 'ok') {
@@ -195,19 +197,19 @@ const Login: React.FC = () => {
                 ]}
               />
               <ProFormRadio.Group
-                name="userType"
+                name="type"
                 options={[
                   {
                     label: '普通用户',
-                    value: 'a',
+                    value: 'common',
                   },
                   {
                     label: '公益企业',
-                    value: 'b',
+                    value: 'company',
                   },
                   {
                     label: '管理员',
-                    value: 'c',
+                    value: 'manager',
                   },
                 ]}
               />

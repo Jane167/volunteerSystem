@@ -12,7 +12,7 @@ import type { UpdateFormValueType } from './components/UpdateForm';
 import type { ApplyFormValueType } from './components/ApplyForm';
 import UpdateForm from './components/UpdateForm';
 import ApplyForm from './components/ApplyForm';
-
+import { useAccess, Access } from 'umi';
 import {
   getActivityList,
   addActivity,
@@ -153,6 +153,9 @@ const ActivityTableList: React.FC = () => {
    * @en-US The pop-up window of the distribution update window
    * @zh-CN 分布更新窗口的弹窗
    * */
+
+  const access = useAccess();
+
   const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
   const [applyModalVisible, handleApplyModalVisible] = useState<boolean>(false);
   const [removeModalVisible, handleRemoveModalVisible] = useState<boolean>(false);
@@ -237,15 +240,17 @@ const ActivityTableList: React.FC = () => {
       width: 180,
       valueType: 'option',
       render: (_, record) => [
-        <a
-          key="apply"
-          onClick={() => {
-            handleApplyModalVisible(true);
-            setCurrentRow(record);
-          }}
-        >
-          报名
-        </a>,
+        <Access accessible={access.canApplyActivity} fallback={<div></div>}>
+          <a
+            key="apply"
+            onClick={() => {
+              handleApplyModalVisible(true);
+              setCurrentRow(record);
+            }}
+          >
+            报名
+          </a>
+        </Access>,
         <a
           key="details"
           onClick={() => {
@@ -255,24 +260,28 @@ const ActivityTableList: React.FC = () => {
         >
           详情
         </a>,
-        <a
-          key="edit"
-          onClick={() => {
-            handleUpdateModalVisible(true);
-            setCurrentRow(record);
-          }}
-        >
-          编辑
-        </a>,
-        <a
-          key="delete"
-          onClick={() => {
-            handleRemoveModalVisible(true);
-            setCurrentRow(record);
-          }}
-        >
-          删除
-        </a>,
+        <Access accessible={access.canUpdateActivity} fallback={<div></div>}>
+          <a
+            key="edit"
+            onClick={() => {
+              handleUpdateModalVisible(true);
+              setCurrentRow(record);
+            }}
+          >
+            编辑
+          </a>
+        </Access>,
+        <Access accessible={access.canDeleteActivity} fallback={<div></div>}>
+          <a
+            key="delete"
+            onClick={() => {
+              handleRemoveModalVisible(true);
+              setCurrentRow(record);
+            }}
+          >
+            删除
+          </a>
+        </Access>,
       ],
     },
   ];
@@ -287,16 +296,18 @@ const ActivityTableList: React.FC = () => {
           labelWidth: 120,
         }}
         toolBarRender={() => [
-          <Button
-            type="primary"
-            key="primary"
-            onClick={() => {
-              handleUpdateModalVisible(true);
-            }}
-          >
-            <PlusOutlined />
-            新建活动
-          </Button>,
+          <Access accessible={access.canAddActivity} fallback={<div></div>}>
+            <Button
+              type="primary"
+              key="primary"
+              onClick={() => {
+                handleUpdateModalVisible(true);
+              }}
+            >
+              <PlusOutlined />
+              新建活动
+            </Button>
+          </Access>,
         ]}
         cardBordered
         request={getActivityList}
@@ -322,11 +333,11 @@ const ActivityTableList: React.FC = () => {
           <Button
             onClick={async () => {
               console.log(selectedRowsState, 'selectedRowState');
-              let deleteId: (number)[] = [];
+              let deleteId: number[] = [];
               selectedRowsState.forEach((item) => {
                 deleteId.push(Number(item.id));
               });
-              console.log(deleteId, 'deleteId')
+              console.log(deleteId, 'deleteId');
               await handleBatchDelete(deleteId);
               setSelectedRows([]);
               actionRef.current?.reloadAndRest?.();

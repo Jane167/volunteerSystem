@@ -7,6 +7,7 @@ import type { TabsProps } from 'antd';
 import { history } from '@umijs/max';
 import { getActivityList } from '@/services/activity';
 import { getUserList } from '@/services/user';
+import { useAccess, Access } from 'umi';
 
 import img1 from '@/assests/img/carousel1.jpg';
 import img2 from '@/assests/img/carousel2.jpg';
@@ -21,7 +22,6 @@ import cnmap4 from '@/assests/img/cnmap4.png';
 const rowStyle: React.CSSProperties = {
   marginTop: '10px',
 };
-
 /**
  * 每个单独的卡片，为了复用样式抽成了组件
  * @param param0
@@ -206,7 +206,7 @@ const DemoWordCloud = () => {
       // fontSize: [16, 32]
       // rotation: 0,
     },
-    height: 300,
+    height: 260,
     random: () => 0.5,
   };
 
@@ -231,7 +231,6 @@ const userList = async () => {
   res?.forEach((item) => {
     const groups = item.groups;
     for (let i of Array(groups)) {
-      // console.log(i, 'i===')
       if (String(i) === 'manager') {
         managerCount += 1;
       } else if (String(i) === 'company') {
@@ -432,6 +431,8 @@ const Welcome: React.FC = () => {
       children: <Image src={cnmap4} />,
     },
   ];
+
+  const access = useAccess()
   return (
     <PageContainer>
       <Card
@@ -487,59 +488,6 @@ const Welcome: React.FC = () => {
         </div>
       </Card>
       <Row gutter={16} style={rowStyle}>
-        <Col span={14}>
-          <Card
-            title="志愿者相关信息统计"
-            bodyStyle={{
-              paddingBottom: '70px',
-            }}
-          >
-            <Tabs defaultActiveKey="1" items={tabItems} />;
-          </Card>
-        </Col>
-        <Col span={10}>
-          <Row>
-            <Col span={24}>
-              <Carousel autoplay>
-                <div>
-                  <Image src={img1} />
-                </div>
-                <div>
-                  <Image src={img2} />
-                </div>
-                <div>
-                  <Image src={img3} />
-                </div>
-                <div>
-                  <Image src={img4} />
-                </div>
-                <div>
-                  <Image src={img5} />
-                </div>
-              </Carousel>
-            </Col>
-          </Row>
-          <Row style={rowStyle}>
-            <Col span={24}>
-              <Card
-                style={{
-                  borderRadius: 8,
-                }}
-                title="技术栈"
-                extra={
-                  <a href="https://github.com/jiayin-wait/volunteerSystem.git">
-                    <GithubOutlined />
-                    源码地址
-                  </a>
-                }
-              >
-                <DemoWordCloud />
-              </Card>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-      <Row gutter={16} style={rowStyle}>
         <Col span={10}>
           <Card
             style={{
@@ -565,19 +513,96 @@ const Welcome: React.FC = () => {
           <Card
             title="活动统计"
             extra={
-              <a
-                href="#"
-                onClick={() => {
-                  history.push('/activity-list');
-                }}
+              <Access
+                accessible={access.canActivityManagement}
+                fallback={
+                  <div>
+                    <a
+                      href="#"
+                      onClick={() => {
+                        history.push('/activity-list');
+                      }}
+                    >
+                      <AppstoreOutlined />
+                      活动列表
+                    </a>
+                  </div>
+                }
               >
-                <AppstoreOutlined />
-                活动管理
-              </a>
+                <a
+                  href="#"
+                  onClick={() => {
+                    history.push('/activity-list');
+                  }}
+                >
+                  <AppstoreOutlined />
+                  活动管理
+                </a>
+              </Access>
             }
           >
             <Column {...config} />
           </Card>
+        </Col>
+      </Row>
+      <Row gutter={16} style={rowStyle}>
+        <Col span={12}>
+          <Card
+            title="志愿者相关信息统计"
+            bodyStyle={{
+              paddingBottom: '70px',
+            }}
+          >
+            <Tabs defaultActiveKey="1" items={tabItems} />;
+          </Card>
+        </Col>
+        <Col span={12}>
+          <Row>
+            <Col span={24}>
+              <Card
+                style={{
+                  borderRadius: 8,
+                }}
+                title="技术栈"
+                extra={
+                  <a href="https://github.com/jiayin-wait/volunteerSystem.git">
+                    <GithubOutlined />
+                    源码地址
+                  </a>
+                }
+              >
+                <DemoWordCloud />
+              </Card>
+            </Col>
+          </Row>
+          <Row style={rowStyle}>
+            <Col span={24}>
+              <Card
+                style={{
+                  borderRadius: 8,
+                }}
+                title="活动展示"
+              >
+                <Carousel autoplay>
+                  <div>
+                    <Image src={img1} />
+                  </div>
+                  <div>
+                    <Image src={img2} />
+                  </div>
+                  <div>
+                    <Image src={img3} />
+                  </div>
+                  <div>
+                    <Image src={img4} />
+                  </div>
+                  <div>
+                    <Image src={img5} />
+                  </div>
+                </Carousel>
+              </Card>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </PageContainer>

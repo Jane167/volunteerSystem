@@ -65,7 +65,7 @@ declare namespace API {
   type LoginParams = {
     username?: string;
     password?: string;
-    // autoLogin?: boolean;
+    autoLogin?: boolean;
     type?: string;
   };
 
