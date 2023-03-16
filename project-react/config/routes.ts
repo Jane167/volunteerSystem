@@ -8,6 +8,7 @@
  * @param wrappers 配置路由组件的包装组件，通过包装组件可以为当前的路由组件组合进更多的功能。 比如，可以用于路由级别的权限校验
  * @doc https://umijs.org/docs/guides/routes
  */
+
 export default [
   {
     path: '/user',
@@ -27,22 +28,39 @@ export default [
     component: './Welcome',
   },
   {
-    name: 'list.activity-table-list',
+    name: '活动管理',
+    icon: 'icon-icon_yingyongguanli',
+    path: '/activityManagement',
+    component: './ActivityTableList',
+    access: 'canActivityManagement',
+  },
+  {
+    name: '活动列表',
     icon: 'icon-icon_yingyongguanli',
     path: '/activity-list',
     component: './ActivityTableList',
+    access: 'canApplyActivity',
   },
   {
-    name: 'list.apply-table-list',
+    name: '报名管理',
+    icon: 'icon-shenhexiangmu',
+    path: '/applyManagement',
+    component: './ApplyTableList',
+    access: 'canApplyManagement'
+  },
+  {
+    name: '我的报名',
     icon: 'icon-shenhexiangmu',
     path: '/apply-list',
     component: './ApplyTableList',
+    access: 'canApplyActivity'
   },
   {
     name: 'user-management',
     icon: 'icon-guanliyuan_jiaoseguanli',
     path: '/userManagement',
     component: './UserManagement',
+    access: 'canUserManagement',
   },
   {
     name: 'permission-management',

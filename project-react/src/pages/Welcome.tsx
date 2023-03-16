@@ -432,7 +432,7 @@ const Welcome: React.FC = () => {
     },
   ];
 
-  const access = useAccess()
+  const access = useAccess();
   return (
     <PageContainer>
       <Card
@@ -495,15 +495,17 @@ const Welcome: React.FC = () => {
             }}
             title="系统用户数量"
             extra={
-              <a
-                href="#"
-                onClick={() => {
-                  history.push('/userManagement');
-                }}
-              >
-                <TeamOutlined />
-                用户管理
-              </a>
+              <Access accessible={access.canUserManagement} fallback={<div></div>}>
+                <a
+                  href="#"
+                  onClick={() => {
+                    history.push('/userManagement');
+                  }}
+                >
+                  <TeamOutlined />
+                  用户管理
+                </a>
+              </Access>
             }
           >
             <DemoPie />

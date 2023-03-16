@@ -13,5 +13,19 @@ export default function access() {
     canUpdateActivity: role === 'company',
     canApplyActivity: role === 'common',
     canDeleteActivity: role === 'manager' || role === 'company',
+
+    /**
+     * 报名管理
+     */
+    canApplyManagement: role === 'manager' || role === 'company',
+    canAddApply: role === 'common',
+    canUpdateApply: role === 'common',
+    canCheckApply: role === 'company' || 'manager',
+    canDeleteApply: role === 'company' || role === 'manager',
+
+    /**
+     * 用户管理
+     */
+    canUserManagement: role === 'manager'
   };
 }
