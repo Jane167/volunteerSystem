@@ -6,26 +6,13 @@ export default function access() {
   const role = sessionStorage.getItem('userType');
   return {
     /**
-     * 活动管理的权限分配
-     */
-    canActivityManagement: role === 'manager' || role === 'company',
-    canAddActivity: role === 'company',
-    canUpdateActivity: role === 'company',
-    canApplyActivity: role === 'common',
-    canDeleteActivity: role === 'manager' || role === 'company',
-
-    /**
-     * 报名管理
-     */
-    canApplyManagement: role === 'manager' || role === 'company',
-    canAddApply: role === 'common',
-    canUpdateApply: role === 'common',
-    canCheckApply: role === 'company' || 'manager',
-    canDeleteApply: role === 'company' || role === 'manager',
-
-    /**
      * 用户管理
      */
-    canUserManagement: role === 'manager'
+    canUserManagement: role === 'manager',
+
+    canCommonDo: role === 'common',
+    canCompanyDo: role === 'company',
+    canManagerDo: role === 'manager',
+    canCompanyOrManagerDo: role === 'company' || role === 'manager',
   };
 }

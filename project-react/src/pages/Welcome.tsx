@@ -495,7 +495,7 @@ const Welcome: React.FC = () => {
             }}
             title="系统用户数量"
             extra={
-              <Access accessible={access.canUserManagement} fallback={<div></div>}>
+              <Access accessible={access.canManagerDo} fallback={<div></div>}>
                 <a
                   href="#"
                   onClick={() => {
@@ -516,7 +516,7 @@ const Welcome: React.FC = () => {
             title="活动统计"
             extra={
               <Access
-                accessible={access.canActivityManagement}
+                accessible={access.canCompanyOrManagerDo}
                 fallback={
                   <div>
                     <a

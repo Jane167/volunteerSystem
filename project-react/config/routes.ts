@@ -32,35 +32,35 @@ export default [
     icon: 'icon-icon_yingyongguanli',
     path: '/activityManagement',
     component: './ActivityTableList',
-    access: 'canActivityManagement',
+    access: 'canCompanyOrManagerDo',
   },
   {
     name: '活动列表',
     icon: 'icon-icon_yingyongguanli',
     path: '/activity-list',
     component: './ActivityTableList',
-    access: 'canApplyActivity',
+    access: 'canCommonDo',
   },
   {
     name: '报名管理',
     icon: 'icon-shenhexiangmu',
     path: '/applyManagement',
     component: './ApplyTableList',
-    access: 'canApplyManagement'
+    access: 'canCompanyOrManagerDo'
   },
   {
     name: '我的报名',
     icon: 'icon-shenhexiangmu',
     path: '/apply-list',
     component: './ApplyTableList',
-    access: 'canApplyActivity'
+    access: 'canCommonDo'
   },
   {
     name: 'user-management',
     icon: 'icon-guanliyuan_jiaoseguanli',
     path: '/userManagement',
     component: './UserManagement',
-    access: 'canUserManagement',
+    access: 'canManagerDo',
   },
   {
     name: 'permission-management',

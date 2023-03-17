@@ -24,7 +24,7 @@ import type { CheckApplyValueType } from '@/pages/ApplyTableList/components/Chec
 
 import UpdateForm from '@/pages/ApplyTableList/components/UpdateForm';
 import CheckApply from '@/pages/ApplyTableList/components/CheckApply';
-
+import { useAccess, Access } from 'umi';
 /**
  * @en-US Update node
  * @zh-CN 更新节点
@@ -129,7 +129,7 @@ const ApplyTableList: React.FC = () => {
   const [selectedRowsState, setSelectedRows] = useState<API.ApplyListItem[]>([]);
 
   const actionRef = useRef<ActionType>();
-
+  const access = useAccess();
   const statusValueEnum = {
     0: {
       color: 'default',
@@ -252,24 +252,27 @@ const ApplyTableList: React.FC = () => {
         >
           编辑
         </a>,
-        <a
-          key="check"
-          onClick={() => {
-            setCurrentRow(record);
-            handleCheckModalVisible(true);
-          }}
-        >
-          审核
-        </a>,
-        <a
-          key="delete"
-          onClick={() => {
-            handleRemoveModalVisible(true);
-            setCurrentRow(record);
-          }}
-        >
-          删除
-        </a>,
+        <Access accessible={access.canCompanyOrManagerDo} fallback={<div></div>}>
+          <a
+            key="check"
+            onClick={() => {
+              setCurrentRow(record);
+              handleCheckModalVisible(true);
+            }}
+          >
+            审核
+          </a>
+
+          <a
+            key="delete"
+            onClick={() => {
+              handleRemoveModalVisible(true);
+              setCurrentRow(record);
+            }}
+          >
+            删除
+          </a>
+        </Access>,
       ],
     },
   ];

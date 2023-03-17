@@ -165,7 +165,6 @@ const ActivityTableList: React.FC = () => {
   const actionRef = useRef<ActionType>();
   const [currentRow, setCurrentRow] = useState<API.ActivityListItem>();
   const [selectedRowsState, setSelectedRows] = useState<API.ActivityListItem[]>([]);
-
   const columns: ProColumns<API.ActivityListItem>[] = [
     {
       title: 'Id',
@@ -240,7 +239,7 @@ const ActivityTableList: React.FC = () => {
       width: 180,
       valueType: 'option',
       render: (_, record) => [
-        <Access accessible={access.canApplyActivity} fallback={<div></div>}>
+        <Access accessible={access.canCommonDo} fallback={<div></div>}>
           <a
             key="apply"
             onClick={() => {
@@ -260,7 +259,7 @@ const ActivityTableList: React.FC = () => {
         >
           详情
         </a>,
-        <Access accessible={access.canUpdateActivity} fallback={<div></div>}>
+        <Access accessible={access.canCompanyOrManagerDo} fallback={<div></div>}>
           <a
             key="edit"
             onClick={() => {
@@ -271,7 +270,7 @@ const ActivityTableList: React.FC = () => {
             编辑
           </a>
         </Access>,
-        <Access accessible={access.canDeleteActivity} fallback={<div></div>}>
+        <Access accessible={access.canCompanyOrManagerDo} fallback={<div></div>}>
           <a
             key="delete"
             onClick={() => {
@@ -296,7 +295,7 @@ const ActivityTableList: React.FC = () => {
           labelWidth: 120,
         }}
         toolBarRender={() => [
-          <Access accessible={access.canAddActivity} fallback={<div></div>}>
+          <Access accessible={access.canCompanyOrManagerDo} fallback={<div></div>}>
             <Button
               type="primary"
               key="primary"
