@@ -1,4 +1,4 @@
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, VerticalAlignBottomOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns, ProDescriptionsItemProps } from '@ant-design/pro-components';
 import {
   FooterToolbar,
@@ -18,6 +18,7 @@ import {
   addActivity,
   updateActivity,
   removeActivity,
+  exportActivity,
   batchRemoveActivity,
   batchExportActivity,
 } from '@/services/activity';
@@ -126,6 +127,35 @@ const handleRemove = async (id: number) => {
   } catch (error) {
     hide();
     message.error('删除失败，请重试！');
+    return false;
+  }
+};
+
+/**
+ * Export node
+ * @zh-CN 导出节点
+ * @returns
+ */
+const handleExport = async () => {
+  const hide = message.loading('正在导出');
+  try {
+    await exportActivity().then(async (downloadId) => {
+      await download(downloadId).then((res) => {
+        const blob = new Blob([res]); // 数据流
+        const objectURL = URL.createObjectURL(blob);
+        let btn = document.createElement('a');
+        btn.download = '活动信息表.xls'; //文件类型
+        btn.href = objectURL;
+        btn.click();
+        URL.revokeObjectURL(objectURL);
+        btn.remove();
+        message.success('下载成功！');
+      });
+    });
+    return true;
+  } catch (error) {
+    hide();
+    message.error('导出失败，请重试！');
     return false;
   }
 };
@@ -341,6 +371,15 @@ const ActivityTableList: React.FC = () => {
               新建活动
             </Button>
           </Access>,
+          <Button
+            key="out"
+            icon={<VerticalAlignBottomOutlined />}
+            onClick={async () => {
+              await handleExport();
+            }}
+          >
+            导出数据
+          </Button>,
         ]}
         cardBordered
         request={getActivityList}

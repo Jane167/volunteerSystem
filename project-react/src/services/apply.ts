@@ -37,6 +37,13 @@ export async function removeApply(id?: number) {
   });
 }
 
+/**导出报名信息 GET /api/apply/export_excel */
+export async function exportApply() {
+  return request('/api/apply/export_excel/', {
+    method: 'GET',
+  });
+}
+
 /** 批量删除报名信息 DELETE /api/apply/ */
 export async function batchRemoveApply(deleteId?: number[]) {
   return request<API.Response>('/api/apply/?deleteId=' + deleteId, {
@@ -45,9 +52,9 @@ export async function batchRemoveApply(deleteId?: number[]) {
 }
 
 /**批量导出报名信息 POST /api/apply/export_excel */
-export async function batchExportApply(options?: {[key: string]: any}){
+export async function batchExportApply(options?: { [key: string]: any }) {
   return request('/api/apply/export_excel/', {
     method: 'POST',
-    data: options
-  })
+    data: options,
+  });
 }

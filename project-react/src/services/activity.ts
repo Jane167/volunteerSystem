@@ -28,7 +28,7 @@ export async function addActivity(options?: { [key: string]: any }) {
   return request<API.ActivityListItem>('/api/activity/', {
     method: 'POST',
     // ...(options || {}),
-    data: options
+    data: options,
   });
 }
 
@@ -48,6 +48,12 @@ export async function removeActivity(id?: number) {
   });
 }
 
+/**导出活动信息 GET /api/activity/export_excel */
+export async function exportActivity() {
+  return request('/api/activity/export_excel/', {
+    method: 'GET',
+  });
+}
 
 /** 批量删除活动 DELETE /api/activity/ */
 export async function batchRemoveActivity(deleteId?: number[]) {
@@ -57,9 +63,9 @@ export async function batchRemoveActivity(deleteId?: number[]) {
 }
 
 /**批量导出活动信息 POST /api/activity/export_excel */
-export async function batchExportActivity(options?: {[key: string]: any}){
+export async function batchExportActivity(options?: { [key: string]: any }) {
   return request('/api/activity/export_excel/', {
     method: 'POST',
-    data: options
-  })
+    data: options,
+  });
 }

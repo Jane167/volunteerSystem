@@ -15,6 +15,7 @@ import {
   addUser,
   removeUser,
   updateUser,
+  exportUser,
   batchRemoveUser,
   batchExportUser,
 } from '@/services/user';
@@ -63,7 +64,7 @@ const handleRemove = async (id: number) => {
 
 /**
  * @en-US Reset Password node
- * @zh-CN 审核更新节点
+ * @zh-CN 重置密码节点
  *
  * @param fields
  */
@@ -83,6 +84,34 @@ const handleResetPwd = async (id: number) => {
   } catch (error) {
     hide();
     message.error('重置失败，请重试!');
+    return false;
+  }
+};
+
+/**
+ * Export node
+ * @zh-CN 导出节点
+ */
+const handleExport = async () => {
+  const hide = message.loading('正在导出');
+  try {
+    await exportUser().then(async (downloadId) => {
+      await download(downloadId).then((res) => {
+        const blob = new Blob([res]);
+        const objectURL = URL.createObjectURL(blob);
+        let btn = document.createElement('a');
+        btn.download = '用户信息表.xls'; //文件类型
+        btn.href = objectURL;
+        btn.click();
+        URL.revokeObjectURL(objectURL);
+        btn.remove();
+        message.success('下载成功！');
+      });
+    });
+    return true;
+  } catch (error) {
+    hide();
+    message.error('导出失败，请重试！');
     return false;
   }
 };
@@ -282,7 +311,13 @@ const UserList: React.FC = () => {
           >
             新建用户
           </Button>,
-          <Button key="out" icon={<VerticalAlignBottomOutlined />}>
+          <Button
+            key="out"
+            icon={<VerticalAlignBottomOutlined />}
+            onClick={async () => {
+              await handleExport();
+            }}
+          >
             导出数据
           </Button>,
         ]}

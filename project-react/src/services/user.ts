@@ -53,6 +53,14 @@ export async function removeUser(id?: number) {
   });
 }
 
+
+/**默认导出用户信息 GET /api/user/export_excel */
+export async function exportUser(){
+  return request('/api/user/export_excel/', {
+    method: 'GET',
+  })
+}
+
 /** 批量删除用户信息 DELETE /api/user/ */
 export async function batchRemoveUser(deleteId?: number[]) {
   return request<API.Response>('/api/user/?deleteId=' + deleteId, {

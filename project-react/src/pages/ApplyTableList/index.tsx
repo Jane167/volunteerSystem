@@ -22,6 +22,7 @@ import {
   getApplyList,
   updateApply,
   removeApply,
+  exportApply,
   batchRemoveApply,
   batchExportApply,
 } from '@/services/apply';
@@ -104,6 +105,35 @@ const handleRemove = async (id: number) => {
   } catch (error) {
     hide();
     message.error('删除失败，请重试！');
+    return false;
+  }
+};
+
+/**
+ * Batch export node
+ * @zh-CN 导出节点
+ * @returns
+ */
+const handleExport = async () => {
+  const hide = message.loading('正在导出');
+  try {
+    await exportApply().then(async (downloadId) => {
+      await download(downloadId).then((res) => {
+        const blob = new Blob([res]); //数据流
+        const objectURL = URL.createObjectURL(blob);
+        let btn = document.createElement('a');
+        btn.download = '报名信息表.xls'; //文件类型
+        btn.href = objectURL;
+        btn.click();
+        URL.revokeObjectURL(objectURL);
+        btn.remove();
+        message.success('下载成功！');
+      });
+    });
+    return true;
+  } catch (error) {
+    hide();
+    message.error('导出失败，请重试！');
     return false;
   }
 };
@@ -330,7 +360,13 @@ const ApplyTableList: React.FC = () => {
         dateFormatter="string"
         headerTitle="报名列表"
         toolBarRender={() => [
-          <Button key="out" icon={<VerticalAlignBottomOutlined />}>
+          <Button
+            key="out"
+            icon={<VerticalAlignBottomOutlined />}
+            onClick={async () => {
+              await handleExport();
+            }}
+          >
             导出数据
           </Button>,
         ]}
