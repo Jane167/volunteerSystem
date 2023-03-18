@@ -59,3 +59,11 @@ export async function batchRemoveUser(deleteId?: number[]) {
     method: 'DELETE',
   });
 }
+
+/**批量导出用户信息 POST /api/user/export_excel */
+export async function batchExportUser(options?: {[key: string]: any}){
+  return request('/api/user/export_excel/', {
+    method: 'POST',
+    data: options
+  })
+}

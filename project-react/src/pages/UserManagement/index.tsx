@@ -10,7 +10,15 @@ import {
 import { ProTable } from '@ant-design/pro-components';
 import { Button, Drawer, message, Modal, Tag } from 'antd';
 import React, { useRef, useState } from 'react';
-import { getUserList, addUser, removeUser, updateUser, batchRemoveUser } from '@/services/user';
+import {
+  getUserList,
+  addUser,
+  removeUser,
+  updateUser,
+  batchRemoveUser,
+  batchExportUser,
+} from '@/services/user';
+import { download } from '@/services/download';
 import AddUser from './components/AddUser';
 
 /**
@@ -95,6 +103,37 @@ const handleBatchDelete = async (deleteId: number[]) => {
   } catch (error) {
     hide();
     message.error('删除失败，请重试！');
+    return false;
+  }
+};
+/**
+ * Batch export node
+ * @zh-CN 批量导出节点
+ * @returns
+ */
+const handleBatchExport = async (userId: number[]) => {
+  const hide = message.loading('正在导出');
+  try {
+    const params = {
+      user_code: userId,
+    };
+    await batchExportUser(params).then(async (downloadId) => {
+      await download(downloadId).then((res) => {
+        const blob = new Blob([res]); //注意拿到的是数据流！！
+        const objectURL = URL.createObjectURL(blob);
+        let btn = document.createElement('a');
+        btn.download = '用户信息表.xls'; //文件类型
+        btn.href = objectURL;
+        btn.click();
+        URL.revokeObjectURL(objectURL);
+        btn.remove();
+        message.success('下载成功！');
+      });
+    });
+    return true;
+  } catch (error) {
+    hide();
+    message.error('导出失败，请重试！');
     return false;
   }
 };
@@ -276,7 +315,22 @@ const UserList: React.FC = () => {
           >
             批量删除
           </Button>
-          <Button type="primary">批量导出</Button>
+          <Button
+            type="primary"
+            onClick={async () => {
+              console.log(selectedRowsState, 'selectedRowState');
+              let userId: number[] = [];
+              selectedRowsState.forEach((item) => {
+                userId.push(Number(item.id));
+              });
+              console.log(userId, 'deleteId');
+              await handleBatchExport(userId);
+              setSelectedRows([]);
+              actionRef.current?.reloadAndRest?.();
+            }}
+          >
+            批量导出
+          </Button>
         </FooterToolbar>
       )}
       <Drawer

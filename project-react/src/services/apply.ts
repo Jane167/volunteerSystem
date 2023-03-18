@@ -43,3 +43,11 @@ export async function batchRemoveApply(deleteId?: number[]) {
     method: 'DELETE',
   });
 }
+
+/**批量导出报名信息 POST /api/apply/export_excel */
+export async function batchExportApply(options?: {[key: string]: any}){
+  return request('/api/apply/export_excel/', {
+    method: 'POST',
+    data: options
+  })
+}

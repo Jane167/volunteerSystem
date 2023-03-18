@@ -19,7 +19,9 @@ import {
   updateActivity,
   removeActivity,
   batchRemoveActivity,
+  batchExportActivity,
 } from '@/services/activity';
+import { download } from '@/services/download';
 import { addApply } from '@/services/apply';
 /**
  * @en-US Add node
@@ -144,6 +146,38 @@ const handleBatchDelete = async (deleteId: number[]) => {
   } catch (error) {
     hide();
     message.error('删除失败，请重试！');
+    return false;
+  }
+};
+
+/**
+ * Batch export node
+ * @zh-CN 批量导出节点
+ * @returns
+ */
+const handleBatchExport = async (activityId: number[]) => {
+  const hide = message.loading('正在导出');
+  try {
+    const params = {
+      activity_code: activityId,
+    };
+    await batchExportActivity(params).then(async (downloadId) => {
+      await download(downloadId).then((res) => {
+        const blob = new Blob([res]); //注意拿到的是数据流！！
+        const objectURL = URL.createObjectURL(blob);
+        let btn = document.createElement('a');
+        btn.download = '活动信息表.xls'; //文件类型
+        btn.href = objectURL;
+        btn.click();
+        URL.revokeObjectURL(objectURL);
+        btn.remove();
+        message.success('下载成功！');
+      });
+    });
+    return true;
+  } catch (error) {
+    hide();
+    message.error('导出失败，请重试！');
     return false;
   }
 };
@@ -344,7 +378,20 @@ const ActivityTableList: React.FC = () => {
           >
             批量删除
           </Button>
-          <Button type="primary">批量导出</Button>
+          <Button
+            type="primary"
+            onClick={async () => {
+              let activityId: number[] = [];
+              selectedRowsState.forEach((item) => {
+                activityId.push(Number(item.id));
+              });
+              await handleBatchExport(activityId);
+              setSelectedRows([]);
+              actionRef.current?.reloadAndRest?.();
+            }}
+          >
+            批量导出
+          </Button>
         </FooterToolbar>
       )}
       <UpdateForm

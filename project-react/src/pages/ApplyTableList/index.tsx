@@ -18,7 +18,14 @@ import {
 import { ProTable } from '@ant-design/pro-components';
 import { Button, Drawer, message, Modal, Tag } from 'antd';
 import React, { useRef, useState } from 'react';
-import { getApplyList, updateApply, removeApply, batchRemoveApply } from '@/services/apply';
+import {
+  getApplyList,
+  updateApply,
+  removeApply,
+  batchRemoveApply,
+  batchExportApply,
+} from '@/services/apply';
+import { download } from '@/services/download';
 import type { ApplyFormValueType } from '@/pages/ApplyTableList/components/UpdateForm';
 import type { CheckApplyValueType } from '@/pages/ApplyTableList/components/CheckApply';
 
@@ -116,6 +123,38 @@ const handleBatchDelete = async (deleteId: number[]) => {
   } catch (error) {
     hide();
     message.error('删除失败，请重试！');
+    return false;
+  }
+};
+
+/**
+ * Batch export node
+ * @zh-CN 批量导出节点
+ * @returns
+ */
+const handleBatchExport = async (applyId: number[]) => {
+  const hide = message.loading('正在导出');
+  try {
+    const params = {
+      apply_code: applyId,
+    };
+    await batchExportApply(params).then(async (downloadId) => {
+      await download(downloadId).then((res) => {
+        const blob = new Blob([res]); //注意拿到的是数据流！！
+        const objectURL = URL.createObjectURL(blob);
+        let btn = document.createElement('a');
+        btn.download = '报名信息表.xls'; //文件类型
+        btn.href = objectURL;
+        btn.click();
+        URL.revokeObjectURL(objectURL);
+        btn.remove();
+        message.success('下载成功！');
+      });
+    });
+    return true;
+  } catch (error) {
+    hide();
+    message.error('导出失败，请重试！');
     return false;
   }
 };
@@ -324,7 +363,20 @@ const ApplyTableList: React.FC = () => {
           >
             批量删除
           </Button>
-          <Button type="primary">批量导出</Button>
+          <Button
+            type="primary"
+            onClick={async () => {
+              let applyId: number[] = [];
+              selectedRowsState.forEach((item) => {
+                applyId.push(Number(item.id));
+              });
+              await handleBatchExport(applyId);
+              setSelectedRows([]);
+              actionRef.current?.reloadAndRest?.();
+            }}
+          >
+            批量导出
+          </Button>
         </FooterToolbar>
       )}
       <Drawer

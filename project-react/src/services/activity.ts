@@ -55,3 +55,11 @@ export async function batchRemoveActivity(deleteId?: number[]) {
     method: 'DELETE',
   });
 }
+
+/**批量导出活动信息 POST /api/activity/export_excel */
+export async function batchExportActivity(options?: {[key: string]: any}){
+  return request('/api/activity/export_excel/', {
+    method: 'POST',
+    data: options
+  })
+}

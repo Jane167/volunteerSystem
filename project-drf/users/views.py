@@ -231,7 +231,7 @@ class UserExportExcelAPIView(APIView):
 				email = user_obj.email
 				first_name = user_obj.first_name
 				last_name = user_obj.last_name
-				last_login = user_obj.last_login.strftime("%Y-%m-%d %H:%M:%S")
+				last_login = user_obj.last_login.strftime("%Y-%m-%d %H:%M:%S") if user_obj.last_login != None else ''
 				date_joined = user_obj.date_joined.strftime("%Y-%m-%d %H:%M:%S")
 				group = '管理员' if str(Group.objects.get(user=user_obj)) == 'manager' else '发布企业' if str(Group.objects.get(user=user_obj)) == 'company' else '普通用户'
 				
