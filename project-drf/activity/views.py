@@ -151,7 +151,7 @@ class ActivityExportExcelAPIView(APIView):
     
     def post(self, request):
         """
-        将活动表导出为excel
+        批量导出活动信息表
         """
         
         activity_codes = request.data.get("activity_code")
@@ -200,6 +200,59 @@ class ActivityExportExcelAPIView(APIView):
         # 设置生成文件所在路径
         download_url = cur_path + '\\upload\\'
 
+        # 写入数据到excel中
+        ret = write_to_excel(n, head_data, records, download_url)
+    
+        return HttpResponse(ret)
+
+    def get(self, request):
+        """
+        默认导出活动信息表
+        """
+    
+        activitys = Activity.objects.all()
+        n = len(activitys)
+    
+        # 表头字段
+        head_data = [u'活动编号', u'活动名称', u'活动描述', u'发布企业', u'活动地点', u'开始日期', u'开始时间', u'志愿者素养要求', u'需要人数', u'已报名人数',
+                     u'审核通过人数', u'创建时间']
+        # 查询记录数据
+        records = []
+        for activity_obj in activitys:
+            id = activity_obj.id
+            name = activity_obj.name
+            desc = activity_obj.desc
+            publish_company_name = activity_obj.publish_company_name
+            address = activity_obj.address
+            start_date = activity_obj.start_date.strftime("%Y-%m-%d")
+            start_time = activity_obj.start_time.strftime("%H:%M:%S")
+            demand = activity_obj.demand
+            need_person_num = activity_obj.need_person_num
+            apply_person_num = activity_obj.apply_person_num
+            pass_person_num = activity_obj.pass_person_num
+            create_time = activity_obj.create_time.strftime("%Y-%m-%d %H:%M:%S")
+            
+            record = []
+            record.append(id)
+            record.append(name)
+            record.append(desc)
+            record.append(publish_company_name)
+            record.append(address)
+            record.append(str(start_date))
+            record.append(str(start_time))
+            record.append(demand)
+            record.append(need_person_num)
+            record.append(apply_person_num)
+            record.append(pass_person_num)
+            record.append(str(create_time))
+        
+            records.append(record)
+    
+        # 获取当前路径
+        cur_path = os.path.abspath('.')
+        # 设置生成文件所在路径
+        download_url = cur_path + '\\upload\\'
+    
         # 写入数据到excel中
         ret = write_to_excel(n, head_data, records, download_url)
     

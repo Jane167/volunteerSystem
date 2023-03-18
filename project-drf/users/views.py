@@ -213,7 +213,7 @@ class UserExportExcelAPIView(APIView):
 	
 	def post(self, request):
 		"""
-		将用户表导出为excel
+		批量导出用户信息表
 		"""
 		
 		user_codes = request.data.get("user_code")
@@ -235,7 +235,6 @@ class UserExportExcelAPIView(APIView):
 				date_joined = user_obj.date_joined.strftime("%Y-%m-%d %H:%M:%S")
 				group = '管理员' if str(Group.objects.get(user=user_obj)) == 'manager' else '发布企业' if str(Group.objects.get(user=user_obj)) == 'company' else '普通用户'
 				
-				
 				record = []
 				record.append(id)
 				record.append(username)
@@ -247,6 +246,50 @@ class UserExportExcelAPIView(APIView):
 				record.append(group)
 				
 			
+			records.append(record)
+		
+		# 获取当前路径
+		cur_path = os.path.abspath('.')
+		# 设置生成文件所在路径
+		download_url = cur_path + '\\upload\\'
+		
+		# 写入数据到excel中
+		ret = write_to_excel(n, head_data, records, download_url)
+		
+		return HttpResponse(ret)
+	def get(self, request):
+		"""
+		默认导出用户信息表
+		"""
+
+		users = User.objects.all()
+		n = len(users)
+		# 表头字段
+		head_data = [u'用户编号', u'用户名', u'电子邮箱', u'姓', u'名', u'上次登录时间', u'注册时间', u'角色']
+		# 查询记录数据
+		records = []
+		for user_obj in users:
+			# if user_code != "":
+				# user_obj = User.objects.get(id=user_code)
+			id = user_obj.id
+			username = user_obj.username
+			email = user_obj.email
+			first_name = user_obj.first_name
+			last_name = user_obj.last_name
+			last_login = user_obj.last_login.strftime("%Y-%m-%d %H:%M:%S") if user_obj.last_login != None else ''
+			date_joined = user_obj.date_joined.strftime("%Y-%m-%d %H:%M:%S")
+			group = '管理员' if str(Group.objects.get(user=user_obj)) == 'manager' else '发布企业' if str(Group.objects.get(user=user_obj)) == 'company' else '普通用户'
+			
+			record = []
+			record.append(id)
+			record.append(username)
+			record.append(email)
+			record.append(first_name)
+			record.append(last_name)
+			record.append(str(last_login))
+			record.append(str(date_joined))
+			record.append(group)
+		
 			records.append(record)
 		
 		# 获取当前路径

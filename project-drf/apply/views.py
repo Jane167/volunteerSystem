@@ -139,7 +139,7 @@ class ApplyExportExcelAPIView(APIView):
     
     def post(self, request):
         """
-        将报名表导出为excel
+        批量导出报名信息表
         """
 
         apply_codes = request.data.get("apply_code")
@@ -185,5 +185,54 @@ class ApplyExportExcelAPIView(APIView):
         # 写入数据到excel中
         ret = write_to_excel(n, head_data, records, download_url)
         
+        return HttpResponse(ret)
+
+    def get(self, request):
+        """
+        默认导出报名信息表
+        """
+    
+        applys = Apply.objects.all()
+        n = len(applys)
+    
+        # 表头字段
+        head_data = [u'报名编号', u'姓名', u'年龄', u'性别', u'地址', u'电话', u'报名活动', u'报名状态', u'申请时间']
+        # 查询记录数据
+        records = []
+        for apply_obj in applys:
+          
+            id = apply_obj.id
+            name = apply_obj.name
+            age = apply_obj.age
+            sex = '未知' if apply_obj.sex == 0 else '男' if apply_obj.sex == 1 else '女'
+            address = apply_obj.address
+            tel = apply_obj.tel
+            apply_status = '待审核' if apply_obj.apply_status else '已审核' if apply_obj.apply_status == 1 else '未通过'
+            apply_time = apply_obj.apply_time.strftime("%Y-%m-%d %H:%M:%S")
+            
+            belonging_activity_id = apply_obj.belonging_activity_id
+            apply_activity = Activity.objects.get(id=belonging_activity_id).name
+        
+            record = []
+            record.append(id)
+            record.append(name)
+            record.append(age)
+            record.append(sex)
+            record.append(address)
+            record.append(tel)
+            record.append(apply_activity)
+            record.append(apply_status)
+            record.append(str(apply_time))
+        
+            records.append(record)
+    
+        # 获取当前路径
+        cur_path = os.path.abspath('.')
+        # 设置生成文件所在路径
+        download_url = cur_path + '\\upload\\'
+    
+        # 写入数据到excel中
+        ret = write_to_excel(n, head_data, records, download_url)
+    
         return HttpResponse(ret)
 
