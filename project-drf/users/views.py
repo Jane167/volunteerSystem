@@ -213,7 +213,7 @@ class UserExportExcelAPIView(APIView):
 	
 	def post(self, request):
 		"""
-		将User表转存为excel
+		将用户表导出为excel
 		"""
 		
 		user_codes = request.data.get("user_code")
@@ -260,7 +260,7 @@ class UserExportExcelAPIView(APIView):
 class DownloadAPIView(APIView):
 	def post(self, request, offset):
 		"""
-		下载excel文件
+		公共下载excel文件方法
 		"""
 		from django.http import StreamingHttpResponse
 		def file_iterator(file_name, chunk_size=512):

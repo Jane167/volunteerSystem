@@ -151,7 +151,7 @@ class ActivityExportExcelAPIView(APIView):
     
     def post(self, request):
         """
-        将数据转存为excel
+        将活动表导出为excel
         """
         
         activity_codes = request.data.get("activity_code")

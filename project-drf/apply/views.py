@@ -1,10 +1,14 @@
+from django.http import HttpResponse
 from rest_framework.generics import get_object_or_404
 from rest_framework.views import APIView
+
+from activity.models import Activity
 from .models import Apply  # 导入对应的模型类
 from rest_framework.response import Response
 from .serializers import ApplyModelSerializer  # 导入对应的序列化器
 from utils.pagination import StandardPageNumberPagination
-
+import sys, os
+from utils.excel import *
 
 class ApplyListAPIView(APIView):
     queryset = Apply.objects.all()  # 指明查询集
@@ -129,3 +133,56 @@ class ApplyDetailAPIView(APIView):
             },
         }
         return Response(response)
+
+
+class ApplyExportExcelAPIView(APIView):
+    
+    def post(self, request):
+        """
+        将报名表导出为excel
+        """
+
+        apply_codes = request.data.get("apply_code")
+        n = len(apply_codes)
+        
+        # 表头字段
+        head_data = [u'报名编号', u'姓名', u'年龄', u'性别', u'地址', u'电话', u'报名活动', u'报名状态', u'申请时间']
+        # 查询记录数据
+        records = []
+        for apply_code in apply_codes:
+            if apply_code != "":
+                apply_obj = Apply.objects.get(id=apply_code)
+                id = apply_obj.id
+                name = apply_obj.name
+                age = apply_obj.age
+                sex = '未知' if apply_obj.sex == 0 else '男' if apply_obj.sex == 1 else '女'
+                address = apply_obj.address
+                tel = apply_obj.tel
+                apply_status = '待审核' if apply_obj.apply_status else '已审核' if apply_obj.apply_status == 1 else '未通过'
+                apply_time = apply_obj.apply_time.strftime("%Y-%m-%d %H:%M:%S")
+                
+                belonging_activity_id = apply_obj.belonging_activity_id
+                apply_activity = Activity.objects.get(id=belonging_activity_id).name
+                record = []
+                record.append(id)
+                record.append(name)
+                record.append(age)
+                record.append(sex)
+                record.append(address)
+                record.append(tel)
+                record.append(apply_activity)
+                record.append(apply_status)
+                record.append(str(apply_time))
+                
+            records.append(record)
+        
+        # 获取当前路径
+        cur_path = os.path.abspath('.')
+        # 设置生成文件所在路径
+        download_url = cur_path + '\\upload\\'
+        
+        # 写入数据到excel中
+        ret = write_to_excel(n, head_data, records, download_url)
+        
+        return HttpResponse(ret)
+

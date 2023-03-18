@@ -5,7 +5,8 @@ from django.conf.urls import url
 # 路由列表
 urlpatterns = [
 	url(r'^apply/$', views.ApplyListAPIView.as_view()),
-	url(r'^apply/(?P<pk>\d+)/$', views.ApplyDetailAPIView.as_view())
+	url(r'^apply/(?P<pk>\d+)/$', views.ApplyDetailAPIView.as_view()),
+	url(r'^apply/export_excel/$', views.ApplyExportExcelAPIView.as_view()),
 ]
 
 # router = DefaultRouter()                            # 可以处理视图的路由器
