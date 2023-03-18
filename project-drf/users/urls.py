@@ -8,6 +8,8 @@ urlpatterns = [
 	url(r'^user/$', views.UserListAPIView.as_view()),
 	url(r'^user/(?P<pk>\d+)/$', views.UserDetailAPIView.as_view()),
 	url(r'^login/$', views.LoginView.as_view()),
+	url(r'^user/export_excel/$', views.UserExportExcelAPIView.as_view()),
+	url(r'^download/(\w+)*/$', views.DownloadAPIView.as_view()),
 
 ]
 router = DefaultRouter()  # 可以处理视图的路由器

@@ -145,10 +145,14 @@ class ActivityDetailAPIView(APIView):
             },
         }
         return Response(response)
+ 
     
 class ActivityExportExcelAPIView(APIView):
     
     def post(self, request):
+        """
+        将数据转存为excel
+        """
         
         activity_codes = request.data.get("activity_code")
         n = len(activity_codes)
@@ -201,29 +205,3 @@ class ActivityExportExcelAPIView(APIView):
     
         return HttpResponse(ret)
 
-
-class ActivityDownloadAPIView(APIView):
-    def post(self, request, offset):
-        from django.http import StreamingHttpResponse
-        def file_iterator(file_name, chunk_size=512):
-            with open(file_name, 'rb') as f:
-                while True:
-                    c = f.read(chunk_size)
-                    if c:
-                        yield c
-                    else:
-                        break
-    
-        # 显示在弹出对话框中的默认的下载文件名
-        the_file_name = 'New-' + offset + '.xls'
-
-        # 获取当前路径
-        cur_path = os.path.abspath('.')
-        # 设置生成文件所在路径
-        download_url = cur_path + '\\upload\\'
-    
-        response = StreamingHttpResponse(file_iterator(download_url + 'New-' + offset + '.xls'))
-        response['Content-Type'] = 'application/octet-stream'
-        response['Content-Disposition'] = 'attachment;filename="{0}"'.format(the_file_name)
-    
-        return response

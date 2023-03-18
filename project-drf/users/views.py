@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User, Group
+from django.http import HttpResponse
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import viewsets
@@ -6,7 +7,8 @@ from rest_framework.views import APIView
 from users.serializers import UserSerializer, GroupSerializer
 from django.contrib.auth.hashers import make_password, check_password
 from utils.pagination import StandardPageNumberPagination
-
+import sys, os
+from utils.excel import *
 
 class UserListAPIView(APIView):
 	queryset = User.objects.all().order_by('-date_joined')
@@ -205,3 +207,82 @@ class LoginView(APIView):
 			return Response({'status': 'ok', 'currentAuthority': username, 'user_id': user.id, 'type': 'account'})
 		else:
 			return Response({'status': 'failed', 'code': 400})
+
+
+class UserExportExcelAPIView(APIView):
+	
+	def post(self, request):
+		"""
+		将User表转存为excel
+		"""
+		
+		user_codes = request.data.get("user_code")
+		n = len(user_codes)
+		
+		# 表头字段
+		head_data = [u'用户编号', u'用户名', u'电子邮箱', u'姓', u'名', u'上次登录时间', u'注册时间']
+		# 查询记录数据
+		records = []
+		for user_code in user_codes:
+			if user_code != "":
+				user_obj = User.objects.get(id=user_code)
+				id = user_obj.id
+				username = user_obj.username
+				email = user_obj.email
+				first_name = user_obj.first_name
+				last_name = user_obj.last_name
+				last_login = user_obj.last_login.strftime("%Y-%m-%d %H:%M:%S")
+				date_joined = user_obj.date_joined.strftime("%Y-%m-%d %H:%M:%S")
+				
+				record = []
+				record.append(id)
+				record.append(username)
+				record.append(email)
+				record.append(first_name)
+				record.append(last_name)
+				record.append(str(last_login))
+				record.append(str(date_joined))
+				
+			
+			records.append(record)
+		
+		# 获取当前路径
+		cur_path = os.path.abspath('.')
+		# 设置生成文件所在路径
+		download_url = cur_path + '\\upload\\'
+		
+		# 写入数据到excel中
+		ret = write_to_excel(n, head_data, records, download_url)
+		
+		return HttpResponse(ret)
+
+
+class DownloadAPIView(APIView):
+	def post(self, request, offset):
+		"""
+		下载excel文件
+		"""
+		from django.http import StreamingHttpResponse
+		def file_iterator(file_name, chunk_size=512):
+			with open(file_name, 'rb') as f:
+				while True:
+					c = f.read(chunk_size)
+					if c:
+						yield c
+					else:
+						break
+		
+		# 显示在弹出对话框中的默认的下载文件名
+		the_file_name = 'New-' + offset + '.xls'
+		
+		# 获取当前路径
+		cur_path = os.path.abspath('.')
+		# 设置生成文件所在路径
+		download_url = cur_path + '\\upload\\'
+		
+		response = StreamingHttpResponse(file_iterator(download_url + 'New-' + offset + '.xls'))
+		response['Content-Type'] = 'application/octet-stream'
+		response['Content-Disposition'] = 'attachment;filename="{0}"'.format(the_file_name)
+		
+		return response
+
