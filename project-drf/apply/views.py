@@ -163,6 +163,7 @@ class ApplyExportExcelAPIView(APIView):
                 
                 belonging_activity_id = apply_obj.belonging_activity_id
                 apply_activity = Activity.objects.get(id=belonging_activity_id).name
+                
                 record = []
                 record.append(id)
                 record.append(name)

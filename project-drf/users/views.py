@@ -220,7 +220,7 @@ class UserExportExcelAPIView(APIView):
 		n = len(user_codes)
 		
 		# 表头字段
-		head_data = [u'用户编号', u'用户名', u'电子邮箱', u'姓', u'名', u'上次登录时间', u'注册时间']
+		head_data = [u'用户编号', u'用户名', u'电子邮箱', u'姓', u'名', u'上次登录时间', u'注册时间', u'角色']
 		# 查询记录数据
 		records = []
 		for user_code in user_codes:
@@ -233,6 +233,8 @@ class UserExportExcelAPIView(APIView):
 				last_name = user_obj.last_name
 				last_login = user_obj.last_login.strftime("%Y-%m-%d %H:%M:%S")
 				date_joined = user_obj.date_joined.strftime("%Y-%m-%d %H:%M:%S")
+				group = '管理员' if str(Group.objects.get(user=user_obj)) == 'manager' else '发布企业' if str(Group.objects.get(user=user_obj)) == 'company' else '普通用户'
+				
 				
 				record = []
 				record.append(id)
@@ -242,6 +244,7 @@ class UserExportExcelAPIView(APIView):
 				record.append(last_name)
 				record.append(str(last_login))
 				record.append(str(date_joined))
+				record.append(group)
 				
 			
 			records.append(record)
