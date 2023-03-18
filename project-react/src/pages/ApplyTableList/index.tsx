@@ -384,21 +384,23 @@ const ApplyTableList: React.FC = () => {
             </div>
           }
         >
-          <Button
-            onClick={async () => {
-              console.log(selectedRowsState, 'selectedRowState');
-              let deleteId: number[] = [];
-              selectedRowsState.forEach((item) => {
-                deleteId.push(Number(item.id));
-              });
-              console.log(deleteId, 'deleteId');
-              await handleBatchDelete(deleteId);
-              setSelectedRows([]);
-              actionRef.current?.reloadAndRest?.();
-            }}
-          >
-            批量删除
-          </Button>
+          <Access accessible={access.canCompanyOrManagerDo} fallback={<div></div>}>
+            <Button
+              onClick={async () => {
+                console.log(selectedRowsState, 'selectedRowState');
+                let deleteId: number[] = [];
+                selectedRowsState.forEach((item) => {
+                  deleteId.push(Number(item.id));
+                });
+                console.log(deleteId, 'deleteId');
+                await handleBatchDelete(deleteId);
+                setSelectedRows([]);
+                actionRef.current?.reloadAndRest?.();
+              }}
+            >
+              批量删除
+            </Button>
+          </Access>
           <Button
             type="primary"
             onClick={async () => {
