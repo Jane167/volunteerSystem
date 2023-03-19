@@ -331,7 +331,8 @@ const ApplyTableList: React.FC = () => {
           >
             审核
           </a>
-
+        </Access>,
+        <Access accessible={access.canCompanyOrManagerDo} fallback={<div></div>}>
           <a
             key="delete"
             onClick={() => {
