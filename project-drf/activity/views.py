@@ -257,4 +257,3 @@ class ActivityExportExcelAPIView(APIView):
         ret = write_to_excel(n, head_data, records, download_url)
     
         return HttpResponse(ret)
-
