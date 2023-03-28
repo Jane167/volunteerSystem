@@ -1,0 +1,179 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+}
+body{
+    width: 100%;
+    font-family: "微软雅黑", Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+.head_wrap{
+    width: 100%;
+    min-width: 1200px;
+}
+.header{
+    width: 100%;
+    height: 100px;
+    background: #049be2;
+    color: #fff;
+}
+.header_box{
+    width: 98%;
+    margin: auto;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.head_left{
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.head_left a{
+    height: 100%;
+    margin-right: 20px;
+}
+.logo{
+    width: 320px;
+    height: 100px;
+}
+.p_title{
+    font-size: 20px;
+    margin-bottom: 3%;
+}
+.p_name{
+    margin-top: 3%;
+}
+.head_right{
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.p_top{
+    font-size: 16px;
+    margin-bottom: 3%;
+}
+.p_bottom{
+    margin-top: 3%;
+    text-align: right;
+}
+.percent_box{
+    margin-left: 20px;
+    height: 64px;
+}
+.percent{
+    color: #ea7628;
+    text-align: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.line_icon{
+    width: 110px;
+    height: 15px;
+    border-radius: 10px;
+    background: #fff;
+    position: relative;
+}
+.active_line{
+    display: inline-block;
+    height: 15px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    /*width: 43.97%;*/
+    background: #ea7628;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.tab{
+    width: 100%;
+    min-width: 1200px;
+    height: 50px;
+    background: #3986cc;
+}
+.tab_box{
+    width: 98%;
+    height: 100%;
+    margin: auto;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.tab_left,.tab_right{
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.tab_left li{
+    width: 100px;
+    height: 100%;
+}
+.tab_left li a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 50px;
+    font-size: 15px;
+    cursor: pointer;
+    color: #fff;
+}
+.tab_left .active_li{
+    background: #e2e2e2;
+    color: #333;
+}
+.tab_right li{
+    margin-left: 20px;
+    text-align: right;
+    height: 100%;
+    line-height: 50px;
+    color: #fff;
+}
+.tab_right li span{
+    display: inline-block;
+}
+.square{
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+}
+.percent_range{
+    vertical-align: middle;
+}
+.square_1{
+    background: #fe0000;
+}
+.square_2{
+    background: #ff6600;
+}
+.square_3{
+    background: #86c282;
+}
+
+.footer{
+    width: 100%;
+    height: 80px;
+    /*background: #333333;*/
+}
+.footer>p{
+    width: 100%;
+    text-align: center;
+    height: 40px;
+    color: #a1a1a1;
+}
+.p_1{
+    line-height: 55px;
+}
+.p_2{
+    line-height: 25px;
+}
