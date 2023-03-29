@@ -63,6 +63,13 @@ export default [
     access: 'canManagerDo',
   },
   {
+    name: '友情链接',
+    icon: 'icon-lianjie',
+    path: '/link-list',
+    component: './LinkManagement',
+    access: 'canManagerDo',
+  },
+  {
     name: 'personal-center',
     icon: 'icon-wode-wode',
     path: '/uCenter',
