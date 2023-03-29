@@ -1,4 +1,3 @@
-
 from rest_framework import serializers
 from .models import Apply
 from activity.models import Activity
@@ -26,9 +25,6 @@ class ApplyModelSerializer(serializers.Serializer):
     apply_status = serializers.ChoiceField(label='报名状态', choices=STATUS_CHOICE, default=0)
     apply_time = serializers.DateTimeField(label='报名时间', read_only=True, required=False, format='%Y-%m-%d %H:%M:%S')
     belonging_activity = serializers.PrimaryKeyRelatedField(queryset=Activity.objects.all())
-    # belonging_activity_name = serializers.StringRelatedField(label='报名活动')
-    # belonging_activity_name = ActivityModelSerializer()
-    
     # 自定义额外字段
     belonging_activity_name = serializers.CharField(source='belonging_activity.name', read_only=True)
     

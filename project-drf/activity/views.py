@@ -1,14 +1,12 @@
 from django.http import HttpResponse
-from django.shortcuts import render
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Activity
 from .serializers import ActivityModelSerializer
 from utils.pagination import StandardPageNumberPagination
-import sys, os
+import os
 from utils.excel import *
 
 class ActivityListAPIView(APIView):
