@@ -191,6 +191,7 @@ const handleBatchExport = async (applyId: number[]) => {
 const ApplyTableList: React.FC = () => {
   const [showDetail, setShowDetail] = useState<boolean>(false);
   const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
+  const [noticeModalVisible, handleNoticeModalVisible] = useState<boolean>(false);
   const [removeModalVisible, handleRemoveModalVisible] = useState<boolean>(false);
   const [checkModalVisible, handleCheckModalVisible] = useState<boolean>(false);
 
@@ -299,7 +300,7 @@ const ApplyTableList: React.FC = () => {
 
     {
       title: '操作',
-      width: 180,
+      width: 280,
       key: 'option',
       valueType: 'option',
       render: (_, record) => [
@@ -315,11 +316,30 @@ const ApplyTableList: React.FC = () => {
         <a
           key="edit"
           onClick={() => {
-            setCurrentRow(record);
-            handleUpdateModalVisible(true);
+            if (record.apply_status === 0) {
+              setCurrentRow(record);
+              handleUpdateModalVisible(true);
+            }
           }}
+          style={
+            record.apply_status !== 0
+              ? {
+                  color: 'rgba(0,0,0,.25)',
+                  cursor: 'not-allowed',
+                }
+              : {}
+          }
         >
           编辑
+        </a>,
+        <a
+          key="notice"
+          onClick={() => {
+            setCurrentRow(record);
+            handleNoticeModalVisible(true);
+          }}
+        >
+          查看邮件通知
         </a>,
         <Access accessible={access.canCompanyOrManagerDo} fallback={<div></div>}>
           <a
@@ -503,6 +523,24 @@ const ApplyTableList: React.FC = () => {
       >
         您是否确定要删除用户 <Tag color="volcano">{currentRow?.name}</Tag> 申请 &nbsp;
         <Tag color="success">{currentRow?.belonging_activity_name}</Tag> 活动的报名信息吗？
+      </Modal>
+      <Modal
+        title="邮件通知"
+        open={noticeModalVisible}
+        onOk={() => {
+          handleNoticeModalVisible(false);
+          setCurrentRow(undefined);
+        }}
+        onCancel={() => {
+          handleNoticeModalVisible(false);
+          setCurrentRow(undefined);
+        }}
+      >
+        {currentRow?.apply_status === 0
+          ? '您的报名申请正在等待企业审核，请耐心等待！'
+          : currentRow?.apply_status === 1
+          ? '恭喜您的报名申请通过发布企业审核，请您按时参加公益活动。'
+          : '很遗憾的通知您，抱歉，您的报名申请不符合条件，未通过审核。'}
       </Modal>
     </PageContainer>
   );

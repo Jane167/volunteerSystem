@@ -27,8 +27,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
-    path('', include('activity.urls')),        # 将activity子应用中的路由文件加载到总路由文件
-    path('', include('apply.urls')),              # 将apply子应用的路由文件加载到总路由文件
+    path('', include('activity.urls')),         # 将activity子应用中的路由文件加载到总路由文件
+    path('', include('apply.urls')),            # 将apply子应用的路由文件加载到总路由文件
     path('', include('users.urls')),            # 将users子应用的路由文件加载到总路由文件
+    path('', include('link.urls')),             # 将link子应用的路由文件加载到总路由文件
 
 ]

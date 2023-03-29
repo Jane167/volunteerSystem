@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework_swagger',       # swagger 接口文档
     'activity',                     # activity 自定义应用
     'apply',                        # apply 自定义应用
+    'link',                         # link 自定义应用
 ]
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
