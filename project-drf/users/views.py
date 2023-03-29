@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from users.serializers import UserSerializer, GroupSerializer
 from django.contrib.auth.hashers import make_password, check_password
 from utils.pagination import StandardPageNumberPagination
-import sys, os
+import os
 from utils.excel import *
 
 class UserListAPIView(APIView):
