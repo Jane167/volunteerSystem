@@ -16,7 +16,6 @@ declare namespace API {
     date_joined?: string;
   };
 
-
   type LoginResult = {
     status?: string;
     type?: string;
@@ -155,6 +154,20 @@ declare namespace API {
 
   type ApplyList = {
     data?: ApplyListItem[];
+    /** 列表的内容总数 */
+    total?: number;
+    success?: boolean;
+  };
+  type LinkListItem = {
+    id?: number;
+    link_name?: string;
+    link_address?: string;
+    create_time?: string;
+    update_time?: string;
+  };
+
+  type LinkList = {
+    data?: LinkListItem[];
     /** 列表的内容总数 */
     total?: number;
     success?: boolean;
