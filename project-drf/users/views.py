@@ -14,12 +14,18 @@ class UserListAPIView(APIView):
 	queryset = User.objects.all().order_by('-date_joined')
 	serializer_class = UserSerializer
 	
-	def get(self, request, *args, **kwargs):
+	def get(self, request, *args):
 		"""
 		查询所有用户信息
 		"""
 		response = {'success': True}
-		user_list = User.objects.all()
+		kwargs = {}
+		# 根据用户名查询
+		if request.GET.get("username", ""):
+			kwargs.update({
+				"username__contains": request.GET.get("username")
+			})
+		user_list = User.objects.filter(**kwargs)
 		paging_status = request.GET.get('pagingStatus')
 		total = User.objects.all().count()
 		user_serializers = UserSerializer(user_list, many=True, context={'request': request})

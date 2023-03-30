@@ -14,12 +14,23 @@ class ApplyListAPIView(APIView):
     queryset = Apply.objects.all()  # 指明查询集
     serializer_class = ApplyModelSerializer  # 指明所使用的序列化器
     
-    def get(self, request, *args, **kwargs):
+    def get(self, request, *args):
         """
         查询所有报名信息
         """
         response = {'success': True}
-        apply_list = Apply.objects.all()
+        kwargs = {}
+        # 根据姓名查询
+        if request.GET.get("name", ""):
+            kwargs.update({
+                "name__contains": request.GET.get("name")
+            })
+        # 根据地址查询
+        if request.GET.get("address", ""):
+            kwargs.update({
+                "address__contains": request.GET.get("address")
+            })
+        apply_list = Apply.objects.filter(**kwargs)
         total = apply_list.count()
         apply_serializers = ApplyModelSerializer(apply_list, many=True, context={'request': request})
         pagination = StandardPageNumberPagination()

@@ -247,7 +247,6 @@ const ApplyTableList: React.FC = () => {
       title: '姓名',
       dataIndex: 'name',
       align: 'center',
-      search: false,
     },
     {
       title: '年龄',
@@ -257,6 +256,7 @@ const ApplyTableList: React.FC = () => {
     {
       title: '性别',
       dataIndex: 'sex',
+      search: false,
       render: (sex) => {
         const element = sexValueEnum[Number(sex)];
         return (
@@ -278,11 +278,13 @@ const ApplyTableList: React.FC = () => {
     {
       title: '报名活动',
       dataIndex: 'belonging_activity_name',
+      search: false,
       render: (_) => <a>{_}</a>,
     },
     {
       title: '报名状态',
       dataIndex: 'apply_status',
+      search: false,
       render: (apply_status) => {
         const element = statusValueEnum[Number(apply_status)];
         return (

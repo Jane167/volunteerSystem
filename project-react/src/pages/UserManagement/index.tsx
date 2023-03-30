@@ -198,14 +198,13 @@ const UserList: React.FC = () => {
       title: '用户Id',
       width: 80,
       dataIndex: 'id',
-      // search: false,
+      search: false,
       align: 'center',
     },
     {
       title: '用户名',
       dataIndex: 'username',
       align: 'center',
-      search: false,
     },
     {
       title: '电子邮箱',
@@ -217,11 +216,10 @@ const UserList: React.FC = () => {
       title: '角色',
       dataIndex: 'groups',
       align: 'center',
-      // search: false,
+      search: false,
       render: (groups) => {
         for (let i of Array(groups)) {
           const element = roleValueEnum[String(i)];
-
           return <Tag color={element.color}>{element.text}</Tag>;
         }
       },
