@@ -269,8 +269,6 @@ class UserExportExcelAPIView(APIView):
 		# 查询记录数据
 		records = []
 		for user_obj in users:
-			# if user_code != "":
-				# user_obj = User.objects.get(id=user_code)
 			id = user_obj.id
 			username = user_obj.username
 			email = user_obj.email

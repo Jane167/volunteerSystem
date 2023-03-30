@@ -7,4 +7,5 @@ from rest_framework.routers import DefaultRouter
 urlpatterns = [
     url(r'^link/$', views.LinkListAPIView.as_view()),
     url(r'^link/(?P<pk>\d+)/$', views.LinkDetailAPIView.as_view()),
+    url(r'^link/export_excel/$', views.LinkExportExcelAPIView.as_view()),
 ]

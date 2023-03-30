@@ -1,9 +1,13 @@
+import os
+
+from django.http import HttpResponse
 from rest_framework.views import APIView
 from link.models import Link
 from link.serializers import LinkModelSerializer
 from utils.pagination import StandardPageNumberPagination
 from rest_framework.response import Response
 from rest_framework.generics import get_object_or_404
+from utils.excel import *
 
 class LinkListAPIView(APIView):
     queryset = Link.objects.all().order_by('-date_joined')
@@ -139,4 +143,82 @@ class LinkDetailAPIView(APIView):
             },
         }
         return Response(response)
+
+
+class LinkExportExcelAPIView(APIView):
+    
+    def post(self, request):
+        """
+        批量导出友情链接信息表
+        """
+        link_codes = request.data.get("link_code")
+        n = len(link_codes)
+        
+        # 表头字段
+        head_data = [u'链接编号', u'链接名称', u'链接地址', u'创建时间', u'更新时间']
+        # 查询记录数据
+        records = []
+        for link_code in link_codes:
+            if link_code != "":
+                link_obj = Link.objects.get(id=link_code)
+                id = link_obj.id
+                link_name = link_obj.link_name
+                link_address = link_obj.link_address
+                create_time = link_obj.create_time.strftime("%Y-%m-%d %H:%M:%S") if link_obj.create_time != None else ''
+                update_time = link_obj.update_time.strftime("%Y-%m-%d %H:%M:%S") if link_obj.update_time != None else ''
+                
+                record = []
+                record.append(id)
+                record.append(link_name)
+                record.append(link_address)
+            
+                record.append(str(create_time))
+                record.append(str(update_time))
+            
+            records.append(record)
+        
+        # 获取当前路径
+        cur_path = os.path.abspath('.')
+        # 设置生成文件所在路径
+        download_url = cur_path + '\\upload\\'
+        
+        # 写入数据到excel中
+        ret = write_to_excel(n, head_data, records, download_url)
+        
+        return HttpResponse(ret)
+    
+    def get(self, request):
+        """
+        默认导出友情链接信息表
+        """
+        
+        links = Link.objects.all()
+        n = len(links)
+        # 表头字段
+        head_data = [u'链接编号', u'链接名称', u'链接地址', u'创建时间', u'更新时间']
+        # 查询记录数据
+        records = []
+        for link_obj in links:
+            id = link_obj.id
+            link_name = link_obj.link_name
+            link_address = link_obj.link_address
+            create_time = link_obj.create_time.strftime("%Y-%m-%d %H:%M:%S") if link_obj.create_time != None else ''
+            update_time = link_obj.update_time.strftime("%Y-%m-%d %H:%M:%S") if link_obj.update_time != None else ''
+            
+            record = []
+            record.append(id)
+            record.append(link_name)
+            record.append(link_address)
+            record.append(str(create_time))
+            record.append(str(update_time))
+            records.append(record)
+        # 获取当前路径
+        cur_path = os.path.abspath('.')
+        # 设置生成文件所在路径
+        download_url = cur_path + '\\upload\\'
+        
+        # 写入数据到excel中
+        ret = write_to_excel(n, head_data, records, download_url)
+        
+        return HttpResponse(ret)
 
