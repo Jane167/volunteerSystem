@@ -21,6 +21,7 @@ import {
 } from '@/services/user';
 import { download } from '@/services/download';
 import AddUser from './components/AddUser';
+import UpdateUser from './components/UpdateUser';
 
 /**
  * @en-US Add node
@@ -37,6 +38,37 @@ const handleAdd = async (fields: API.UsersListItem) => {
   } catch (error) {
     hide();
     message.error('添加失败，请重试!');
+    return false;
+  }
+};
+/**
+ * @en-US Update node
+ * @zh-CN 更新节点
+ *
+ * @param fields
+ */
+const handleUpdate = async (fields: API.UsersListItem) => {
+  const hide = message.loading('更新中...');
+  try {
+    await updateUser(
+      {
+        id: fields.id,
+        username: fields.username,
+        password: fields.password,
+        email: fields.email,
+        groups: fields.groups,
+        first_name: fields.first_name,
+        last_name: fields.last_name,
+      },
+      fields.id,
+    );
+    hide();
+
+    message.success('更新成功！');
+    return true;
+  } catch (error) {
+    hide();
+    message.error('更新失败，请重试!');
     return false;
   }
 };
@@ -172,8 +204,8 @@ const UserList: React.FC = () => {
   const [currentRow, setCurrentRow] = useState<API.UsersListItem>();
   const [removeModalVisible, handleRemoveModalVisible] = useState<boolean>(false);
   const [resetPwdModalVisible, handleResetPwdModalVisible] = useState<boolean>(false);
-
   const [addUserModalVisible, handleAddUserkModalVisible] = useState<boolean>(false);
+  const [updateUserModalVisible, handleUpdateUserModalVisible] = useState<boolean>(false);
   const [selectedRowsState, setSelectedRows] = useState<API.UsersListItem[]>([]);
 
   const actionRef = useRef<ActionType>();
@@ -251,7 +283,7 @@ const UserList: React.FC = () => {
 
     {
       title: '操作',
-      width: 250,
+      width: 300,
       key: 'option',
       align: 'center',
       valueType: 'option',
@@ -264,6 +296,15 @@ const UserList: React.FC = () => {
           }}
         >
           查看详情
+        </a>,
+        <a
+          key="update"
+          onClick={() => {
+            handleUpdateUserModalVisible(true);
+            setCurrentRow(record);
+          }}
+        >
+          修改用户
         </a>,
         <a
           key="resetPwd"
@@ -409,6 +450,26 @@ const UserList: React.FC = () => {
         addUserModalVisible={addUserModalVisible}
         values={currentRow || {}}
       ></AddUser>
+      <UpdateUser
+        onSubmit={async (value) => {
+          const success = await handleUpdate(value);
+          if (success) {
+            handleUpdateUserModalVisible(false);
+            setCurrentRow(undefined);
+            if (actionRef.current) {
+              actionRef.current.reload();
+            }
+          }
+        }}
+        onCancel={() => {
+          handleUpdateUserModalVisible(false);
+          if (!showDetail) {
+            setCurrentRow(undefined);
+          }
+        }}
+        updateUserModalVisible={updateUserModalVisible}
+        values={currentRow || {}}
+      ></UpdateUser>
       <Modal
         title="注销用户信息"
         open={removeModalVisible}

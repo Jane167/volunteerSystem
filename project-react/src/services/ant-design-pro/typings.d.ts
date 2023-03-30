@@ -124,7 +124,7 @@ declare namespace API {
   type UsersListItem = {
     id?: number;
     username?: string;
-    passwoed?: string;
+    password?: string;
     email?: string;
     groups?: string[];
     first_name?: string;
