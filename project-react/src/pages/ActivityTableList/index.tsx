@@ -238,6 +238,7 @@ const ActivityTableList: React.FC = () => {
     {
       title: '活动名称',
       dataIndex: 'name',
+      width: 80,
       render: (dom, entity) => {
         return (
           <a
@@ -259,43 +260,54 @@ const ActivityTableList: React.FC = () => {
     },
     {
       title: '发布企业',
+      width: 80,
       dataIndex: 'publish_company_name',
     },
     {
       title: '活动地点',
+      width: 80,
       dataIndex: 'address',
     },
     {
       title: '开始日期',
       dataIndex: 'start_date',
+      width: 100,
       sorter: true,
       hideInForm: true,
       search: false,
     },
     {
       title: '开始时间',
+      width: 100,
       dataIndex: 'start_time',
       sorter: true,
       hideInForm: true,
       search: false,
     },
     {
-      title: '志愿者素养要求',
+      title: '志愿者要求',
+      width: 90,
       dataIndex: 'demand',
       hideInForm: true,
       search: false,
     },
     {
       title: '需要人数',
+      width: 80,
       dataIndex: 'need_person_num',
+      search: false,
     },
     {
       title: '已报名人数',
+      width: 90,
       dataIndex: 'apply_person_num',
+      search: false,
     },
     {
       title: '审核通过人数',
+      width: 100,
       dataIndex: 'pass_person_num',
+      search: false,
     },
     {
       title: '操作',

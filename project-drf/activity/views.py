@@ -13,12 +13,28 @@ class ActivityListAPIView(APIView):
     queryset = Activity.objects.all()  # queryset 指明该视图集在查询数据时使用的查询集
     serializer_class = ActivityModelSerializer  # serializer_class 执行该视图在进行序列化或者反序列化时使用的序列化器
     
-    def get(self, request, *args, **kwargs):
+    def get(self, request, *args):
         """
         查询所有活动信息
         """
         response = {'success': True}
-        activity_list = Activity.objects.all()
+        kwargs = {}
+        # 根据活动名称查询
+        if request.GET.get("name", ""):
+            kwargs.update({
+                "name__contains": request.GET.get("name")
+            })
+        # 根据发布企业查询
+        if request.GET.get("publish_company_name", ""):
+            kwargs.update({
+                "publish_company_name__contains": request.GET.get("publish_company_name")
+            })
+        # 根据活动地点查询
+        if request.GET.get("address", ""):
+            kwargs.update({
+                "address__contains": request.GET.get("address")
+            })
+        activity_list = Activity.objects.filter(**kwargs)
         paging_status = request.GET.get("pagingStatus")
         for activity_item in activity_list:
             apply_activity = Activity.objects.get(id=activity_item.id)

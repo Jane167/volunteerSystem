@@ -57,7 +57,7 @@ export default [
   },
   {
     name: 'user-management',
-    icon: 'icon-guanliyuan_jiaoseguanli',
+    icon: 'icon-yonghuguanli',
     path: '/userManagement',
     component: './UserManagement',
     access: 'canManagerDo',
@@ -67,7 +67,6 @@ export default [
     icon: 'icon-lianjie',
     path: '/link-list',
     component: './LinkManagement',
-    access: 'canManagerDo',
   },
   {
     name: 'personal-center',

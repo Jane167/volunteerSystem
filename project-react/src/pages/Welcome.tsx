@@ -218,7 +218,7 @@ const DemoWordCloud = () => {
  */
 const userList = async () => {
   const params = {
-    pageSize: 5,
+    pageSize: 500,
     current: 1,
     pagingStatus: false,
   };

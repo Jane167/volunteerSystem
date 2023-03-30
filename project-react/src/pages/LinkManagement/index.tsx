@@ -22,6 +22,7 @@ import {
 import { download } from '@/services/download';
 import AddLink, { LinkValueType } from './components/AddLink';
 import UpdateLink from './components/UpdateLink';
+import { useAccess, Access } from 'umi';
 
 /**
  * @en-US Add node
@@ -179,6 +180,7 @@ const LinkList: React.FC = () => {
   const [selectedRowsState, setSelectedRows] = useState<API.UsersListItem[]>([]);
 
   const actionRef = useRef<ActionType>();
+  const access = useAccess();
 
   const columns: ProColumns<API.LinkListItem>[] = [
     {
@@ -233,24 +235,26 @@ const LinkList: React.FC = () => {
         >
           查看详情
         </a>,
-        <a
-          key="updateLink"
-          onClick={() => {
-            handleUpdateModalVisible(true);
-            setCurrentRow(record);
-          }}
-        >
-          编辑
-        </a>,
-        <a
-          key="deleteLink"
-          onClick={() => {
-            handleRemoveModalVisible(true);
-            setCurrentRow(record);
-          }}
-        >
-          删除
-        </a>,
+        <Access key="updateLink" accessible={access.canManagerDo} fallback={<div></div>}>
+          <a
+            onClick={() => {
+              handleUpdateModalVisible(true);
+              setCurrentRow(record);
+            }}
+          >
+            编辑
+          </a>
+        </Access>,
+        <Access key="deleteLink" accessible={access.canManagerDo} fallback={<div></div>}>
+          <a
+            onClick={() => {
+              handleRemoveModalVisible(true);
+              setCurrentRow(record);
+            }}
+          >
+            删除
+          </a>
+        </Access>,
       ],
     },
   ];
@@ -270,14 +274,15 @@ const LinkList: React.FC = () => {
         dateFormatter="string"
         headerTitle="友情链接列表"
         toolBarRender={() => [
-          <Button
-            key="out"
-            type="primary"
-            icon={<PlusOutlined />}
-            onClick={() => handleAddLinkModalVisible(true)}
-          >
-            新建友情链接
-          </Button>,
+          <Access key="add" accessible={access.canManagerDo} fallback={<div></div>}>
+            <Button
+              type="primary"
+              icon={<PlusOutlined />}
+              onClick={() => handleAddLinkModalVisible(true)}
+            >
+              新建友情链接
+            </Button>
+          </Access>,
           <Button
             key="out"
             icon={<VerticalAlignBottomOutlined />}
@@ -302,21 +307,24 @@ const LinkList: React.FC = () => {
             </div>
           }
         >
-          <Button
-            onClick={async () => {
-              console.log(selectedRowsState, 'selectedRowState');
-              let deleteId: number[] = [];
-              selectedRowsState.forEach((item) => {
-                deleteId.push(Number(item.id));
-              });
-              console.log(deleteId, 'deleteId');
-              await handleBatchDelete(deleteId);
-              setSelectedRows([]);
-              actionRef.current?.reloadAndRest?.();
-            }}
-          >
-            批量删除
-          </Button>
+          <Access accessible={access.canManagerDo} fallback={<div></div>}>
+            <Button
+              onClick={async () => {
+                console.log(selectedRowsState, 'selectedRowState');
+                let deleteId: number[] = [];
+                selectedRowsState.forEach((item) => {
+                  deleteId.push(Number(item.id));
+                });
+                console.log(deleteId, 'deleteId');
+                await handleBatchDelete(deleteId);
+                setSelectedRows([]);
+                actionRef.current?.reloadAndRest?.();
+              }}
+            >
+              批量删除
+            </Button>
+          </Access>
+
           <Button
             type="primary"
             onClick={async () => {

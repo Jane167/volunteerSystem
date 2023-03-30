@@ -45,7 +45,7 @@ class ApplyListAPIView(APIView):
         response = {
             'success': True,
             'data': {
-                'message': 'success！'
+                'message': '报名成功！'
                 
             }
         }

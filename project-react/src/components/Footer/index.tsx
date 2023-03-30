@@ -1,13 +1,8 @@
 import { GithubOutlined } from '@ant-design/icons';
 import { DefaultFooter } from '@ant-design/pro-components';
-import { useIntl } from '@umijs/max';
 
 const Footer: React.FC = () => {
-  const intl = useIntl();
-  const defaultMessage = intl.formatMessage({
-    id: 'app.copyright.produced',
-    defaultMessage: '卑微女大学生',
-  });
+  const defaultMessage = 'Jiayin Li All Rights Reserved.'
 
   const currentYear = new Date().getFullYear();
 
@@ -21,7 +16,7 @@ const Footer: React.FC = () => {
         {
           key: '志愿吧',
           title: '志愿吧',
-          href: '#',
+          href: 'https://gitee.com/li-jiayin167/volunteerSystem.git',
           blankTarget: true,
         },
         {
@@ -33,7 +28,7 @@ const Footer: React.FC = () => {
         {
           key: '基于 DRF+React 的疫情防控社区志愿者管理系统',
           title: '基于 DRF+React 的疫情防控社区志愿者管理系统',
-          href: '#',
+          href: 'https://gitee.com/li-jiayin167/volunteerSystem.git',
           blankTarget: true,
         },
       ]}
