@@ -1,0 +1,2589 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>19103020128-李佳音-基于Django + React的疫情防控社区志愿者管理系统的设计与实现_全文标注</title>
+<style>
+body{
+	width:750px;
+	padding:0px;
+	margin:0 auto;
+	font-family:SimHei,'黑体',Microsoft YaHei,'微软雅黑', Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #212121;
+}
+.biaoti{ font-size:24px; color:#212121; line-height:50px; font-family:SimHei,"黑体"; padding-top:20px;}
+.biaoti span{ font-size:14px; color:#212121;letter-spacing:0px;}
+.ylogo_wz{ font-size:22px; color:#0f84c7;  font-family:SimHei,"黑体"; letter-spacing:5px;}
+.ylogo_wz span{ font-size:12px; color:#212121;letter-spacing:1px; font-family:Arial, Helvetica, sans-serif;}
+.f1{ color:#8c1211; font-size:13px;font-weight:bold; line-height:26px; font-family:SimHei,"黑体";}
+.f1 span{ color:#696666;}
+.f2{ color:#1A5F02; font-size:13px; line-height:20px; font-family:SimHei,"黑体";font-weight:bold; }
+.f3{ color:#666666; font-size:13px; line-height:20px; font-family:SimHei,"黑体";}
+.f4{ color:#262121; font-size:14px; line-height:25px; font-family:SimHei,"黑体"; padding-left:10px; border-top:2px #1a5f02 solid; border-bottom:2px #1a5f02 solid;font-weight:600}
+.f5{ color:#216002; font-size:14px; line-height:30px; font-family:SimHei,"黑体";}
+.f5 span{ color:#696666;}
+.lb_1{ color:#212121; font-size:14px; line-height:25px; font-family:SimHei,"黑体";border-right:1px #666666 solid;border-bottom:1px #666666 solid;}
+.lb_2{ color:#212121; font-size:14px; line-height:25px; font-family:SimHei,"黑体"; padding-left:10px;}
+.lb_3{ color:#666666; font-size:14px;  font-family:SimHei,"黑体"; padding-left:10px; padding-bottom:10px;border-bottom:1px #666666 solid;}
+.lb_4{ color:#ff0000; font-size:14px; line-height:25px; font-family:SimHei,"黑体";font-weight:bold; border-left:1px #666666 solid;border-bottom:1px #666666 solid; text-align:center}
+.lb_5{ color:#212121; font-size:14px;  font-family:SimHei,"黑体"; border-left:1px #666666 solid;border-bottom:1px #666666 solid;text-align:center}
+.f6{ color:#666666; font-size:14px;line-height:25px; font-family:SimHei,"黑体"; padding-left:10px;}
+.f7{ color:#212121; font-size:14px;line-height:25px; font-family:SimHei,"黑体"; padding:0 10px;}
+.f7_hong{ color:#ff0000; font-size:14px;line-height:25px; font-family:SimHei,"黑体"; }
+.f7_lv{ color:#019b2a; font-size:14px;line-height:25px; font-family:SimHei,"黑体"; }
+.f7_lan{ color:#009cff; font-size:14px;line-height:25px; font-family:SimHei,"黑体"; }
+.f7_black{ color:#292929; font-size:14px;line-height:25px; font-family:SimHei,"黑体"; }
+.f7_gray{ color:#666666; font-size:14px;line-height:25px; font-family:SimHei,"黑体"; }
+.f8{ color:#666666; font-size:14px;line-height:25px; font-family: Arial, Helvetica, sans-serif;}
+
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" class="biaoti">文本复制检测报告单<span>（全文标注）</span></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#f4f9ef">
+  <tr>
+    <td valign="top"><div style="background-color:#1a5f02; height:1px;"></div><div style="background-color:#1a5f02; height:3px; margin-top:2px;"></div>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="70%" class="f1" style="padding-left:10px;"></td>
+    <td class="f1">检测时间:<span>2023-03-29 10:35:52</span></td>
+  </tr>
+</table>
+
+	</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="80" align="right" valign="top" class="f2">检测文献：</td>
+    <td class="f3">19103020128-李佳音-基于Django + React的疫情防控社区志愿者管理系统的设计与实现</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="80" align="right" valign="top" class="f2">作者：</td>
+    <td class="f3">李佳音</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="80" align="right" valign="top" class="f2">检测范围：</td>
+    <td class="f3">
+		中国学术期刊网络出版总库<br />
+		中国博士学位论文全文数据库/中国优秀硕士学位论文全文数据库<br />
+		中国重要会议论文全文数据库<br />
+		中国重要报纸全文数据库<br />
+		中国专利全文数据库<br />
+		图书资源<br />
+		优先出版文献库<br />
+			大学生联合对比库<br />
+		互联网资源（包含贴吧等论坛资源）<br />
+		英文数据库(涵盖期刊、博硕、会议的英文数据以及德国Springer、英国Taylor&Francis期刊数据库等)<br />
+		港澳台学术文献库<br />
+		互联网文档资源<br />
+		源代码库<br />
+		大成编客-原创作品库<br />
+		个人比对库
+</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="80" align="right" valign="top" class="f2">时间范围：</td>
+    <td class="f3">1900-01-01至2023-03-29</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#f4f9ef" style="margin-top:5px;">
+  <tr>
+    <td class="f4">检测结果</td>
+  </tr>
+</table>
+<div style="padding-top:20px; padding-bottom:20px; background-color:#f4f9ef;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="20%" align="center" class="f1"><div style="padding-bottom:5px;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkY4Nzc5NjQzNDA0MzExRUNCM0RFQ0E5MEE0NDVBRTExIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkY4Nzc5NjQ0NDA0MzExRUNCM0RFQ0E5MEE0NDVBRTExIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6Rjg3Nzk2NDE0MDQzMTFFQ0IzREVDQTkwQTQ0NUFFMTEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6Rjg3Nzk2NDI0MDQzMTFFQ0IzREVDQTkwQTQ0NUFFMTEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz41RhzYAAAEkUlEQVR42tyZW0gVURSGt+PJsqikK2SpkAYWFUgWRHZ5KJCoXuwiqRRkRZenii5UDxVW1FsUhj2EGRX1lF2gHrpYQRmGRkpWcMx8sBvZ3ey2/u2a05xx5pw9+6hHW/A7OGdm9rfXrFl7zZqYKwPihKb1IcWTJpOmkNJJqaQxpGGkfqTvpLekRtJzUh3pIama9I3UpjOwT+OcAaQJpAWk2aQZIY4FeAJPZo5l/x3STVI56QnpixeAGA+eBkAGaRVpPmmEiNxeky6TTpCq+M50mqdTGHYFKVF0nmHiK0nzSCcZ3h/uJEPhwtNJpaQdnQxstUS+fimPpw0dS1rKHshCKImutRge5ySPG+sVGifkkQ6R0kT3WhqPm+cG7gadQ9rL6SsaNobHz1GFRkztiSKwFXyPU4wbDlniAGmc6pXjk5NF6o6dYY8buWChSMwr8Ao+jnlSgmJ3eVysdYXbRMpVzCrSJhWfEEmrVov+Scmi+VK589I5OEFMvXpNjMpZIv9/X3HbC/hoXj0rSL/tns4k5Yd6ap3s8dpC8a2hQXrRzeMTi0skOGCfF+3z6u1Y5sq0hweWxUKdOG5r+SCqche3u2R5gYSzhwUkj1u2OJL4LmTOwDKeycvpcKWVgLwan5QUtG9o1izxsaZawgU9JOs3yok0l18UHx9XB/0Gz3sIlTdcPlT6eClfpArc7tF8MSRrZof9TvvsHrfas6K9XqCHM+cjAPe1VWDKVrd1s/SuV8OkNTKJYM79Pq7cMnWuAGCPmSDsHQlj4MwwuIDvI3qHgXMKoMeL3mXjAT22l0GP9UVSYwyaNFnrPKyekdQkPn4J1bL0g4ej4elhZsrTsqayUvH1ZYPn87AQRZBB+gK6lVsByvbq9CnxruKWaKIt6g57yOAOhMrh77NuS2iddAleH/clEpRzDi3J8LCbDSRoAKGqe5A9zxHchNWEfmtwI0XZADP7Sb2so2Go7LI/twYqPEwIyzMml3HmfIcCCjbt6nUpzVWxEdAvvBT8Zsawh4XVUH7Cizg+4+z5Dr9jUu21eIlObL8AdK3q0SnrNsqt/9iRsMeiDAU4YvvfC0OJjPdPNTWB/ZiUx9RZa3BvTamnlpiXL7fNly4q1dn3s+cGxTTCAaWqL2Gw8B89IkMpVBg5XRa8BrejKlVqaPMhDBUaoULLDCvz/LqtW+Sk8Fvy+g0qlwFnlcEp70b40NgQSHdW+9nSEnhrMcGcMk76gcOcMW4F3Q28rtWQFF/DwNnq6c0FRTzeQOxAs2qfKt1eQN6dPlXrTlnfXExo/DnODUatW5+2fSdtU0LW3niANYEFt8vWkH5YW71oipztAU0ax9xMWka6Z28hIMgRsL96GPAv5qp06jAhnZSYs+lBdo+52tzaYn7SNlJ9DwGuZx5/uAYkZrbba03SRXG82+nOu/XsLpB2RRG8kce/4PSjESL4y0hbUN90M/AzHrfMLSkYYZ7ac5y70bH808Wwf3icFTyuaxYzFJ9eFL5FKJe7CLiJr1+gkr3+6++Igi8IL6DWLBZqX2zdrNu+2Dq1qKLybfyvAAMAcquDkQIShYcAAAAASUVORK5CYII=" width="45" height="45" /></div>总体相似度：33.09%</td>
+      <td width="20%" align="center" class="f1"><div style="padding-bottom:5px;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjFBMDk1RUU4NDA0NDExRUM4NDQzQjUyMzAwMzE5RTcwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjFBMDk1RUU5NDA0NDExRUM4NDQzQjUyMzAwMzE5RTcwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MUEwOTVFRTY0MDQ0MTFFQzg0NDNCNTIzMDAzMTlFNzAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MUEwOTVFRTc0MDQ0MTFFQzg0NDNCNTIzMDAzMTlFNzAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6v8CPsAAADi0lEQVR42tyZ30sUURTHr7OjJpKJaD2Y7YI/IKMVRAuk7Qf9ABHrRfBBDR+y/yAKyQgNKXrs0R6i7CHwJcJ66MHKEkoRVDLwB2ibD5ZFWWL+wr5nPbNM2+7MnXXGcfvCl112Z+Z+9s7Zc889k/Q0PUXEqWQ4DS6By+D9cAGcB2fDO+Df8BwchCfgD/AAPAQvwivxDJwUB3Q6fACuho/DR+IY9zX8An4Cv4cXnIKmmSuFL8BV8G6xeX2Gu+G78CDfGdugfQzbCOcK+zUD32P4KTugK+CbHAZJwjmtc9hcgfuMDlQMvvPAtTwDAYeBBV8/wOPV8viWoOmEevg2XCi2VoU8bn0s8FjQNXAbpy83lMfj18hCUwy3ugisB29lHkNoH//pipwmyq0/Lwqar4o0r9fosCLm8ek/VCNWuKZov0xTVuBoyFY00X4j6ud76xpC1/rW+0osTk+bZS/iuq6toHrocrjB6F9LgxQ2t9gCbUEe5urWUqEGncK/xjCOZx4+CM2MjA4/e253fDdx3bKsQZfw0mwouo0mt9JJVTFnv8KzfQ7OEdtbOcypEnQqfEIkhogzVeXKrdzKmZSqXBJxlqpcwCfLnhVPBrFRxFlG0MVWzsrwl4ReKYuMt7dtVfbQq5ig8y1BH/SHXr/2vjRMf28rTzsFna9arTGyAsfCM20k2XweT85WeBMqF1C7MsO1ws/hYbfiOlvllCelnX5/+P2pmVmpcyhMbJ71UMpb4laAqdK8PmkAq4WVBS2p3JfIlNp9dt4PWUaVv5aciu05hRspiaQgQU/afVWTwn6zmiToUduh93mdTHujCteoKwkSGsQ5QNDUjuq388raUj8/PGQ3NHEOKpzyeixVLVhkKKXRa6T2VJ8NV4HzI7YvQD1ayluFH8MXrWwEzAoimmXZ9CipL8y5qrUQhnjjKBdYP77HvPX0HcG+qzxj9yx3M2d4Y7sMd8AnZQuoNxWHNkXwCZtkqhQXP0rtOYPMR5x/dU2Tubdw2aiN4ILW4Fv6vocSkU46hEmb1QX1MVc4LUe2xabERn94bJsAjzHPlP5DJcYvu7YNapIgc/xz52O1ervgFhfBgzx+V7QvFYPg74QvweNbDDzO43YyhzS0Bv5IbDwc6hUbz0Sc1DqP08jjrsU60FOX4pG5VbR8LvDOPcMBYHq6dYdDYsTs4P/6OaJeCfXENlqLypVn438EGAArRQDnMCwfeQAAAABJRU5ErkJggg==" width="45" height="45" /></div>去除引用相似度：33.09%</td>
+      <td width="20%" align="center" class="f1"><div style="padding-bottom:5px;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjI3MzM5RUExNDA0NDExRUNCRjk2QkI3QzQ5MzY5QzhFIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjI3MzM5RUEyNDA0NDExRUNCRjk2QkI3QzQ5MzY5QzhFIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MjczMzlFOUY0MDQ0MTFFQ0JGOTZCQjdDNDkzNjlDOEUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MjczMzlFQTA0MDQ0MTFFQ0JGOTZCQjdDNDkzNjlDOEUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5luaVGAAADxElEQVR42tyZTUhUURTHr/OhmaQS2kbMAT9AghHEKZDsgyiQiDaCCzVcZAXRLjGiWmiYkTsJCl1I6iJw06dQiz4MoRTDiRQchdGxRZ84lUzjKHbOmzPDML335r737nOc/vCfxcx7c3/v3nPPufe+tKdZ6Uyn7OBMcAW4ClwOLgEXgvPA28B/wN/APvAceAY8AZ4CB8AhPQ2n6YDOAu8BnwAfAu/X0e4b8EvwI/BH8IpZ0NhzleDT4OPgXcy4voCfgPvAkzQywqAdBNsMLmDi9QncT/BeEdDV4C4KgzRmnjYobC6Bx9QutKj8ZgXXUw/UmAzM6P9rqL16al8TNN7QCL4FLmWbq1Jqt1EJXAm6DtxB6SsZKqT263ihMYbbkwgcC95OPKrQDpp0ZXpbyiwqYvtGnrOCxlMiwMuIx6EEjRWuRe7JtGhnzUHwAea808uynRUiwKuJyy4H7QI3qc1aroQ7eE8yau/IM2bPyTUKbSUuVzx0Oj2NkDieaWtlP91TbG3ZL4WLoPhuIc5ocXFROc1XuxNjFYdetH6MvmZva48muuwrLR/GbfCBPpkIOFZSL/r9hmFtOTla4j6fON8jcAb4sLbhvyj1jlHhqOHoaRBy3rDQys3FUkPIWWmjBbxdTz4uaGjS1XJgcTGaYXRsPKpwIvbSstPsodU68ZTUhz1drOfOX243d8P23FxW3tUdTX/fR18ZCZFi7GkP7e1MkeP8BVZy+YpUZLCHcRJj9jGgORttQoULw6f8ZreU0kL+ZeY+16I3juOVF0l5QoWgkXj33u5hc53XJXBBykDoIB0FJATBYsALHSlCnx8/ZDucTo6MssACCws8fx/kjmmzSnhEns4OaUR4Y9rHA700NMA967fvLpLW09hzS0N8cayhwvoQep6njGuZRDgiEjQMOWfvadE8lvFpllqaRmg8WwulCDByTljoOGo8RaCRc9JCKe+F6MJikpAziBNxDfwAfEbLRiA2J+NeENci8dAGy7XczgU51yLbLfy4y8IHjJpV+zsou7t5V3tMZCXsB58Fr9roi1UwLlGP6Nncxq/2cCsmuJd9xLfKaH8YG+QD4Datxwgitl4qWieucblzjxA9zdgWyxhjxBVSOhbzsvD58OwWAZ4lHq/SsVjsk12jOEqmfMTxz8grHfUOg68mEdxH7Q/L/WhRCf5BcCuuGjcZ2EPtDhIHN3QE/D7l7lEWfidipjaonWZqd13pQmtDupVnqLB8rtDOPdsEYHy71UMh8SHRxf/1e8RYpdQbW7kjqqS8G/8rwAA+Ci+zdKsfxwAAAABJRU5ErkJggg==" width="45" height="45" /></div>总字符数：39542</td>
+      <td width="20%" align="center" class="f1"><div style="padding-bottom:5px;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjJFMzAzNDYyNDA0NDExRUM5NDE4OTI1MURCRUQ5NzZCIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjJFMzAzNDYzNDA0NDExRUM5NDE4OTI1MURCRUQ5NzZCIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MkUzMDM0NjA0MDQ0MTFFQzk0MTg5MjUxREJFRDk3NkIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MkUzMDM0NjE0MDQ0MTFFQzk0MTg5MjUxREJFRDk3NkIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz40evyZAAAEBklEQVR42txZTUhUURS+Tm80s1LKcqHmgD+ggYYohTlWixZR2kZw4Q8GCUG0KApjSAkNS4o2LWshpkTkpsRctOjHmCjFGCMEf0AdXZQWSJjpKHbOm/Meg8177747M85MH3zzhnnnzf3uvefec+55MS8TYpkgrMB4YAGwCJgLzAKmA5OB24F/gAtAN3ACOAocArqAy0CPSMMxAqITgAeB5cDjwFKBdt8D3wB7gV+BS6ESjSNXCDwPPA3czwLHd2Af8BFwmGYmaKJtJLYemMqCjzlgB4mfCoboEuAdcoMYFjpskNtcBzr1DC0697YBq2gE7CEWzOj/7dReFbVvSjQ+UAO8C8xmW4tsardGS7iW6EpgK21f4UA6tV/JKxp9uCWMgn2Ft5AeXdE2WnQ5PP8an5HBDve/YrvzC7hUFD55xrIcN5g1MYlXeA7psWmJxgjX4K9nWthjPwYsY0edn1hqTZ2uLYpNKa9gtouX5M6aQAnpsqoLrjpW9fUj5Efcw/BrxCVf94L4lDMVbHlmRv3NFzgThzq65O+uc7Xs58A7M6ItNNIfKB1QRzqWemPajyfabrG5rk6v+FL7vwkKuAK6BWLkQgP71vtC1L8bSKcaXIopnO4zdoky2Y+Dhf6dcbym85Q+DErwgTzLI9gXy9PT4A7T/hfogQzZb/VsduXnm1mQjPShzs8oGLt6wuwIzXZ3yq6hteiyHU26NjhbOGsmgTpvWyhzK2bRAdRZKFECbzX7NO4YzKFzz8AGXUjw4FGEovNEnsapNZpeHhsB5KHoTKEEGLa52e7Hfu+lVdfKwUbPJrf9Hnck3YRMSTTH+A27glaQUEZXz2ZtcVE4J7HQITSakKxseaaRVl2nLjitRaZng/u0IOJQ9AqVAkwBg4dR4sNjI4AVieoSSWafHG9rNQwuejaCwQWxIFHmlMWf2Y2wj6dOaoZnXow2XmVSYqLIo24UPckTxnF78m1Ezi80AsQO+h2vPHu5nMvAIGCuwoFJzPIuw5f7RpYBTGfA7rYJVySqrXmMQjkGiR8Db7lDPHYQ92jeZzgPBqhzSKJy1KDRMUtJ9Lng8E47CuYcPV6gzmELbXmvoySwoM4VFL0GfE4ng0jGPOlcU86ILjpuRTL6SKd6sF0FPlROu4ECT+W4sPAaJLhJ36rvwVZJsG8CG5lO8S8MWAe2kzbP5mKNh3rjjDC3cJIuj1ZZbIp568NjESJ4jPRM6dXylJ41B8u/A/TjZn8zr1Xq7QE2hVG4m9rv0aqTaTk/Ft+uYVqwxYLHqd0u0sEtWhH+lHlfDg0w7zuRUGKD2qmndte1DH2rpnpTheFziU7uu0MgGN9uPSCX+GJk/F+/R/RFVL2x9VeiCsu78b8CDAA5EDsuAdwr5wAAAABJRU5ErkJggg==" width="45" height="45" /></div>最大单篇相似度：3.49%</td>
+    </tr>
+  </table>
+</div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#f4f9ef" >
+  <tr>
+    <td class="f4">相似文献列表</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">1</td>
+    <td class="lb_2">Django-DRF入门- 归来人少年- 博客园</td>
+    <td width="140" class="lb_4">3.49%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://www.cnblogs.com/jx-zzc/p/16519729.html</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">2</td>
+    <td class="lb_2">django 视图- MR_黄Python之路- 博客园</td>
+    <td width="140" class="lb_4">2.68%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://www.cnblogs.com/huangjiangyong/p/14534387.html</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">3</td>
+    <td class="lb_2">Django的views使用- Suraer - 博客园</td>
+    <td width="140" class="lb_4">2.14%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://www.cnblogs.com/suraer/p/8521280.html</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">4</td>
+    <td class="lb_2">DRF框架(五)——APIview实现增删改查 - 码农教程</td>
+    <td width="140" class="lb_4">1.75%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">http://www.manongjc.com/detail/59-pswseibonryjsvv.html</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">5</td>
+    <td class="lb_2">drf序列化群增、群改、群删- Οo白麒麟оΟ - 博客园</td>
+    <td width="140" class="lb_4">1.71%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://www.cnblogs.com/kylin5201314/p/14938892.html</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">6</td>
+    <td class="lb_2">GitHub 上超火和超好看的管理后台模版- 环信</td>
+    <td width="140" class="lb_4">1.29%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://www.easemob.com/news/6198</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">7</td>
+    <td class="lb_2">新手需知 - Ant Design Pro</td>
+    <td width="140" class="lb_4">0.98%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://pro.ant.design/zh-CN/docs/introduction/</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">8</td>
+    <td class="lb_2">基于Django的测试工具平台的设计与实现</td>
+    <td width="140" class="lb_4">0.96%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">尚洁 - 《北京交通大学硕士学位论文》 - 2019</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">9</td>
+    <td class="lb_2">Django 1.11 get()缺少1个必需的位置参数:“pk” - 问答- Python中文网</td>
+    <td width="140" class="lb_4">0.92%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://www.cnpython.com/qa/256315</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">10</td>
+    <td class="lb_2">def序列化器---视图&序列化&反序列化_def retrieve_骑台风...</td>
+    <td width="140" class="lb_4">0.88%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://blog.csdn.net/qq_52385631/article/details/123187505</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">11</td>
+    <td class="lb_2">基于Oracle的校园一卡通v2.1c数据库设计与性能优化</td>
+    <td width="140" class="lb_4">0.83%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">付翔 - 《南开大学硕士学位论文》 - 2008</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">12</td>
+    <td class="lb_2">Ant Design Pro_chengRantianxia的博客-CSDN博客_antdesign pro</td>
+    <td width="140" class="lb_4">0.76%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://blog.csdn.net/qq_42822007/article/details/103005080</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">13</td>
+    <td class="lb_2">ant-design-pro丝滑上手_Sunny_Future的博客-CSDN博客_ant-design...</td>
+    <td width="140" class="lb_4">0.76%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://blog.csdn.net/Sunny_Future/article/details/123563123</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">14</td>
+    <td class="lb_2">某职业技术学院考生网上报名系统的设计与实现</td>
+    <td width="140" class="lb_4">0.74%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">热米兰·阿不力米提 - 《厦门大学,厦门大学硕士学位论文》 - 2015</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">15</td>
+    <td class="lb_2">分布式耦合仿真系统故障的分析与研究</td>
+    <td width="140" class="lb_4">0.71%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">杨岩岩 - 《西南交通大学硕士学位论文》 - 2013</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">16</td>
+    <td class="lb_2">志愿者管理的国内研究现状 - 百度文库</td>
+    <td width="140" class="lb_4">0.71%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://wenku.baidu.com/view/e2cb80c0142ded630b1c59eef8c75fbfc77d9466.</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">17</td>
+    <td class="lb_2">基于云平台的机器人监控系统设计</td>
+    <td width="140" class="lb_4">0.70%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">俞俊铭 - 《浙江工业大学硕士学位论文》 - 2020</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">18</td>
+    <td class="lb_2">ModelSerializer类序列操作- black__star - 博客园</td>
+    <td width="140" class="lb_4">0.70%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://www.cnblogs.com/shaozheng/p/12099565.html</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">19</td>
+    <td class="lb_2">2021-08-06-DJ-034 Django 包装api,用类的方式重写_Amoor123的...</td>
+    <td width="140" class="lb_4">0.70%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://blog.csdn.net/sabian2/article/details/119452596</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">20</td>
+    <td class="lb_2">drf框架1 - 码农教程</td>
+    <td width="140" class="lb_4">0.65%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">http://www.manongjc.com/detail/11-biqsrzyqessrdft.html</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">21</td>
+    <td class="lb_2">基于B/S模式的课本漂流平台设计与实现</td>
+    <td width="140" class="lb_4">0.64%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">张万顺; - 《计算机时代》 - 2018</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">22</td>
+    <td class="lb_2">3D打印的知识产权安全问题探析</td>
+    <td width="140" class="lb_4">0.57%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">魏光禧;郑友德; - 《电子知识产权》 - 2022</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">23</td>
+    <td class="lb_2">基于OpenStack虚拟云桌面系统的研究与实现</td>
+    <td width="140" class="lb_4">0.55%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">李贵贵 - 《东南大学硕博学位论文》 - 2017</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">24</td>
+    <td class="lb_2">基于云计算的虚拟桌面平台在教学中的研究与应用</td>
+    <td width="140" class="lb_4">0.53%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">石少敏 - 《西安电子科技大学硕士学位论文》 - 2014</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">25</td>
+    <td class="lb_2">在线商品限时购活动管理系统的设计与实现</td>
+    <td width="140" class="lb_4">0.51%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">吴晨 - 《华中科技大学硕士学位论文》 - 2018</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">26</td>
+    <td class="lb_2">数据架构设计原则 - 百度文库</td>
+    <td width="140" class="lb_4">0.51%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://wenku.baidu.com/view/a8973048856fb84ae45c3b3567ec102de3bddf13.</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">27</td>
+    <td class="lb_2">等级考试网上报名系统的设计与实现</td>
+    <td width="140" class="lb_4">0.50%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">王欣 - 《北京工业大学硕士学位论文》 - 2010</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">28</td>
+    <td class="lb_2">DRF框架之使用Django框架完成后端接口(API)的定义</td>
+    <td width="140" class="lb_4">0.49%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://www.bbsmax.com/A/RnJWP3xO5q/</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">29</td>
+    <td class="lb_2">云存储数据完整性检测技术研究</td>
+    <td width="140" class="lb_4">0.44%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">张亮 - 《大连理工大学硕士学位论文》 - 2014</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">30</td>
+    <td class="lb_2">测试开发【Mock平台】03基础:初识Antd React 开箱即用中台...</td>
+    <td width="140" class="lb_4">0.44%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://blog.csdn.net/zyueqi1987/article/details/123756220</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">31</td>
+    <td class="lb_2">Django-DRF(1) - Michael--chen - 博客园</td>
+    <td width="140" class="lb_4">0.42%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://www.cnblogs.com/Michael--chen/p/11222143.html</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">32</td>
+    <td class="lb_2">Python_介绍_环境搭建_第一个程序_基本语法结构(1)_稳稳C9的...</td>
+    <td width="140" class="lb_4">0.40%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://blog.csdn.net/weixin_44238683/article/details/105652170</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">33</td>
+    <td class="lb_2">智慧城市疫情情报生态协同体构建研究</td>
+    <td width="140" class="lb_4">0.40%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">施阳 - 《湘潭大学硕士学位论文》 - 2021</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">34</td>
+    <td class="lb_2">python是一种解释型、面向什么的计算机程序设计语言_Python \解释...</td>
+    <td width="140" class="lb_4">0.40%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://blog.csdn.net/weixin_35903223/article/details/112882284</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">35</td>
+    <td class="lb_2">基于KVM与IDV架构的桌面云服务端设计与实现</td>
+    <td width="140" class="lb_4">0.40%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">苏传宇 - 《华南理工大学硕士学位论文》 - 2020</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">36</td>
+    <td class="lb_2">木兰编程语言,当事人最新回复来了_dotnet全栈开发的博客-CSDN...</td>
+    <td width="140" class="lb_4">0.40%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://blog.csdn.net/kebi007/article/details/104035030</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">37</td>
+    <td class="lb_2">电力公司故障处理系统的设计与实现</td>
+    <td width="140" class="lb_4">0.39%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">梁志洲 - 《东北大学硕士学位论文》 - 2016</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">38</td>
+    <td class="lb_2">python是什么语言-常见问题-PHP中文网</td>
+    <td width="140" class="lb_4">0.39%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://m.php.cn/faq/415534.html</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">39</td>
+    <td class="lb_2">视频矩阵控制服务器的设计</td>
+    <td width="140" class="lb_4">0.38%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">唐俊 - 《北京理工大学硕士学位论文》 - 2016</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">40</td>
+    <td class="lb_2">python实现上传下载文件功能 - 百度文库</td>
+    <td width="140" class="lb_4">0.38%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://wenku.baidu.com/view/68afa02add80d4d8d15abe23482fb4daa48d1d76.</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">41</td>
+    <td class="lb_2">银行运维用户集中管理系统的设计与实现</td>
+    <td width="140" class="lb_4">0.38%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">陈春波 - 《广东工业大学硕士学位论文》 - 2019</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">42</td>
+    <td class="lb_2">Django实现文件上传、下载 - 码农教程</td>
+    <td width="140" class="lb_4">0.38%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">http://www.manongjc.com/detail/29-ovxrzqseapgvymk.html</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">43</td>
+    <td class="lb_2">详解Django关于StreamingHttpResponse与FileResponse文件...</td>
+    <td width="140" class="lb_4">0.38%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">http://www.zzvips.com/article/185642.html</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">44</td>
+    <td class="lb_2">10 个GitHub 上超火和超好看的管理后台模版,后期工作可能用的上-...</td>
+    <td width="140" class="lb_4">0.37%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://jishuin.proginn.com/p/763bfbd388a4</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">45</td>
+    <td class="lb_2">论文格式数字顺序</td>
+    <td width="140" class="lb_4">0.37%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://www.nxhh.net/lunwenall/6586426.html</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">46</td>
+    <td class="lb_2">华为云数据库上云测评:性能超预期,开年采购福利倒计时</td>
+    <td width="140" class="lb_4">0.35%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">http://app.myzaker.com/article/6421855e1bc8e07704000031</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">47</td>
+    <td class="lb_2">合肥地区公共图书馆志愿者管理机制研究</td>
+    <td width="140" class="lb_4">0.33%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">张荣荣 - 《安徽大学硕士学位论文》 - 2019</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">48</td>
+    <td class="lb_2">唐钢冶炼公司员工绩效考核管理信息系统的设计与实现</td>
+    <td width="140" class="lb_4">0.33%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">李敬森 - 《电子科技大学硕士学位论文》 - 2012</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">49</td>
+    <td class="lb_2">电网公司数据资源管理系统设计与实现</td>
+    <td width="140" class="lb_4">0.31%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">代蕾 - 《电子科技大学硕士学位论文》 - 2021</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">50</td>
+    <td class="lb_2">python语言属于什么型语言-Python是什么样的编程语言?_weixin_...</td>
+    <td width="140" class="lb_4">0.30%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://blog.csdn.net/weixin_39800990/article/details/109620919</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">51</td>
+    <td class="lb_2">...B".Computer technology has become an important part of people’s li</td>
+    <td width="140" class="lb_4">0.30%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">http://www.1010jiajiao.com/czyy/shiti_id_5513d1d5f7f12c63f2136c461779e</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">52</td>
+    <td class="lb_2">《人民日报》关于“新冠”与“非典”疫情报道比较研究</td>
+    <td width="140" class="lb_4">0.29%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">姜耀敏 - 《大连理工大学硕士学位论文》 - 2021</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">53</td>
+    <td class="lb_2">中小企业内部信息管理系统的设计与实现</td>
+    <td width="140" class="lb_4">0.29%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">路宇 - 《黑龙江大学硕士学位论文》 - 2018</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">54</td>
+    <td class="lb_2">电子政务数据库加密系统研究</td>
+    <td width="140" class="lb_4">0.28%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">康辉 - 《浙江大学硕士学位论文》 - 2013</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">55</td>
+    <td class="lb_2">都江堰市教育局教育云桌面系统的设计与实现</td>
+    <td width="140" class="lb_4">0.28%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">徐斌 - 《电子科技大学硕士学位论文》 - 2017</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">56</td>
+    <td class="lb_2">基于Android平台的公交查询系统的设计与实现</td>
+    <td width="140" class="lb_4">0.28%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">任百戈 - 《北京工业大学硕士学位论文》 - 2017</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">57</td>
+    <td class="lb_2">Redis在手机银行系统中的应用研究</td>
+    <td width="140" class="lb_4">0.26%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">马斌 - 《兰州理工大学硕士学位论文》 - 2018</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">58</td>
+    <td class="lb_2">自学考试《信息系统设计与分析》考点 - 百度文库</td>
+    <td width="140" class="lb_4">0.26%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://wenku.baidu.com/view/26e205c987868762caaedd3383c4bb4cf7ecb78d.</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">59</td>
+    <td class="lb_2">高校大型体育赛事中大学生志愿者管理研究——以湘潭大学为例</td>
+    <td width="140" class="lb_4">0.26%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">曾勇 - 《湘潭大学硕士学位论文》 - 2011</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">60</td>
+    <td class="lb_2">网上考务报名系统的设计与实现</td>
+    <td width="140" class="lb_4">0.25%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">张恩程 - 《扬州大学硕士学位论文》 - 2018</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">61</td>
+    <td class="lb_2">渣土车管理系统的研究与实现</td>
+    <td width="140" class="lb_4">0.25%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">张春艳 - 《河北农业大学硕士学位论文》 - 2015</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">62</td>
+    <td class="lb_2">python是一种什么类型的编程_python是什么类型的编程语言_林叶欣...</td>
+    <td width="140" class="lb_4">0.25%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://blog.csdn.net/weixin_30070961/article/details/113983358</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">63</td>
+    <td class="lb_2">MongoDB多租户技术的研究与实现</td>
+    <td width="140" class="lb_4">0.23%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">陈志磊 - 《电子科技大学硕士学位论文》 - 2021</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">64</td>
+    <td class="lb_2">应用架构设计原则|堆栈|应用架构|应用程序|微服务|插..._...</td>
+    <td width="140" class="lb_4">0.23%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://www.163.com/dy/article/I0TII9CM0553SRCA.html</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">65</td>
+    <td class="lb_2">四、Python三大特性:封装、继承、多态_笑口常开的小丸子的博客-...</td>
+    <td width="140" class="lb_4">0.23%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://blog.csdn.net/weixin_46190208/article/details/123974811</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">66</td>
+    <td class="lb_2">基于C/S模式的企业人事工资管理信息系统的设计与实现</td>
+    <td width="140" class="lb_4">0.22%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">王敬一 - 《吉林大学硕士学位论文》 - 2008</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">67</td>
+    <td class="lb_2">某地市社会志愿者服务管理平台的设计与实现</td>
+    <td width="140" class="lb_4">0.22%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">程肖龙 - 《山东大学硕士学位论文》 - 2019</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">68</td>
+    <td class="lb_2">基于RESTful架构的东北粮网门户网站的设计与实现</td>
+    <td width="140" class="lb_4">0.22%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">王嘉雯 - 《沈阳师范大学硕士学位论文》 - 2019</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">69</td>
+    <td class="lb_2">基于指纹识别的Windows网络化登录设计与实现</td>
+    <td width="140" class="lb_4">0.21%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">代辉辉 - 《西南交通大学硕士学位论文》 - 2019</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">70</td>
+    <td class="lb_2">图片教学法提高高中物理教学有效性的行动研究</td>
+    <td width="140" class="lb_4">0.20%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">李霹 - 《华东师范大学硕士学位论文》 - 2015</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">71</td>
+    <td class="lb_2">基于Qt的文件加密管理系统的设计与实现</td>
+    <td width="140" class="lb_4">0.20%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">程至炜 - 《华中科技大学硕士学位论文》 - 2020</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">72</td>
+    <td class="lb_2">教学云桌面系统的设计与实现</td>
+    <td width="140" class="lb_4">0.19%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">曹健楠 - 《电子科技大学硕博学位论文》 - 2017</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">73</td>
+    <td class="lb_2">基于IDV架构的桌面虚拟化客户端的设计与实现</td>
+    <td width="140" class="lb_4">0.19%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">连锐男 - 《华南理工大学硕士学位论文》 - 2020</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">74</td>
+    <td class="lb_2">图书馆管理系统课程设计报告 - 百度文库</td>
+    <td width="140" class="lb_4">0.19%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://wenku.baidu.com/view/4e7f69d95527a5e9856a561252d380eb63942348.</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">75</td>
+    <td class="lb_2">ApiView 的使用_Sweetfuir的博客-CSDN博客_apiview 的url定义</td>
+    <td width="140" class="lb_4">0.18%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://blog.csdn.net/Sweetfuir/article/details/109336241</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">76</td>
+    <td class="lb_2">基于JAVA的校图书馆管理系统的设计与实现</td>
+    <td width="140" class="lb_4">0.18%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">毛瑞欣;王平;张国艳;徐婧;赵文恒; - 《信息与电脑(理论版)》 - 2020</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">77</td>
+    <td class="lb_2">基于SSM的实验课程预约管理系统</td>
+    <td width="140" class="lb_4">0.18%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">杨泽平;梁伟;陈浩;韩志彦;秦鄂东; - 《物联网技术》 - 2020</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">78</td>
+    <td class="lb_2">如何简化操作流程?来看这篇超全面的总结! - 优设网- 学设计上优设</td>
+    <td width="140" class="lb_4">0.17%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://www.uisdc.com/simplify-the-operational-process-summary</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">79</td>
+    <td class="lb_2">房山区人力资源和社会保障局综合办公平台的设计与实现</td>
+    <td width="140" class="lb_4">0.17%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">杜楠 - 《北京工业大学硕士学位论文》 - 2017</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">80</td>
+    <td class="lb_2">五种数据库特性对比(Redis/Mysql/SQLite/ES/MongoDB)</td>
+    <td width="140" class="lb_4">0.17%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://blog.csdn.net/mijichui2153/article/details/104768538</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">81</td>
+    <td class="lb_2">聋校初中历史教科书图片研究</td>
+    <td width="140" class="lb_4">0.16%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">杨茜 - 《南昌大学硕士学位论文》 - 2014</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">82</td>
+    <td class="lb_2">python语言具有可移植性吗_可移植Python(Mac Windows)_weixin_...</td>
+    <td width="140" class="lb_4">0.16%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://blog.csdn.net/weixin_39877504/article/details/110557433</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">83</td>
+    <td class="lb_2">php mysql志愿者信息管理系统_qq840612233的博客-CSDN博客</td>
+    <td width="140" class="lb_4">0.16%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://blog.csdn.net/qq840612233/article/details/128973873</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">84</td>
+    <td class="lb_2">web开发环节,css垂直水平居中怎么设置_普通网友的博客-CSDN...</td>
+    <td width="140" class="lb_4">0.16%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://blog.csdn.net/m0_60146993/article/details/119057203</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">85</td>
+    <td class="lb_2">国家电网重庆电力科学院门户系统设计与实现</td>
+    <td width="140" class="lb_4">0.16%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">朱珠 - 《电子科技大学硕士学位论文》 - 2016</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">86</td>
+    <td class="lb_2">互联网时代案件信息汇总分析</td>
+    <td width="140" class="lb_4">0.16%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">汪俊; - 《计算机与网络》 - 2017</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">87</td>
+    <td class="lb_2">政府对公立医院志愿者组织管理研究</td>
+    <td width="140" class="lb_4">0.16%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">陈金华 - 《中共广东省委党校硕士学位论文》 - 2020</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">88</td>
+    <td class="lb_2">大学生就业实习效果及其影响因素研究</td>
+    <td width="140" class="lb_4">0.16%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">康洁 - 《郑州大学硕士学位论文》 - 2018</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">89</td>
+    <td class="lb_2">安卓平台密码管理器的设计与实现</td>
+    <td width="140" class="lb_4">0.15%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">吴晗 - 《延边大学硕士学位论文》 - 2018</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">90</td>
+    <td class="lb_2">关于OA系统权限管理的设计方案</td>
+    <td width="140" class="lb_4">0.15%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">张顺攀; - 《电子世界》 - 2021</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">91</td>
+    <td class="lb_2">基于PHP课堂签到系统设计与实现</td>
+    <td width="140" class="lb_4">0.14%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">陈伟康;李广用; - 《现代信息科技》 - 2021</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">92</td>
+    <td class="lb_2">设计法则|打造极致的用户体验的秘诀-尼尔森十大可用性原则!</td>
+    <td width="140" class="lb_4">0.14%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">http://www.lanlanwork.com/blog/m/?post=9884</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">93</td>
+    <td class="lb_2">致谢范文(15篇) - 百度文库</td>
+    <td width="140" class="lb_4">0.14%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://wenku.baidu.com/view/311bffae82c4bb4cf7ec4afe04a1b0717ed5b302.</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">94</td>
+    <td class="lb_2">使用postman进行api接口测试(傻瓜式教程)_postman调用api...</td>
+    <td width="140" class="lb_4">0.14%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://blog.csdn.net/grand_brol/article/details/108209469</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">95</td>
+    <td class="lb_2">API接口自动化测试系统设计及实现</td>
+    <td width="140" class="lb_4">0.14%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">何舒 - 《电子科技大学硕士学位论文》 - 2018</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">96</td>
+    <td class="lb_2">基于神经网络的人脸检测及属性识别系统的设计与实现</td>
+    <td width="140" class="lb_4">0.14%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">宋雅奇 - 《首都经济贸易大学硕士学位论文》 - 2019</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">97</td>
+    <td class="lb_2">初识React前端框架开发- 简书</td>
+    <td width="140" class="lb_4">0.13%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">https://www.jianshu.com/p/138b5b7b0a36/</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">98</td>
+    <td class="lb_2">高校学生入学报名管理系统的设计与实现</td>
+    <td width="140" class="lb_4">0.13%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">叶萌 - 《厦门大学硕士学位论文》 - 2016</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50" align="center" valign="middle" bgcolor="#fcfaf1" class="lb_1">99</td>
+    <td class="lb_2">基于微信的活动管理平台的设计与实现</td>
+    <td width="140" class="lb_4">0.13%</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px #666666 solid;">&nbsp;</td>
+    <td class="lb_3">冯玉芽 - 《北京邮电大学硕士学位论文》 - 2019</td>
+    <td class="lb_5">单篇相似度</td>
+  </tr>
+</table>
+	
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#f4f9ef" style="margin-top:25px;" >
+  <tr>
+    <td class="f4">原文内容</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="f7">
+    		<p><span class='f7_gray'>学号   19103020128</span></p>
+    		<p><span class='f7_gray'>陕西国际商贸学院本科毕业论文</span></p>
+    		<p><span class='f7_gray'>基于Django+React的疫情防控社区志愿者管理系统的设计与实现</span></p>
+    		<p><span class='f7_gray'>二 级 学 院：信息工程学院</span></p>
+    		<p><span class='f7_gray'>专 业 名 称：计算机科学与技术</span></p>
+    		<p><span class='f7_gray'>学 生 姓 名：李佳音</span></p>
+    		<p><span class='f7_gray'>指 导 教 师：马小菊</span></p>
+    		<p><span class='f7_gray'>二○二三年三月</span></p>
+    		<p><span class='f7_gray'>陕西国际商贸学院毕业论文</span></p>
+    		<p><span class='f7_gray'>陕西</span></p>
+    		<p><span class='f7_gray'>2</span></p>
+    		<p><span class='f7_gray'>2</span></p>
+    		<p><span class='f7_gray'>2</span></p>
+    		<p><span class='f7_gray'>郑 重 声 明</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>本人呈交的学位论文，是在导师的指导下，独立进行研究工作所取得的成果，</span><span class='f7_black'></span><span class='f7_hong'>所有数据、图片资料真实可靠。</span><span class='f7_black'></span><span class='f7_hong'>尽我所知，除文中已经注明引用的内容外，本学位论文的研究成果不包含他人享有著作权的内容。</span><span class='f7_black'></span><span class='f7_hong'>对本论文所涉及的研究工作做出贡献的其他个人和集体，均已在文中以明确的方式标明。</span><span class='f7_black'></span><span class='f7_hong'>本学位论文的知识产权归属于培养单位。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>本人签名：                     日期：</span></p>
+    		<p><span class='f7_gray'>摘  要</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>计算机技术在现代信息管理的应用中，使计算机成为管理员应用现代技术的重要工具。</span><span class='f7_black'>能够高效便捷的解决管理员的管理工作，</span><span class='f7_hong'>实现对志愿者信息管理的自动化，</span><span class='f7_black'>提高效率。</span></p>
+    		<p><span class='f7_black'>本文介绍了一种基于DRF框架和React框架的疫情防控社区志愿者管理系统，旨在帮助机构或组织更好地管理和运营志愿者队伍，提高组织的效率、减少管理成本。首先，本文对志愿者管理的相关背景和现状进行了分析和总结，</span><span class='f7_hong'>指出了传统志愿者管理的弊端和不足。</span><span class='f7_black'>其次，本文提出了一种基于DRF框架和React框架的疫情防控社区志愿者管理系统的设计方案，</span><span class='f7_hong'>并详细介绍了系统的功能模块及其实现方法。</span><span class='f7_black'></span><span class='f7_hong'>系统的主要功能包括用户管理、活动管理、报名信息管理和统计分析。</span><span class='f7_black'></span><span class='f7_hong'>最后，本文对系统进行了系统测试、功能测试和接口测试，</span><span class='f7_black'></span><span class='f7_hong'>根据测试结果分析可得出结论，</span><span class='f7_black'></span><span class='f7_hong'>本系统具有良好的用户体验和稳定性，</span><span class='f7_black'></span><span class='f7_hong'>可以满足志愿者管理的实际需求。</span><span class='f7_black'>本文所提出的基于DRF框架和React框架的疫情防控社区志愿者管理系统具有一定的创新性和实用性，可为志愿公益活动管理提供新的思路和方法。系统功能模块齐全，实现了对志愿者以及疫情防控公益活动管理的系统化、科学化，既可以提高服务质量，又大大的促进了管理系统的发展。</span></p>
+    		<p><span class='f7_gray'>关键词：志愿者管理系统；DRF框架；React框架</span></p>
+    		<p><span class='f7_gray'>Abstract</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>In the application of modern information management,</span><span class='f7_black'></span><span class='f7_hong'>computer technology has become an important tool for administrators to apply modern technology.</span><span class='f7_black'>It can solve the management of administrators efficiently and conveniently, realize the automation of volunteer information management, and improve efficiency.</span></p>
+    		<p><span class='f7_black'>This paper introduces a community volunteer management system for epidemic prevention and control based on DRF framework and React framework, which aims to help organizations or organizations better manage and operate volunteer teams, improve organizational efficiency and reduce management costs. First of all,</span><span class='f7_hong'>this paper analyzes and summarizes the background and current situation of volunteer management,</span><span class='f7_black'>and points out the drawbacks and shortcomings of traditional volunteer management. Secondly, this paper proposes a design scheme of community volunteer management system for epidemic prevention and control based on DRF framework and React framework,</span><span class='f7_hong'>and introduces the functional modules and implementation methods of the system in detail.</span><span class='f7_black'></span><span class='f7_hong'>The main functions of the system include user management, activity management, registration information management and statistical analysis.</span><span class='f7_black'>Finally,</span><span class='f7_hong'>this paper conducts system test,</span><span class='f7_black'>function test and interface test on the system.</span><span class='f7_hong'>According to the analysis of test results,</span><span class='f7_black'>it can be concluded that the system has good user experience and stability, and can meet the actual needs of volunteer management. The community volunteer management system for epidemic prevention and control based on DRF framework and React framework proposed in this paper is innovative and practical,</span><span class='f7_hong'>and can provide new ideas and methods for the management of voluntary public welfare activities.</span><span class='f7_black'>With complete functional modules, the system has realized the systematic and scientific management of volunteers and public welfare activities of epidemic prevention and control, which can not only improve the quality of service, but also greatly promote the development of the management system.</span></p>
+    		<p><span class='f7_gray'>Key words: volunteer management system; Django restful framework; React framework</span></p>
+    		<p><span class='f7_gray'>陕西国际商贸学院毕业论文</span></p>
+    		<p><span class='f7_gray'>摘  要</span></p>
+    		<p><span class='f7_gray'>目录</span></p>
+    		<p><span class='f7_gray'>1 绪论	1</span></p>
+    		<p><span class='f7_gray'>1.1 课题背景与意义	1</span></p>
+    		<p><span class='f7_gray'>1.2 国内外研究现状	1</span></p>
+    		<p><span class='f7_gray'>1.3 本课题工作	2</span></p>
+    		<p><span class='f7_gray'>2 系统开发环境	2</span></p>
+    		<p><span class='f7_gray'>2.1 Python 技术	2</span></p>
+    		<p><span class='f7_gray'>2.2 MySQL数据库	3</span></p>
+    		<p><span class='f7_gray'>2.3 B/S结构	3</span></p>
+    		<p><span class='f7_gray'>2.4 DRF（Django REST Framework）框架	4</span></p>
+    		<p><span class='f7_gray'>2.5 React框架	4</span></p>
+    		<p><span class='f7_gray'>2.6 Ant Design Pro	5</span></p>
+    		<p><span class='f7_gray'>2.7 系统开发环境	5</span></p>
+    		<p><span class='f7_gray'>2.8 系统开发工具	5</span></p>
+    		<p><span class='f7_gray'>3 系统分析	7</span></p>
+    		<p><span class='f7_gray'>3.1 可行性分析	7</span></p>
+    		<p><span class='f7_gray'>3.1.1 技术可行性	7</span></p>
+    		<p><span class='f7_gray'>3.1.2 操作可行性分析	7</span></p>
+    		<p><span class='f7_gray'>3.1.3 经济可行性	7</span></p>
+    		<p><span class='f7_gray'>3.2 系统流程分析	8</span></p>
+    		<p><span class='f7_gray'>3.2.1 系统开发流程	8</span></p>
+    		<p><span class='f7_gray'>3.2.2 用户注册流程	9</span></p>
+    		<p><span class='f7_gray'>3.2.3 用户登录流程	10</span></p>
+    		<p><span class='f7_gray'>3.2.4 系统操作流程	11</span></p>
+    		<p><span class='f7_gray'>3.2.5 添加信息操作流程	12</span></p>
+    		<p><span class='f7_gray'>3.2.6 修改信息操作流程	13</span></p>
+    		<p><span class='f7_gray'>3.2.7 删除信息操作流程	14</span></p>
+    		<p><span class='f7_gray'>3.3 系统用例分析	15</span></p>
+    		<p><span class='f7_gray'>3.3.1 管理员用例	15</span></p>
+    		<p><span class='f7_gray'>3.3.2 公益企业用例	17</span></p>
+    		<p><span class='f7_gray'>3.3.3 普通用户用例	17</span></p>
+    		<p><span class='f7_gray'>4 系统设计	19</span></p>
+    		<p><span class='f7_gray'>4.1 系统结构设计	19</span></p>
+    		<p><span class='f7_gray'>4.2 数据库设计	20</span></p>
+    		<p><span class='f7_gray'>4.2.1 数据库设计原则	21</span></p>
+    		<p><span class='f7_gray'>4.2.2 概念模型设计	22</span></p>
+    		<p><span class='f7_gray'>4.2.3 数据库逻辑结构设计	24</span></p>
+    		<p><span class='f7_gray'>5 系统的设计与实现	27</span></p>
+    		<p><span class='f7_gray'>5.1 公共模块	27</span></p>
+    		<p><span class='f7_gray'>5.1.1 登录模块	27</span></p>
+    		<p><span class='f7_gray'>5.1.2 个人中心模块	27</span></p>
+    		<p><span class='f7_gray'>5.1.3 文件导出模块	28</span></p>
+    		<p><span class='f7_gray'>5.1.4 接口文档模块	29</span></p>
+    		<p><span class='f7_gray'>5.2 普通用户模块	30</span></p>
+    		<p><span class='f7_gray'>5.2.1 活动列表模块	30</span></p>
+    		<p><span class='f7_gray'>5.2.2 报名列表模块	31</span></p>
+    		<p><span class='f7_gray'>5.3 公益企业用户模块	32</span></p>
+    		<p><span class='f7_gray'>5.3.1 活动管理模块	32</span></p>
+    		<p><span class='f7_gray'>5.3.2 报名管理模块	37</span></p>
+    		<p><span class='f7_gray'>5.4 管理员模块	38</span></p>
+    		<p><span class='f7_gray'>5.4.1 用户管理模块	38</span></p>
+    		<p><span class='f7_gray'>6 系统测试	40</span></p>
+    		<p><span class='f7_gray'>6.1 测试目的	40</span></p>
+    		<p><span class='f7_gray'>6.2 接口测试	40</span></p>
+    		<p><span class='f7_gray'>6.3 测试结果	41</span></p>
+    		<p><span class='f7_gray'>结论	42</span></p>
+    		<p><span class='f7_gray'>参考文献	43</span></p>
+    		<p><span class='f7_gray'>致谢	45</span></p>
+    		<p><span class='f7_gray'>附录	46</span></p>
+    		<p><span class='f7_gray'>1 绪论</span></p>
+    		<p><span class='f7_gray'>1.1 课题背景与意义</span></p>
+    		<p><span class='f7_black'>计算机技术的快速发展在一定程度上改变了全球几乎所有组织团体自我管理的方法，自上世纪九十年代起，我国已经有企业开始提出通过互联网处理信息。</span><span class='f7_hong'>二十一世纪来，我国的国家综合实力有了很大的提升，</span><span class='f7_black'>经济得以飞速发展，</span><span class='f7_hong'>社会各行各业都开始加入信息化的趋势中。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>以往的志愿者公益活动的信息，都是通过工作人员手工完成统计。这种方式无法满足巨量的数据信息处理，缺乏信息时效性，在查询和修改信息时有很大的不便之处。但现在计算机技术体系已将相对成熟能够满足人们生活中的很多需求。本系统的信息处理有着人工无可替代的优点。计算机有着巨大的算力，处理信息迅速高效，有着极大的储存量，同时信息追溯性强，人工成本低廉。能够极大地提高工作效率，有了成熟的社区志愿者管理系统，公益活动的举行在各个方面更加科学高效，更加简单系统。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>通过社区志愿者管理系统的使用，</span><span class='f7_black'>可以从以下几个方面简述该系统对公益行业发展带来的便利和优化。首先通过该系统可以有效地提升公益行业的规模，同时处理大量的志愿者报名信息，</span><span class='f7_hong'>使整个行业发展得更加规范，更加合理，</span><span class='f7_black'>以带动整体的工作效益。其次依附于该系统，社区志愿者可以用更好的管理结构，优化活动人员报名比例，节省大量的管理中损耗的成本。综上，该系统对公益志愿行业的发展有长足的便利。</span></p>
+    		<p><span class='f7_gray'>1.2 国内外研究现状</span></p>
+    		<p><span class='f7_black'>目前，</span><span class='f7_hong'>关于志愿者服务和志愿者组织管理的研究文献数量有限。</span><span class='f7_black'></span><span class='f7_hong'>随着志愿活动的发展，志愿者和公益活动的管理问题将越发凸显。</span><span class='f7_black'></span><span class='f7_hong'>目前，国内关于志愿者管理的相关研究主要集中在以下点，第一个是宏观性的“问题——对策”模式；第二点是对志愿者的激励；第三点是使用人力资源管理方法进行考察；第四点是特殊背景下的特殊志愿活动；第五点是关于对青少年志愿者的思想教育问题。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>我国志愿者管理大概是在90年代初刚起步，因为经济稍微落后等因素，</span><span class='f7_hong'>对志愿服务、没有足够的精力来进行管理。</span><span class='f7_black'>没有对志愿者的工作制定相关的法律法规来完善它，也没有对志愿者的管理提出适合的政策。相较于国外的研究状况，</span><span class='f7_hong'>国内对志愿者管理的研究就比较晚，</span><span class='f7_black'>而且主要集中在最近十多年。在过去的这些年，国内对志愿者以及志愿服务方面的研究越来越深刻。国内针对高校志愿者服务管理系统的分析与设计依旧不多。</span></p>
+    		<p><span class='f7_black'>国外在志愿者服务行业的研究要早于国内很多年，并且也产生了巨大的国际反响，引起了世界的普遍关注。这和国外发达国家的相关法律法规、管理政策、经济发展状况、国外的公民素质普遍偏高，志愿意识强烈是密切相关的。但就当时的经济水平和计算机发展状况而言，没有互联网服务的志愿者管理要想有高效率是十分局限的。志愿活动组织者很难将自己活动及时宣传让大众都知道，也难以第一时间通知志愿者参与活动。并且，当时计算机十分昂贵，普遍设计的小型管理系统功能匮乏，只能简单地记录活动信息，实现并普及志愿服务管理系统是比较困难的事情。随着国外志愿服务组织的发展和大型志愿活动等的开展，国外志愿者相关政策的发展也促使着志愿服务的条件日趋成熟，志愿服务管理系统设计的渐渐完善。</span></p>
+    		<p><span class='f7_gray'>1.3 本课题工作</span></p>
+    		<p><span class='f7_black'>现在对本系统进行基本介绍并在这个基础上分析整个系统开发的过程，以便全面的完成该系统，在开发前对志愿者公益行业进行了大量的调研并进行综合的整理，</span><span class='f7_hong'>然后对已有的信息进行细致的分析，</span><span class='f7_black'></span><span class='f7_hong'>来决定系统需要实现什么样的功能，</span><span class='f7_black'>然后根据已有的数据设计系统，根据实际情况以及自身所掌握的技术，我确定使用 Python技术来完成该系统后端的开发，</span><span class='f7_hong'>在数据储存方面选择了MySQL数据库。</span><span class='f7_black'></span><span class='f7_hong'>后端使用DRF框架，实现RESTful API接口。</span><span class='f7_black'></span><span class='f7_hong'>前端页面设计与开发使用React技术，</span><span class='f7_black'>实现单页面应用。这些项技术都经历了很长时间的发展，都十分成熟，从网页端动态化处理和对信息的处理，都安全高效实用。</span></p>
+    		<p><span class='f7_gray'>2 系统开发环境</span></p>
+    		<p><span class='f7_gray'>2.1 Python 技术</span></p>
+    		<p><span class='f7_black'>Python语言继承了ABC语言的特性，</span><span class='f7_hong'>是一种面向对象的动态类型语言，最初被设计用于编写自动化脚本(shell)，随着它的版本不断更新，语言新功能持续添加，越来越多被用于前后端分离、独立的、大型项目的开发。</span><span class='f7_black'></span><span class='f7_hong'>Python的语法简洁清晰，</span><span class='f7_black'>适用于数据分析、人工智能、机器学习等多种领域。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>Python是一种解释型语言，</span><span class='f7_black'>意味着它可以在运行时解释代码，而不需要编译。</span><span class='f7_hong'>Python支持多种编程范式，</span><span class='f7_black'></span><span class='f7_hong'>包括面向对象编程，函数式编程和过程式编程。</span><span class='f7_black'>同时，</span><span class='f7_hong'>Python也是一种高级编程语言，具有功能强大的编程功能，可以用于开发Web应用程序，</span><span class='f7_black'></span><span class='f7_hong'>移动应用程序，网络服务和桌面应用程序。</span><span class='f7_black'>它还提供了一系列强大的编程库，可以用于实现各种功能，如数据处理，机器学习，图形处理等。</span><span class='f7_hong'>Python还提供了一个交互式编程环境，</span><span class='f7_black'></span><span class='f7_hong'>可以让开发者快速开发和测试代码。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>Python的优点有很多，主要包含以下几点：</span><span class='f7_black'></span><span class='f7_hong'>Python是一种易于学习的编程语言，它具有简洁的语法，</span><span class='f7_black'>使程序员能够快速上手。</span><span class='f7_hong'>Python拥有丰富的第三方库，</span><span class='f7_black'></span><span class='f7_hong'>可以满足开发人员的各种需求。</span><span class='f7_black'></span><span class='f7_hong'>Python支持多种编程范式，</span><span class='f7_black'>可以满足不同的开发需求。</span><span class='f7_hong'>Python拥有强大的可移植性，可以在多种操作系统上运行；</span><span class='f7_black'></span><span class='f7_hong'>Python拥有优秀的可读性，</span><span class='f7_black'>可以让程序员更容易理解代码。</span></p>
+    		<p><span class='f7_gray'>2.2 MySQL数据库</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>MySQL是一种关系型数据库，由瑞典MySQL AB公司开发，属于 Oracle 旗下产品。</span><span class='f7_black'>MySQL 是最流行的关系型数据库之一，在 WEB 应用方面，MySQL是最好的 RDBMS (Relational Database Management System，</span><span class='f7_hong'>关系数据库管理系统) 应用软件之一。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>MySQL数据库在数据存储方面有很强大的功能，</span><span class='f7_black'>易于使用，易于安装和维护；支持多种存储引擎，可以根据不同的应用场景选择合适的存储引擎；支持多种编程语言，可以使用多种编程语言来操作 MySQL 数据库；支持多种安全机制，可以有效地保护数据库的安全；支持多种复制机制，</span><span class='f7_hong'>可以提高数据库的可用性和性能；</span><span class='f7_black'>支持多种分布式架构，可以满足不同的业务需求。</span></p>
+    		<p><span class='f7_gray'>2.3 B/S结构</span></p>
+    		<p><span class='f7_black'>B/S结构是指浏览器/服务器结构，是一种客户端/服务器结构，客户端通过浏览器发出请求，服务器接收请求并处理，</span><span class='f7_hong'>然后将处理结果返回给客户端，</span><span class='f7_black'>客户端再将结果显示出来。</span></p>
+    		<p><span class='f7_black'>数据层、控制逻辑层和视图层组成了 B/S 结构的三个主要层级。用户的全流程访问是以视图层窗口，凭借控制层转移数据层的数据来完成的。此三个层级相对独立，有利于分别维护和稳定操作，又能做到数据共享以实现高效。</span></p>
+    		<p><span class='f7_gray'>2.4 DRF（Django REST Framework）框架</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>DRF(Django REST framework)是一个基于Django的RESTful Web框架，它提供了一系列的工具，可以帮助开发者快速构建RESTful API。</span><span class='f7_black'>它提供了一个可扩展的架构，可以让开发者轻松地构建和维护RESTful API。它还提供了一系列的序列化器，可以帮助开发者将数据转换为JSON或XML格式，以便在Web浏览器和移动设备之间传输数据。</span></p>
+    		<p><span class='f7_black'>它提供了一系列的功能，包括路由，视图，序列化，认证，权限，调试、文档，测试。</span><span class='f7_hong'>它还支持多种数据库，如PostgreSQL，MySQL，SQLite，</span><span class='f7_black'>MongoDB等。DRF框架的发展可以追溯到2010年，</span><span class='f7_hong'>当时它是一个简单的Python库，</span><span class='f7_black'></span><span class='f7_hong'>用于构建RESTful API。</span><span class='f7_black'></span><span class='f7_hong'>随着时间的推移，DRF框架的生态变得越来越强大。</span><span class='f7_black'>现在，它已经成为一个完整的Web框架，</span><span class='f7_hong'>可以帮助开发人员快速构建和部署RESTful API。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>DRF框架的优势包括：</span></p>
+    		<p><span class='f7_black'>易于使用：DRF框架具有易于使用的API，</span><span class='f7_hong'>可以轻松地构建RESTful API。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>可扩展性：DRF框架具有可扩展性，可以根据需要轻松扩展功能。</span></p>
+    		<p><span class='f7_black'>安全性：DRF框架具有强大的安全性，可以有效地防止CSRF攻击和XSS攻击。</span></p>
+    		<p><span class='f7_black'>可读性：DRF框架具有可读性，可以轻松地调试和维护代码。</span></p>
+    		<p><span class='f7_black'>可定制性：DRF框架具有可定制性，可以根据需要轻松定制功能。</span></p>
+    		<p><span class='f7_gray'>2.5 React框架</span></p>
+    		<p><span class='f7_black'>React是前端三大主流框架之一，</span><span class='f7_hong'>是一个专门用来构建前端界面UI的JavaScript库，</span><span class='f7_black'>它的性能较高，代码逻辑简单易懂。</span></p>
+    		<p><span class='f7_black'>React使用声明式编程，允许开发人员更轻松地创建动态的用户界面。React可以让开发人员更轻松地处理视图层，并且可以更快地渲染用户界面。</span><span class='f7_hong'>它还可以帮助开发人员更轻松地管理状态，</span><span class='f7_black'></span><span class='f7_hong'>从而更轻松地创建可维护的应用程序。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>React拥有强大的功能和优点：使用JSX语法，</span><span class='f7_black'>可以更容易地构建用户界面。可以使用组件化的方式来构建应用，更容易维护和扩展。拥有虚拟DOM，可以更快地渲染页面。</span><span class='f7_hong'>拥有强大的社区支持，可以获得更多的帮助。</span><span class='f7_black'>拥有一些实用的工具，可以更快地开发应用。</span></p>
+    		<p><span class='f7_gray'>2.6 Ant Design Pro</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>Ant Design Pro 是基于 Ant Design 和 umi 的封装的一整套企业级中后台前端/设计解决方案，致力于在设计规范和基础组件的基础上，继续向上构建，提炼出典型模板/业务组件/配套设计资源，进一步提升企业级中后台产品设计研发过程中的『用户』和『设计者』的体验。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>Ant Design Pro 在力求提供开箱即用的开发体验，为我们提供完整的脚手架，涉及国际化，权限，mock，数据流，网络请求等各个方面。</span><span class='f7_black'></span><span class='f7_hong'>为这些中后台中常见的方案提供了最佳实践来减少学习和开发成本。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>同时为了提供更加高效的开发体验，Ant Design Pro提供了一系列模板组件，ProLayout，ProTable，ProList 都是开发中后台的好帮手，可以显著的减少样板代码。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>2.7 系统开发环境</span></p>
+    		<p><span class='f7_gray'>操作系统：Windows10</span></p>
+    		<p><span class='f7_gray'>Python运行环境：Python3.6</span></p>
+    		<p><span class='f7_gray'>Node环境：Node -v16.13.2</span></p>
+    		<p><span class='f7_gray'>数据库：MySQL 5.7</span></p>
+    		<p><span class='f7_gray'>React运行环境：React17.0.0</span></p>
+    		<p><span class='f7_gray'>2.8 系统开发工具</span></p>
+    		<p><span class='f7_gray'>编译器：PyCharm，VSCode</span></p>
+    		<p><span class='f7_gray'>数据库可视化工具：Navicat Premium</span></p>
+    		<p><span class='f7_gray'>测试工具：Postman</span></p>
+    		<p><span class='f7_gray'>接口文档工具：Swagger</span></p>
+    		<p><span class='f7_gray'>浏览器：Google 浏览器和Edge浏览器</span></p>
+    		<p><span class='f7_gray'>2</span></p>
+    		<p><span class='f7_gray'>3 系统分析</span></p>
+    		<p><span class='f7_gray'>3.1 可行性分析</span></p>
+    		<p><span class='f7_black'>疫情防控社区志愿者管理系统的主要功能是对公益活动信息和每个活动参加志愿者的管理。可行性分析要从系统的经济层、技术层和可操作性对系统进行全面分析，以下根据这三点对疫情防控社区志愿者管理系统进行全面的分析。</span></p>
+    		<p><span class='f7_gray'>3.1.1 技术可行性</span></p>
+    		<p><span class='f7_black'>疫情防控社区志愿者管理系统主要采用Python语言和tsx语言，基于B/S结构进行开发，</span><span class='f7_hong'>DRF(Django REST Framework)框架完成接口的实现，React框架实现前端的设计与开发，MySQL数据库实现对数据的存储。</span><span class='f7_black'>以上技术为本系统的关键技术，可以支撑并完成对本系统的开发语实现，所以在技术可行性分析方面没有太大的问题。</span></p>
+    		<p><span class='f7_gray'>3.1.2 操作可行性分析</span></p>
+    		<p><span class='f7_black'>现在已有的管理系统对使用者来说都是很简单方便，该系统也例外，根据使用者的角度，该系统在开发上致力于简化结构，使页面尽可能简洁，优化用户操作，使用者只需要在浏览器中打开系统并进行登录就可以进行使用操作系统。综上所述，该系统的操作简单，方便，可以进行开发。</span></p>
+    		<p><span class='f7_gray'>3.1.3 经济可行性</span></p>
+    		<p><span class='f7_black'>疫情防控志愿者管理主要用于管理公益活动的发布和志愿者的信息，该系统的运行所需配置不高，很容易购买，在开发和建设期间必要投入一定的资金，但该系统可以提高效率，减少相应的管理成本，对整个行业的发展都能起到促进作用，带来更多的利益，所以该系统在经济方面是可行的。</span></p>
+    		<p><span class='f7_gray'>3.2 系统流程分析</span></p>
+    		<p><span class='f7_gray'>3.2.1 系统开发流程</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>系统的开发流程包括以下几个阶段：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>1. 需求分析：确定系统的功能和性能要求，以及用户的需求和期望。</span></p>
+    		<p><span class='f7_black'>2. 设计阶段：设计系统的架构、模块、接口和数据结构等。</span></p>
+    		<p><span class='f7_black'>3. 编码阶段：根据设计文档和开发计划进行编码实现。</span></p>
+    		<p><span class='f7_black'>4. 测试和调试阶段：</span><span class='f7_hong'>对系统进行功能测试、性能测试、安全测试等，</span><span class='f7_black'></span><span class='f7_hong'>并进行调试，确保系统的可靠性和稳定性。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>5. 部署和维护阶段：部署系统到实际环境中，并对系统进行维护和升级。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>系统开发的流程图如图3.1所示：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>图 3.1 系统开发流程图</span></p>
+    		<p><span class='f7_gray'>3.2.2 用户注册流程</span></p>
+    		<p><span class='f7_black'>普通用户和公益企业账号首先要进行注册才能获取系统的登录权限。</span></p>
+    		<p><span class='f7_gray'>系统注册流程分析：</span></p>
+    		<p><span class='f7_black'>1. 打开注册页面：</span><span class='f7_hong'>用户需要打开系统的注册页面，填写相应的注册信息。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>2. 填写注册信息：</span><span class='f7_hong'>用户需要填写相应的注册信息，包括用户名、密码、邮箱、手机号码等，</span><span class='f7_black'>确保信息的正确性和完整性。</span></p>
+    		<p><span class='f7_black'>3. 校验信息：</span><span class='f7_hong'>系统需要对用户填写的信息进行校验，</span><span class='f7_black'>确保信息的正确性和完整性。</span></p>
+    		<p><span class='f7_black'>4. 发送验证邮件/短信：系统需要向用户发送验证邮件或短信，以验证用户的身份和信息。</span></p>
+    		<p><span class='f7_black'>5. 确认验证信息：用户收到验证邮件或短信后，需要确认验证信息，并点击验证链接。</span></p>
+    		<p><span class='f7_black'>6. 验证成功：</span><span class='f7_hong'>系统收到用户提交的验证信息后，</span><span class='f7_black'>进行相应的验证，</span><span class='f7_hong'>验证成功后，用户可以登录系统。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>7. 返回结果：系统会返回注册的结果，包括注册是否成功、注册的用户名等。</span></p>
+    		<p><span class='f7_black'>8. 操作完成：用户根据系统返回的结果，进行相应的处理，例如登录系统、修改信息等。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>在设计系统注册流程时，需要考虑以下几个方面：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>1. 界面设计：注册页面应该设计清晰、简单，便于用户填写相关信息。</span></p>
+    		<p><span class='f7_black'>2. 数据校验：</span><span class='f7_hong'>系统需要对用户填写的信息进行校验，</span><span class='f7_black'>确保数据的正确性和完整性。</span></p>
+    		<p><span class='f7_black'>3. 异常处理：</span><span class='f7_hong'>系统需要对异常情况进行处理，</span><span class='f7_black'>例如用户填写错误信息、系统故障等情况。</span></p>
+    		<p><span class='f7_black'>4. 用户体验：操作流程应该简单、易于理解，</span><span class='f7_hong'>减少用户操作的复杂性和困难度。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>5. 安全保障：系统应该采取相应的安全措施，确保用户的数据安全和隐私保护。</span></p>
+    		<p><span class='f7_black'>通过合理的系统注册流程分析，</span><span class='f7_hong'>可以提高用户的使用效率和用户体验，</span><span class='f7_black'></span><span class='f7_hong'>同时也可以提高系统的可靠性和安全性。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>注册的流程图如图3.2所示：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>图 3.2 注册流程图</span></p>
+    		<p><span class='f7_gray'>3.2.3 用户登录流程</span></p>
+    		<p><span class='f7_black'>用户的信息安全至关重要，关系到一个系统的数据库安全，安全不达标，会造成信息失窃损毁，对用户带来无法挽回损失，因此本系统在使用前，</span><span class='f7_hong'>要输入使用者的用户名和密码登录，</span><span class='f7_black'>保证用户信息不会泄露。</span><span class='f7_hong'>用户登录的流程图如图3.3所示。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>图 3.3 用户登录流程图</span></p>
+    		<p><span class='f7_gray'>3.2.4 系统操作流程</span></p>
+    		<p><span class='f7_black'>系统操作流程，是指用户在体验或使用系统时所需要遵循的操作步骤和流程，其主要目的是为了帮助系统用户完成相应的操作任务。</span><span class='f7_hong'>系统操作流程包括以下几个方面：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>1. 登录操作：</span><span class='f7_hong'>用户需要输入账号和密码等信息，</span><span class='f7_black'></span><span class='f7_hong'>登录系统后才能进行后续的操作。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>2. 界面操作：用户需要了解系统的界面布局和操作方式，包括菜单栏、工具栏、状态栏等，以便于快速定位和操作所需要的功能。</span></p>
+    		<p><span class='f7_black'>3. 功能操作：用户需要根据自己的需求，</span><span class='f7_hong'>选择对应的功能模块进行操作，</span><span class='f7_black'></span><span class='f7_hong'>例如查询、新增、编辑、删除等操作。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>4. 数据输入和输出：用户需要输入所需要的数据信息，</span><span class='f7_hong'>或者根据查询结果查看相应的数据信息，</span><span class='f7_black'>以满足自己的业务需求。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>5. 操作流程控制：在操作过程中，</span><span class='f7_black'></span><span class='f7_hong'>用户需要根据系统的提示信息和状态信息，</span><span class='f7_black'>控制操作流程，确保操作的正确性和完整性。</span></p>
+    		<p><span class='f7_black'>6. 操作结果处理：</span><span class='f7_hong'>用户需要根据操作结果，进行相应的处理，</span><span class='f7_black'>例如保存数据、打印报表、导出数据等。</span></p>
+    		<p><span class='f7_black'>7. 系统退出操作：</span><span class='f7_hong'>用户在完成操作后，需要进行系统退出操作，</span><span class='f7_black'></span><span class='f7_hong'>以保护系统和用户的数据安全。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>在设计系统操作流程时，需要着重考虑用户体验，</span><span class='f7_black'>使得系统操作流程更加简单和易于使用。同时，需要将系统操作流程设计为可定制和可配置的，</span><span class='f7_hong'>以便于满足不同用户的需求和使用习惯。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>3.2.5 添加信息操作流程</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>系统添加信息操作流程包括以下几个步骤：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>1. 打开添加信息对话框：用户需要打开系统中相应的功能模块，并选择添加信息的操作。</span></p>
+    		<p><span class='f7_black'>2. 填写信息：</span><span class='f7_hong'>用户需要根据系统的提示，填写相应的信息，</span><span class='f7_black'></span><span class='f7_hong'>包括名称、描述、时间、地点等。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>3. 检查信息：</span><span class='f7_hong'>用户需要仔细检查填写的信息是否正确，</span><span class='f7_black'>确保添加的信息符合要求。</span></p>
+    		<p><span class='f7_black'>4. 提交信息：用户需要点击提交按钮，将填写的信息提交到系统中进行保存。</span></p>
+    		<p><span class='f7_black'>5. 系统处理信息：系统收到用户提交的信息后，会进行相应的处理，包括校验数据、保存数据等操作。</span></p>
+    		<p><span class='f7_black'>6. 返回结果：系统会返回添加信息的结果，包括添加是否成功、添加的信息ID等。</span></p>
+    		<p><span class='f7_black'>7. 操作完成：前端根据系统后端返回的结果，进行对应的处理，例如保存信息、继续添加信息、返回信息列表页面、更新信息列表等。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>在设计添加信息操作流程时，需要考虑以下几个方面：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>1. 界面设计：添加信息界面应该设计清晰、简单，便于用户填写信息和提交信息。</span></p>
+    		<p><span class='f7_black'>2. 数据校验：系统需要对用户输入的数据进行校验，确保数据的正确性和完整性。</span></p>
+    		<p><span class='f7_black'>3. 异常处理：</span><span class='f7_hong'>系统需要对异常情况进行处理，</span><span class='f7_black'>例如用户输入错误信息、系统故障等情况。</span></p>
+    		<p><span class='f7_black'>4. 用户体验：操作流程应该简单、易于理解，</span><span class='f7_hong'>减少用户操作的复杂性和困难度。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>5. 安全保障：系统应该采取相应的安全措施，确保用户的数据安全和隐私保护。</span></p>
+    		<p><span class='f7_black'>通过合理设计添加信息操作流程，</span><span class='f7_hong'>可以提高用户的使用效率和用户体验，</span><span class='f7_black'></span><span class='f7_hong'>同时也可以提高系统的可靠性和安全性。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>3.2.6 修改信息操作流程</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>系统修改信息操作流程包括以下几个步骤：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>1. 打开信息编辑对话框：用户需要打开系统中相应的功能模块，并选择编辑信息的操作。</span></p>
+    		<p><span class='f7_black'>2. 选择要编辑的信息：用户需要在系统中选择要编辑的信息，</span><span class='f7_hong'>系统会显示该信息的详细信息。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>3. 编辑信息：</span><span class='f7_hong'>用户可以根据需要，对信息进行修改，</span><span class='f7_black'>例如修改名称、描述、时间、地点等。</span></p>
+    		<p><span class='f7_black'>4. 检查信息：用户需要仔细检查修改后的信息是否正确，确保修改的信息符合要求。</span></p>
+    		<p><span class='f7_black'>5. 提交信息：用户需要点击提交按钮，将修改后的信息提交到系统中进行保存。</span></p>
+    		<p><span class='f7_black'>6. 系统处理信息：</span><span class='f7_hong'>系统收到用户提交的修改信息后，</span><span class='f7_black'>会进行相应的处理，包括校验数据、保存数据等操作。</span></p>
+    		<p><span class='f7_black'>7. 返回结果：系统会返回修改信息的结果，包括修改是否成功、修改后的信息内容等。</span></p>
+    		<p><span class='f7_black'>8. 操作完成：前端根据后端返回的结果，进行对应的处理，例如保存修改后的信息、继续编辑信息、跳转回列表页面等。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>在设计修改信息操作流程时，需要考虑以下几个方面：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>1. 界面设计：信息编辑界面应该设计清晰、简单，便于用户修改信息和提交信息。</span></p>
+    		<p><span class='f7_black'>2. 数据校验：系统的前后端需要有数据校验，对用户修改的数据进行字段校验，确保修改的数据符合数据库的数据字段设计规范。</span></p>
+    		<p><span class='f7_black'>3. 异常处理：</span><span class='f7_hong'>系统需要对异常情况进行处理，</span><span class='f7_black'>例如用户输入错误信息、系统故障等情况。</span></p>
+    		<p><span class='f7_black'>4. 用户体验：操作流程应该简单、易于理解，</span><span class='f7_hong'>减少用户操作的复杂性和困难度。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>5. 安全保障：系统应该采取相应的安全措施，确保用户的数据安全和隐私保护。</span></p>
+    		<p><span class='f7_black'>通过合理设计修改信息操作流程，</span><span class='f7_hong'>可以提高用户的使用效率和用户体验，</span><span class='f7_black'></span><span class='f7_hong'>同时也可以提高系统的可靠性和安全性。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>3.2.7 删除信息操作流程</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>系统删除信息操作流程包括以下几个步骤：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>1. 打开信息对应模块管理界面：用户需要打开系统中相应的功能模块，并选择管理信息的操作。</span></p>
+    		<p><span class='f7_black'>2. 选择要删除的信息：用户需要在系统中选择要删除的信息，</span><span class='f7_hong'>系统会显示该信息的详细信息。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>3. 确认删除：</span><span class='f7_hong'>用户需要确认要删除该信息，系统会弹出确认删除的提示框。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>4. 确认删除操作：用户需要再次确认要删除该信息，系统会再次弹出确认删除的提示框。</span></p>
+    		<p><span class='f7_black'>5. 系统处理信息：</span><span class='f7_hong'>系统收到用户提交的删除信息请求后，</span><span class='f7_black'>会进行相应的处理，</span><span class='f7_hong'>包括校验数据、删除数据等操作。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>6. 返回结果：系统会返回删除信息的结果，包括删除是否成功、删除的信息内容等。</span></p>
+    		<p><span class='f7_black'>7. 操作完成：用户根据系统返回的结果，进行相应的处理，例如刷新信息列表、继续管理信息等。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>在设计删除信息操作流程时，需要考虑以下几个方面：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>1. 界面设计：信息管理界面应该设计简单明了，便于用户选择要删除的信息。</span></p>
+    		<p><span class='f7_black'>2. 数据校验：系统需要对用户勾选的数据与数据库的数据进行比对校验，确保数据存在且准确无误。</span></p>
+    		<p><span class='f7_black'>3. 异常处理：</span><span class='f7_hong'>系统需要对异常情况进行处理，</span><span class='f7_black'>例如用户选择错误信息、系统故障等情况。</span></p>
+    		<p><span class='f7_black'>4. 用户体验：操作流程应该简单、易于理解，</span><span class='f7_hong'>减少用户操作的复杂性和困难度。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>5. 安全保障：系统应该采取相应的安全措施，确保用户的数据安全和隐私保护。</span></p>
+    		<p><span class='f7_black'>通过合理设计删除信息操作流程，</span><span class='f7_hong'>可以提高用户的使用效率和用户体验，</span><span class='f7_black'></span><span class='f7_hong'>同时也可以提高系统的可靠性和安全性。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>3.3 系统用例分析</span></p>
+    		<p><span class='f7_gray'>3.3.1 管理员用例</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>本系统中权限最高的是管理员，</span><span class='f7_black'>通过管理员的账户可对整个后台的所有功能进行管理。</span></p>
+    		<p><span class='f7_gray'>管理员用例分析：</span></p>
+    		<p><span class='f7_gray'>1. 登录系统：</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>管理员需要输入用户名和密码才可以登录系统，</span><span class='f7_black'></span><span class='f7_hong'>管理员用户拥有系统的所有功能模块的权限。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>2. 管理用户：</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>管理员可以对系统所有的用户信息进行管理，</span><span class='f7_black'></span><span class='f7_hong'>包括添加、删除、修改、注销用户等操作，</span><span class='f7_black'></span><span class='f7_hong'>以确保用户信息的准确性和完整性。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>3. 管理信息：</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>管理员可以对系统中的信息进行管理，</span><span class='f7_black'></span><span class='f7_hong'>包括添加、修改、删除信息等操作，</span><span class='f7_black'></span><span class='f7_hong'>以确保信息的准确性和完整性。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>在管理员用例分析中，需要考虑以下几个方面：</span></p>
+    		<p><span class='f7_black'>1. 用户交互体验：管理员可以通过简单、直观的界面操作系统，</span><span class='f7_hong'>提高用户的使用效率和用户体验。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>2. 安全保障：系统应该采取相应的安全措施，例如密码安全策略、数据备份策略等，确保系统的安全性和可靠性。</span></p>
+    		<p><span class='f7_black'>3. 异常处理：</span><span class='f7_hong'>系统需要对异常情况进行处理，</span><span class='f7_black'>例如系统故障、数据错误等情况。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>4. 数据管理：管理员需要对用户和信息进行管理，</span><span class='f7_black'>确保用户信息和系统信息的准确性和完整性。</span></p>
+    		<p><span class='f7_black'>5. 系统性能：管理员需要监测系统的性能和安全性，并及时发现和解决运行问题，</span><span class='f7_hong'>确保系统的正常运行和稳定性。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>通过合理的管理员用例分析，</span><span class='f7_hong'>可以提高系统的管理效率和安全性，</span><span class='f7_black'>满足用户的需求和要求。</span></p>
+    		<p><span class='f7_gray'>管理员用例如图 3.4 所示：</span></p>
+    		<p><span class='f7_gray'>图 3.4 管理员用例图</span></p>
+    		<p><span class='f7_gray'>3.3.2 公益企业用例</span></p>
+    		<p><span class='f7_black'>公益企业用户可以进行活动的发布、编辑、删除、查看，</span><span class='f7_hong'>以及对普通用户的报名信息进行审核。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>发布企业用例如图 3.5 所示：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>图 3.5 发布企业用例图</span></p>
+    		<p><span class='f7_gray'>3.3.3 普通用户用例</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>普通用户登录系统，可以进入活动列表页面，</span><span class='f7_black'>查询活动，查看活动详情，报名自己感兴趣的公益活动，查看自己的报名状态。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>普通用户用例如图3.6所示：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>图 3.6 普通用户用例图</span></p>
+    		<p><span class='f7_gray'>4 系统设计</span></p>
+    		<p><span class='f7_gray'>4.1 系统结构设计</span></p>
+    		<p><span class='f7_black'>系统结构设计是指基于系统需求和系统功能，设计出系统的整体结构框架，包括系统的模块、组件、接口、数据流等。系统结构设计的目的是为了将系统划分为不同的部分，使得系统的开发、测试、维护和升级都更加容易和高效。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>系统结构设计包括以下几个步骤：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>1. 确定系统需求：</span><span class='f7_hong'>明确系统的功能模块需求、可靠性需求、性能需求、数据安全需求等，</span><span class='f7_black'>以便于后续的设计工作。</span></p>
+    		<p><span class='f7_black'>2. 划分系统子模块：将系统划分为不同的子模块，每个子模块负责不同的功能，子模块之间通过接口进行通信和数据交换。</span></p>
+    		<p><span class='f7_black'>3. 设计系统接口：确定不同模块之间的接口协议和数据格式，</span><span class='f7_hong'>以确保数据的正确传输和解析。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>4. 确定系统数据流：</span><span class='f7_hong'>确定系统中各个模块之间的数据流动方式，</span><span class='f7_black'>以及数据流程的控制和管理方式。</span></p>
+    		<p><span class='f7_black'>5. 设计系统组件：根据系统需求和模块划分结果，设计系统的组件，包括硬件组件、软件组件、网络组件等。</span></p>
+    		<p><span class='f7_black'>6. 确定系统架构：根据系统模块、组件和接口的设计，确定系统的总体架构，包括层次结构、模块之间的依赖关系、系统的部署方式等。</span></p>
+    		<p><span class='f7_black'>7. 进行系统测试：根据系统结构设计的结果，进行系统的测试和验证，</span><span class='f7_hong'>确保系统的正确性、可靠性和性能。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>系统结构设计的目的是将系统复杂的功能分解成多个独立的子模块，每个子模块都可以独立的开发和测试，降低系统的耦合度，最终整合成一个完整的系统。在设计过程中，</span><span class='f7_hong'>需要考虑系统的可移植性、可复用性、可维护性、可靠性、可扩展性等方面的问题。</span><span class='f7_black'>最后，</span><span class='f7_hong'>根据实际需求选择合适的设计模式和架构模式，</span><span class='f7_black'>以便于实现系统的功能和优化系统的性能。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>系统功能模块如图4.1所示：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>图 4.1 系统功能模块</span></p>
+    		<p><span class='f7_gray'>4.2 数据库设计</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>数据库设计是指在遵循数据库理论的基础上，</span><span class='f7_black'>根据业务需求和数据特点，设计出合理的数据结构和数据关系，</span><span class='f7_hong'>以便于数据的存储、管理和使用。</span><span class='f7_black'>数据库设计的流程，包含以下几个步骤：</span></p>
+    		<p><span class='f7_black'>1. 需求分析：确定数据库的数据特点，包括数据类型、数据量、数据关系等。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>2. 概念设计：根据需求分析，设计出数据库的概念模型，</span><span class='f7_black'>包括实体、属性、关系等。</span></p>
+    		<p><span class='f7_black'>3. 逻辑设计：在概念模型的基础上，设计出逻辑模型，包括表结构、属性、关系、约束等。</span></p>
+    		<p><span class='f7_black'>4. 物理设计：在逻辑模型的基础上，设计出物理模型，包括表空间、索引、分区等。</span></p>
+    		<p><span class='f7_black'>5. 实现和测试：根据物理模型进行数据库的实现和测试，确保数据库的性能和可靠性。</span></p>
+    		<p><span class='f7_black'>6. 维护和优化：对数据库进行维护和优化，</span><span class='f7_hong'>以保证数据库的稳定性和高效性。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>在数据库设计的过程中，需要考虑数据的完整性、安全性、可扩展性以及性能等方面的问题，</span><span class='f7_black'>以确保数据库的高效和可靠。同时，</span><span class='f7_hong'>需要遵循数据库设计的一些原则，</span><span class='f7_black'>如实体完整性、关系完整性、范式化等，以便于数据的管理和使用。</span></p>
+    		<p><span class='f7_gray'>4.2.1 数据库设计原则</span></p>
+    		<p><span class='f7_black'>数据库设计原则是指在设计数据库时需要遵循的基本原则，这些原则可以使我们创建出的数据库结构合理、稳定、安全、易于维护和扩展。在设计该系统的数据库时要遵循原则包括以下几点：</span></p>
+    		<p><span class='f7_black'>1. 范式化原则：应该遵循范式化原则，即将重复的数据分解到不同的表中，以避免冗余数据的存在，</span><span class='f7_hong'>从而提高数据的一致性和可靠性。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>2. 实体完整性原则：确保每个表的每条记录都能被唯一地标识，还要保证每个表中的数据行都有对应的实体存在。</span></p>
+    		<p><span class='f7_black'>3. 关系完整性原则：</span><span class='f7_hong'>在设计数据库时应该考虑数据之间的关系，</span><span class='f7_black'></span><span class='f7_hong'>确保数据之间的关系是正确的，并且能够保证数据的完整性。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>4. 数据访问安全原则：在设计数据库时应该考虑数据库的安全性，包括数据的访问权限、数据的保密性、数据的完整性等。</span></p>
+    		<p><span class='f7_black'>5. 数据库性能原则：</span><span class='f7_hong'>在设计数据库时应该考虑数据库的性能，包括数据库的查询性能、数据的存储效率、并发性能等。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>6. 数据库扩展性原则：数据库的扩展性，包括数据库的容量、数据的增量、数据的迁移等。</span></p>
+    		<p><span class='f7_black'>7. 数据库备份与恢复原则：在设计数据库时，也应该考虑数据库的备份与恢复策略，通常情况下，</span><span class='f7_hong'>对数据库进行备份，以保证数据的安全性和可靠性。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>4.2.2 概念模型设计</span></p>
+    		<p><span class='f7_black'>根据系统需求分析本系统有用户、报名信息、活动信息。下面分别是各实体的实体图以及总的 E-R 图：</span></p>
+    		<p><span class='f7_gray'>用户实体图如图4.2所示：</span></p>
+    		<p><span class='f7_gray'>图 4.2 用户ER图</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>活动信息实体图如图4.3所示：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>图 4.3 活动信息ER图</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>报名信息的实体图如图4.4所示：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>图 4.4 活动信息ER图</span></p>
+    		<p><span class='f7_black'>根据以上对系统的分析可知，在本系统包含了以下五个实体：管理员、普通用户、发布企业、活动信息、报名信息。</span><span class='f7_hong'>系统全局 E-R 图如图4.5所示：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>图 4.5 全局E-R图</span></p>
+    		<p><span class='f7_gray'>4.2.3 数据库逻辑结构设计</span></p>
+    		<p><span class='f7_black'>用户信息表包括编号、用户名、等个人信息，如表4.1所示：</span></p>
+    		<p><span class='f7_gray'>表 4.1 用户信息表</span></p>
+    		<p><span class='f7_gray'>字段名称	字段含义	类型	长度	键	是否为空</span></p>
+    		<p><span class='f7_gray'>id	主键编号	int	11	主键	否</span></p>
+    		<p><span class='f7_gray'>password	密码	varchar	128		否</span></p>
+    		<p><span class='f7_gray'>last_login	上次登录时间	datetime	6		能</span></p>
+    		<p><span class='f7_gray'>is_superuser	是否为超级管理员	tinyint	1		否</span></p>
+    		<p><span class='f7_gray'>username	用户名	varchar	150		否</span></p>
+    		<p><span class='f7_gray'>first_name	姓	varchar	30		能</span></p>
+    		<p><span class='f7_gray'>last_name	名	varchar	150		能</span></p>
+    		<p><span class='f7_gray'>email	邮箱	varchar	254		能</span></p>
+    		<p><span class='f7_gray'>is_staff	是否为员工	tinyint	1		能</span></p>
+    		<p><span class='f7_gray'>is_active	是否活跃	tinyint	1		能</span></p>
+    		<p><span class='f7_gray'>date_joined	创建日期	datetime	6		否</span></p>
+    		<p><span class='f7_black'>活动信息表包含编号，名称等信息，如表4.2所示：</span></p>
+    		<p><span class='f7_gray'>表 4.2 公益活动表</span></p>
+    		<p><span class='f7_gray'>字段名称	字段含义	类型	长度	键	是否为空</span></p>
+    		<p><span class='f7_gray'>id	主键编号	int	11	主键	否</span></p>
+    		<p><span class='f7_gray'>name	活动名称	varchar	50		否</span></p>
+    		<p><span class='f7_gray'>desc	活动描述	varchar	255		否</span></p>
+    		<p><span class='f7_gray'>publish_company_name	发布企业名称	varchar	50		否</span></p>
+    		<p><span class='f7_gray'>address	活动地点	varchar	50		否</span></p>
+    		<p><span class='f7_gray'>start_date	活动日期	date	0		否</span></p>
+    		<p><span class='f7_gray'>start_time	活动时间	time	6		否</span></p>
+    		<p><span class='f7_gray'>demand	活动要求	varchar	255		否</span></p>
+    		<p><span class='f7_gray'>need_person_num	需要人数	int	11		否</span></p>
+    		<p><span class='f7_gray'>apply_person_num 	报名人数	int	11		否</span></p>
+    		<p><span class='f7_gray'>pass_person_num	通过人数	int	11		否</span></p>
+    		<p><span class='f7_gray'>create_time	创建时间	datetime	6		否</span></p>
+    		<p><span class='f7_gray'>报名信息表如表4.3所示：</span></p>
+    		<p><span class='f7_gray'>表 4.3 报名信息表</span></p>
+    		<p><span class='f7_gray'>字段名称	字段含义	类型	长度	键	是否为空</span></p>
+    		<p><span class='f7_gray'>id	主键编号	int	11	主键	否</span></p>
+    		<p><span class='f7_gray'>name	志愿者姓名	varchar	50		否</span></p>
+    		<p><span class='f7_gray'>age	志愿者年龄	int	11		否</span></p>
+    		<p><span class='f7_gray'>sex	志愿者性别	int	11		否</span></p>
+    		<p><span class='f7_gray'>address	志愿者地址	varchar	50		否</span></p>
+    		<p><span class='f7_gray'>tel	志愿者电话	varchar	255		否</span></p>
+    		<p><span class='f7_gray'>apply_status	报名状态	int	11		否</span></p>
+    		<p><span class='f7_gray'>apply_time	报名时间	datetime	6		否</span></p>
+    		<p><span class='f7_gray'>belonging_activity_id	报名活动	int	11		否</span></p>
+    		<p><span class='f7_gray'>分组信息表如表4.4所示：</span></p>
+    		<p><span class='f7_gray'>表 4.4 分组信息表</span></p>
+    		<p><span class='f7_gray'>字段名称	字段含义	类型	长度	键	是否为空</span></p>
+    		<p><span class='f7_gray'>id	主键编号	int	11	主键	否</span></p>
+    		<p><span class='f7_gray'>name	名称	varchar	150		否</span></p>
+    		<p><span class='f7_gray'>权限信息表如表4.5所示：</span></p>
+    		<p><span class='f7_gray'>表 4.5 权限信息表</span></p>
+    		<p><span class='f7_gray'>字段名称	字段含义	类型	长度	键	是否为空</span></p>
+    		<p><span class='f7_gray'>id	主键编号	int	11	主键	否</span></p>
+    		<p><span class='f7_gray'>name	名称	varchar	255		否</span></p>
+    		<p><span class='f7_gray'>content_type_id	类型id	int	111		否</span></p>
+    		<p><span class='f7_gray'>codename	代码名称	varchar	00		否</span></p>
+    		<p><span class='f7_black'>用户权限关系对应表如表4.6所示：</span></p>
+    		<p><span class='f7_gray'>表 4.6 用户权限关系关联表</span></p>
+    		<p><span class='f7_gray'>字段名称	字段含义	类型	长度	键	是否为空</span></p>
+    		<p><span class='f7_gray'>id	主键编号	int	11	主键	否</span></p>
+    		<p><span class='f7_gray'>user_id	用户编号	int	11		否</span></p>
+    		<p><span class='f7_gray'>perssion_id	权限编号	int	111		否</span></p>
+    		<p><span class='f7_black'>用户分组关系对应表如表4.7所示：</span></p>
+    		<p><span class='f7_gray'>表 4.7 用户分组关系关联表</span></p>
+    		<p><span class='f7_gray'>字段名称	字段含义	类型	长度	键	是否为空</span></p>
+    		<p><span class='f7_gray'>id	主键编号	int	11	主键	否</span></p>
+    		<p><span class='f7_gray'>user_id	用户编号	int	11		否</span></p>
+    		<p><span class='f7_gray'>group_id	分组编号	int	111		否</span></p>
+    		<p><span class='f7_black'>分组权限关系对应表如表4.8所示：</span></p>
+    		<p><span class='f7_gray'>表 4.8 分组权限关系关联表</span></p>
+    		<p><span class='f7_gray'>字段名称	字段含义	类型	长度	键	是否为空</span></p>
+    		<p><span class='f7_gray'>id	主键编号	int	11	主键	否</span></p>
+    		<p><span class='f7_gray'>group_id	分组编号	int	11		否</span></p>
+    		<p><span class='f7_gray'>perssion_id	权限编号	int	111		否</span></p>
+    		<p><span class='f7_gray'>5 系统的设计与实现</span></p>
+    		<p><span class='f7_gray'>5.1 公共模块</span></p>
+    		<p><span class='f7_gray'>5.1.1 登录模块</span></p>
+    		<p><span class='f7_black'>登录模块是一个重要的功能模块，</span><span class='f7_hong'>每个用户在打开系统界面时，都要进行登录操作。</span><span class='f7_black'></span><span class='f7_hong'>用户只有在登录状态下，才能进入系统内部。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>登录页面包含登录表单、用户名输入框、密码输入框、登录按钮。</span><span class='f7_hong'>当用户输入用户名和密码，点击登录按钮时，</span><span class='f7_black'>前端应该将用户名和密码通过AJAX发送到后台，以实现后端验证。后端应该接收到前端发送的用户名和密码，</span><span class='f7_hong'>并根据数据库中的用户信息表进行验证。</span><span class='f7_black'>如果用户名密码与数据库匹配，则返回登录成功的状态码，页面跳转至系统首页。否则，返回登录失败的状态码。</span></p>
+    		<p><span class='f7_black'>如果登录成功，</span><span class='f7_hong'>后端应该在服务器端记录用户的登录状态，</span><span class='f7_black'>并将用户的ID等信息存储在会话中，以便后续的操作。前端根据后台返回的登录状态，页面进行跳转。</span><span class='f7_hong'>如果登录成功，可以跳转到主页等页面；</span><span class='f7_black'>如果登录失败，给出相应的提示信息并保留在登录页面。</span></p>
+    		<p><span class='f7_gray'>登录页面如图5.1所示：</span></p>
+    		<p><span class='f7_gray'>图 5.1 登录页面</span></p>
+    		<p><span class='f7_gray'>5.1.2 个人中心模块</span></p>
+    		<p><span class='f7_black'>个人中心是一个重要的模块，该模块向用户展示个人基本信息，如用户名、姓、名、邮箱、手机、角色等。用户可以在该模块中进行修改个人信息和修改密码的操作。在实现该模块时，需要对用户信息进行权限控制，保证个人信息的安全性、性能和用户体验。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>个人中心页面如图5.2所示：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>图 5.2 个人中心页面</span></p>
+    		<p><span class='f7_gray'>5.1.3 文件导出模块</span></p>
+    		<p><span class='f7_black'>用户可以下载导出活动信息表、报名信息表、用户信息表等。后端收到用户的下载请求，</span><span class='f7_hong'>将数据库中的表导出为Excel文件，</span><span class='f7_black'>返回给前端文件编号，前端再去通过编号请求下载文件接口，请求成功，浏览器执行下载操作。本系统的下载分为两种方式：默认下载和批量下载，默认下载，即下载用户当前在页面所看到的全部数据。批量下载下载用户在页面表格中勾选的数据。后端在处理文件的导出时，采用了python中的xlwt包，将数据转换为Excel文件。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>导出的活动表文件如图5.3所示：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>图 5.3 活动表Excel文件</span></p>
+    		<p><span class='f7_gray'>文件导出部分实现代码如下：</span></p>
+    		<p><span class='f7_gray'>import xlwt, datetime</span></p>
+    		<p><span class='f7_gray'>from xlwt import *</span></p>
+    		<p><span class='f7_black'>def write_to_excel(n, head_data, records, download_url):</span></p>
+    		<p><span class='f7_gray'>timestr = datetime.datetime.now().strftime("%Y%m%d%H%M%S")</span></p>
+    		<p><span class='f7_gray'>wbk = xlwt.Workbook()</span></p>
+    		<p><span class='f7_gray'>sheet1 = wbk.add_sheet('sheet1', cell_overwrite_ok=True)</span></p>
+    		<p><span class='f7_gray'>for filed in range(0, len(head_data)):</span></p>
+    		<p><span class='f7_gray'>sheet1.write(0, filed, head_data[filed], excel_head_style())</span></p>
+    		<p><span class='f7_gray'>for row in range(1, n + 1):</span></p>
+    		<p><span class='f7_gray'>for col in range(0, len(head_data)):</span></p>
+    		<p><span class='f7_gray'>sheet1.write(row, col, records[row - 1][col], excel_record_style())</span></p>
+    		<p><span class='f7_gray'>sheet1.col(col).width = 300 * 20</span></p>
+    		<p><span class='f7_gray'>wbk.save(download_url + 'New-' + timestr + '.xls')</span></p>
+    		<p><span class='f7_gray'>return timestr</span></p>
+    		<p><span class='f7_gray'>5.1.4 接口文档模块</span></p>
+    		<p><span class='f7_black'>本系统接入了接口文档，接口文档模块是一份描述系统或应用程序接口的文档，包括接口的设计、功能、参数、返回值、错误码等信息。本系统的接口接口文档模块的实现使用Django REST Swagger技术，</span><span class='f7_hong'>Django REST Swagger是一个Django应用程序，</span><span class='f7_black'>它可以自动生成Web API的文档。它使用Swagger规范（也称为OpenAPI规范）来描述RESTful API，并提供交互式的文档页面，以便更容易地了解API的设计和使用方法。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>接口文档页面如图5.4所示：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>图 5.4 接口文档页面</span></p>
+    		<p><span class='f7_gray'>5.2 普通用户模块</span></p>
+    		<p><span class='f7_black'>普通用户登录系统可以在活动列表页面，查询自己感兴趣的活动，报名活动。在我的报名页面，</span><span class='f7_hong'>查看自己的报名信息，报名状态，修改报名信息。</span><span class='f7_black'>在个人中心页面，</span><span class='f7_hong'>用户可以对个人信息和密码进行修改。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>5.2.1 活动列表模块</span></p>
+    		<p><span class='f7_black'>进入活动列表模块，</span><span class='f7_hong'>普通用户可以查看公益活动信息，查询自己感兴趣的公益活动，</span><span class='f7_black'>可以看到每个需要多少人数、已报名的人数、报名审核通过的人数，对自己想要参加的公益活动进行报名。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>普通用户活动列表如图5.5 所示：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>图 5.5 活动列表页面</span></p>
+    		<p><span class='f7_gray'>5.2.2 报名列表模块</span></p>
+    		<p><span class='f7_black'>普通用户在我的报名页面，可以看到自己的报名信息，</span><span class='f7_hong'>如果报名信息有误，可以自己的报名信息进行编辑操作。</span><span class='f7_black'>报名完成后，报名信息等待公益企业审核，审核完毕后，</span><span class='f7_hong'>普通用户可以查看自己的报名状态，</span><span class='f7_black'>已通过审核或者未通过审核。查看公益企业的信息通知。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>我的报名页面如图5.6所示：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>图 5.6 我的报名页面</span></p>
+    		<p><span class='f7_gray'>5.3 公益企业用户模块</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>公益企业用户的主要功能模块有两个，活动管理和报名管理。</span><span class='f7_black'>根据公益企业的自身需求，发布公益活动，招募志愿者。公益活动发布后，普通用户可以进行报名，</span><span class='f7_hong'>公益企业在报名管理界面对志愿者的报名信息进行审核。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>5.3.1 活动管理模块</span></p>
+    		<p><span class='f7_black'>包括活动发布、活动编辑、活动查看、活动删除、活动导出、批量删除、批量导出等功能，可以帮助公益企业发布新的志愿者活动信息，吸引志愿者参与活动，同时也方便公益企业机构管理和调度活动。同时还包含活动数据统计与分析，对活动的需求人数，报名人数、审核通过人数等进行统计分析，为公益企业用户提供数据支撑，帮助公益企业更好地了解和优化活动。公益活动数据统计分析，是由后端进行根据报名信息进行计算统计，然后返回给前端。前端页面进行展示。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>公益企业的活动管理模块前端页面如图5.7所示：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>图 5.7 活动管理页面</span></p>
+    		<p><span class='f7_gray'>活动管理部分实现代码如下：</span></p>
+    		<p><span class='f7_gray'>from .serializers import ActivityModelSerializer</span></p>
+    		<p><span class='f7_gray'>from utils.pagination import StandardPageNumberPagination</span></p>
+    		<p><span class='f7_gray'>import sys, os</span></p>
+    		<p><span class='f7_gray'>from utils.excel import *</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>class ActivityListAPIView(APIView):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>queryset = Activity.</span><span class='f7_black'></span><span class='f7_hong'>objects.all()  # queryset 指明该视图集在查询数据时使用的查询集</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>serializer_class = ActivityModelSerializer  # serializer_class 执行该视图在进行序列化或者反序列化时使用的序列化器</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def get(self, request, *args, **kwargs):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>查询所有活动信息</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>response = {'success': True}</span></p>
+    		<p><span class='f7_gray'>activity_list = Activity.objects.all()</span></p>
+    		<p><span class='f7_gray'>paging_status = request.GET.get("pagingStatus")</span></p>
+    		<p><span class='f7_gray'>for activity_item in activity_list:</span></p>
+    		<p><span class='f7_gray'>apply_activity = Activity.objects.get(id=activity_item.id)</span></p>
+    		<p><span class='f7_gray'>apply_person_num = apply_activity.apply_set.all().count()</span></p>
+    		<p><span class='f7_gray'>pass_person_num = apply_activity.apply_set.filter(apply_status=1).count()</span></p>
+    		<p><span class='f7_gray'>Activity.objects.filter(id=activity_item.id).update(</span></p>
+    		<p><span class='f7_gray'>apply_person_num=apply_person_num, pass_person_num=pass_person_num)</span></p>
+    		<p><span class='f7_gray'>total = activity_list.count()</span></p>
+    		<p><span class='f7_gray'>activity_serializers = ActivityModelSerializer(activity_list, many=True, context={'request': request})</span></p>
+    		<p><span class='f7_gray'>pagination = StandardPageNumberPagination()</span></p>
+    		<p><span class='f7_gray'>pg_data = pagination.paginate_queryset(queryset=activity_serializers.data, request=request, view=self)</span></p>
+    		<p><span class='f7_gray'>if paging_status == 'false':</span></p>
+    		<p><span class='f7_gray'>response['data'] = activity_serializers.data</span></p>
+    		<p><span class='f7_gray'>else:</span></p>
+    		<p><span class='f7_gray'>response['data'] = pg_data</span></p>
+    		<p><span class='f7_gray'>response['total'] = total</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_gray'>@swagger_auto_schema(</span></p>
+    		<p><span class='f7_gray'>operation_summary="创建活动", request_body=ActivityModelSerializer</span></p>
+    		<p><span class='f7_gray'>)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def post(self, request):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>新增一条活动信息</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>data = request.data</span></p>
+    		<p><span class='f7_gray'>serializer = ActivityModelSerializer(data=data)</span></p>
+    		<p><span class='f7_gray'>serializer.is_valid(raise_exception=True)</span></p>
+    		<p><span class='f7_gray'>serializer.save()</span></p>
+    		<p><span class='f7_gray'>return Response({</span></p>
+    		<p><span class='f7_gray'>'success': True,</span></p>
+    		<p><span class='f7_gray'>'data': {</span></p>
+    		<p><span class='f7_gray'>'message': '创建成功！'</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>})</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def delete(self, request, *args, **kwargs):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>批量删除</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>delete_id = request.query_params.get('deleteId', None)</span></p>
+    		<p><span class='f7_gray'>if not delete_id:</span></p>
+    		<p><span class='f7_gray'>return Response({'message': '数据不存在！'})</span></p>
+    		<p><span class='f7_gray'>for i in delete_id.split(','):</span></p>
+    		<p><span class='f7_gray'>get_object_or_404(Activity, pk=int(i)).delete()</span></p>
+    		<p><span class='f7_gray'>response = {</span></p>
+    		<p><span class='f7_gray'>'success': True,</span></p>
+    		<p><span class='f7_gray'>'data': {</span></p>
+    		<p><span class='f7_gray'>'message': '删除成功！'</span></p>
+    		<p><span class='f7_gray'>},</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>class ActivityDetailAPIView(APIView):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def get(self, request, pk):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>根据id查询单个活动信息</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'># 查询pk指定的模型对象</span></p>
+    		<p><span class='f7_gray'>try:</span></p>
+    		<p><span class='f7_gray'>activity = Activity.objects.get(id=pk)</span></p>
+    		<p><span class='f7_gray'>apply_person_num = activity.apply_set.all().count()</span></p>
+    		<p><span class='f7_gray'>pass_person_num = activity.apply_set.filter(apply_status=1).count()         Activity.objects.filter(id=activity.id).update(apply_person_num=apply_person_num, pass_person_num=pass_person_num)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>except Activity.DoesNotExist:</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>return Response({'success': True, 'data': {'message': '数据不存在！'}})</span></p>
+    		<p><span class='f7_gray'># 创建序列化器进行序列化</span></p>
+    		<p><span class='f7_gray'>serializer = ActivityModelSerializer(instance=activity)</span></p>
+    		<p><span class='f7_gray'># 响应</span></p>
+    		<p><span class='f7_gray'>response = {</span></p>
+    		<p><span class='f7_gray'>'success': True,</span></p>
+    		<p><span class='f7_gray'>'data': serializer.data,</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def put(self, request, pk):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>根据id修改指定活动信息</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'># 根据pk所指定的模型对象</span></p>
+    		<p><span class='f7_gray'>try:</span></p>
+    		<p><span class='f7_gray'>activity = Activity.objects.get(id=pk)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>except Activity.DoesNotExist:</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>return Response({'message': '数据不存在！'})</span></p>
+    		<p><span class='f7_gray'># 获取前端传入的请求体数据</span></p>
+    		<p><span class='f7_gray'># 创建序列化器进行反序列化操作</span></p>
+    		<p><span class='f7_gray'>serializer = ActivityModelSerializer(instance=activity, data=request.data, partial=True)</span></p>
+    		<p><span class='f7_gray'># 校验</span></p>
+    		<p><span class='f7_gray'>serializer.is_valid(raise_exception=True)</span></p>
+    		<p><span class='f7_gray'>serializer.save()</span></p>
+    		<p><span class='f7_gray'># 响应</span></p>
+    		<p><span class='f7_gray'>response = {</span></p>
+    		<p><span class='f7_gray'>'success': True,</span></p>
+    		<p><span class='f7_gray'>'data': {</span></p>
+    		<p><span class='f7_gray'>'message': '更新成功'</span></p>
+    		<p><span class='f7_gray'>},</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def delete(self, request, pk):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>根据id删除指定活动信息</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'># 查询pk所指定的模型对象</span></p>
+    		<p><span class='f7_gray'>try:</span></p>
+    		<p><span class='f7_gray'>activity = Activity.objects.get(id=pk)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>except Activity.DoesNotExist:</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>return Response({'message': '数据不存在！'})</span></p>
+    		<p><span class='f7_gray'>activity.delete()</span></p>
+    		<p><span class='f7_gray'># 响应</span></p>
+    		<p><span class='f7_gray'>response = {</span></p>
+    		<p><span class='f7_gray'>'success': True,</span></p>
+    		<p><span class='f7_gray'>'data': {</span></p>
+    		<p><span class='f7_gray'>'message': '删除成功！'</span></p>
+    		<p><span class='f7_gray'>},</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_gray'>5.3.2 报名管理模块</span></p>
+    		<p><span class='f7_black'>公益企业在报名管理模块，</span><span class='f7_hong'>可以查看志愿者的报名新息，对志愿者的报名信息进行审核。</span><span class='f7_black'></span><span class='f7_hong'>审核状态分为三种状态，待审核、审核已通过、审核未通过。</span><span class='f7_black'>审核结束后，系统会自动给普通用户发送邮件通知，普通用户查看自己的报名状态，以及邮件通知。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>报名管理页面如图5.8所示：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>图 5.8 报名管理页面</span></p>
+    		<p><span class='f7_gray'>5.4 管理员模块</span></p>
+    		<p><span class='f7_black'>管理员的功能包含了普通用户和公益企业用户的功能模块。同时，</span><span class='f7_hong'>管理员还有额外的用户管理功能。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>5.4.1 用户管理模块</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>管理员能够对系统所有用户进行管理，</span><span class='f7_black'>包括登录注册和用户信息管理，以便用户方便快捷地登录系统并管理自己的个人信息。管理员在用户管理模块，可以进行添加用户、查询用户、查看用户列表、修改用户、注销用户、导出用户、批量删除、批量导出等操作。对于忘记密码的用户，用户联系管理员后，</span><span class='f7_hong'>管理员可以对该用户进行重置密码操作，</span><span class='f7_black'></span><span class='f7_hong'>用户密码初始化为123456。</span><span class='f7_black'></span><span class='f7_hong'>用户使用初始密码登录系统后，</span><span class='f7_black'>可自行在个人中心页面进行修改密码操作。对应违规用户或者长期未使用的用户，</span><span class='f7_hong'>管理员可以对用户进行账号注销，</span><span class='f7_black'></span><span class='f7_hong'>账号注销后，用户不能再登录系统。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>用户管理页面如图5.9所示：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>图 5.9 用户管理页面</span></p>
+    		<p><span class='f7_gray'>6 系统测试</span></p>
+    		<p><span class='f7_gray'>6.1 测试目的</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>系统测试的测试目的主要包含以下几个方面：</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>验证系统是否满足和规格说明书的要求，</span><span class='f7_black'>是否符合预期的功能和性能要求；</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>评估系统的可靠性、稳定性和安全性，</span><span class='f7_black'>检查系统在异常情况下的表现和处理能力；</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>检查系统的易用性、可维护性和可扩展性，</span><span class='f7_black'></span><span class='f7_hong'>评估系统的可操作性和可维护性；</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'>确保系统符合相关法律法规和行业标准，检查系统的合规性和安全性；</span></p>
+    		<p><span class='f7_black'>检查系统的兼容性，验证系统在不同的硬件、操作系统和浏览器等环境下的兼容性；</span></p>
+    		<p><span class='f7_black'>发现并修复系统中的缺陷和问题，提高系统的质量和可靠性。</span></p>
+    		<p><span class='f7_gray'>6.2 接口测试</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>本系统所有API的测试使用Postman工具进行测试，</span><span class='f7_black'></span><span class='f7_hong'>Postman是一款常用的API测试工具，其主要特点是可以对API进行快速、方便的测试和调试。</span><span class='f7_black'>在Postman中，选择请求方法（如GET、PATCH、POST、PUT、DELETE等）和输入请求URL来创建接口的请求，在请求中添加请求参数，包括查询参数、请求体参数、请求头参数等。通过点击“发送”按钮来发送请求，Postman会自动处理请求并显示响应结果。请求结束后，通过Postman的界面来查看响应结果，响应结果包括状态码、响应头、响应体等信息。</span></p>
+    		<p><span class='f7_black'>测试查询报名列表接口过程如图6.1所示：</span></p>
+    		<p><span class='f7_gray'>图 6.1 查询报名列表接口测试</span></p>
+    		<p><span class='f7_black'>测试查询用户列表接口过程如图6.2所示：</span></p>
+    		<p><span class='f7_gray'>6.3 测试结果</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>经过多组测试数据对系统进行测试，</span><span class='f7_black'>该系统功能相对齐全，基本必要满足信息处理的需求，用户登录、注册、活动管理、报名管理等功能都能实现，符合预期，系统的性能完好，可靠性良好。</span></p>
+    		<p><span class='f7_gray'>结论</span></p>
+    		<p><span class='f7_black'>经过本论文的研究与分析，基于Django+React的疫情防控社区志愿者管理系统的设计实现取得了良好的效果，</span><span class='f7_hong'>系统实现了疫情防控志愿者的招募、管理、统计、审核等功能，</span><span class='f7_black'>提高了志愿者的管理效率和任务完成率。在实际应用过程中，</span><span class='f7_hong'>该系统得到了广泛的应用和认可，</span><span class='f7_black'></span><span class='f7_hong'>为疫情防控工作提供了有力的信息化支持。</span><span class='f7_black'>未来，可以在系统的基础上进一步完善功能和优化体验，为社区疫情防控工作提供更好的服务。</span></p>
+    		<p><span class='f7_black'>此外，本论文还对Django和React技术的特点和优势进行了分析和总结，对于开发类似系统的研究者具有一定的参考价值。其中，Django作为一种高效、易用、功能丰富的Web开发框架，</span><span class='f7_hong'>能够快速构建高质量的Web应用；</span><span class='f7_black'></span><span class='f7_hong'>React作为一种优秀的前端开发框架，</span><span class='f7_black'>能够提供高效、可重用、易维护的UI组件和极佳的用户体验。通过使用Django和React相结合的方式，可以更加高效地开发出功能丰富、易于维护和后期扩展的数字化Web应用管理系统。</span></p>
+    		<p><span class='f7_black'>总之，本论文的研究成果为疫情防控社区志愿者管理系统的开发提供了有力的支持和借鉴，对于推动信息化建设和社区防控工作具有一定的实际意义和价值。</span></p>
+    		<p><span class='f7_black'>在未来的研究中，还可以进一步完善该系统，例如增加更加精细化的权限控制、优化用户体验、增加更加实用的功能等。同时，我们也可以探索其他前后端技术的应用，例如Vue.js、Angular等，</span><span class='f7_hong'>以提高Web应用的开发效率和性能。</span><span class='f7_black'>另外，我们可以将该系统应用到其他领域，例如社区服务、志愿者管理等，为社区的数字化建设和发展做出更多的贡献。最后，我们也可以将研究重心转移到其他领域，例如智慧城市、医疗健康等，以应用技术手段推动信息化建设的进步和发展。</span></p>
+    		<p><span class='f7_gray'>参考文献</span></p>
+    		<p><span class='f7_gray'>[1]王志伟.新冠疫情防控集中隔离管理系统的应用与实践[J].通信管理与技术,2022(02):27-31.</span></p>
+    		<p><span class='f7_gray'>[2]曾丽娟,邱毅,段涛,李建水,唐啸龙,邓大炜.基于B/S架构医院志愿者管理系统的设计与实现[J].医学信息,2021,34(07):27-30+34.</span></p>
+    		<p><span class='f7_gray'>[3]赵春霞. 基于Web技术的志愿者服务管理系统设计与实现[D].南京:南京理工大学,2017.</span></p>
+    		<p><span class='f7_gray'>[4]刘振东. 威海志愿者管理系统的设计与实现[D].哈尔滨:哈尔滨工业大学,2019.</span></p>
+    		<p><span class='f7_gray'>[5]孔祥祺.志愿者积分管理系统的设计思路探讨[J].赤峰学院学报(自然科学版),2016,32(04):21-24+30.</span></p>
+    		<p><span class='f7_gray'>[6]蔡栋,金波.基于Fabric的区块链慈善业务管理系统设计[J].中国高新科技,2020(03):62-65+68.</span></p>
+    		<p><span class='f7_gray'>[7]马春晓,叶青,吕明.志愿活动管理系统的设计与实现[J].工业控制计算机,2022,35(01):135-136+139.</span></p>
+    		<p><span class='f7_gray'>[8]黄智霖.高校校园活动管理系统设计——以厦门华厦学院为例[J].信息技术与信息化,2021(12):72-74+78.</span></p>
+    		<p><span class='f7_gray'>[9]李珊. 基于微信小程序的学生活动管理系统的设计与实现[D].广东:广东工业大学,2019.</span></p>
+    		<p><span class='f7_gray'>[10]穆荣,刘蒙蒙,王晓路.大学生社团活动管理系统的设计[J].电子世界,2017(15):159-162+166.</span></p>
+    		<p><span class='f7_gray'>[11]刘新宇.疫情防控下高校志愿服务项目建设的路径探索[J].黑龙江教育(高教研究与评估),2022(10):90-92.</span></p>
+    		<p><span class='f7_gray'>[12]金鑫,董耀众,张大伟,李伟良,肖磊,牟霄寒,孙建刚.基于移动应用的疫情防控管理系统的设计与构建——以电力企业为例[J].办公自动化,2022,27(18):6-9.</span></p>
+    		<p><span class='f7_gray'>[13]金鑫,董耀众,张大伟,李伟良,肖磊,牟霄寒,孙建刚.基于移动应用的疫情防控管理系统的设计与构建——以电力企业为例[J].办公自动化,2022,27(18):6-9.</span></p>
+    		<p><span class='f7_gray'>[14]Janhavi Desale,Kunal Gautama,Saish Khandare,Vedant Parikh,Dhanashree Toradmalle. NGO Support Software Solution: for effective reachability[J]. International Journal of Education and Management Engineering(IJEME),2020,10(6).</span></p>
+    		<p><span class='f7_gray'>[15]Noor Afiza Mat Razali,Nurjannatul Jannah Aqilah Md Saad,Hasmeda Erna Che Hamid,Muhammad Ramzul Abu Bakar,Khairul Khalil Ishak,Nor Asiakin Hasbullah,Norulzahrah Mohd Zainudin,Suzaimah Ramli,Norshahriah Wahab. Volunteer Management System for Disaster Management[J]. International Journal of Recent Technology and Engineering (IJRTE),2019,7(5s4).</span></p>
+    		<p><span class='f7_gray'>[16]. Deedia Inc.; Researchers Submit Patent Application, "Systems And Methods For Service Opportunity Management And Volunteer Management", for Approval (USPTO 20200142931)[J]. Politics & Government Week,2020.</span></p>
+    		<p><span class='f7_gray'>[17]. InitLive; InitLive Donates Volunteer Management System To Aid In COVID-19 Relief[J]. Medical Letter on the CDC & FDA,2020.</span></p>
+    		<p><span class='f7_gray'>[18]Kim Eunjung Cuskelly Graham. A Systematic Quantitative Review Of Volunteer Management in Events[J]. Event Management,2017,21(1).</span></p>
+    		<p><span class='f7_gray'>[19]Jiang Qiwen,Zhu Xueyuan,Chen Lianghua,Zhao Ziyuan,Chen Yilong. Research on Time-Driven Activity-Based Management System of Public Hospitals [J]. Frontiers in Public Health,2022,9.</span></p>
+    		<p><span class='f7_gray'>[20]Supun Wijekoon. University Activity Management System[J]. Journal of Information Technology & Software Engineering,2021,11(7).</span></p>
+    		<p><span class='f7_gray'>致谢</span></p>
+    		<p><span class='f7_black'>在本论文的完成过程中，</span><span class='f7_hong'>我获得了许多人的支持和帮助，在此向他们致以最诚挚的谢意。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>首先，我要感谢我的论文指导教师，</span><span class='f7_black'>她在整个研究过程中给予了我耐心的指导和关心，在研究方法、技术选型、论文撰写等方面提供了宝贵的意见和建议。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>其次，我要感谢我的家人和朋友，</span><span class='f7_black'>在繁忙的学业生活中，他们一直支持我、鼓励我，给我以精神上的支持和帮助。我还要感谢我大学期间，计科教研室的老师们，给我传授了很多专业知识，才有了我今天的编程开发水平。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>同时，我也要感谢我在实习期间公司的同事，</span><span class='f7_black'></span><span class='f7_hong'>在我毕业设计系统开发的过程中，</span><span class='f7_black'>给我提供了很大的帮助与支持，在我每次遇到技术难点和无法解决的bug时，他都会耐心的帮我解决，给我提供了很大的技术支持。</span></p>
+    		<p><span class='f7_black'>最后，我要感谢所有在疫情防控一线奋斗的医护人员和志愿者，是他们的无私奉献的精神，</span><span class='f7_hong'>为我们创造了安全、舒适、健康的生活环境，</span><span class='f7_black'>让我们深刻认识到科技在疫情防控中的重要作用。</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>感谢以上所有人的支持和帮助，让我的论文能够顺利完成。</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>附录</span></p>
+    		<p><span class='f7_gray'>报名管理相关实现代码：</span></p>
+    		<p><span class='f7_gray'>from django.http import HttpResponse</span></p>
+    		<p><span class='f7_gray'>from rest_framework.generics import get_object_or_404</span></p>
+    		<p><span class='f7_gray'>from rest_framework.views import APIView</span></p>
+    		<p><span class='f7_gray'>from activity.models import Activity</span></p>
+    		<p><span class='f7_gray'>from .models import Apply  # 导入对应的模型类</span></p>
+    		<p><span class='f7_gray'>from rest_framework.response import Response</span></p>
+    		<p><span class='f7_gray'>from .serializers import ApplyModelSerializer  # 导入对应的序列化器</span></p>
+    		<p><span class='f7_gray'>from utils.pagination import StandardPageNumberPagination</span></p>
+    		<p><span class='f7_gray'>import sys, os</span></p>
+    		<p><span class='f7_gray'>from utils.excel import *</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>class ApplyListAPIView(APIView):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>queryset = Apply.objects.all()  # 指明查询集</span></p>
+    		<p><span class='f7_gray'>serializer_class = ApplyModelSerializer  # 指明所使用的序列化器</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def get(self, request, *args, **kwargs):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>查询所有报名信息</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>response = {'success': True}</span></p>
+    		<p><span class='f7_gray'>apply_list = Apply.objects.all()</span></p>
+    		<p><span class='f7_gray'>total = apply_list.count()</span></p>
+    		<p><span class='f7_gray'>apply_serializers = ApplyModelSerializer(apply_list, many=True, context={'request': request})</span></p>
+    		<p><span class='f7_gray'>pagination = StandardPageNumberPagination()</span></p>
+    		<p><span class='f7_gray'>pg_data = pagination.paginate_queryset(queryset=apply_serializers.data, request=request, view=self)</span></p>
+    		<p><span class='f7_gray'>response['data'] = pg_data</span></p>
+    		<p><span class='f7_gray'>response['total'] = total</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def post(self, request):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>新增一条报名信息</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'># 获取前端传入请求体数据</span></p>
+    		<p><span class='f7_gray'>data = request.data</span></p>
+    		<p><span class='f7_gray'># 创建序列化器进行反序列化操作</span></p>
+    		<p><span class='f7_gray'>serializer = ApplyModelSerializer(data=data)</span></p>
+    		<p><span class='f7_gray'># 调用序列化器的is_valid方法进行校验</span></p>
+    		<p><span class='f7_gray'>serializer.is_valid(raise_exception=True)</span></p>
+    		<p><span class='f7_gray'># 调用序列化器的save方法进行执行create方法</span></p>
+    		<p><span class='f7_gray'>serializer.save()</span></p>
+    		<p><span class='f7_gray'># 响应</span></p>
+    		<p><span class='f7_gray'>response = {</span></p>
+    		<p><span class='f7_gray'>'success': True,</span></p>
+    		<p><span class='f7_gray'>'data': {</span></p>
+    		<p><span class='f7_gray'>'message': 'success！'</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def delete(self, request, *args, **kwargs):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>批量删除</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>delete_id = request.query_params.get('deleteId', None)</span></p>
+    		<p><span class='f7_gray'>if not delete_id:</span></p>
+    		<p><span class='f7_gray'>return Response({'message': '数据不存在！'})</span></p>
+    		<p><span class='f7_gray'>for i in delete_id.split(','):</span></p>
+    		<p><span class='f7_gray'>get_object_or_404(Apply, pk=int(i)).delete()</span></p>
+    		<p><span class='f7_gray'>response = {</span></p>
+    		<p><span class='f7_gray'>'success': True,</span></p>
+    		<p><span class='f7_gray'>'data': {</span></p>
+    		<p><span class='f7_gray'>'message': '删除成功！'</span></p>
+    		<p><span class='f7_gray'>},</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>class ApplyDetailAPIView(APIView):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def get(self, request, pk):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>根据id查询指定报名信息</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'># 查询pk指定的模型对象</span></p>
+    		<p><span class='f7_gray'>try:</span></p>
+    		<p><span class='f7_gray'>apply = Apply.objects.get(id=pk)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>except Apply.DoesNotExist:</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>return Response({'success': True, 'data': {'message': '数据不存在！'}})</span></p>
+    		<p><span class='f7_gray'># 创建序列化器进行序列化</span></p>
+    		<p><span class='f7_gray'>serializer = ApplyModelSerializer(instance=apply)</span></p>
+    		<p><span class='f7_gray'># 响应</span></p>
+    		<p><span class='f7_gray'>response = {</span></p>
+    		<p><span class='f7_gray'>'success': True,</span></p>
+    		<p><span class='f7_gray'>'data': serializer.data,</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def put(self, request, pk):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>根据id修改指定报名信息</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'># 根据pk所指定的模型对象</span></p>
+    		<p><span class='f7_gray'>try:</span></p>
+    		<p><span class='f7_gray'>apply = Apply.objects.get(id=pk)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>except Apply.DoesNotExist:</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>return Response({'message': '数据不存在！'})</span></p>
+    		<p><span class='f7_gray'># 获取前端传入的请求体数据</span></p>
+    		<p><span class='f7_gray'># 创建序列化器进行反序列化操作</span></p>
+    		<p><span class='f7_gray'>serializer = ApplyModelSerializer(instance=apply, data=request.data, partial=True)</span></p>
+    		<p><span class='f7_gray'># 校验</span></p>
+    		<p><span class='f7_gray'>serializer.is_valid(raise_exception=True)</span></p>
+    		<p><span class='f7_gray'>serializer.save()</span></p>
+    		<p><span class='f7_gray'># 响应</span></p>
+    		<p><span class='f7_gray'>response = {</span></p>
+    		<p><span class='f7_gray'>'success': True,</span></p>
+    		<p><span class='f7_gray'>'data': {</span></p>
+    		<p><span class='f7_gray'>'message': '更新成功'</span></p>
+    		<p><span class='f7_gray'>},</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def delete(self, request, pk):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>根据id删除指定报名信息</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'># 查询pk所指定的模型对象</span></p>
+    		<p><span class='f7_gray'>try:</span></p>
+    		<p><span class='f7_gray'>apply = Apply.objects.get(id=pk)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>except Apply.DoesNotExist:</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>return Response({'message': '数据不存在！'})</span></p>
+    		<p><span class='f7_gray'>apply.delete()</span></p>
+    		<p><span class='f7_gray'># 响应</span></p>
+    		<p><span class='f7_gray'>response = {</span></p>
+    		<p><span class='f7_gray'>'success': True,</span></p>
+    		<p><span class='f7_gray'>'data': {</span></p>
+    		<p><span class='f7_gray'>'message': '删除成功！'</span></p>
+    		<p><span class='f7_gray'>},</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>class ApplyExportExcelAPIView(APIView):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def post(self, request):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>批量导出报名信息表</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>apply_codes = request.data.get("apply_code")</span></p>
+    		<p><span class='f7_gray'>n = len(apply_codes)</span></p>
+    		<p><span class='f7_gray'># 表头字段</span></p>
+    		<p><span class='f7_black'>head_data = [u'报名编号', u'姓名', u'年龄', u'性别', u'地址', u'电话', u'报名活动', u'报名状态', u'申请时间']</span></p>
+    		<p><span class='f7_gray'># 查询记录数据</span></p>
+    		<p><span class='f7_gray'>records = []</span></p>
+    		<p><span class='f7_gray'>for apply_code in apply_codes:</span></p>
+    		<p><span class='f7_gray'>if apply_code != "":</span></p>
+    		<p><span class='f7_gray'>apply_obj = Apply.objects.get(id=apply_code)</span></p>
+    		<p><span class='f7_gray'>id = apply_obj.id</span></p>
+    		<p><span class='f7_gray'>name = apply_obj.name</span></p>
+    		<p><span class='f7_gray'>age = apply_obj.age</span></p>
+    		<p><span class='f7_gray'>sex = '未知' if apply_obj.sex == 0 else '男' if apply_obj.sex == 1 else '女'</span></p>
+    		<p><span class='f7_gray'>address = apply_obj.address</span></p>
+    		<p><span class='f7_gray'>tel = apply_obj.tel</span></p>
+    		<p><span class='f7_gray'>apply_status = '待审核' if apply_obj.apply_status else '已审核' if apply_obj.apply_status == 1 else '未通过'</span></p>
+    		<p><span class='f7_gray'>apply_time = apply_obj.apply_time.strftime("%Y-%m-%d %H:%M:%S")</span></p>
+    		<p><span class='f7_gray'>belonging_activity_id = apply_obj.belonging_activity_id</span></p>
+    		<p><span class='f7_gray'>apply_activity = Activity.objects.get(id=belonging_activity_id).name</span></p>
+    		<p><span class='f7_gray'>record = []</span></p>
+    		<p><span class='f7_gray'>record.append(id)</span></p>
+    		<p><span class='f7_gray'>record.append(name)</span></p>
+    		<p><span class='f7_gray'>record.append(age)</span></p>
+    		<p><span class='f7_gray'>record.append(sex)</span></p>
+    		<p><span class='f7_gray'>record.append(address)</span></p>
+    		<p><span class='f7_gray'>record.append(tel)</span></p>
+    		<p><span class='f7_gray'>record.append(apply_activity)</span></p>
+    		<p><span class='f7_gray'>record.append(apply_status)</span></p>
+    		<p><span class='f7_gray'>record.append(str(apply_time))</span></p>
+    		<p><span class='f7_gray'>records.append(record)</span></p>
+    		<p><span class='f7_gray'># 获取当前路径</span></p>
+    		<p><span class='f7_gray'>cur_path = os.path.abspath('.')</span></p>
+    		<p><span class='f7_gray'># 设置生成文件所在路径</span></p>
+    		<p><span class='f7_gray'>download_url = cur_path + '\\upload\\'</span></p>
+    		<p><span class='f7_gray'># 写入数据到excel中</span></p>
+    		<p><span class='f7_gray'>ret = write_to_excel(n, head_data, records, download_url)</span></p>
+    		<p><span class='f7_gray'>return HttpResponse(ret)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def get(self, request):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>默认导出报名信息表</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>applys = Apply.objects.all()</span></p>
+    		<p><span class='f7_gray'>n = len(applys)</span></p>
+    		<p><span class='f7_gray'># 表头字段</span></p>
+    		<p><span class='f7_black'>head_data = [u'报名编号', u'姓名', u'年龄', u'性别', u'地址', u'电话', u'报名活动', u'报名状态', u'申请时间']</span></p>
+    		<p><span class='f7_gray'># 查询记录数据</span></p>
+    		<p><span class='f7_gray'>records = []</span></p>
+    		<p><span class='f7_gray'>for apply_obj in applys:</span></p>
+    		<p><span class='f7_gray'>id = apply_obj.id</span></p>
+    		<p><span class='f7_gray'>name = apply_obj.name</span></p>
+    		<p><span class='f7_gray'>age = apply_obj.age</span></p>
+    		<p><span class='f7_gray'>sex = '未知' if apply_obj.sex == 0 else '男' if apply_obj.sex == 1 else '女'</span></p>
+    		<p><span class='f7_gray'>address = apply_obj.address</span></p>
+    		<p><span class='f7_gray'>tel = apply_obj.tel</span></p>
+    		<p><span class='f7_gray'>apply_status = '待审核' if apply_obj.apply_status else '已审核' if apply_obj.apply_status == 1 else '未通过'</span></p>
+    		<p><span class='f7_gray'>apply_time = apply_obj.apply_time.strftime("%Y-%m-%d %H:%M:%S")</span></p>
+    		<p><span class='f7_gray'>belonging_activity_id = apply_obj.belonging_activity_id</span></p>
+    		<p><span class='f7_gray'>apply_activity = Activity.objects.get(id=belonging_activity_id).name</span></p>
+    		<p><span class='f7_gray'>record = []</span></p>
+    		<p><span class='f7_gray'>record.append(id)</span></p>
+    		<p><span class='f7_gray'>record.append(name)</span></p>
+    		<p><span class='f7_gray'>record.append(age)</span></p>
+    		<p><span class='f7_gray'>record.append(sex)</span></p>
+    		<p><span class='f7_gray'>record.append(address)</span></p>
+    		<p><span class='f7_gray'>record.append(tel)</span></p>
+    		<p><span class='f7_gray'>record.append(apply_activity)</span></p>
+    		<p><span class='f7_gray'>record.append(apply_status)</span></p>
+    		<p><span class='f7_gray'>record.append(str(apply_time))</span></p>
+    		<p><span class='f7_gray'>records.append(record)</span></p>
+    		<p><span class='f7_gray'># 获取当前路径</span></p>
+    		<p><span class='f7_gray'>cur_path = os.path.abspath('.')</span></p>
+    		<p><span class='f7_gray'># 设置生成文件所在路径</span></p>
+    		<p><span class='f7_gray'>download_url = cur_path + '\\upload\\'</span></p>
+    		<p><span class='f7_gray'># 写入数据到excel中</span></p>
+    		<p><span class='f7_gray'>ret = write_to_excel(n, head_data, records, download_url)</span></p>
+    		<p><span class='f7_gray'>return HttpResponse(ret)</span></p>
+    		<p><span class='f7_gray'>用户管理相关实现代码：</span></p>
+    		<p><span class='f7_gray'>from django.contrib.auth.models import User, Group</span></p>
+    		<p><span class='f7_gray'>from django.http import HttpResponse</span></p>
+    		<p><span class='f7_gray'>from rest_framework.generics import get_object_or_404</span></p>
+    		<p><span class='f7_gray'>from rest_framework.response import Response</span></p>
+    		<p><span class='f7_gray'>from rest_framework import viewsets</span></p>
+    		<p><span class='f7_gray'>from rest_framework.views import APIView</span></p>
+    		<p><span class='f7_gray'>from users.serializers import UserSerializer, GroupSerializer</span></p>
+    		<p><span class='f7_gray'>from django.contrib.auth.hashers import make_password, check_password</span></p>
+    		<p><span class='f7_gray'>from utils.pagination import StandardPageNumberPagination</span></p>
+    		<p><span class='f7_gray'>import sys, os</span></p>
+    		<p><span class='f7_gray'>from utils.excel import *</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>class UserListAPIView(APIView):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>queryset = User.objects.all().order_by('-date_joined')</span></p>
+    		<p><span class='f7_gray'>serializer_class = UserSerializer</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def get(self, request, *args, **kwargs):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>查询所有用户信息</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>response = {'success': True}</span></p>
+    		<p><span class='f7_gray'>user_list = User.objects.all()</span></p>
+    		<p><span class='f7_gray'>paging_status = request.GET.get('pagingStatus')</span></p>
+    		<p><span class='f7_gray'>total = User.objects.all().count()</span></p>
+    		<p><span class='f7_gray'>user_serializers = UserSerializer(user_list, many=True, context={'request': request})</span></p>
+    		<p><span class='f7_gray'>pagination = StandardPageNumberPagination()</span></p>
+    		<p><span class='f7_gray'>pg_data = pagination.paginate_queryset(queryset=user_serializers.data, request=request, view=self)</span></p>
+    		<p><span class='f7_gray'>if paging_status == 'false':</span></p>
+    		<p><span class='f7_gray'>response['data'] = user_serializers.data</span></p>
+    		<p><span class='f7_gray'>else:</span></p>
+    		<p><span class='f7_gray'>response['data'] = pg_data</span></p>
+    		<p><span class='f7_gray'>response['data'] = pg_data</span></p>
+    		<p><span class='f7_gray'>response['total'] = total</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def post(self, request):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>新增一条用户信息</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'># 获取前端传入请求体数据</span></p>
+    		<p><span class='f7_gray'>data = request.data.copy()</span></p>
+    		<p><span class='f7_gray'>password_ = data["password"]</span></p>
+    		<p><span class='f7_gray'>data["password"] = make_password(password_)</span></p>
+    		<p><span class='f7_gray'># 创建序列化器进行反序列化操作</span></p>
+    		<p><span class='f7_gray'>serializer = UserSerializer(data=data)</span></p>
+    		<p><span class='f7_gray'># 调用序列化器的is_valid方法进行校验</span></p>
+    		<p><span class='f7_gray'>serializer.is_valid(raise_exception=True)</span></p>
+    		<p><span class='f7_gray'># 调用序列化器的save方法进行执行create方法</span></p>
+    		<p><span class='f7_gray'>serializer.save()</span></p>
+    		<p><span class='f7_gray'># 响应</span></p>
+    		<p><span class='f7_gray'>response = {</span></p>
+    		<p><span class='f7_gray'>'success': True,</span></p>
+    		<p><span class='f7_gray'>'data': {</span></p>
+    		<p><span class='f7_gray'>'message': 'success！'</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def delete(self, request, *args, **kwargs):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>批量删除</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>delete_id = request.query_params.get('deleteId', None)</span></p>
+    		<p><span class='f7_gray'>if not delete_id:</span></p>
+    		<p><span class='f7_gray'>return Response({'message': '数据不存在！'})</span></p>
+    		<p><span class='f7_gray'>for i in delete_id.split(','):</span></p>
+    		<p><span class='f7_gray'>get_object_or_404(User, pk=int(i)).delete()</span></p>
+    		<p><span class='f7_gray'>response = {</span></p>
+    		<p><span class='f7_gray'>'success': True,</span></p>
+    		<p><span class='f7_gray'>'data': {</span></p>
+    		<p><span class='f7_gray'>'message': '删除成功！'</span></p>
+    		<p><span class='f7_gray'>},</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>class UserDetailAPIView(APIView):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def get(self, request, pk):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>根据id查询单个用户信息</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'># 查询pk指定的模型对象</span></p>
+    		<p><span class='f7_gray'>try:</span></p>
+    		<p><span class='f7_gray'>user = User.objects.get(id=pk)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>except User.DoesNotExist:</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>return Response({'success': True, 'data': {'message': '数据不存在！'}})</span></p>
+    		<p><span class='f7_gray'># 创建序列化器进行序列化</span></p>
+    		<p><span class='f7_gray'>serializer = UserSerializer(instance=user)</span></p>
+    		<p><span class='f7_gray'># 响应</span></p>
+    		<p><span class='f7_gray'>response = {</span></p>
+    		<p><span class='f7_gray'>'success': True,</span></p>
+    		<p><span class='f7_gray'>'data': serializer.data,</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def put(self, request, pk):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>根据id修改指定用户信息</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'># 根据pk所指定的模型对象</span></p>
+    		<p><span class='f7_gray'>try:</span></p>
+    		<p><span class='f7_gray'>user = User.objects.get(id=pk)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>except User.DoesNotExist:</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>return Response({'message': '数据不存在！'})</span></p>
+    		<p><span class='f7_gray'># 获取前端传入的请求体数据</span></p>
+    		<p><span class='f7_gray'>data = request.data.copy()</span></p>
+    		<p><span class='f7_gray'>if 'password' in data.keys():</span></p>
+    		<p><span class='f7_gray'>password_ = data['password']</span></p>
+    		<p><span class='f7_gray'>data['password'] = make_password(password_)</span></p>
+    		<p><span class='f7_gray'># 创建序列化器进行反序列化操作</span></p>
+    		<p><span class='f7_gray'>serializer = UserSerializer(instance=user, data=data, partial=True)</span></p>
+    		<p><span class='f7_gray'># 校验</span></p>
+    		<p><span class='f7_gray'>serializer.is_valid(raise_exception=True)</span></p>
+    		<p><span class='f7_gray'>serializer.save()</span></p>
+    		<p><span class='f7_gray'># 响应</span></p>
+    		<p><span class='f7_gray'>response = {</span></p>
+    		<p><span class='f7_gray'>'success': True,</span></p>
+    		<p><span class='f7_gray'>'data': {</span></p>
+    		<p><span class='f7_gray'>'message': '更新成功'</span></p>
+    		<p><span class='f7_gray'>},</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def patch(self, request, pk):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>根据id修改用户密码</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'># 根据pk所指定的模型对象</span></p>
+    		<p><span class='f7_gray'>try:</span></p>
+    		<p><span class='f7_gray'>user = User.objects.get(id=pk)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>except User.DoesNotExist:</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>return Response({'message': '数据不存在！'})</span></p>
+    		<p><span class='f7_gray'># 获取前端传入的请求体数据</span></p>
+    		<p><span class='f7_gray'>data = request.data.copy()</span></p>
+    		<p><span class='f7_gray'>new_password = data['new_password']</span></p>
+    		<p><span class='f7_gray'>old_password = data['old_password']</span></p>
+    		<p><span class='f7_gray'>if check_password(old_password, user.password):</span></p>
+    		<p><span class='f7_gray'>new_data = {'password':  make_password(new_password)}</span></p>
+    		<p><span class='f7_gray'># 创建序列化器进行反序列化操作</span></p>
+    		<p><span class='f7_gray'>serializer = UserSerializer(instance=user, data=new_data, partial=True)</span></p>
+    		<p><span class='f7_gray'>else:</span></p>
+    		<p><span class='f7_gray'>return Response({'message': '旧密码输入错误！'})</span></p>
+    		<p><span class='f7_gray'># 校验</span></p>
+    		<p><span class='f7_gray'>serializer.is_valid(raise_exception=True)</span></p>
+    		<p><span class='f7_gray'>serializer.save()</span></p>
+    		<p><span class='f7_gray'># 响应</span></p>
+    		<p><span class='f7_gray'>response = {</span></p>
+    		<p><span class='f7_gray'>'success': True,</span></p>
+    		<p><span class='f7_gray'>'data': {</span></p>
+    		<p><span class='f7_gray'>'message': '更新成功'</span></p>
+    		<p><span class='f7_gray'>},</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def delete(self, request, pk):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>根据id删除指定用户信息</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'># 查询pk所指定的模型对象</span></p>
+    		<p><span class='f7_gray'>try:</span></p>
+    		<p><span class='f7_gray'>user = User.objects.get(id=pk)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>except User.DoesNotExist:</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>return Response({'message': '数据不存在！'})</span></p>
+    		<p><span class='f7_gray'>user.delete()</span></p>
+    		<p><span class='f7_gray'># 响应</span></p>
+    		<p><span class='f7_gray'>response = {</span></p>
+    		<p><span class='f7_gray'>'success': True,</span></p>
+    		<p><span class='f7_gray'>'data': {</span></p>
+    		<p><span class='f7_gray'>'message': '删除成功！'</span></p>
+    		<p><span class='f7_gray'>},</span></p>
+    		<p><span class='f7_gray'>}</span></p>
+    		<p><span class='f7_gray'>return Response(response)</span></p>
+    		<p><span class='f7_black'>class GroupViewSet(viewsets.ModelViewSet):</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>允许组查看或编辑的API路径</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>queryset = Group.objects.all()</span></p>
+    		<p><span class='f7_gray'>serializer_class = GroupSerializer</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>class LoginView(APIView):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def post(self, request):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>登录接口</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>username = request.data['username']</span></p>
+    		<p><span class='f7_gray'>password = request.data['password']</span></p>
+    		<p><span class='f7_gray'>print(password, username)</span></p>
+    		<p><span class='f7_gray'>user = User.objects.filter(username=username).first()</span></p>
+    		<p><span class='f7_gray'>if user and check_password(password, user.password):</span></p>
+    		<p><span class='f7_gray'>return Response({'status': 'ok', 'currentAuthority': username, 'user_id': user.id, 'type': 'account'})</span></p>
+    		<p><span class='f7_gray'>else:</span></p>
+    		<p><span class='f7_gray'>return Response({'status': 'failed', 'code': 400})</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>class UserExportExcelAPIView(APIView):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def post(self, request):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>批量导出用户信息表</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>user_codes = request.data.get("user_code")</span></p>
+    		<p><span class='f7_gray'>n = len(user_codes)</span></p>
+    		<p><span class='f7_gray'># 表头字段</span></p>
+    		<p><span class='f7_black'>head_data = [u'用户编号', u'用户名', u'电子邮箱', u'姓', u'名', u'上次登录时间', u'注册时间', u'角色']</span></p>
+    		<p><span class='f7_gray'># 查询记录数据</span></p>
+    		<p><span class='f7_gray'>records = []</span></p>
+    		<p><span class='f7_gray'>for user_code in user_codes:</span></p>
+    		<p><span class='f7_gray'>if user_code != "":</span></p>
+    		<p><span class='f7_gray'>user_obj = User.objects.get(id=user_code)</span></p>
+    		<p><span class='f7_gray'>id = user_obj.id</span></p>
+    		<p><span class='f7_gray'>username = user_obj.username</span></p>
+    		<p><span class='f7_gray'>email = user_obj.email</span></p>
+    		<p><span class='f7_gray'>first_name = user_obj.first_name</span></p>
+    		<p><span class='f7_gray'>last_name = user_obj.last_name</span></p>
+    		<p><span class='f7_gray'>last_login = user_obj.last_login.strftime("%Y-%m-%d %H:%M:%S") if user_obj.last_login != None else ''</span></p>
+    		<p><span class='f7_gray'>date_joined = user_obj.date_joined.strftime("%Y-%m-%d %H:%M:%S")</span></p>
+    		<p><span class='f7_gray'>group = '管理员' if str(Group.objects.get(user=user_obj)) == 'manager' else '发布企业' if str(Group.objects.get(user=user_obj)) == 'company' else '普通用户'</span></p>
+    		<p><span class='f7_gray'>record = []</span></p>
+    		<p><span class='f7_gray'>record.append(id)</span></p>
+    		<p><span class='f7_gray'>record.append(username)</span></p>
+    		<p><span class='f7_gray'>record.append(email)</span></p>
+    		<p><span class='f7_gray'>record.append(first_name)</span></p>
+    		<p><span class='f7_gray'>record.append(last_name)</span></p>
+    		<p><span class='f7_gray'>record.append(str(last_login))</span></p>
+    		<p><span class='f7_gray'>record.append(str(date_joined))</span></p>
+    		<p><span class='f7_gray'>record.append(group)</span></p>
+    		<p><span class='f7_gray'>records.append(record)</span></p>
+    		<p><span class='f7_gray'># 获取当前路径</span></p>
+    		<p><span class='f7_gray'>cur_path = os.path.abspath('.')</span></p>
+    		<p><span class='f7_gray'># 设置生成文件所在路径</span></p>
+    		<p><span class='f7_gray'>download_url = cur_path + '\\upload\\'</span></p>
+    		<p><span class='f7_gray'># 写入数据到excel中</span></p>
+    		<p><span class='f7_gray'>ret = write_to_excel(n, head_data, records, download_url)</span></p>
+    		<p><span class='f7_gray'>return HttpResponse(ret)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def get(self, request):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>默认导出用户信息表</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>users = User.objects.all()</span></p>
+    		<p><span class='f7_gray'>n = len(users)</span></p>
+    		<p><span class='f7_gray'># 表头字段</span></p>
+    		<p><span class='f7_black'>head_data = [u'用户编号', u'用户名', u'电子邮箱', u'姓', u'名', u'上次登录时间', u'注册时间', u'角色']</span></p>
+    		<p><span class='f7_gray'># 查询记录数据</span></p>
+    		<p><span class='f7_gray'>records = []</span></p>
+    		<p><span class='f7_gray'>for user_obj in users:</span></p>
+    		<p><span class='f7_gray'># if user_code != "":</span></p>
+    		<p><span class='f7_gray'># user_obj = User.objects.get(id=user_code)</span></p>
+    		<p><span class='f7_gray'>id = user_obj.id</span></p>
+    		<p><span class='f7_gray'>username = user_obj.username</span></p>
+    		<p><span class='f7_gray'>email = user_obj.email</span></p>
+    		<p><span class='f7_gray'>first_name = user_obj.first_name</span></p>
+    		<p><span class='f7_gray'>last_name = user_obj.last_name</span></p>
+    		<p><span class='f7_gray'>last_login = user_obj.last_login.strftime("%Y-%m-%d %H:%M:%S") if user_obj.last_login != None else ''</span></p>
+    		<p><span class='f7_gray'>date_joined = user_obj.date_joined.strftime("%Y-%m-%d %H:%M:%S")</span></p>
+    		<p><span class='f7_gray'>group = '管理员' if str(Group.objects.get(user=user_obj)) == 'manager' else '发布企业' if str(Group.objects.get(user=user_obj)) == 'company' else '普通用户'</span></p>
+    		<p><span class='f7_gray'>record = []</span></p>
+    		<p><span class='f7_gray'>record.append(id)</span></p>
+    		<p><span class='f7_gray'>record.append(username)</span></p>
+    		<p><span class='f7_gray'>record.append(email)</span></p>
+    		<p><span class='f7_gray'>record.append(first_name)</span></p>
+    		<p><span class='f7_gray'>record.append(last_name)</span></p>
+    		<p><span class='f7_gray'>record.append(str(last_login))</span></p>
+    		<p><span class='f7_gray'>record.append(str(date_joined))</span></p>
+    		<p><span class='f7_gray'>record.append(group)</span></p>
+    		<p><span class='f7_gray'>records.append(record)</span></p>
+    		<p><span class='f7_gray'># 获取当前路径</span></p>
+    		<p><span class='f7_gray'>cur_path = os.path.abspath('.')</span></p>
+    		<p><span class='f7_gray'># 设置生成文件所在路径</span></p>
+    		<p><span class='f7_gray'>download_url = cur_path + '\\upload\\'</span></p>
+    		<p><span class='f7_gray'># 写入数据到excel中</span></p>
+    		<p><span class='f7_gray'>ret = write_to_excel(n, head_data, records, download_url)</span></p>
+    		<p><span class='f7_gray'>return HttpResponse(ret)</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>class DownloadAPIView(APIView):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def post(self, request, offset):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>公共下载excel文件方法</span></p>
+    		<p><span class='f7_gray'>"""</span></p>
+    		<p><span class='f7_gray'>from django.http import StreamingHttpResponse</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def file_iterator(file_name, chunk_size=512):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>with open(file_name, 'rb') as f:</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>while True:</span></p>
+    		<p><span class='f7_gray'>c = f.read(chunk_size)</span></p>
+    		<p><span class='f7_gray'>if c:</span></p>
+    		<p><span class='f7_gray'>yield c</span></p>
+    		<p><span class='f7_gray'>else:</span></p>
+    		<p><span class='f7_gray'>break</span></p>
+    		<p><span class='f7_gray'># 显示在弹出对话框中的默认的下载文件名</span></p>
+    		<p><span class='f7_gray'>the_file_name = 'New-' + offset + '.xls'</span></p>
+    		<p><span class='f7_gray'># 获取当前路径</span></p>
+    		<p><span class='f7_gray'>cur_path = os.path.abspath('.')</span></p>
+    		<p><span class='f7_gray'># 设置生成文件所在路径</span></p>
+    		<p><span class='f7_gray'>download_url = cur_path + '\\upload\\'</span></p>
+    		<p><span class='f7_gray'>response = StreamingHttpResponse(file_iterator(download_url + 'New-' + offset + '.xls'))</span></p>
+    		<p><span class='f7_gray'>response['Content-Type'] = 'application/octet-stream'</span></p>
+    		<p><span class='f7_gray'>response['Content-Disposition'] = 'attachment;filename="{0}"'.format(the_file_name)</span></p>
+    		<p><span class='f7_gray'>return response</span></p>
+    		<p><span class='f7_black'>报名管理序列化器相关代码如下：</span></p>
+    		<p><span class='f7_gray'>from rest_framework import serializers</span></p>
+    		<p><span class='f7_gray'>from .models import Apply</span></p>
+    		<p><span class='f7_gray'>from activity.models import Activity</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>class ApplyModelSerializer(serializers.Serializer):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>'''报名信息序列化器'''</span></p>
+    		<p><span class='f7_gray'>SEX_CHOICE = [</span></p>
+    		<p><span class='f7_gray'>(0, '未知'),</span></p>
+    		<p><span class='f7_gray'>(1, '男'),</span></p>
+    		<p><span class='f7_gray'>(2, '女')</span></p>
+    		<p><span class='f7_gray'>]</span></p>
+    		<p><span class='f7_gray'>STATUS_CHOICE = [</span></p>
+    		<p><span class='f7_gray'>(0, '待审核'),</span></p>
+    		<p><span class='f7_gray'>(1, '已审核'),</span></p>
+    		<p><span class='f7_gray'>(2, '未通过')</span></p>
+    		<p><span class='f7_gray'>]</span></p>
+    		<p><span class='f7_gray'>id = serializers.IntegerField(label='Id', read_only=True)</span></p>
+    		<p><span class='f7_gray'>name = serializers.CharField(label='姓名', max_length=50, required=True)</span></p>
+    		<p><span class='f7_gray'>age = serializers.IntegerField(label='年龄', required=True)</span></p>
+    		<p><span class='f7_gray'>sex = serializers.ChoiceField(choices=SEX_CHOICE)</span></p>
+    		<p><span class='f7_gray'>address = serializers.CharField(label='家庭住址', required=True)</span></p>
+    		<p><span class='f7_gray'>tel = serializers.CharField(label='联系方式', required=True)</span></p>
+    		<p><span class='f7_gray'>apply_status = serializers.ChoiceField(label='报名状态', choices=STATUS_CHOICE, default=0)</span></p>
+    		<p><span class='f7_gray'>apply_time = serializers.DateTimeField(label='报名时间', read_only=True, required=False, format='%Y-%m-%d %H:%M:%S')</span></p>
+    		<p><span class='f7_gray'>belonging_activity = serializers.PrimaryKeyRelatedField(queryset=Activity.objects.all())</span></p>
+    		<p><span class='f7_gray'># 自定义额外字段</span></p>
+    		<p><span class='f7_gray'>belonging_activity_name = serializers.CharField(source='belonging_activity.name', read_only=True)</span></p>
+    		<p><span class='f7_gray'># 局部全局钩子同Serializer类, 自定义校验手机号码方法</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def validate_tel(self, value):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>if (len(value) != 11):</span></p>
+    		<p><span class='f7_gray'>raise serializers.ValidationError('电话号码长度不对！')</span></p>
+    		<p><span class='f7_gray'>return value</span></p>
+    		<p><span class='f7_gray'># 重写create方法</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def create(self, validated_data):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'>return Apply.objects.create(**validated_data)</span></p>
+    		<p><span class='f7_gray'># instance要被修改的对象，validated_data代表校验后用来改instance的数据</span></p>
+    		<p><span class='f7_black'></span><span class='f7_hong'>def update(self, instance: Apply, validated_data):</span><span class='f7_black'></span></p>
+    		<p><span class='f7_gray'># 用户名不能被修改</span></p>
+    		<p><span class='f7_gray'>Apply.objects.filter(pk=instance.id).update(**validated_data)</span></p>
+    		<p><span class='f7_gray'>return instance</span></p>
+    </td>
+  </tr>
+</table>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#f4f9ef"  style="margin-top:20px;">
+  <tr>
+    <td class="f4">说明</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td rowspan="2" class="f6">
+1.总体相似度 = (相似字数 + 引用字数) / 检测字数<br />
+2.去除引用相似度 = 相似字数 / 检测字数<br />
+3.被系统自动识别出来的非正文部分（如目录，标题，公式，图表，参考文献等）不参与检测，以灰色字体标记。<br />
+4.相似字数 =（句子1字数 * 句子1相似度 + 句子2字数 * 句子2相似度 + ...... + 句子n字数 * 句子n相似度），黑色句子相似字数按照0计算。<br />
+5.<span style="color:#ff0000;">红色</span>文字表示文字复制部分，建议修改。<br />
+6.本报告单由高校学术不端检测系统生成，仅对本次检测结果负责。
+</td>
+
+  </tr>
+
+
+</table>
+
+
+</body>
+</html>
