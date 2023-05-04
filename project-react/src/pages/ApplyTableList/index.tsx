@@ -239,7 +239,7 @@ const ApplyTableList: React.FC = () => {
   const columns: ProColumns<API.ApplyListItem>[] = [
     {
       title: 'Id',
-      width: 80,
+      width: 50,
       dataIndex: 'id',
       search: false,
     },

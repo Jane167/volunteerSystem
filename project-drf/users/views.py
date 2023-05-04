@@ -204,7 +204,6 @@ class LoginView(APIView):
 		"""
 		登录接口
 		"""
-		
 		username = request.data['username']
 		password = request.data['password']
 		print(password, username)
